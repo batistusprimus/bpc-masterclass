@@ -1,26 +1,109 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-primary: #000000;
+  --color-contrast: #FFFFFF;
+  --color-title: #FFF1DE;
+  --color-rare: #9B8E7D;
+  --color-button: #9F99EB;
+  --color-graph: #99E5EB;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #000000;
+  color: #FFFFFF;
+  font-family: 'Montserrat', sans-serif;
 }
+
+h1, h2, h3 {
+  font-family: 'Anton', sans-serif;
+  color: #FFF1DE;
+}
+
+h4, h5, h6 {
+  font-family: 'Archivo Black', sans-serif;
+}
+
+.btn {
+  background-color: var(--color-button);
+  color: var(--color-contrast);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.25rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.btn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-secondary {
+  background-color: var(--color-graph);
+  color: var(--color-primary);
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 1px solid var(--color-button);
+  color: var(--color-contrast);
+}
+
+.container-custom {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .container-custom {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-custom {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+.section {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+}
+
+/* Utility classes to replace tailwind custom classes */
+.bg-primary { background-color: #000000; }
+.bg-contrast { background-color: #FFFFFF; }
+.bg-title { background-color: #FFF1DE; }
+.bg-rare { background-color: #9B8E7D; }
+.bg-button { background-color: #9F99EB; }
+.bg-graph { background-color: #99E5EB; }
+
+.text-primary { color: #000000; }
+.text-contrast { color: #FFFFFF; }
+.text-title { color: #FFF1DE; }
+.text-rare { color: #9B8E7D; }
+.text-button { color: #9F99EB; }
+.text-graph { color: #99E5EB; }
+
+.font-title { font-family: 'Anton', sans-serif; }
+.font-subtitle { font-family: 'Archivo Black', sans-serif; }
+.font-body { font-family: 'Montserrat', sans-serif; }

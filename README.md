@@ -1,3 +1,60 @@
+# BPC Masterclass
+
+## Description
+La masterclass BPC est notre produit ultime, mis à disposition gratuitement et sans inscription pour les entrepreneurs et solopreneurs du B2B. Tu pourras prendre rendez-vous pour rejoindre l'incubateur, acheter des produits pour accélérer ta progression, et t'inscrire pour recevoir ta roadmap personnalisée.
+
+## Structure du site
+- **Accueil** - Page principale du site
+- **Masterclass** - Détails sur la masterclass
+- **Catalogue** - Produits disponibles à l'achat
+- **Media** - Contenu média
+- **BPC GROUP** - Informations sur le groupe BPC
+
+## Guide de style
+
+### Typographie
+- **Titres**: Anton
+- **Sous-titres**: Archivo Black
+- **Corps**: Montserrat
+
+### Palette de couleurs
+- **Couleur principale (fond)**: #000000 (Noir)
+- **Contraste**: #FFFFFF (Blanc)
+- **Titres**: #FFF1DE (Mocassin)
+- **Rare**: #9B8E7D
+- **Boutons**: #9F99EB
+- **Graphiques**: #99E5EB
+
+### Disposition
+- Header flottant et fixe sur toutes les pages
+- Footer identique sur toutes les pages
+
+## Technologies utilisées
+- Next.js avec App Router
+- TypeScript
+- React
+- Tailwind CSS
+
+## Installation et démarrage
+
+```bash
+# Installer les dépendances
+npm install
+
+# Lancer le serveur de développement
+npm run dev
+
+# Compiler pour la production
+npm run build
+
+# Lancer le serveur de production
+npm start
+```
+
+## Inspirations
+- [Acquisition.com](https://www.acquisition.com/)
+- [8figurelicense.com](https://8figurelicense.com/)
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
