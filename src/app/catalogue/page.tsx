@@ -222,10 +222,10 @@ export default function CataloguePage() {
       <section className="section bg-primary py-12 md:py-16 px-4 md:px-0">
         <div className="container-custom">
           <div className="text-center mb-10 md:mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl mb-3 md:mb-4">L'Incubateur BPC</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl mb-3 md:mb-4">L&apos;Incubateur BPC</h2>
             <p className="text-gray-300 max-w-2xl mx-auto mb-6 md:mb-8">
-              Notre programme d'élite sur revshare pour les entrepreneurs B2B ambitieux qui veulent 
-              dépasser les 80k€/mois avec une équipe d'associés à leurs côtés.
+              Notre programme d&apos;élite sur revshare pour les entrepreneurs B2B ambitieux qui veulent 
+              dépasser les 80k€/mois avec une équipe d&apos;associés à leurs côtés.
             </p>
           </div>
           

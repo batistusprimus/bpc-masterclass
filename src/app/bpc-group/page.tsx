@@ -315,7 +315,7 @@ export default function BpcGroupPage() {
                   transition={{ delay: 0.2 }}
                   className="text-3xl md:text-5xl font-bold mb-8 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-300 text-center"
                 >
-                  "Notre mission est de créer une nouvelle génération d&apos;entrepreneurs B2B, armés des connaissances et des outils pour bâtir des entreprises florissantes et pérennes."
+                  &ldquo;Notre mission est de créer une nouvelle génération d&apos;entrepreneurs B2B, armés des connaissances et des outils pour bâtir des entreprises florissantes et pérennes.&rdquo;
                 </motion.h2>
                 <motion.p 
                   initial={{ opacity: 0, y: 20 }}
