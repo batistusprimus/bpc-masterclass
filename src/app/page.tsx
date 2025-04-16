@@ -48,12 +48,12 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-button/5 to-transparent"></div>
         <div className="container-custom relative z-10">
           <div className="text-center mb-8 sm:mb-12 lg:mb-16 px-4">
-            <span className="text-button text-sm font-medium uppercase tracking-wider">8 Modules Gratuits</span>
+            <span className="text-button text-sm font-medium uppercase tracking-wider">9 Modules Gratuits</span>
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-subtitle mt-4 mb-6 bg-gradient-to-r from-white to-gray-300 text-transparent bg-clip-text">
               Tu veux progresser ? Commence par là.
             </h2>
             <p className="text-base sm:text-lg text-gray-300 max-w-3xl mx-auto">
-              8 modules. 8 façons d'avancer rapidement.
+              9 modules. 9 façons d'avancer rapidement.
               Tu sélectionnes ce qui t'aide, et tu passes à l'action.
             </p>
           </div>
@@ -118,7 +118,7 @@ export default function Home() {
                   <h3 className="text-xl font-bold bg-gradient-to-r from-white to-gray-300 text-transparent bg-clip-text group-hover:from-button group-hover:to-white transition-all duration-300">
                     {module.title}
                   </h3>
-                  <span className="text-sm text-gray-500">Module {index + 1}</span>
+                  <span className="text-sm text-gray-500">Module {index}</span>
                 </div>
                 
                 <p className="text-gray-300 text-sm leading-relaxed mb-6 flex-grow">
@@ -271,7 +271,7 @@ export default function Home() {
               },
               {
                 question: "Combien de temps dure la masterclass ?",
-                answer: "La masterclass complète est composée de 8 modules d'environ 30 minutes chacun. Tu peux les suivre à ton rythme, quand tu veux."
+                answer: "La masterclass complète est composée de 9 modules d'environ 30 minutes chacun. Tu peux les suivre à ton rythme, quand tu veux."
               },
               {
                 question: "Est-ce que je recevrai un certificat ?",

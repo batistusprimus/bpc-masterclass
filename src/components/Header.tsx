@@ -49,9 +49,11 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center space-x-4">
-          <Link href="/contact" className="btn">
-            Obtenir ma Roadmap Personnalisée
-          </Link>
+          <div className="hidden md:flex">
+            <Link href="/contact" className="btn">
+              Obtenir ma Roadmap Personnalisée
+            </Link>
+          </div>
           
           {/* Menu mobile button */}
           <button 
@@ -73,7 +75,7 @@ export default function Header() {
 
       {/* Menu mobile */}
       <div className={`md:hidden transition-all duration-300 ease-in-out overflow-hidden ${
-        isMenuOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'
+        isMenuOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
       }`}>
         <nav className="container-custom py-4 flex flex-col space-y-4 bg-primary">
           <Link 
@@ -111,6 +113,15 @@ export default function Header() {
           >
             BPC GROUP
           </Link>
+          <div className="pt-4">
+            <Link 
+              href="/contact" 
+              className="btn w-full text-center"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Obtenir ma Roadmap Personnalisée
+            </Link>
+          </div>
         </nav>
       </div>
     </header>

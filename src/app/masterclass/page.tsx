@@ -1484,20 +1484,20 @@ function FocusMode({
                 
                 <div className="relative">
                   <h3 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-300 mb-6">Ressources</h3>
-                  <div className="flex items-center space-x-6 p-6 bg-surfaceLight/50 backdrop-blur-sm rounded-xl border border-white/5">
+                  <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-6 p-6 bg-surfaceLight/50 backdrop-blur-sm rounded-xl border border-white/5">
                     <div className="flex items-center relative">
                       <div className="absolute inset-0 bg-button/20 blur-xl"></div>
                       <svg className="w-12 h-12 text-button relative" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                      </svg>
                       <svg className="w-6 h-6 text-accent -ml-4 -mt-6 relative" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
-                    </svg>
-                  </div>
-                  <div className="flex-1">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
+                      </svg>
+                    </div>
+                    <div className="flex-1 text-center sm:text-left">
                       <h4 className="text-xl font-medium text-white mb-1">Workbook: {module.title}</h4>
                       <p className="text-gray-400">PDF - Téléchargement gratuit</p>
-                  </div>
+                    </div>
                     <motion.a 
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
