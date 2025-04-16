@@ -2,10 +2,12 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,6 +21,11 @@ export default function Header() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const scrollToOptin = (e: React.MouseEvent) => {
+    e.preventDefault();
+    router.push('/#optin');
+  };
 
   return (
     <header 
@@ -50,7 +57,11 @@ export default function Header() {
 
         <div className="flex items-center space-x-4">
           <div className="hidden md:flex">
-            <Link href="/contact" className="btn">
+            <Link 
+              href="/#optin" 
+              className="btn"
+              onClick={scrollToOptin}
+            >
               Obtenir ma Roadmap Personnalisée
             </Link>
           </div>
@@ -115,9 +126,12 @@ export default function Header() {
           </Link>
           <div className="pt-4">
             <Link 
-              href="/contact" 
+              href="/#optin" 
               className="btn w-full text-center"
-              onClick={() => setIsMenuOpen(false)}
+              onClick={(e) => {
+                scrollToOptin(e);
+                setIsMenuOpen(false);
+              }}
             >
               Obtenir ma Roadmap Personnalisée
             </Link>

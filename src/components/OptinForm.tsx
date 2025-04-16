@@ -43,6 +43,19 @@ export default function OptinForm({
             required
           />
         </div>
+
+        <div>
+          <label htmlFor="phone" className="block text-sm font-medium mb-1 text-gray-300">Téléphone</label>
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            placeholder="06 12 34 56 78"
+            pattern="[0-9]{2}[0-9]{2}[0-9]{2}[0-9]{2}[0-9]{2}"
+            className="w-full px-4 py-3 bg-gray-700/80 border border-primary/30 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-primary shadow-inner"
+            required
+          />
+        </div>
         
         <div>
           <label htmlFor="business" className="block text-sm font-medium mb-1 text-gray-300">Ton C.A Annuel</label>

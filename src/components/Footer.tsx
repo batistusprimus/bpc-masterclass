@@ -66,14 +66,14 @@ export default function Footer() {
           <div>
             <h4 className="text-lg mb-6">Ressources</h4>
             <div className="space-y-4">
-              <Link href="#" className="block text-gray-400 hover:text-title transition-colors">
-                Blog
+              <Link href="/catalogue" className="block text-gray-400 hover:text-title transition-colors">
+                Catalogue
               </Link>
-              <Link href="#" className="block text-gray-400 hover:text-title transition-colors">
-                FAQ
-              </Link>
-              <Link href="#" className="block text-gray-400 hover:text-title transition-colors">
+              <Link href="/#testimonials" className="block text-gray-400 hover:text-title transition-colors">
                 Témoignages
+              </Link>
+              <Link href="/#faq" className="block text-gray-400 hover:text-title transition-colors">
+                FAQ
               </Link>
               <Link href="/mentions-legales" className="block text-gray-400 hover:text-title transition-colors">
                 Mentions légales

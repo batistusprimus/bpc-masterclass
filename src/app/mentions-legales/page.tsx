@@ -13,85 +13,98 @@ export default function MentionsLegales() {
         <h1 className="text-4xl font-bold mb-10 text-title">Mentions Légales</h1>
         
         <section className="mb-12">
-          <h2 className="text-2xl font-semibold mb-4 text-title">1. Informations légales</h2>
+          <h2 className="text-2xl font-semibold mb-4 text-title">1. Éditeur du site</h2>
           <p className="mb-4">
-            Le site BPC Masterclass est édité par BPC GROUP, entreprise individuelle.
+            Le présent site est édité par :
           </p>
           <ul className="list-disc pl-6 mb-6 space-y-2">
+            <li>BP LES CANNISSES KFT</li>
+            <li>Société de droit hongrois (KFT) au capital social de 8.000€</li>
+            <li>Siège social : Rózsa utca 38/A, 1077 Budapest, Hongrie</li>
+            <li>Enregistrée au registre du commerce de Budapest sous le numéro Cg.01-09-420052</li>
+            <li>Numéro de TVA intracommunautaire : HU32359815</li>
             <li>Responsable de la publication : Baptiste Piocelle</li>
-            <li>Adresse e-mail : baptiste@bpcorp.eu</li>
-            <li>Numéro SIRET : [Insérer numéro SIRET]</li>
           </ul>
-          
-          <p className="mb-4">
-            Hébergement du site : [Nom et coordonnées de l'hébergeur]
-          </p>
         </section>
         
         <section className="mb-12">
-          <h2 className="text-2xl font-semibold mb-4 text-title">2. Propriété intellectuelle</h2>
+          <h2 className="text-2xl font-semibold mb-4 text-title">2. Hébergement</h2>
           <p className="mb-4">
-            L'ensemble du contenu présent sur le site BPC Masterclass (textes, images, vidéos, logos, icônes, structure, base de données...) est protégé par le droit d'auteur et est la propriété exclusive de BPC GROUP ou de ses partenaires.
-          </p>
-          <p className="mb-4">
-            Toute reproduction, représentation, modification, publication, adaptation ou exploitation de tout ou partie des éléments du site, quel que soit le moyen ou le procédé utilisé, est interdite sans autorisation préalable écrite de BPC GROUP.
-          </p>
-          <p className="mb-4">
-            Toute exploitation non autorisée du site ou de son contenu sera considérée comme constitutive d'une contrefaçon et poursuivie conformément aux dispositions des articles L.335-2 et suivants du Code de la Propriété Intellectuelle.
-          </p>
-        </section>
-        
-        <section className="mb-12">
-          <h2 className="text-2xl font-semibold mb-4 text-title">3. Protection des données personnelles</h2>
-          <p className="mb-4">
-            BPC Masterclass s'engage à respecter la confidentialité des données personnelles communiquées par les utilisateurs du site et à les traiter dans le respect de la loi Informatique et Libertés du 6 janvier 1978 et du Règlement Général sur la Protection des Données (RGPD).
-          </p>
-          <p className="mb-4">
-            Les données collectées sur le site sont destinées à BPC GROUP et ne sont pas cédées à des tiers. Elles sont collectées dans le but de fournir nos services, d'améliorer notre site et de communiquer avec nos utilisateurs.
-          </p>
-          <p className="mb-4">
-            Conformément à la réglementation en vigueur, vous disposez d'un droit d'accès, de rectification, de suppression et d'opposition relatif aux données vous concernant. Pour exercer ces droits, vous pouvez nous contacter à l'adresse e-mail : baptiste@bpcorp.eu
-          </p>
-        </section>
-        
-        <section className="mb-12">
-          <h2 className="text-2xl font-semibold mb-4 text-title">4. Cookies</h2>
-          <p className="mb-4">
-            Le site BPC Masterclass peut utiliser des cookies pour améliorer l'expérience de navigation des utilisateurs. Un cookie est un petit fichier texte stocké sur votre ordinateur qui permet d'enregistrer des informations relatives à votre navigation.
-          </p>
-          <p className="mb-4">
-            Vous pouvez configurer votre navigateur pour refuser les cookies ou être alerté lorsque des cookies sont envoyés. Cependant, certaines parties du site pourraient ne pas fonctionner correctement si vous refusez les cookies.
-          </p>
-        </section>
-        
-        <section className="mb-12">
-          <h2 className="text-2xl font-semibold mb-4 text-title">5. Limitation de responsabilité</h2>
-          <p className="mb-4">
-            BPC GROUP s'efforce d'assurer au mieux l'exactitude et la mise à jour des informations diffusées sur ce site, dont elle se réserve le droit de corriger le contenu à tout moment et sans préavis. Toutefois, BPC GROUP ne peut garantir l'exactitude, la précision ou l'exhaustivité des informations mises à disposition sur ce site.
-          </p>
-          <p className="mb-4">
-            BPC GROUP décline toute responsabilité :
+            Le site est hébergé par :
           </p>
           <ul className="list-disc pl-6 mb-6 space-y-2">
-            <li>Pour toute interruption du site</li>
-            <li>Pour toute survenance de bugs</li>
-            <li>Pour toute inexactitude ou omission portant sur des informations disponibles sur le site</li>
-            <li>Pour tous dommages résultant d'une intrusion frauduleuse d'un tiers ayant entraîné une modification des informations mises à disposition sur le site</li>
-            <li>Et plus généralement de tout dommage direct ou indirect, quelles qu'en soient les causes, origines, natures ou conséquences</li>
+            <li>Vercel Inc.</li>
+            <li>Adresse : 340 S Lemon Ave #4133, Walnut, CA 91789, United States</li>
+            <li>Site : https://vercel.com</li>
+            <li>Support : support@vercel.com</li>
           </ul>
         </section>
         
         <section className="mb-12">
-          <h2 className="text-2xl font-semibold mb-4 text-title">6. Liens hypertextes</h2>
+          <h2 className="text-2xl font-semibold mb-4 text-title">3. Contact</h2>
           <p className="mb-4">
-            Le site BPC Masterclass peut contenir des liens hypertextes vers d'autres sites internet. BPC GROUP n'exerce aucun contrôle sur ces sites et décline toute responsabilité quant à leur contenu.
+            Pour toute question, remarque ou demande d'information, vous pouvez contacter l'éditeur du site à l'adresse suivante :
+          </p>
+          <p className="mb-4">
+            📧 baptiste@bpcorp.eu
           </p>
         </section>
         
         <section className="mb-12">
-          <h2 className="text-2xl font-semibold mb-4 text-title">7. Droit applicable et juridiction compétente</h2>
+          <h2 className="text-2xl font-semibold mb-4 text-title">4. Activité du site</h2>
           <p className="mb-4">
-            Les présentes mentions légales sont soumises au droit français. En cas de litige, les tribunaux français seront seuls compétents.
+            Le site masterclass.bpcorp.eu propose des formations, ressources et accompagnements pour entrepreneurs du B2B, à travers plusieurs offres : Starter, Accélérateur, Scale et Incubateur BPC.
+          </p>
+          <p className="mb-4">
+            L'accès à certains contenus est gratuit, d'autres sont payants.
+            Il n'existe pas encore d'espace membre privé.
+          </p>
+        </section>
+        
+        <section className="mb-12">
+          <h2 className="text-2xl font-semibold mb-4 text-title">5. Propriété intellectuelle</h2>
+          <p className="mb-4">
+            L'ensemble des contenus présents sur ce site (textes, vidéos, documents, concepts, formations) sont la propriété exclusive de BP LES CANNISSES KFT.
+          </p>
+          <p className="mb-4">
+            Toute reproduction ou diffusion, même partielle, sans autorisation préalable est strictement interdite.
+          </p>
+        </section>
+        
+        <section className="mb-12">
+          <h2 className="text-2xl font-semibold mb-4 text-title">6. Protection des données personnelles</h2>
+          <p className="mb-4">
+            Le site collecte des données personnelles (nom, prénom, email) via ses formulaires de contact et d'inscription.
+            Ces données sont utilisées à des fins de gestion commerciale, d'envoi d'emails via le CRM GoHighLevel, et de gestion de paiements via Stripe.
+          </p>
+          <p className="mb-4">
+            Conformément à la réglementation européenne (RGPD), vous disposez d'un droit d'accès, de modification et de suppression de vos données.
+            Pour exercer ce droit, contactez-nous à : baptiste@bpcorp.eu
+          </p>
+          <p className="mb-4">
+            Outils utilisés pouvant impliquer un traitement de vos données :
+          </p>
+          <ul className="list-disc pl-6 mb-6 space-y-2">
+            <li>CRM : GoHighLevel</li>
+            <li>Plateforme de paiement : Stripe</li>
+            <li>Organisation interne : Notion</li>
+          </ul>
+          <p className="mb-4">
+            Aucune donnée n'est revendue ou utilisée à des fins non mentionnées.
+          </p>
+        </section>
+        
+        <section className="mb-12">
+          <h2 className="text-2xl font-semibold mb-4 text-title">7. Cookies et tracking</h2>
+          <p className="mb-4">
+            Le site n'utilise pas de cookies à des fins de tracking publicitaire ou d'analyse (Google Analytics, Meta Ads, etc.) à ce jour.
+          </p>
+        </section>
+        
+        <section className="mb-12">
+          <h2 className="text-2xl font-semibold mb-4 text-title">8. Responsabilité</h2>
+          <p className="mb-4">
+            L'éditeur s'efforce de fournir des informations fiables et à jour. Cependant, il ne saurait être tenu responsable d'éventuelles erreurs, inexactitudes ou indisponibilités ponctuelles du site.
           </p>
         </section>
         

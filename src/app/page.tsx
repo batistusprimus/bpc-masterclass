@@ -138,7 +138,7 @@ export default function Home() {
       </section>
       
       {/* Form Optin Section */}
-      <section className="section bg-gradient-to-br from-primary via-button/5 to-graph/5 relative overflow-hidden py-12 sm:py-16 lg:py-20">
+      <section id="optin" className="section bg-gradient-to-br from-primary via-button/5 to-graph/5 relative overflow-hidden py-12 sm:py-16 lg:py-20">
         <div className="absolute inset-0">
           <div className="absolute top-0 right-0 w-64 sm:w-96 h-64 sm:h-96 bg-button/10 rounded-full -mt-12 -mr-12 blur-3xl"></div>
           <div className="absolute bottom-0 left-0 w-64 sm:w-96 h-64 sm:h-96 bg-graph/10 rounded-full -mb-12 -ml-12 blur-3xl"></div>
