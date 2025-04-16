@@ -66,12 +66,21 @@ const COLORS = {
   error: '#F44336',
 };
 
+// Fonction utilitaire pour formater les URLs des vidéos
+function formatVideoUrl(url: string): string {
+  if (url.includes('tella.tv')) {
+    // Convertir l'URL de vidéo Tella en URL d'intégration
+    return url.replace('/video/', '/embed/');
+  }
+  return url;
+}
+
 // Structure des données de la masterclass avec des tags et couleurs
 const masterclassContent: MasterclassContent = {
   introduction: {
     title: "Introduction - Commence ici",
     description: "Bienvenue dans la Masterclass BPC. Commence ton parcours ici!",
-    videoUrl: "/videos/introduction.mp4",
+    videoUrl: formatVideoUrl("https://www.tella.tv/video/introduction-hg5d"),
     workbookUrl: "/workbooks/introduction-masterclass.pdf",
   },
   modules: [
@@ -84,9 +93,16 @@ const masterclassContent: MasterclassContent = {
       workbookUrl: "https://notion.bpcorp.eu/Workbook-Module-0-Mindset-1ceb44663e10806cbe6bc0fcad82f930?pvs=4",
       paliers: [
         {
+          id: "0.0",
+          title: "Introduction au Mindset",
+          videoUrl: "https://www.tella.tv/video/introduction-module-0-mindset-9h23",
+          tags: ["mindset", "introduction", "fondamentaux"],
+          moduleId: 0
+        },
+        {
           id: "0.1",
           title: "Briser ses barrières mentales",
-          videoUrl: "/videos/0-1-barrieres-mentales.mp4",
+          videoUrl: "https://www.tella.tv/video/01-briser-ses-barrieres-mentales-hlwo",
           tags: ["mindset", "débutant", "psychologie"],
           moduleId: 0
         },
@@ -99,29 +115,36 @@ const masterclassContent: MasterclassContent = {
         },
         {
           id: "0.3",
-          title: "L'extrémistant",
-          videoUrl: "/videos/0-3-extremistant.mp4",
-          tags: ["mindset", "action", "motivation"],
+          title: "Audit de ton business actuel",
+          videoUrl: "https://www.tella.tv/video/03-audit-de-ton-business-cvxq",
+          tags: ["mindset", "audit", "business"],
           moduleId: 0
         },
         {
           id: "0.4",
-          title: "Comment prendre de bonnes décisions ?",
-          videoUrl: "/videos/0-4-bonnes-decisions.mp4",
-          tags: ["mindset", "décision", "stratégie"],
+          title: "L'extrémistant",
+          videoUrl: "https://www.tella.tv/video/04-lextremistant-7las",
+          tags: ["mindset", "action", "motivation"],
           moduleId: 0
         },
         {
           id: "0.5",
-          title: "La vérité sur l'argent",
-          videoUrl: "/videos/0-5-verite-argent.mp4",
-          tags: ["mindset", "argent", "finance"],
+          title: "Comment prendre de bonnes décisions stratégiques ?",
+          videoUrl: "/videos/0-5-bonnes-decisions.mp4",
+          tags: ["mindset", "décision", "stratégie"],
           moduleId: 0
         },
         {
           id: "0.6",
+          title: "La vérité sur l'argent",
+          videoUrl: "https://www.tella.tv/video/module-0-mindset-06-1-cjel",
+          tags: ["mindset", "argent", "finance"],
+          moduleId: 0
+        },
+        {
+          id: "0.7",
           title: "Le 1% vs les 99%",
-          videoUrl: "/videos/0-6-1-pourcent.mp4",
+          videoUrl: "https://www.tella.tv/video/07-le-1-vs-les-99-38eq",
           tags: ["mindset", "performance", "excellence"],
           moduleId: 0
         }
@@ -137,9 +160,9 @@ const masterclassContent: MasterclassContent = {
       paliers: [
         {
           id: "1.0",
-          title: "Introduction : pourquoi, mathématiquement ta boîte va fermer ?",
-          videoUrl: "/videos/1-0-introduction-offre.mp4",
-          tags: ["offre", "finance", "business model"],
+          title: "Introduction à la création d'offre",
+          videoUrl: formatVideoUrl("/videos/1-0-introduction-offre.mp4"),
+          tags: ["offre", "introduction", "fondamentaux"],
           moduleId: 1
         },
         {
@@ -202,27 +225,40 @@ const masterclassContent: MasterclassContent = {
     },
     {
       id: 2,
-      title: "Toute l'acquisition",
-      description: "Volume + Relations + Valeur = €. Tout ce dont tu as besoin pour trouver des prospects est ici.",
-      icon: "🚀",
+      title: "Acquisition",
+      description: "Comment acquérir des clients de manière prédictible",
+      icon: "🎯",
       color: "#4CAF50", // Green
       workbookUrl: "/workbooks/2-acquisition.pdf",
       rubriques: [
         {
-          title: "Fondamentaux",
+          title: "Introduction",
           paliers: [
             {
               id: "2.0",
+              title: "Introduction à l'acquisition",
+              videoUrl: formatVideoUrl("/videos/2-0-introduction-acquisition.mp4"),
+              tags: ["acquisition", "introduction", "fondamentaux"],
+              moduleId: 2,
+              rubrique: "Introduction"
+            }
+          ]
+        },
+        {
+          title: "Fondamentaux",
+          paliers: [
+            {
+              id: "2.1",
               title: "Checklist de launch des campagnes",
-              videoUrl: "/videos/2-0-checklist-launch.mp4",
+              videoUrl: "/videos/2-1-checklist-launch.mp4",
               tags: ["acquisition", "campagnes", "lancement"],
               moduleId: 2,
               rubrique: "Fondamentaux"
             },
             {
-              id: "2.1",
+              id: "2.2",
               title: "Optimiser ses profils",
-              videoUrl: "/videos/2-1-optimiser-profils.mp4",
+              videoUrl: "/videos/2-2-optimiser-profils.mp4",
               tags: ["acquisition", "profils", "optimisation"],
               moduleId: 2,
               rubrique: "Fondamentaux"
@@ -233,49 +269,49 @@ const masterclassContent: MasterclassContent = {
           title: "Process Ads",
           paliers: [
             {
-              id: "2.2.1",
+              id: "2.3.1",
               title: "Bien comprendre l'importance des ads",
-              videoUrl: "/videos/2-2-1-importance-ads.mp4",
+              videoUrl: "/videos/2-3-1-importance-ads.mp4",
               tags: ["acquisition", "publicité", "stratégie"],
               moduleId: 2,
               rubrique: "Process Ads"
             },
             {
-              id: "2.2.2",
+              id: "2.3.2",
               title: "Setup son business manager META",
-              videoUrl: "/videos/2-2-2-business-manager.mp4",
+              videoUrl: "/videos/2-3-2-business-manager.mp4",
               tags: ["acquisition", "facebook", "technique"],
               moduleId: 2,
               rubrique: "Process Ads"
             },
             {
-              id: "2.2.3",
+              id: "2.3.3",
               title: "La stratégie Ads globale",
-              videoUrl: "/videos/2-2-3-strategie-ads.mp4",
+              videoUrl: "/videos/2-3-3-strategie-ads.mp4",
               tags: ["acquisition", "ads", "stratégie"],
               moduleId: 2,
               rubrique: "Process Ads"
             },
             {
-              id: "2.2.4",
+              id: "2.3.4",
               title: "Les Ads Textuelles",
-              videoUrl: "/videos/2-2-4-ads-textuelles.mp4",
+              videoUrl: "/videos/2-3-4-ads-textuelles.mp4",
               tags: ["acquisition", "ads", "copywriting"],
               moduleId: 2,
               rubrique: "Process Ads"
             },
             {
-              id: "2.2.5",
+              id: "2.3.5",
               title: "Les Ads VTH et Loom",
-              videoUrl: "/videos/2-2-5-ads-vth-loom.mp4",
+              videoUrl: "/videos/2-3-5-ads-vth-loom.mp4",
               tags: ["acquisition", "ads", "vidéo"],
               moduleId: 2,
               rubrique: "Process Ads"
             },
             {
-              id: "2.2.6",
+              id: "2.3.6",
               title: "Les Ads VSL",
-              videoUrl: "/videos/2-2-6-ads-vsl.mp4",
+              videoUrl: "/videos/2-3-6-ads-vsl.mp4",
               tags: ["acquisition", "ads", "vidéo"],
               moduleId: 2,
               rubrique: "Process Ads"
@@ -286,73 +322,73 @@ const masterclassContent: MasterclassContent = {
           title: "La prospection",
           paliers: [
             {
-              id: "2.3.1",
+              id: "2.4.1",
               title: "Pourquoi prospecter et tâches respectives",
-              videoUrl: "/videos/2-3-1-pourquoi-prospecter.mp4",
+              videoUrl: "/videos/2-4-1-pourquoi-prospecter.mp4",
               tags: ["acquisition", "prospection", "stratégie"],
               moduleId: 2,
               rubrique: "La prospection"
             },
             {
-              id: "2.3.2",
+              id: "2.4.2",
               title: "Trouver une cible prête à acheter",
-              videoUrl: "/videos/2-3-2-cible-prete-acheter.mp4",
+              videoUrl: "/videos/2-4-2-cible-prete-acheter.mp4",
               tags: ["acquisition", "prospection", "ciblage"],
               moduleId: 2,
               rubrique: "La prospection"
             },
             {
-              id: "2.3.3",
+              id: "2.4.3",
               title: "7 Principes de prospection à internaliser",
-              videoUrl: "/videos/2-3-3-principes-prospection.mp4",
+              videoUrl: "/videos/2-4-3-principes-prospection.mp4",
               tags: ["acquisition", "prospection", "principes"],
               moduleId: 2,
               rubrique: "La prospection"
             },
             {
-              id: "2.3.4",
+              id: "2.4.4",
               title: "Créer de bons messages",
-              videoUrl: "/videos/2-3-4-bons-messages.mp4",
+              videoUrl: "/videos/2-4-4-bons-messages.mp4",
               tags: ["acquisition", "prospection", "messages"],
               moduleId: 2,
               rubrique: "La prospection"
             },
             {
-              id: "2.3.5",
+              id: "2.4.5",
               title: "Prospecter les 100 leads",
-              videoUrl: "/videos/2-3-5-prospecter-100-leads.mp4",
+              videoUrl: "/videos/2-4-5-prospecter-100-leads.mp4",
               tags: ["acquisition", "prospection", "leads"],
               moduleId: 2,
               rubrique: "La prospection"
             },
             {
-              id: "2.3.6",
+              id: "2.4.6",
               title: "Prospecter via la recherche booléenne",
-              videoUrl: "/videos/2-3-6-recherche-booleenne.mp4",
+              videoUrl: "/videos/2-4-6-recherche-booleenne.mp4",
               tags: ["acquisition", "prospection", "recherche"],
               moduleId: 2,
               rubrique: "La prospection"
             },
             {
-              id: "2.3.7",
+              id: "2.4.7",
               title: "Prospecter la communauté pour générer des rendez-vous",
-              videoUrl: "/videos/2-3-7-prospecter-communaute.mp4",
+              videoUrl: "/videos/2-4-7-prospecter-communaute.mp4",
               tags: ["acquisition", "prospection", "communauté"],
               moduleId: 2,
               rubrique: "La prospection"
             },
             {
-              id: "2.3.8",
+              id: "2.4.8",
               title: "Utiliser ses concurrents pour générer des rendez-vous",
-              videoUrl: "/videos/2-3-8-utiliser-concurrents.mp4",
+              videoUrl: "/videos/2-4-8-utiliser-concurrents.mp4",
               tags: ["acquisition", "prospection", "concurrents"],
               moduleId: 2,
               rubrique: "La prospection"
             },
             {
-              id: "2.3.9",
+              id: "2.4.9",
               title: "Lancer ses campagnes de prospection avec Lemlist",
-              videoUrl: "/videos/2-3-9-campagnes-lemlist.mp4",
+              videoUrl: "/videos/2-4-9-campagnes-lemlist.mp4",
               tags: ["acquisition", "prospection", "automation"],
               moduleId: 2,
               rubrique: "La prospection"
@@ -363,41 +399,41 @@ const masterclassContent: MasterclassContent = {
           title: "Le contenu",
           paliers: [
             {
-              id: "2.4.0",
+              id: "2.5.0",
               title: "Pourquoi le contenu est important ?",
-              videoUrl: "/videos/2-4-0-importance-contenu.mp4",
+              videoUrl: "/videos/2-5-0-importance-contenu.mp4",
               tags: ["acquisition", "contenu", "stratégie"],
               moduleId: 2,
               rubrique: "Le contenu"
             },
             {
-              id: "2.4.1",
+              id: "2.5.1",
               title: "Créer sa stratégie de contenu & idéation",
-              videoUrl: "/videos/2-4-1-strategie-ideation.mp4",
+              videoUrl: "/videos/2-5-1-strategie-ideation.mp4",
               tags: ["acquisition", "contenu", "stratégie"],
               moduleId: 2,
               rubrique: "Le contenu"
             },
             {
-              id: "2.4.2",
+              id: "2.5.2",
               title: "LinkedIn Mastery",
-              videoUrl: "/videos/2-4-2-linkedin-mastery.mp4",
+              videoUrl: "/videos/2-5-2-linkedin-mastery.mp4",
               tags: ["acquisition", "contenu", "linkedin"],
               moduleId: 2,
               rubrique: "Le contenu"
             },
             {
-              id: "2.4.3",
+              id: "2.5.3",
               title: "Création des contenus",
-              videoUrl: "/videos/2-4-3-creation-contenus.mp4",
+              videoUrl: "/videos/2-5-3-creation-contenus.mp4",
               tags: ["acquisition", "contenu", "création"],
               moduleId: 2,
               rubrique: "Le contenu"
             },
             {
-              id: "2.4.4",
+              id: "2.5.4",
               title: "Créer son groupe privé",
-              videoUrl: "/videos/2-4-4-groupe-prive.mp4",
+              videoUrl: "/videos/2-5-4-groupe-prive.mp4",
               tags: ["acquisition", "contenu", "communauté"],
               moduleId: 2,
               rubrique: "Le contenu"
@@ -408,9 +444,9 @@ const masterclassContent: MasterclassContent = {
           title: "Les partenariats",
           paliers: [
             {
-              id: "2.5",
+              id: "2.6",
               title: "Leverage les partenariats",
-              videoUrl: "/videos/2-5-leverage-partenariats.mp4",
+              videoUrl: "/videos/2-6-leverage-partenariats.mp4",
               description: "Pourquoi les partenariats sont puissants ? Comment trouver des partenaires ? Quel message leur envoyer ?",
               tags: ["acquisition", "partenariats", "stratégie"],
               moduleId: 2,
@@ -422,9 +458,9 @@ const masterclassContent: MasterclassContent = {
           title: "BONUS",
           paliers: [
             {
-              id: "2.6",
+              id: "2.7",
               title: "Signe 3 clients cette semaine",
-              videoUrl: "/videos/2-6-signe-3-clients.mp4",
+              videoUrl: "/videos/2-7-signe-3-clients.mp4",
               tags: ["acquisition", "vente", "conversion"],
               moduleId: 2,
               rubrique: "BONUS"
@@ -443,9 +479,9 @@ const masterclassContent: MasterclassContent = {
       paliers: [
         {
           id: "3.0",
-          title: "Pourquoi avoir un groupe privé ?",
-          videoUrl: "/videos/3-0-pourquoi-groupe-prive.mp4",
-          tags: ["communauté", "audience", "stratégie"],
+          title: "Introduction à la Newsletter & Communauté",
+          videoUrl: formatVideoUrl("/videos/3-0-introduction-newsletter.mp4"),
+          tags: ["communauté", "introduction", "fondamentaux"],
           moduleId: 3
         },
         {
@@ -481,36 +517,43 @@ const masterclassContent: MasterclassContent = {
       paliers: [
         {
           id: "4.0",
-          title: "Sophistication de marché",
-          videoUrl: "/videos/4-0-sophistication-marche.mp4",
-          tags: ["éducation", "marché", "stratégie"],
+          title: "Introduction à l'éducation des prospects",
+          videoUrl: formatVideoUrl("/videos/4-0-introduction-education.mp4"),
+          tags: ["éducation", "introduction", "fondamentaux"],
           moduleId: 4
         },
         {
           id: "4.1",
-          title: "Comment s'enregistrer ?",
-          videoUrl: "/videos/4-1-comment-enregistrer.mp4",
-          tags: ["éducation", "technique", "contenu"],
+          title: "Sophistication de marché",
+          videoUrl: "/videos/4-1-sophistication-marche.mp4",
+          tags: ["éducation", "marché", "stratégie"],
           moduleId: 4
         },
         {
           id: "4.2",
-          title: "Obtenir des case studies",
-          videoUrl: "/videos/4-2-obtenir-case-studies.mp4",
-          tags: ["éducation", "social proof", "conversion"],
+          title: "Comment s'enregistrer ?",
+          videoUrl: "/videos/4-2-comment-enregistrer.mp4",
+          tags: ["éducation", "technique", "contenu"],
           moduleId: 4
         },
         {
           id: "4.3",
-          title: "Comment faire une thank you page ?",
-          videoUrl: "/videos/4-3-thank-you-page.mp4",
-          tags: ["éducation", "conversion", "web"],
+          title: "Obtenir des case studies",
+          videoUrl: "/videos/4-3-obtenir-case-studies.mp4",
+          tags: ["éducation", "social proof", "conversion"],
           moduleId: 4
         },
         {
           id: "4.4",
+          title: "Comment faire une thank you page ?",
+          videoUrl: "/videos/4-4-thank-you-page.mp4",
+          tags: ["éducation", "conversion", "web"],
+          moduleId: 4
+        },
+        {
+          id: "4.5",
           title: "Qualifier et préchauffer ses prospects",
-          videoUrl: "/videos/4-4-qualifier-prechauffer-prospects.mp4",
+          videoUrl: "/videos/4-5-qualifier-prechauffer-prospects.mp4",
           tags: ["éducation", "conversion", "qualification"],
           moduleId: 4
         }
@@ -524,6 +567,19 @@ const masterclassContent: MasterclassContent = {
       color: "#9C27B0", // Purple
       workbookUrl: "/workbooks/5-art-vsl.pdf",
       rubriques: [
+        {
+          title: "Introduction",
+          paliers: [
+            {
+              id: "5.0",
+              title: "Introduction aux VSL",
+              videoUrl: formatVideoUrl("/videos/5-0-introduction-vsl.mp4"),
+              tags: ["VSL", "introduction", "fondamentaux"],
+              moduleId: 5,
+              rubrique: "Introduction"
+            }
+          ]
+        },
         {
           title: "La théorie",
           paliers: [
@@ -650,12 +706,19 @@ const masterclassContent: MasterclassContent = {
     },
     {
       id: 6,
-      title: "Cours de setting",
-      description: "⚙️ Paramètre tous tes outils pour une efficacité maximale",
-      icon: "⚙️",
-      color: "#607D8B", // Blue Grey
+      title: "Setting",
+      description: "📅 Organise tes rendez-vous de manière efficace",
+      icon: "⚡️",
+      color: "#795548", // Brown
       workbookUrl: "/workbooks/6-setting.pdf",
       paliers: [
+        {
+          id: "6.0",
+          title: "Introduction au Setting",
+          videoUrl: formatVideoUrl("/videos/6-0-introduction-setting.mp4"),
+          tags: ["setting", "introduction", "fondamentaux"],
+          moduleId: 6
+        },
         {
           id: "6.1",
           title: "Le process à suivre étape par étape pour le setting Inbound to Outbound",
@@ -689,64 +752,71 @@ const masterclassContent: MasterclassContent = {
       paliers: [
         {
           id: "7.0",
-          title: "Prévendre avant le call",
-          videoUrl: "/videos/7-0-prevendre-call.mp4",
-          tags: ["vente", "préparation", "call"],
+          title: "Introduction au Closing B2B",
+          videoUrl: formatVideoUrl("/videos/7-0-introduction-closing.mp4"),
+          tags: ["vente", "introduction", "fondamentaux"],
           moduleId: 7
         },
         {
           id: "7.1",
-          title: "Introduction au call",
-          videoUrl: "/videos/7-1-introduction-call.mp4",
-          tags: ["vente", "call", "structure"],
+          title: "Prévendre avant le call",
+          videoUrl: "/videos/7-1-prevendre-call.mp4",
+          tags: ["vente", "préparation", "call"],
           moduleId: 7
         },
         {
           id: "7.2",
-          title: "Questions de qualification",
-          videoUrl: "/videos/7-2-questions-qualification.mp4",
-          tags: ["vente", "qualification", "découverte"],
+          title: "Introduction au call",
+          videoUrl: "/videos/7-2-introduction-call.mp4",
+          tags: ["vente", "call", "structure"],
           moduleId: 7
         },
         {
           id: "7.3",
-          title: "Le pitch Superstars",
-          videoUrl: "/videos/7-3-pitch-superstars.mp4",
-          tags: ["vente", "pitch", "persuasion"],
+          title: "Questions de qualification",
+          videoUrl: "/videos/7-3-questions-qualification.mp4",
+          tags: ["vente", "qualification", "découverte"],
           moduleId: 7
         },
         {
           id: "7.4",
-          title: "Comment pitcher avec le pitch Superstars ?",
-          videoUrl: "/videos/7-4-comment-pitcher.mp4",
-          tags: ["vente", "pitch", "technique"],
+          title: "Le pitch Superstars",
+          videoUrl: "/videos/7-4-pitch-superstars.mp4",
+          tags: ["vente", "pitch", "persuasion"],
           moduleId: 7
         },
         {
           id: "7.5",
-          title: "Closer avec un Google Docs / Notion",
-          videoUrl: "/videos/7-5-closer-docs.mp4",
-          tags: ["vente", "outils", "closing"],
+          title: "Comment pitcher avec le pitch Superstars ?",
+          videoUrl: "/videos/7-5-comment-pitcher.mp4",
+          tags: ["vente", "pitch", "technique"],
           moduleId: 7
         },
         {
           id: "7.6",
-          title: "Phase de closing",
-          videoUrl: "/videos/7-6-phase-closing.mp4",
-          tags: ["vente", "closing", "conversion"],
+          title: "Closer avec un Google Docs / Notion",
+          videoUrl: "/videos/7-6-closer-docs.mp4",
+          tags: ["vente", "outils", "closing"],
           moduleId: 7
         },
         {
           id: "7.7",
-          title: "Collecter le paiement",
-          videoUrl: "/videos/7-7-collecter-paiement.mp4",
-          tags: ["vente", "paiement", "transaction"],
+          title: "Phase de closing",
+          videoUrl: "/videos/7-7-phase-closing.mp4",
+          tags: ["vente", "closing", "conversion"],
           moduleId: 7
         },
         {
           id: "7.8",
+          title: "Collecter le paiement",
+          videoUrl: "/videos/7-8-collecter-paiement.mp4",
+          tags: ["vente", "paiement", "transaction"],
+          moduleId: 7
+        },
+        {
+          id: "7.9",
           title: "Follow-up et objections",
-          videoUrl: "/videos/7-8-followup-objections.mp4",
+          videoUrl: "/videos/7-9-followup-objections.mp4",
           tags: ["vente", "follow-up", "objections"],
           moduleId: 7
         }
@@ -762,43 +832,50 @@ const masterclassContent: MasterclassContent = {
       paliers: [
         {
           id: "8.0",
-          title: "Créer sa customer journey",
-          videoUrl: "/videos/8-0-customer-journey.mp4",
-          tags: ["satisfaction", "client", "parcours"],
+          title: "Introduction à la satisfaction client",
+          videoUrl: formatVideoUrl("/videos/8-0-introduction-satisfaction.mp4"),
+          tags: ["satisfaction", "introduction", "fondamentaux"],
           moduleId: 8
         },
         {
           id: "8.1",
-          title: "Comment créer des process ?",
-          videoUrl: "/videos/8-1-creer-process.mp4",
-          tags: ["satisfaction", "process", "organisation"],
+          title: "Créer sa customer journey",
+          videoUrl: "/videos/8-1-creer-customer-journey.mp4",
+          tags: ["satisfaction", "client", "parcours"],
           moduleId: 8
         },
         {
           id: "8.2",
-          title: "Comment onboarder un client rapidement ?",
-          videoUrl: "/videos/8-2-onboarder-client.mp4",
-          tags: ["satisfaction", "onboarding", "intégration"],
+          title: "Comment créer des process ?",
+          videoUrl: "/videos/8-2-creer-process.mp4",
+          tags: ["satisfaction", "process", "organisation"],
           moduleId: 8
         },
         {
           id: "8.3",
-          title: "Structure d'offboarding",
-          videoUrl: "/videos/8-3-structure-offboarding.mp4",
-          tags: ["satisfaction", "offboarding", "fidélisation"],
+          title: "Comment onboarder un client rapidement ?",
+          videoUrl: "/videos/8-3-onboarder-client.mp4",
+          tags: ["satisfaction", "onboarding", "intégration"],
           moduleId: 8
         },
         {
           id: "8.4",
-          title: "Créer son propre programme",
-          videoUrl: "/videos/8-4-creer-programme.mp4",
-          tags: ["satisfaction", "programme", "fidélisation"],
+          title: "Structure d'offboarding",
+          videoUrl: "/videos/8-4-structure-offboarding.mp4",
+          tags: ["satisfaction", "offboarding", "fidélisation"],
           moduleId: 8
         },
         {
           id: "8.5",
+          title: "Créer son propre programme",
+          videoUrl: "/videos/8-5-creer-programme.mp4",
+          tags: ["satisfaction", "programme", "fidélisation"],
+          moduleId: 8
+        },
+        {
+          id: "8.6",
           title: "Améliorer son produit grâce à ses clients",
-          videoUrl: "/videos/8-5-ameliorer-produit.mp4",
+          videoUrl: "/videos/8-6-ameliorer-produit.mp4",
           tags: ["satisfaction", "feedback", "amélioration"],
           moduleId: 8
         }
@@ -962,6 +1039,14 @@ function FocusMode({
   module,
   setViewMode
 }: FocusModeProps) {
+  // Ajouter une référence pour le scroll
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  // Fonction pour scroller vers le haut du contenu
+  const scrollToTop = () => {
+    contentRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+  
   // Navigation vers le palier suivant ou précédent
   const navigateToPalier = (direction: 'next' | 'prev') => {
     if (!activePalierId) return;
@@ -1016,7 +1101,7 @@ function FocusMode({
         </div>
         
         <div className="lg:col-span-2">
-          <div className="bg-surfaceMedium/50 backdrop-blur-sm rounded-2xl p-8 border border-white/5 shadow-2xl mb-8">
+          <div ref={contentRef} className="bg-surfaceMedium/50 backdrop-blur-sm rounded-2xl p-8 border border-white/5 shadow-2xl mb-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -1032,14 +1117,25 @@ function FocusMode({
             {/* Lecteur vidéo */}
               <div className="aspect-video relative bg-surfaceLight rounded-xl overflow-hidden mb-8 shadow-2xl border border-white/5">
               {activeContent?.videoUrl ? (
-                <video 
-                  className="w-full h-full object-cover" 
-                  controls
-                  poster="/video-placeholder.jpg"
-                >
-                  <source src={activeContent.videoUrl} type="video/mp4" />
-                  Votre navigateur ne supporte pas la lecture de vidéos.
-                </video>
+                formatVideoUrl(activeContent.videoUrl).includes('tella.tv') ? (
+                  <iframe
+                    src={formatVideoUrl(activeContent.videoUrl)}
+                    className="w-full h-full"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    style={{ aspectRatio: '16/9' }}
+                  />
+                ) : (
+                  <video 
+                    className="w-full h-full object-cover" 
+                    controls
+                    poster="/video-placeholder.jpg"
+                  >
+                    <source src={formatVideoUrl(activeContent.videoUrl)} type="video/mp4" />
+                    Votre navigateur ne supporte pas la lecture de vidéos.
+                  </video>
+                )
               ) : (
                 <div className="absolute inset-0 flex items-center justify-center">
                     <p className="text-gray-400">Vidéo en cours de préparation</p>
@@ -1052,9 +1148,10 @@ function FocusMode({
               <Button
                 size="lg"
                 onClick={() => {
-                    setActiveModuleId(-1);
-                    setActivePalierId(null);
+                    setActiveModuleId(0);
+                    setActivePalierId("0.1");
                     setViewMode('focus');
+                    scrollToTop();
                   }}
                   className="min-w-[250px] text-lg py-6 bg-button hover:bg-button/90 transform hover:scale-[1.02] transition-all duration-200 shadow-xl"
                 >
@@ -1320,14 +1417,25 @@ function FocusMode({
                   className="aspect-video relative bg-surfaceLight rounded-xl overflow-hidden mb-8 shadow-2xl border border-white/5"
                 >
                 {activeContent.videoUrl ? (
-                  <video 
-                    className="w-full h-full object-cover" 
-                    controls
-                    poster="/video-placeholder.jpg"
-                  >
-                    <source src={activeContent.videoUrl} type="video/mp4" />
-                    Votre navigateur ne supporte pas la lecture de vidéos.
-                  </video>
+                  formatVideoUrl(activeContent.videoUrl).includes('tella.tv') ? (
+                    <iframe
+                      src={formatVideoUrl(activeContent.videoUrl)}
+                      className="w-full h-full"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      style={{ aspectRatio: '16/9' }}
+                    />
+                  ) : (
+                    <video 
+                      className="w-full h-full object-cover" 
+                      controls
+                      poster="/video-placeholder.jpg"
+                    >
+                      <source src={formatVideoUrl(activeContent.videoUrl)} type="video/mp4" />
+                      Votre navigateur ne supporte pas la lecture de vidéos.
+                    </video>
+                  )
                 ) : (
                   <div className="absolute inset-0 flex items-center justify-center">
                     <p className="text-textMuted">Vidéo en cours de préparation</p>

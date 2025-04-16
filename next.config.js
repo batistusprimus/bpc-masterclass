@@ -11,6 +11,9 @@ const nextConfig = {
     // your project has TypeScript errors.
     ignoreBuildErrors: true,
   },
+  images: {
+    domains: ['img.youtube.com', 'i.ytimg.com', 'tella.tv'],
+  },
   experimental: {
     // This should help with build issues
     forceSwcTransforms: true,

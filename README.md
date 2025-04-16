@@ -91,3 +91,66 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Structure du code
+
+```
+src/
+├── app/                      # Pages et routes de l'application
+│   ├── page.tsx             # Page d'accueil
+│   ├── masterclass/         # Section masterclass
+│   │   └── page.tsx
+│   ├── catalogue/           # Section catalogue
+│   │   └── page.tsx
+│   ├── media/               # Section média
+│   │   └── page.tsx
+│   └── bpc-group/           # Section BPC GROUP
+│       └── page.tsx
+│
+├── components/              # Composants réutilisables
+│   ├── layout/             # Composants de mise en page
+│   │   ├── Header.tsx
+│   │   └── Footer.tsx
+│   ├── ui/                 # Composants d'interface
+│   │   ├── Button.tsx
+│   │   ├── Card.tsx
+│   │   └── ...
+│   └── sections/           # Sections de page
+│       ├── Hero.tsx
+│       ├── Features.tsx
+│       └── ...
+│
+├── lib/                    # Utilitaires et helpers
+│   ├── utils.ts
+│   └── constants.ts
+│
+├── styles/                 # Styles globaux
+│   └── globals.css
+│
+└── types/                  # Définitions TypeScript
+    └── index.ts
+
+public/                     # Ressources statiques
+├── images/
+├── fonts/
+└── favicon.ico
+```
+
+### Description des dossiers
+
+- **app/** : Contient toutes les pages de l'application utilisant le App Router de Next.js
+- **components/** : Composants React réutilisables
+  - **layout/** : Composants structurels (Header, Footer)
+  - **ui/** : Composants d'interface utilisateur de base
+  - **sections/** : Sections de page réutilisables
+- **lib/** : Fonctions utilitaires et constantes
+- **styles/** : Styles globaux et configurations
+- **types/** : Définitions TypeScript pour le typage
+- **public/** : Ressources statiques accessibles publiquement
+
+### Conventions de nommage
+
+- **Fichiers** : PascalCase pour les composants React, camelCase pour les utilitaires
+- **Dossiers** : kebab-case pour les dossiers de pages, camelCase pour les autres
+- **Composants** : Un composant par fichier, nommé de la même manière que le fichier
+
