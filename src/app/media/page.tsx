@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Image from "next/image";
 import Button from "@/components/Button";
 import { motion } from "framer-motion";
@@ -77,21 +77,31 @@ const LINKEDIN_PROFILES = [
   }
 ];
 
-export default function MediaPage() {
-  const fadeInUp = {
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.5 }
-  };
-
-  const staggerChildren = {
-    animate: {
-      transition: {
-        staggerChildren: 0.1
-      }
+// Animations variants
+const fadeInUp = {
+  initial: {
+    opacity: 0,
+    y: 20,
+  },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5
     }
-  };
+  }
+};
 
+const staggerChildren = {
+  initial: {},
+  animate: {
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
+
+export default function MediaPage() {
   return (
     <>
       {/* Hero Section */}
@@ -310,8 +320,9 @@ export default function MediaPage() {
         <div className="container-custom relative">
           <motion.div 
             className="text-center mb-24"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            variants={fadeInUp}
+            initial="initial"
+            animate="animate"
             viewport={{ once: true }}
           >
             <h2 className="text-4xl md:text-6xl mb-6 font-bold bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-300">Nos Chaînes YouTube</h2>
@@ -324,10 +335,10 @@ export default function MediaPage() {
             <motion.div 
               key={key}
               className="mb-32 last:mb-0"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              variants={fadeInUp}
+              initial="initial"
+              animate="animate"
               viewport={{ once: true }}
-              transition={{ delay: channelIndex * 0.2 }}
             >
               <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-12 gap-8">
                 <div className="flex items-center gap-6">
@@ -361,9 +372,8 @@ export default function MediaPage() {
                     key={index}
                     variants={fadeInUp}
                     initial="initial"
-                    whileInView="animate"
+                    animate="animate"
                     viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
                     className="group relative bg-gray-800/30 backdrop-blur-xl rounded-2xl overflow-hidden border border-gray-700/50 hover:border-red-500/50 transition-all duration-500 transform hover:scale-[1.02] hover:shadow-2xl hover:shadow-red-500/10"
                   >
                     <a href={video.url} target="_blank" rel="noopener noreferrer" className="block w-full h-full">
@@ -404,8 +414,9 @@ export default function MediaPage() {
         <div className="container-custom relative">
           <motion.div 
             className="text-center mb-24"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            variants={fadeInUp}
+            initial="initial"
+            animate="animate"
             viewport={{ once: true }}
           >
             <h2 className="text-4xl md:text-6xl mb-6 font-bold bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-300">LinkedIn</h2>
@@ -418,13 +429,16 @@ export default function MediaPage() {
             className="grid md:grid-cols-2 gap-12"
             variants={staggerChildren}
             initial="initial"
-            whileInView="animate"
+            animate="animate"
             viewport={{ once: true }}
           >
             {LINKEDIN_PROFILES.map((profile, index) => (
               <motion.div 
                 key={index}
                 variants={fadeInUp}
+                initial="initial"
+                animate="animate"
+                viewport={{ once: true }}
                 className="group bg-gray-800/30 backdrop-blur-xl rounded-2xl p-8 border border-gray-700/50 hover:border-blue-500/50 transition-all duration-500 transform hover:scale-[1.02] hover:shadow-2xl hover:shadow-blue-500/10"
               >
                 <div className="flex flex-col md:flex-row items-center gap-8 mb-8">

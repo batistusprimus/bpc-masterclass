@@ -7,12 +7,9 @@ export const metadata: Metadata = {
   title: 'BPC Masterclass | La masterclass ultime pour entrepreneurs B2B',
   description: 'La masterclass BPC est notre produit ultime, mis à disposition gratuitement et sans inscription pour les entrepreneurs et solopreneurs du B2B.',
   icons: {
-    icon: [
-      { url: '/5.png' },
-      { url: '/favicon.ico' }
-    ],
-    apple: { url: '/5.png' },
-    shortcut: { url: '/5.png' },
+    icon: '/favicon.ico',
+    apple: '/favicon.ico',
+    shortcut: '/favicon.ico',
   },
 };
 
