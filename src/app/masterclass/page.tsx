@@ -5,6 +5,7 @@ import Image from "next/image";
 import Button from "@/components/Button";
 import OptinForm from "@/components/OptinForm";
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 // Définition des types
 interface Palier {
@@ -17,6 +18,16 @@ interface Palier {
   completed?: boolean;
   moduleId: number;
   rubrique?: string;
+  callToAction?: {
+    explore: {
+      text: string;
+      href: string;
+    };
+    newsletter: {
+      text: string;
+      href: string;
+    };
+  };
 }
 
 interface Rubrique {
@@ -119,56 +130,136 @@ const masterclassContent: MasterclassContent = {
           title: "Introduction au Mindset",
           videoUrl: "https://www.tella.tv/video/introduction-module-0-mindset-9h23",
           tags: ["mindset", "introduction", "fondamentaux"],
-          moduleId: 0
+          moduleId: 0,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
         },
         {
           id: "0.1",
           title: "Briser ses barrières mentales",
           videoUrl: "https://www.tella.tv/video/01-briser-ses-barrieres-mentales-hlwo",
           tags: ["mindset", "débutant", "psychologie"],
-          moduleId: 0
+          moduleId: 0,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
         },
         {
           id: "0.2",
           title: "Mindset de croissance",
           videoUrl: "/videos/0-2-mindset-croissance.mp4",
           tags: ["mindset", "développement", "croissance"],
-          moduleId: 0
+          moduleId: 0,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
         },
         {
           id: "0.3",
           title: "Audit de ton business actuel",
           videoUrl: "https://www.tella.tv/video/03-audit-de-ton-business-cvxq",
           tags: ["mindset", "audit", "business"],
-          moduleId: 0
+          moduleId: 0,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
         },
         {
           id: "0.4",
           title: "L'extrémistant",
           videoUrl: "https://www.tella.tv/video/04-lextremistant-7las",
           tags: ["mindset", "action", "motivation"],
-          moduleId: 0
+          moduleId: 0,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
         },
         {
           id: "0.5",
           title: "Comment prendre de bonnes décisions stratégiques ?",
           videoUrl: "/videos/0-5-bonnes-decisions.mp4",
           tags: ["mindset", "décision", "stratégie"],
-          moduleId: 0
+          moduleId: 0,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
         },
         {
           id: "0.6",
           title: "La vérité sur l'argent",
           videoUrl: "https://www.tella.tv/video/module-0-mindset-06-1-cjel",
           tags: ["mindset", "argent", "finance"],
-          moduleId: 0
+          moduleId: 0,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
         },
         {
           id: "0.7",
           title: "Le 1% vs les 99%",
           videoUrl: "https://www.tella.tv/video/07-le-1-vs-les-99-38eq",
           tags: ["mindset", "performance", "excellence"],
-          moduleId: 0
+          moduleId: 0,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
         }
       ]
     },
@@ -185,63 +276,153 @@ const masterclassContent: MasterclassContent = {
           title: "Introduction à la création d'offre",
           videoUrl: formatVideoUrl("https://www.tella.tv/video/introduction-module-1-41lx"),
           tags: ["offre", "introduction", "fondamentaux"],
-          moduleId: 1
+          moduleId: 1,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
         },
         {
           id: "1.0",
           title: "Choisir un marché",
           videoUrl: formatVideoUrl("https://www.tella.tv/video/10-1-42fn"),
           tags: ["offre", "marché", "positionnement"],
-          moduleId: 1
+          moduleId: 1,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
         },
         {
           id: "1.1",
           title: "Devenir un monopole",
           videoUrl: formatVideoUrl("https://www.tella.tv/video/devenir-un-monopole-percu-0i2m"),
           tags: ["offre", "différenciation", "stratégie"],
-          moduleId: 1
+          moduleId: 1,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
         },
         {
           id: "1.2",
           title: "Le PaaS",
           videoUrl: formatVideoUrl("https://www.tella.tv/video/securisez-votre-entreprise-avec-le-paas-1xi1"),
           tags: ["offre", "service", "modèle économique"],
-          moduleId: 1
+          moduleId: 1,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
         },
         {
           id: "1.3",
           title: "Nouveau pricing model",
           videoUrl: formatVideoUrl("https://www.tella.tv/video/valoriser-ton-expertise-8gm9"),
           tags: ["offre", "prix", "monétisation"],
-          moduleId: 1
+          moduleId: 1,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
         },
         {
           id: "1.4",
           title: "Délivrer ton offre",
           videoUrl: formatVideoUrl("https://www.tella.tv/video/livraison-d-excellence-et-leverage-88sb"),
           tags: ["offre", "livraison", "satisfaction client"],
-          moduleId: 1
+          moduleId: 1,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
         },
         {
           id: "1.5",
           title: "Créer son MRR",
           videoUrl: formatVideoUrl("https://www.tella.tv/video/creer-un-modele-de-revenus-recurrents-8ijc"),
           tags: ["offre", "revenu récurrent", "abonnement"],
-          moduleId: 1
+          moduleId: 1,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
         },
         {
           id: "1.6",
           title: "Les composantes de ton offre",
           videoUrl: formatVideoUrl("https://www.tella.tv/video/creez-une-offre-irresistible-06ms"),
           tags: ["offre", "structure", "valeur"],
-          moduleId: 1
+          moduleId: 1,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
         },
         {
           id: "1.7",
           title: "Créer son cross-downsell",
           videoUrl: formatVideoUrl("https://www.tella.tv/video/creer-un-cross-downsell-strategique-5okv"),
           tags: ["offre", "vente additionnelle", "stratégie commerciale"],
-          moduleId: 1
+          moduleId: 1,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
         }
       ]
     },
@@ -262,7 +443,17 @@ const masterclassContent: MasterclassContent = {
               videoUrl: formatVideoUrl("https://www.tella.tv/video/introduction-module-2-59so"),
               tags: ["acquisition", "introduction", "fondamentaux"],
               moduleId: 2,
-              rubrique: "Introduction"
+              rubrique: "Introduction",
+              callToAction: {
+                explore: {
+                  text: "Consulter les modules disponibles",
+                  href: "/masterclass?viewMode=explore"
+                },
+                newsletter: {
+                  text: "S'inscrire à la newsletter",
+                  href: "/media#newsletter"
+                }
+              }
             }
           ]
         },
@@ -275,7 +466,17 @@ const masterclassContent: MasterclassContent = {
               videoUrl: formatVideoUrl("https://www.tella.tv/video/20-auml"),
               tags: ["acquisition", "campagnes", "lancement"],
               moduleId: 2,
-              rubrique: "Fondamentaux"
+              rubrique: "Fondamentaux",
+              callToAction: {
+                explore: {
+                  text: "Consulter les modules disponibles",
+                  href: "/masterclass?viewMode=explore"
+                },
+                newsletter: {
+                  text: "S'inscrire à la newsletter",
+                  href: "/media#newsletter"
+                }
+              }
             },
             {
               id: "2.1",
@@ -283,7 +484,17 @@ const masterclassContent: MasterclassContent = {
               videoUrl: formatVideoUrl("https://www.tella.tv/video/21-1-gbk5"),
               tags: ["acquisition", "profils", "optimisation"],
               moduleId: 2,
-              rubrique: "Fondamentaux"
+              rubrique: "Fondamentaux",
+              callToAction: {
+                explore: {
+                  text: "Consulter les modules disponibles",
+                  href: "/masterclass?viewMode=explore"
+                },
+                newsletter: {
+                  text: "S'inscrire à la newsletter",
+                  href: "/media#newsletter"
+                }
+              }
             }
           ]
         },
@@ -296,7 +507,17 @@ const masterclassContent: MasterclassContent = {
               videoUrl: formatVideoUrl("https://www.tella.tv/video/221-hqiv"),
               tags: ["acquisition", "publicité", "stratégie"],
               moduleId: 2,
-              rubrique: "Process Ads"
+              rubrique: "Process Ads",
+              callToAction: {
+                explore: {
+                  text: "Consulter les modules disponibles",
+                  href: "/masterclass?viewMode=explore"
+                },
+                newsletter: {
+                  text: "S'inscrire à la newsletter",
+                  href: "/media#newsletter"
+                }
+              }
             },
             {
               id: "2.2.2",
@@ -304,7 +525,17 @@ const masterclassContent: MasterclassContent = {
               videoUrl: formatVideoUrl("https://www.tella.tv/video/222-cjor"),
               tags: ["acquisition", "facebook", "technique"],
               moduleId: 2,
-              rubrique: "Process Ads"
+              rubrique: "Process Ads",
+              callToAction: {
+                explore: {
+                  text: "Consulter les modules disponibles",
+                  href: "/masterclass?viewMode=explore"
+                },
+                newsletter: {
+                  text: "S'inscrire à la newsletter",
+                  href: "/media#newsletter"
+                }
+              }
             },
             {
               id: "2.2.3",
@@ -312,7 +543,17 @@ const masterclassContent: MasterclassContent = {
               videoUrl: formatVideoUrl("https://www.tella.tv/video/223-92ro"),
               tags: ["acquisition", "ads", "stratégie"],
               moduleId: 2,
-              rubrique: "Process Ads"
+              rubrique: "Process Ads",
+              callToAction: {
+                explore: {
+                  text: "Consulter les modules disponibles",
+                  href: "/masterclass?viewMode=explore"
+                },
+                newsletter: {
+                  text: "S'inscrire à la newsletter",
+                  href: "/media#newsletter"
+                }
+              }
             },
             {
               id: "2.2.4",
@@ -320,7 +561,17 @@ const masterclassContent: MasterclassContent = {
               videoUrl: formatVideoUrl("https://www.tella.tv/video/224-99vi"),
               tags: ["acquisition", "ads", "copywriting"],
               moduleId: 2,
-              rubrique: "Process Ads"
+              rubrique: "Process Ads",
+              callToAction: {
+                explore: {
+                  text: "Consulter les modules disponibles",
+                  href: "/masterclass?viewMode=explore"
+                },
+                newsletter: {
+                  text: "S'inscrire à la newsletter",
+                  href: "/media#newsletter"
+                }
+              }
             },
             {
               id: "2.2.5",
@@ -328,7 +579,17 @@ const masterclassContent: MasterclassContent = {
               videoUrl: formatVideoUrl("https://www.tella.tv/video/225-gd0j"),
               tags: ["acquisition", "ads", "vidéo"],
               moduleId: 2,
-              rubrique: "Process Ads"
+              rubrique: "Process Ads",
+              callToAction: {
+                explore: {
+                  text: "Consulter les modules disponibles",
+                  href: "/masterclass?viewMode=explore"
+                },
+                newsletter: {
+                  text: "S'inscrire à la newsletter",
+                  href: "/media#newsletter"
+                }
+              }
             },
             {
               id: "2.2.6",
@@ -336,7 +597,17 @@ const masterclassContent: MasterclassContent = {
               videoUrl: formatVideoUrl("https://www.tella.tv/video/226-cbio"),
               tags: ["acquisition", "ads", "vidéo"],
               moduleId: 2,
-              rubrique: "Process Ads"
+              rubrique: "Process Ads",
+              callToAction: {
+                explore: {
+                  text: "Consulter les modules disponibles",
+                  href: "/masterclass?viewMode=explore"
+                },
+                newsletter: {
+                  text: "S'inscrire à la newsletter",
+                  href: "/media#newsletter"
+                }
+              }
             },
             {
               id: "2.2.7",
@@ -344,7 +615,17 @@ const masterclassContent: MasterclassContent = {
               videoUrl: formatVideoUrl("https://www.tella.tv/video/227-0euh"),
               tags: ["acquisition", "ads", "vidéo"],
               moduleId: 2,
-              rubrique: "Process Ads"
+              rubrique: "Process Ads",
+              callToAction: {
+                explore: {
+                  text: "Consulter les modules disponibles",
+                  href: "/masterclass?viewMode=explore"
+                },
+                newsletter: {
+                  text: "S'inscrire à la newsletter",
+                  href: "/media#newsletter"
+                }
+              }
             },
             {
               id: "2.2.8",
@@ -352,7 +633,17 @@ const masterclassContent: MasterclassContent = {
               videoUrl: formatVideoUrl("https://www.tella.tv/video/228-8yox"),
               tags: ["acquisition", "ads", "vidéo"],
               moduleId: 2,
-              rubrique: "Process Ads"
+              rubrique: "Process Ads",
+              callToAction: {
+                explore: {
+                  text: "Consulter les modules disponibles",
+                  href: "/masterclass?viewMode=explore"
+                },
+                newsletter: {
+                  text: "S'inscrire à la newsletter",
+                  href: "/media#newsletter"
+                }
+              }
             }
           ]
         },
@@ -365,7 +656,17 @@ const masterclassContent: MasterclassContent = {
               videoUrl: formatVideoUrl("https://www.tella.tv/video/231-giro"),
               tags: ["acquisition", "prospection", "stratégie"],
               moduleId: 2,
-              rubrique: "La prospection"
+              rubrique: "La prospection",
+              callToAction: {
+                explore: {
+                  text: "Consulter les modules disponibles",
+                  href: "/masterclass?viewMode=explore"
+                },
+                newsletter: {
+                  text: "S'inscrire à la newsletter",
+                  href: "/media#newsletter"
+                }
+              }
             },
             {
               id: "2.3.2",
@@ -373,7 +674,17 @@ const masterclassContent: MasterclassContent = {
               videoUrl: formatVideoUrl("https://www.tella.tv/video/232-e7sc"),
               tags: ["acquisition", "prospection", "ciblage"],
               moduleId: 2,
-              rubrique: "La prospection"
+              rubrique: "La prospection",
+              callToAction: {
+                explore: {
+                  text: "Consulter les modules disponibles",
+                  href: "/masterclass?viewMode=explore"
+                },
+                newsletter: {
+                  text: "S'inscrire à la newsletter",
+                  href: "/media#newsletter"
+                }
+              }
             },
             {
               id: "2.3.3",
@@ -381,7 +692,17 @@ const masterclassContent: MasterclassContent = {
               videoUrl: formatVideoUrl("https://www.tella.tv/video/233-1eq9"),
               tags: ["acquisition", "prospection", "principes"],
               moduleId: 2,
-              rubrique: "La prospection"
+              rubrique: "La prospection",
+              callToAction: {
+                explore: {
+                  text: "Consulter les modules disponibles",
+                  href: "/masterclass?viewMode=explore"
+                },
+                newsletter: {
+                  text: "S'inscrire à la newsletter",
+                  href: "/media#newsletter"
+                }
+              }
             },
             {
               id: "2.3.4",
@@ -389,7 +710,17 @@ const masterclassContent: MasterclassContent = {
               videoUrl: formatVideoUrl("https://www.tella.tv/video/234-6qy1"),
               tags: ["acquisition", "prospection", "messages"],
               moduleId: 2,
-              rubrique: "La prospection"
+              rubrique: "La prospection",
+              callToAction: {
+                explore: {
+                  text: "Consulter les modules disponibles",
+                  href: "/masterclass?viewMode=explore"
+                },
+                newsletter: {
+                  text: "S'inscrire à la newsletter",
+                  href: "/media#newsletter"
+                }
+              }
             },
             {
               id: "2.3.6",
@@ -397,7 +728,17 @@ const masterclassContent: MasterclassContent = {
               videoUrl: formatVideoUrl("https://www.youtube.com/watch?v=Vu7g-x1lDRw"),
               tags: ["acquisition", "prospection", "recherche"],
               moduleId: 2,
-              rubrique: "La prospection"
+              rubrique: "La prospection",
+              callToAction: {
+                explore: {
+                  text: "Consulter les modules disponibles",
+                  href: "/masterclass?viewMode=explore"
+                },
+                newsletter: {
+                  text: "S'inscrire à la newsletter",
+                  href: "/media#newsletter"
+                }
+              }
             },
             {
               id: "2.3.7",
@@ -405,7 +746,17 @@ const masterclassContent: MasterclassContent = {
               videoUrl: formatVideoUrl("https://www.tella.tv/video/237-9mhk"),
               tags: ["acquisition", "prospection", "communauté"],
               moduleId: 2,
-              rubrique: "La prospection"
+              rubrique: "La prospection",
+              callToAction: {
+                explore: {
+                  text: "Consulter les modules disponibles",
+                  href: "/masterclass?viewMode=explore"
+                },
+                newsletter: {
+                  text: "S'inscrire à la newsletter",
+                  href: "/media#newsletter"
+                }
+              }
             },
             {
               id: "2.3.8",
@@ -413,7 +764,17 @@ const masterclassContent: MasterclassContent = {
               videoUrl: formatVideoUrl("https://www.youtube.com/watch?v=QhDPycCHpQs"),
               tags: ["acquisition", "prospection", "concurrents"],
               moduleId: 2,
-              rubrique: "La prospection"
+              rubrique: "La prospection",
+              callToAction: {
+                explore: {
+                  text: "Consulter les modules disponibles",
+                  href: "/masterclass?viewMode=explore"
+                },
+                newsletter: {
+                  text: "S'inscrire à la newsletter",
+                  href: "/media#newsletter"
+                }
+              }
             },
             {
               id: "2.3.9",
@@ -421,7 +782,17 @@ const masterclassContent: MasterclassContent = {
               videoUrl: formatVideoUrl("https://www.tella.tv/video/239-huf9"),
               tags: ["acquisition", "prospection", "automation"],
               moduleId: 2,
-              rubrique: "La prospection"
+              rubrique: "La prospection",
+              callToAction: {
+                explore: {
+                  text: "Consulter les modules disponibles",
+                  href: "/masterclass?viewMode=explore"
+                },
+                newsletter: {
+                  text: "S'inscrire à la newsletter",
+                  href: "/media#newsletter"
+                }
+              }
             }
           ]
         },
@@ -434,7 +805,17 @@ const masterclassContent: MasterclassContent = {
               videoUrl: "https://www.tella.tv/video/240-9e31",
               tags: ["acquisition", "partenariats", "stratégie"],
               moduleId: 2,
-              rubrique: "Les partenariats"
+              rubrique: "Les partenariats",
+              callToAction: {
+                explore: {
+                  text: "Consulter les modules disponibles",
+                  href: "/masterclass?viewMode=explore"
+                },
+                newsletter: {
+                  text: "S'inscrire à la newsletter",
+                  href: "/media#newsletter"
+                }
+              }
             },
             {
               id: "2.4.2",
@@ -442,7 +823,17 @@ const masterclassContent: MasterclassContent = {
               videoUrl: "https://www.tella.tv/video/242-1-bdaj",
               tags: ["acquisition", "partenariats", "recherche"],
               moduleId: 2,
-              rubrique: "Les partenariats"
+              rubrique: "Les partenariats",
+              callToAction: {
+                explore: {
+                  text: "Consulter les modules disponibles",
+                  href: "/masterclass?viewMode=explore"
+                },
+                newsletter: {
+                  text: "S'inscrire à la newsletter",
+                  href: "/media#newsletter"
+                }
+              }
             },
             {
               id: "2.4.3",
@@ -450,7 +841,17 @@ const masterclassContent: MasterclassContent = {
               videoUrl: "https://www.tella.tv/video/243-9gm9",
               tags: ["acquisition", "partenariats", "communication"],
               moduleId: 2,
-              rubrique: "Les partenariats"
+              rubrique: "Les partenariats",
+              callToAction: {
+                explore: {
+                  text: "Consulter les modules disponibles",
+                  href: "/masterclass?viewMode=explore"
+                },
+                newsletter: {
+                  text: "S'inscrire à la newsletter",
+                  href: "/media#newsletter"
+                }
+              }
             }
           ]
         },
@@ -463,7 +864,17 @@ const masterclassContent: MasterclassContent = {
               videoUrl: "https://www.tella.tv/video/bonus-signez-3-clients-cette-semaine-devo",
               tags: ["acquisition", "vente", "conversion"],
               moduleId: 2,
-              rubrique: "BONUS"
+              rubrique: "BONUS",
+              callToAction: {
+                explore: {
+                  text: "Consulter les modules disponibles",
+                  href: "/masterclass?viewMode=explore"
+                },
+                newsletter: {
+                  text: "S'inscrire à la newsletter",
+                  href: "/media#newsletter"
+                }
+              }
             }
           ]
         }
@@ -481,7 +892,17 @@ const masterclassContent: MasterclassContent = {
           id: "2.5.0",
           title: "Module en développement",
           videoUrl: "",
-          description: "Nous travaillons sur ce module pour t'offrir la meilleure expérience disponible sur le marché Francophone. Tu peux consulter les modules disponibles <a href='/masterclass?viewMode=explore' class='text-button hover:text-button/80 transition-colors'>ici</a> ou t'inscrire à notre newsletter pour ne pas manquer la sortie de ce module <a href='/media#newsletter' class='text-button hover:text-button/80 transition-colors'>ici</a>.",
+          description: "Nous travaillons sur ce module pour t'offrir la meilleure expérience disponible sur le marché Francophone.",
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          },
           tags: ["contenu", "développement"],
           moduleId: 2.5
         }
@@ -500,28 +921,68 @@ const masterclassContent: MasterclassContent = {
           title: "Introduction à la Newsletter & Communauté",
           videoUrl: "https://www.tella.tv/video/30-7d49",
           tags: ["communauté", "introduction", "fondamentaux"],
-          moduleId: 3
+          moduleId: 3,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
         },
         {
           id: "3.1",
           title: "Créer son groupe privé",
           videoUrl: "https://www.tella.tv/video/31-cyos",
           tags: ["communauté", "groupe", "engagement"],
-          moduleId: 3
+          moduleId: 3,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
         },
         {
           id: "3.2",
           title: "Envoyer des emails à sa liste",
           videoUrl: "https://www.tella.tv/video/32-as2z",
           tags: ["email", "marketing", "communication"],
-          moduleId: 3
+          moduleId: 3,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
         },
         {
           id: "3.3",
           title: "Comment faire une séquence de bienvenue ?",
           videoUrl: "https://www.tella.tv/video/33-1-60zi",
           tags: ["email", "automation", "onboarding"],
-          moduleId: 3
+          moduleId: 3,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
         }
       ]
     },
@@ -538,42 +999,102 @@ const masterclassContent: MasterclassContent = {
           title: "Sophistication de marché",
           videoUrl: "https://www.tella.tv/video/40-1-bt03",
           tags: ["éducation", "marché", "stratégie"],
-          moduleId: 4
+          moduleId: 4,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
         },
         {
           id: "4.1",
           title: "Structure d'un tunnel d'éducation",
           videoUrl: "https://www.tella.tv/video/41-d0k4",
           tags: ["éducation", "tunnel", "stratégie"],
-          moduleId: 4
+          moduleId: 4,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
         },
         {
           id: "4.2",
           title: "Comment s'enregistrer ?",
           videoUrl: "https://www.tella.tv/video/42-d085",
           tags: ["éducation", "technique", "contenu"],
-          moduleId: 4
+          moduleId: 4,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
         },
         {
           id: "4.3",
           title: "Obtenir des case studies",
           videoUrl: "https://www.tella.tv/video/43-1-e0bm",
           tags: ["éducation", "social proof", "conversion"],
-          moduleId: 4
+          moduleId: 4,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
         },
         {
           id: "4.4",
           title: "Comment faire une thank you page ?",
           videoUrl: "https://www.tella.tv/video/44-5qvo",
           tags: ["éducation", "conversion", "web"],
-          moduleId: 4
+          moduleId: 4,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
         },
         {
           id: "4.5",
           title: "Qualifier et préchauffer ses prospects",
           videoUrl: "https://www.tella.tv/video/45-1-9v5z",
           tags: ["éducation", "conversion", "qualification"],
-          moduleId: 4
+          moduleId: 4,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
         }
       ]
     },
@@ -594,7 +1115,17 @@ const masterclassContent: MasterclassContent = {
               videoUrl: "https://www.tella.tv/video/5-9i7f",
               tags: ["VSL", "introduction", "fondamentaux"],
               moduleId: 5,
-              rubrique: "La théorie"
+              rubrique: "La théorie",
+              callToAction: {
+                explore: {
+                  text: "Consulter les modules disponibles",
+                  href: "/masterclass?viewMode=explore"
+                },
+                newsletter: {
+                  text: "S'inscrire à la newsletter",
+                  href: "/media#newsletter"
+                }
+              }
             },
             {
               id: "5.0",
@@ -602,7 +1133,17 @@ const masterclassContent: MasterclassContent = {
               videoUrl: "https://www.tella.tv/video/50-e8pc",
               tags: ["VSL", "organisation", "sales letter"],
               moduleId: 5,
-              rubrique: "La théorie"
+              rubrique: "La théorie",
+              callToAction: {
+                explore: {
+                  text: "Consulter les modules disponibles",
+                  href: "/masterclass?viewMode=explore"
+                },
+                newsletter: {
+                  text: "S'inscrire à la newsletter",
+                  href: "/media#newsletter"
+                }
+              }
             },
             {
               id: "5.1",
@@ -610,7 +1151,17 @@ const masterclassContent: MasterclassContent = {
               videoUrl: "https://www.tella.tv/video/51-1-253j",
               tags: ["VSL", "headline", "copywriting"],
               moduleId: 5,
-              rubrique: "La théorie"
+              rubrique: "La théorie",
+              callToAction: {
+                explore: {
+                  text: "Consulter les modules disponibles",
+                  href: "/masterclass?viewMode=explore"
+                },
+                newsletter: {
+                  text: "S'inscrire à la newsletter",
+                  href: "/media#newsletter"
+                }
+              }
             },
             {
               id: "5.2",
@@ -618,7 +1169,17 @@ const masterclassContent: MasterclassContent = {
               videoUrl: "https://www.tella.tv/video/52-gq11",
               tags: ["VSL", "social proof", "témoignages"],
               moduleId: 5,
-              rubrique: "La théorie"
+              rubrique: "La théorie",
+              callToAction: {
+                explore: {
+                  text: "Consulter les modules disponibles",
+                  href: "/masterclass?viewMode=explore"
+                },
+                newsletter: {
+                  text: "S'inscrire à la newsletter",
+                  href: "/media#newsletter"
+                }
+              }
             },
             {
               id: "5.3",
@@ -626,7 +1187,17 @@ const masterclassContent: MasterclassContent = {
               videoUrl: "https://www.tella.tv/video/53-euz9",
               tags: ["VSL", "identification", "persona"],
               moduleId: 5,
-              rubrique: "La théorie"
+              rubrique: "La théorie",
+              callToAction: {
+                explore: {
+                  text: "Consulter les modules disponibles",
+                  href: "/masterclass?viewMode=explore"
+                },
+                newsletter: {
+                  text: "S'inscrire à la newsletter",
+                  href: "/media#newsletter"
+                }
+              }
             },
             {
               id: "5.4",
@@ -634,7 +1205,17 @@ const masterclassContent: MasterclassContent = {
               videoUrl: "https://www.tella.tv/video/54-5jjw",
               tags: ["VSL", "concept", "stratégie"],
               moduleId: 5,
-              rubrique: "La théorie"
+              rubrique: "La théorie",
+              callToAction: {
+                explore: {
+                  text: "Consulter les modules disponibles",
+                  href: "/masterclass?viewMode=explore"
+                },
+                newsletter: {
+                  text: "S'inscrire à la newsletter",
+                  href: "/media#newsletter"
+                }
+              }
             },
             {
               id: "5.5",
@@ -642,7 +1223,17 @@ const masterclassContent: MasterclassContent = {
               videoUrl: "https://www.tella.tv/video/55-5wdr",
               tags: ["VSL", "crédibilité", "autorité"],
               moduleId: 5,
-              rubrique: "La théorie"
+              rubrique: "La théorie",
+              callToAction: {
+                explore: {
+                  text: "Consulter les modules disponibles",
+                  href: "/masterclass?viewMode=explore"
+                },
+                newsletter: {
+                  text: "S'inscrire à la newsletter",
+                  href: "/media#newsletter"
+                }
+              }
             },
             {
               id: "5.6",
@@ -650,7 +1241,17 @@ const masterclassContent: MasterclassContent = {
               videoUrl: "https://www.tella.tv/video/56-f83f",
               tags: ["VSL", "valeur", "insights"],
               moduleId: 5,
-              rubrique: "La théorie"
+              rubrique: "La théorie",
+              callToAction: {
+                explore: {
+                  text: "Consulter les modules disponibles",
+                  href: "/masterclass?viewMode=explore"
+                },
+                newsletter: {
+                  text: "S'inscrire à la newsletter",
+                  href: "/media#newsletter"
+                }
+              }
             },
             {
               id: "5.7",
@@ -658,7 +1259,17 @@ const masterclassContent: MasterclassContent = {
               videoUrl: "https://www.tella.tv/video/57-9ioj",
               tags: ["VSL", "solution", "conversion"],
               moduleId: 5,
-              rubrique: "La théorie"
+              rubrique: "La théorie",
+              callToAction: {
+                explore: {
+                  text: "Consulter les modules disponibles",
+                  href: "/masterclass?viewMode=explore"
+                },
+                newsletter: {
+                  text: "S'inscrire à la newsletter",
+                  href: "/media#newsletter"
+                }
+              }
             },
             {
               id: "5.8",
@@ -666,7 +1277,17 @@ const masterclassContent: MasterclassContent = {
               videoUrl: "https://www.tella.tv/video/58-94q1",
               tags: ["VSL", "optimisation", "amélioration"],
               moduleId: 5,
-              rubrique: "La théorie"
+              rubrique: "La théorie",
+              callToAction: {
+                explore: {
+                  text: "Consulter les modules disponibles",
+                  href: "/masterclass?viewMode=explore"
+                },
+                newsletter: {
+                  text: "S'inscrire à la newsletter",
+                  href: "/media#newsletter"
+                }
+              }
             }
           ]
         },
@@ -679,7 +1300,17 @@ const masterclassContent: MasterclassContent = {
               videoUrl: "https://www.loom.com/share/f83bffab0d424366a38e252a1a12145e?sid=92b9df6f-a182-409f-8c74-e955058abf93",
               tags: ["VSL", "template", "long-form"],
               moduleId: 5,
-              rubrique: "La pratique"
+              rubrique: "La pratique",
+              callToAction: {
+                explore: {
+                  text: "Consulter les modules disponibles",
+                  href: "/masterclass?viewMode=explore"
+                },
+                newsletter: {
+                  text: "S'inscrire à la newsletter",
+                  href: "/media#newsletter"
+                }
+              }
             },
             {
               id: "5.10",
@@ -687,7 +1318,17 @@ const masterclassContent: MasterclassContent = {
               videoUrl: "https://www.loom.com/share/435c286b566a4154ae690936dbcafa8f?sid=35a73ac7-5a84-4fc2-bbf2-f995c94d13b0",
               tags: ["VSL", "template", "short-form"],
               moduleId: 5,
-              rubrique: "La pratique"
+              rubrique: "La pratique",
+              callToAction: {
+                explore: {
+                  text: "Consulter les modules disponibles",
+                  href: "/masterclass?viewMode=explore"
+                },
+                newsletter: {
+                  text: "S'inscrire à la newsletter",
+                  href: "/media#newsletter"
+                }
+              }
             },
             {
               id: "5.11",
@@ -695,7 +1336,17 @@ const masterclassContent: MasterclassContent = {
               videoUrl: "https://www.tella.tv/video/checklist-dune-bonne-vsl-erxm",
               tags: ["VSL", "checklist", "qualité"],
               moduleId: 5,
-              rubrique: "La pratique"
+              rubrique: "La pratique",
+              callToAction: {
+                explore: {
+                  text: "Consulter les modules disponibles",
+                  href: "/masterclass?viewMode=explore"
+                },
+                newsletter: {
+                  text: "S'inscrire à la newsletter",
+                  href: "/media#newsletter"
+                }
+              }
             }
           ]
         }
@@ -713,7 +1364,17 @@ const masterclassContent: MasterclassContent = {
           id: "6.0",
           title: "Module en développement",
           videoUrl: "",
-          description: "Nous travaillons sur ce module pour t'offrir la meilleure expérience disponible sur le marché Francophone. Tu peux consulter les modules disponibles <a href='/masterclass?viewMode=explore' class='text-button hover:text-button/80 transition-colors'>ici</a> ou t'inscrire à notre newsletter pour ne pas manquer la sortie de ce module <a href='/media#newsletter' class='text-button hover:text-button/80 transition-colors'>ici</a>.",
+          description: "Nous travaillons sur ce module pour t'offrir la meilleure expérience disponible sur le marché Francophone.",
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          },
           tags: ["setting", "développement"],
           moduleId: 6
         }
@@ -731,7 +1392,17 @@ const masterclassContent: MasterclassContent = {
           id: "7.0",
           title: "Module en développement",
           videoUrl: "",
-          description: "Nous travaillons sur ce module pour t'offrir la meilleure expérience disponible sur le marché Francophone. Tu peux consulter les modules disponibles <a href='/masterclass?viewMode=explore' class='text-button hover:text-button/80 transition-colors'>ici</a> ou t'inscrire à notre newsletter pour ne pas manquer la sortie de ce module <a href='/media#newsletter' class='text-button hover:text-button/80 transition-colors'>ici</a>.",
+          description: "Nous travaillons sur ce module pour t'offrir la meilleure expérience disponible sur le marché Francophone.",
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          },
           tags: ["vente", "développement"],
           moduleId: 7
         }
@@ -747,51 +1418,20 @@ const masterclassContent: MasterclassContent = {
       paliers: [
         {
           id: "8.0",
-          title: "Introduction à la satisfaction client",
-          videoUrl: formatVideoUrl("/videos/8-0-introduction-satisfaction.mp4"),
-          tags: ["satisfaction", "introduction", "fondamentaux"],
-          moduleId: 8
-        },
-        {
-          id: "8.1",
-          title: "Créer sa customer journey",
-          videoUrl: "/videos/8-1-creer-customer-journey.mp4",
-          tags: ["satisfaction", "client", "parcours"],
-          moduleId: 8
-        },
-        {
-          id: "8.2",
-          title: "Comment créer des process ?",
-          videoUrl: "/videos/8-2-creer-process.mp4",
-          tags: ["satisfaction", "process", "organisation"],
-          moduleId: 8
-        },
-        {
-          id: "8.3",
-          title: "Comment onboarder un client rapidement ?",
-          videoUrl: "/videos/8-3-onboarder-client.mp4",
-          tags: ["satisfaction", "onboarding", "intégration"],
-          moduleId: 8
-        },
-        {
-          id: "8.4",
-          title: "Structure d'offboarding",
-          videoUrl: "/videos/8-4-structure-offboarding.mp4",
-          tags: ["satisfaction", "offboarding", "fidélisation"],
-          moduleId: 8
-        },
-        {
-          id: "8.5",
-          title: "Créer son propre programme",
-          videoUrl: "/videos/8-5-creer-programme.mp4",
-          tags: ["satisfaction", "programme", "fidélisation"],
-          moduleId: 8
-        },
-        {
-          id: "8.6",
-          title: "Améliorer son produit grâce à ses clients",
-          videoUrl: "/videos/8-6-ameliorer-produit.mp4",
-          tags: ["satisfaction", "feedback", "amélioration"],
+          title: "Module en développement",
+          videoUrl: "",
+          description: "Nous travaillons sur ce module pour t'offrir la meilleure expérience disponible sur le marché Francophone.",
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          },
+          tags: ["satisfaction", "développement"],
           moduleId: 8
         }
       ]
