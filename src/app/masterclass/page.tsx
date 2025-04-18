@@ -476,7 +476,16 @@ const masterclassContent: MasterclassContent = {
       icon: "📝",
       color: "#FF5722", // Deep Orange
       workbookUrl: "/workbooks/module-unique-contenu.pdf",
-      paliers: []
+      paliers: [
+        {
+          id: "2.5.0",
+          title: "Module en développement",
+          videoUrl: "",
+          description: "Nous travaillons sur ce module pour t'offrir la meilleure expérience disponible sur le marché Francophone. Tu peux consulter les modules disponibles <a href='/masterclass?viewMode=explore' class='text-button hover:text-button/80 transition-colors'>ici</a> ou t'inscrire à notre newsletter pour ne pas manquer la sortie de ce module <a href='/media#newsletter' class='text-button hover:text-button/80 transition-colors'>ici</a>.",
+          tags: ["contenu", "développement"],
+          moduleId: 2.5
+        }
+      ]
     },
     {
       id: 3,
@@ -702,30 +711,10 @@ const masterclassContent: MasterclassContent = {
       paliers: [
         {
           id: "6.0",
-          title: "Introduction au Setting",
-          videoUrl: formatVideoUrl("/videos/6-0-introduction-setting.mp4"),
-          tags: ["setting", "introduction", "fondamentaux"],
-          moduleId: 6
-        },
-        {
-          id: "6.1",
-          title: "Le process à suivre étape par étape pour le setting Inbound to Outbound",
-          videoUrl: "/videos/6-1-process-setting-inbound-outbound.mp4",
-          tags: ["setting", "process", "inbound", "outbound"],
-          moduleId: 6
-        },
-        {
-          id: "6.2",
-          title: "KPI Sales & contraintes",
-          videoUrl: "/videos/6-2-kpi-sales-contraintes.mp4",
-          tags: ["setting", "KPI", "sales", "mesure"],
-          moduleId: 6
-        },
-        {
-          id: "6.3",
-          title: "Les data pour déléguer le setting",
-          videoUrl: "/videos/6-3-data-deleguer-setting.mp4",
-          tags: ["setting", "délégation", "data", "équipe"],
+          title: "Module en développement",
+          videoUrl: "",
+          description: "Nous travaillons sur ce module pour t'offrir la meilleure expérience disponible sur le marché Francophone. Tu peux consulter les modules disponibles <a href='/masterclass?viewMode=explore' class='text-button hover:text-button/80 transition-colors'>ici</a> ou t'inscrire à notre newsletter pour ne pas manquer la sortie de ce module <a href='/media#newsletter' class='text-button hover:text-button/80 transition-colors'>ici</a>.",
+          tags: ["setting", "développement"],
           moduleId: 6
         }
       ]
@@ -740,72 +729,10 @@ const masterclassContent: MasterclassContent = {
       paliers: [
         {
           id: "7.0",
-          title: "Introduction au Closing B2B",
-          videoUrl: formatVideoUrl("/videos/7-0-introduction-closing.mp4"),
-          tags: ["vente", "introduction", "fondamentaux"],
-          moduleId: 7
-        },
-        {
-          id: "7.1",
-          title: "Prévendre avant le call",
-          videoUrl: "/videos/7-1-prevendre-call.mp4",
-          tags: ["vente", "préparation", "call"],
-          moduleId: 7
-        },
-        {
-          id: "7.2",
-          title: "Introduction au call",
-          videoUrl: "/videos/7-2-introduction-call.mp4",
-          tags: ["vente", "call", "structure"],
-          moduleId: 7
-        },
-        {
-          id: "7.3",
-          title: "Questions de qualification",
-          videoUrl: "/videos/7-3-questions-qualification.mp4",
-          tags: ["vente", "qualification", "découverte"],
-          moduleId: 7
-        },
-        {
-          id: "7.4",
-          title: "Le pitch Superstars",
-          videoUrl: "/videos/7-4-pitch-superstars.mp4",
-          tags: ["vente", "pitch", "persuasion"],
-          moduleId: 7
-        },
-        {
-          id: "7.5",
-          title: "Comment pitcher avec le pitch Superstars ?",
-          videoUrl: "/videos/7-5-comment-pitcher.mp4",
-          tags: ["vente", "pitch", "technique"],
-          moduleId: 7
-        },
-        {
-          id: "7.6",
-          title: "Closer avec un Google Docs / Notion",
-          videoUrl: "/videos/7-6-closer-docs.mp4",
-          tags: ["vente", "outils", "closing"],
-          moduleId: 7
-        },
-        {
-          id: "7.7",
-          title: "Phase de closing",
-          videoUrl: "/videos/7-7-phase-closing.mp4",
-          tags: ["vente", "closing", "conversion"],
-          moduleId: 7
-        },
-        {
-          id: "7.8",
-          title: "Collecter le paiement",
-          videoUrl: "/videos/7-8-collecter-paiement.mp4",
-          tags: ["vente", "paiement", "transaction"],
-          moduleId: 7
-        },
-        {
-          id: "7.9",
-          title: "Follow-up et objections",
-          videoUrl: "/videos/7-9-followup-objections.mp4",
-          tags: ["vente", "follow-up", "objections"],
+          title: "Module en développement",
+          videoUrl: "",
+          description: "Nous travaillons sur ce module pour t'offrir la meilleure expérience disponible sur le marché Francophone. Tu peux consulter les modules disponibles <a href='/masterclass?viewMode=explore' class='text-button hover:text-button/80 transition-colors'>ici</a> ou t'inscrire à notre newsletter pour ne pas manquer la sortie de ce module <a href='/media#newsletter' class='text-button hover:text-button/80 transition-colors'>ici</a>.",
+          tags: ["vente", "développement"],
           moduleId: 7
         }
       ]
