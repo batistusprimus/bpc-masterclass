@@ -470,6 +470,15 @@ const masterclassContent: MasterclassContent = {
       ]
     },
     {
+      id: 2.5,
+      title: "Module Unique - Le contenu",
+      description: "🎯 Créer du contenu qui convertit",
+      icon: "📝",
+      color: "#FF5722", // Deep Orange
+      workbookUrl: "/workbooks/module-unique-contenu.pdf",
+      paliers: []
+    },
+    {
       id: 3,
       title: "Newsletter & Communauté",
       description: "👥 Crée une audience qui t'appartient",
