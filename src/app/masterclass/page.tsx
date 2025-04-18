@@ -68,11 +68,33 @@ const COLORS = {
 
 // Fonction utilitaire pour formater les URLs des vidéos
 function formatVideoUrl(url: string): string {
-  if (url.includes('tella.tv')) {
-    // Convertir l'URL de vidéo Tella en URL d'intégration
-    return url.replace('/video/', '/embed/');
+  if (!url) return '';
+  
+  try {
+    if (url.includes('tella.tv')) {
+      // Convertir l'URL de vidéo Tella en URL d'intégration
+      return url.replace('/video/', '/embed/');
+    } else if (url.includes('youtube.com')) {
+      // Convertir l'URL YouTube en URL d'intégration
+      const parts = url.split('v=');
+      if (parts.length < 2) return url;
+      const videoId = parts[1].split('&')[0]; // Gérer les paramètres supplémentaires
+      return `https://www.youtube.com/embed/${videoId}?autoplay=0&rel=0`;
+    } else if (url.includes('youtu.be')) {
+      // Gérer les URLs YouTube courtes
+      const parts = url.split('youtu.be/');
+      if (parts.length < 2) return url;
+      const videoId = parts[1].split('?')[0];
+      return `https://www.youtube.com/embed/${videoId}?autoplay=0&rel=0`;
+    } else if (url.includes('loom.com/share')) {
+      // Convertir l'URL Loom en URL d'intégration
+      return url.replace('share', 'embed');
+    }
+    return url;
+  } catch (error) {
+    console.error('Error formatting video URL:', error);
+    return url;
   }
-  return url;
 }
 
 // Structure des données de la masterclass avec des tags et couleurs
@@ -159,65 +181,65 @@ const masterclassContent: MasterclassContent = {
       workbookUrl: "/workbooks/1-offre-irresistible.pdf",
       paliers: [
         {
-          id: "1.0",
+          id: "1",
           title: "Introduction à la création d'offre",
-          videoUrl: formatVideoUrl("/videos/1-0-introduction-offre.mp4"),
+          videoUrl: formatVideoUrl("https://www.tella.tv/video/introduction-module-1-41lx"),
           tags: ["offre", "introduction", "fondamentaux"],
           moduleId: 1
         },
         {
-          id: "1.1",
+          id: "1.0",
           title: "Choisir un marché",
-          videoUrl: "/videos/1-1-offre-ideale.mp4",
+          videoUrl: formatVideoUrl("https://www.tella.tv/video/10-1-42fn"),
           tags: ["offre", "marché", "positionnement"],
           moduleId: 1
         },
         {
-          id: "1.2",
+          id: "1.1",
           title: "Devenir un monopole",
-          videoUrl: "/videos/1-2-monopole.mp4",
+          videoUrl: formatVideoUrl("https://www.tella.tv/video/devenir-un-monopole-percu-0i2m"),
           tags: ["offre", "différenciation", "stratégie"],
           moduleId: 1
         },
         {
-          id: "1.3",
+          id: "1.2",
           title: "Le PaaS",
-          videoUrl: "/videos/1-3-paas.mp4",
+          videoUrl: formatVideoUrl("https://www.tella.tv/video/securisez-votre-entreprise-avec-le-paas-1xi1"),
           tags: ["offre", "service", "modèle économique"],
           moduleId: 1
         },
         {
-          id: "1.4",
+          id: "1.3",
           title: "Nouveau pricing model",
-          videoUrl: "/videos/1-4-pricing-model.mp4",
+          videoUrl: formatVideoUrl("https://www.tella.tv/video/valoriser-ton-expertise-8gm9"),
           tags: ["offre", "prix", "monétisation"],
           moduleId: 1
         },
         {
-          id: "1.5",
+          id: "1.4",
           title: "Délivrer ton offre",
-          videoUrl: "/videos/1-5-delivrer-offre.mp4",
+          videoUrl: formatVideoUrl("https://www.tella.tv/video/livraison-d-excellence-et-leverage-88sb"),
           tags: ["offre", "livraison", "satisfaction client"],
           moduleId: 1
         },
         {
-          id: "1.6",
+          id: "1.5",
           title: "Créer son MRR",
-          videoUrl: "/videos/1-6-creer-mrr.mp4",
+          videoUrl: formatVideoUrl("https://www.tella.tv/video/creer-un-modele-de-revenus-recurrents-8ijc"),
           tags: ["offre", "revenu récurrent", "abonnement"],
           moduleId: 1
         },
         {
-          id: "1.7",
+          id: "1.6",
           title: "Les composantes de ton offre",
-          videoUrl: "/videos/1-7-composantes-offre.mp4",
+          videoUrl: formatVideoUrl("https://www.tella.tv/video/creez-une-offre-irresistible-06ms"),
           tags: ["offre", "structure", "valeur"],
           moduleId: 1
         },
         {
-          id: "1.8",
+          id: "1.7",
           title: "Créer son cross-downsell",
-          videoUrl: "/videos/1-8-cross-downsell.mp4",
+          videoUrl: formatVideoUrl("https://www.tella.tv/video/creer-un-cross-downsell-strategique-5okv"),
           tags: ["offre", "vente additionnelle", "stratégie commerciale"],
           moduleId: 1
         }
@@ -235,9 +257,9 @@ const masterclassContent: MasterclassContent = {
           title: "Introduction",
           paliers: [
             {
-              id: "2.0",
+              id: "2",
               title: "Introduction à l'acquisition",
-              videoUrl: formatVideoUrl("/videos/2-0-introduction-acquisition.mp4"),
+              videoUrl: formatVideoUrl("https://www.tella.tv/video/introduction-module-2-59so"),
               tags: ["acquisition", "introduction", "fondamentaux"],
               moduleId: 2,
               rubrique: "Introduction"
@@ -248,17 +270,17 @@ const masterclassContent: MasterclassContent = {
           title: "Fondamentaux",
           paliers: [
             {
-              id: "2.1",
+              id: "2.0",
               title: "Checklist de launch des campagnes",
-              videoUrl: "/videos/2-1-checklist-launch.mp4",
+              videoUrl: formatVideoUrl("https://www.tella.tv/video/20-auml"),
               tags: ["acquisition", "campagnes", "lancement"],
               moduleId: 2,
               rubrique: "Fondamentaux"
             },
             {
-              id: "2.2",
+              id: "2.1",
               title: "Optimiser ses profils",
-              videoUrl: "/videos/2-2-optimiser-profils.mp4",
+              videoUrl: formatVideoUrl("https://www.tella.tv/video/21-1-gbk5"),
               tags: ["acquisition", "profils", "optimisation"],
               moduleId: 2,
               rubrique: "Fondamentaux"
@@ -269,49 +291,65 @@ const masterclassContent: MasterclassContent = {
           title: "Process Ads",
           paliers: [
             {
-              id: "2.3.1",
-              title: "Bien comprendre l'importance des ads",
-              videoUrl: "/videos/2-3-1-importance-ads.mp4",
+              id: "2.2.1",
+              title: "Pourquoi les publicités sont indispensables à ton acquisition B2B",
+              videoUrl: formatVideoUrl("https://www.tella.tv/video/221-hqiv"),
               tags: ["acquisition", "publicité", "stratégie"],
               moduleId: 2,
               rubrique: "Process Ads"
             },
             {
-              id: "2.3.2",
-              title: "Setup son business manager META",
-              videoUrl: "/videos/2-3-2-business-manager.mp4",
+              id: "2.2.2",
+              title: "Guide de Configuration des Business Manager pour tes Campagnes Publicitaires",
+              videoUrl: formatVideoUrl("https://www.tella.tv/video/222-cjor"),
               tags: ["acquisition", "facebook", "technique"],
               moduleId: 2,
               rubrique: "Process Ads"
             },
             {
-              id: "2.3.3",
-              title: "La stratégie Ads globale",
-              videoUrl: "/videos/2-3-3-strategie-ads.mp4",
+              id: "2.2.3",
+              title: "Lancer des Publicités qui Convertissent sur Meta",
+              videoUrl: formatVideoUrl("https://www.tella.tv/video/223-92ro"),
               tags: ["acquisition", "ads", "stratégie"],
               moduleId: 2,
               rubrique: "Process Ads"
             },
             {
-              id: "2.3.4",
-              title: "Les Ads Textuelles",
-              videoUrl: "/videos/2-3-4-ads-textuelles.mp4",
+              id: "2.2.4",
+              title: "Lancer des Publicités qui Convertissent sur LinkedIn",
+              videoUrl: formatVideoUrl("https://www.tella.tv/video/224-99vi"),
               tags: ["acquisition", "ads", "copywriting"],
               moduleId: 2,
               rubrique: "Process Ads"
             },
             {
-              id: "2.3.5",
-              title: "Les Ads VTH et Loom",
-              videoUrl: "/videos/2-3-5-ads-vth-loom.mp4",
+              id: "2.2.5",
+              title: "Lancer des Publicités qui Convertissent sur Google Ads",
+              videoUrl: formatVideoUrl("https://www.tella.tv/video/225-gd0j"),
               tags: ["acquisition", "ads", "vidéo"],
               moduleId: 2,
               rubrique: "Process Ads"
             },
             {
-              id: "2.3.6",
+              id: "2.2.6",
+              title: "Créer des ads textuelles qui convertissent en 48h",
+              videoUrl: formatVideoUrl("https://www.tella.tv/video/226-cbio"),
+              tags: ["acquisition", "ads", "vidéo"],
+              moduleId: 2,
+              rubrique: "Process Ads"
+            },
+            {
+              id: "2.2.7",
+              title: "Créer des Ads VTH et Loom qui convertissent",
+              videoUrl: formatVideoUrl("https://www.tella.tv/video/227-0euh"),
+              tags: ["acquisition", "ads", "vidéo"],
+              moduleId: 2,
+              rubrique: "Process Ads"
+            },
+            {
+              id: "2.2.8",
               title: "Les Ads VSL",
-              videoUrl: "/videos/2-3-6-ads-vsl.mp4",
+              videoUrl: formatVideoUrl("https://www.tella.tv/video/228-8yox"),
               tags: ["acquisition", "ads", "vidéo"],
               moduleId: 2,
               rubrique: "Process Ads"
@@ -322,73 +360,65 @@ const masterclassContent: MasterclassContent = {
           title: "La prospection",
           paliers: [
             {
-              id: "2.4.1",
-              title: "Pourquoi prospecter et tâches respectives",
-              videoUrl: "/videos/2-4-1-pourquoi-prospecter.mp4",
+              id: "2.3.1",
+              title: "Fondamentaux de la Prospection B2B",
+              videoUrl: formatVideoUrl("https://www.tella.tv/video/231-giro"),
               tags: ["acquisition", "prospection", "stratégie"],
               moduleId: 2,
               rubrique: "La prospection"
             },
             {
-              id: "2.4.2",
+              id: "2.3.2",
               title: "Trouver une cible prête à acheter",
-              videoUrl: "/videos/2-4-2-cible-prete-acheter.mp4",
+              videoUrl: formatVideoUrl("https://www.tella.tv/video/232-e7sc"),
               tags: ["acquisition", "prospection", "ciblage"],
               moduleId: 2,
               rubrique: "La prospection"
             },
             {
-              id: "2.4.3",
-              title: "7 Principes de prospection à internaliser",
-              videoUrl: "/videos/2-4-3-principes-prospection.mp4",
+              id: "2.3.3",
+              title: "Les 7 principes fondamentaux de la prospection B2B",
+              videoUrl: formatVideoUrl("https://www.tella.tv/video/233-1eq9"),
               tags: ["acquisition", "prospection", "principes"],
               moduleId: 2,
               rubrique: "La prospection"
             },
             {
-              id: "2.4.4",
-              title: "Créer de bons messages",
-              videoUrl: "/videos/2-4-4-bons-messages.mp4",
+              id: "2.3.4",
+              title: "L'Art et la Science des Messages de Prospection qui Convertissent",
+              videoUrl: formatVideoUrl("https://www.tella.tv/video/234-6qy1"),
               tags: ["acquisition", "prospection", "messages"],
               moduleId: 2,
               rubrique: "La prospection"
             },
             {
-              id: "2.4.5",
-              title: "Prospecter les 100 leads",
-              videoUrl: "/videos/2-4-5-prospecter-100-leads.mp4",
-              tags: ["acquisition", "prospection", "leads"],
-              moduleId: 2,
-              rubrique: "La prospection"
-            },
-            {
-              id: "2.4.6",
-              title: "Prospecter via la recherche booléenne",
-              videoUrl: "/videos/2-4-6-recherche-booleenne.mp4",
+              id: "2.3.6",
+              title: "Maîtriser la prospection via la recherche booléenne",
+              videoUrl: formatVideoUrl("https://www.youtube.com/watch?v=Vu7g-x1lDRw"),
               tags: ["acquisition", "prospection", "recherche"],
               moduleId: 2,
               rubrique: "La prospection"
             },
             {
-              id: "2.4.7",
+              id: "2.3.7",
               title: "Prospecter la communauté pour générer des rendez-vous",
-              videoUrl: "/videos/2-4-7-prospecter-communaute.mp4",
+              videoUrl: formatVideoUrl("https://www.tella.tv/video/237-9mhk"),
               tags: ["acquisition", "prospection", "communauté"],
               moduleId: 2,
               rubrique: "La prospection"
             },
             {
-              id: "2.4.8",
+              id: "2.3.8",
               title: "Utiliser ses concurrents pour générer des rendez-vous",
-              videoUrl: "/videos/2-4-8-utiliser-concurrents.mp4",
+              videoUrl: formatVideoUrl("https://www.youtube.com/watch?v=QhDPycCHpQs"),
               tags: ["acquisition", "prospection", "concurrents"],
               moduleId: 2,
               rubrique: "La prospection"
             },
             {
-              id: "2.4.9",
+              id: "2.3.9",
               title: "Lancer ses campagnes de prospection avec Lemlist",
-              videoUrl: "/videos/2-4-9-campagnes-lemlist.mp4",
+              videoUrl: formatVideoUrl("https://www.tella.tv/video/239-huf9"),
               tags: ["acquisition", "prospection", "automation"],
               moduleId: 2,
               rubrique: "La prospection"
@@ -396,59 +426,29 @@ const masterclassContent: MasterclassContent = {
           ]
         },
         {
-          title: "Le contenu",
-          paliers: [
-            {
-              id: "2.5.0",
-              title: "Pourquoi le contenu est important ?",
-              videoUrl: "/videos/2-5-0-importance-contenu.mp4",
-              tags: ["acquisition", "contenu", "stratégie"],
-              moduleId: 2,
-              rubrique: "Le contenu"
-            },
-            {
-              id: "2.5.1",
-              title: "Créer sa stratégie de contenu & idéation",
-              videoUrl: "/videos/2-5-1-strategie-ideation.mp4",
-              tags: ["acquisition", "contenu", "stratégie"],
-              moduleId: 2,
-              rubrique: "Le contenu"
-            },
-            {
-              id: "2.5.2",
-              title: "LinkedIn Mastery",
-              videoUrl: "/videos/2-5-2-linkedin-mastery.mp4",
-              tags: ["acquisition", "contenu", "linkedin"],
-              moduleId: 2,
-              rubrique: "Le contenu"
-            },
-            {
-              id: "2.5.3",
-              title: "Création des contenus",
-              videoUrl: "/videos/2-5-3-creation-contenus.mp4",
-              tags: ["acquisition", "contenu", "création"],
-              moduleId: 2,
-              rubrique: "Le contenu"
-            },
-            {
-              id: "2.5.4",
-              title: "Créer son groupe privé",
-              videoUrl: "/videos/2-5-4-groupe-prive.mp4",
-              tags: ["acquisition", "contenu", "communauté"],
-              moduleId: 2,
-              rubrique: "Le contenu"
-            }
-          ]
-        },
-        {
           title: "Les partenariats",
           paliers: [
             {
-              id: "2.6",
-              title: "Leverage les partenariats",
-              videoUrl: "/videos/2-6-leverage-partenariats.mp4",
-              description: "Pourquoi les partenariats sont puissants ? Comment trouver des partenaires ? Quel message leur envoyer ?",
+              id: "2.4.1",
+              title: "Pourquoi les partenariats sont si puissants ?",
+              videoUrl: "https://www.tella.tv/video/240-9e31",
               tags: ["acquisition", "partenariats", "stratégie"],
+              moduleId: 2,
+              rubrique: "Les partenariats"
+            },
+            {
+              id: "2.4.2",
+              title: "Comment trouver des partenaires stratégiques ?",
+              videoUrl: "https://www.tella.tv/video/242-1-bdaj",
+              tags: ["acquisition", "partenariats", "recherche"],
+              moduleId: 2,
+              rubrique: "Les partenariats"
+            },
+            {
+              id: "2.4.3",
+              title: "Quel message envoyer à tes partenaires potentiels",
+              videoUrl: "https://www.tella.tv/video/243-9gm9",
+              tags: ["acquisition", "partenariats", "communication"],
               moduleId: 2,
               rubrique: "Les partenariats"
             }
@@ -458,9 +458,9 @@ const masterclassContent: MasterclassContent = {
           title: "BONUS",
           paliers: [
             {
-              id: "2.7",
+              id: "2.5",
               title: "Signe 3 clients cette semaine",
-              videoUrl: "/videos/2-7-signe-3-clients.mp4",
+              videoUrl: "https://www.tella.tv/video/bonus-signez-3-clients-cette-semaine-devo",
               tags: ["acquisition", "vente", "conversion"],
               moduleId: 2,
               rubrique: "BONUS"
@@ -480,28 +480,28 @@ const masterclassContent: MasterclassContent = {
         {
           id: "3.0",
           title: "Introduction à la Newsletter & Communauté",
-          videoUrl: formatVideoUrl("/videos/3-0-introduction-newsletter.mp4"),
+          videoUrl: "https://www.tella.tv/video/30-7d49",
           tags: ["communauté", "introduction", "fondamentaux"],
           moduleId: 3
         },
         {
           id: "3.1",
           title: "Créer son groupe privé",
-          videoUrl: "/videos/3-1-creer-groupe-prive.mp4",
+          videoUrl: "https://www.tella.tv/video/31-cyos",
           tags: ["communauté", "groupe", "engagement"],
           moduleId: 3
         },
         {
           id: "3.2",
           title: "Envoyer des emails à sa liste",
-          videoUrl: "/videos/3-2-emails-liste.mp4",
+          videoUrl: "https://www.tella.tv/video/32-as2z",
           tags: ["email", "marketing", "communication"],
           moduleId: 3
         },
         {
           id: "3.3",
           title: "Comment faire une séquence de bienvenue ?",
-          videoUrl: "/videos/3-3-sequence-bienvenue.mp4",
+          videoUrl: "https://www.tella.tv/video/33-1-60zi",
           tags: ["email", "automation", "onboarding"],
           moduleId: 3
         }
@@ -517,43 +517,43 @@ const masterclassContent: MasterclassContent = {
       paliers: [
         {
           id: "4.0",
-          title: "Introduction à l'éducation des prospects",
-          videoUrl: formatVideoUrl("/videos/4-0-introduction-education.mp4"),
-          tags: ["éducation", "introduction", "fondamentaux"],
+          title: "Sophistication de marché",
+          videoUrl: "https://www.tella.tv/video/40-1-bt03",
+          tags: ["éducation", "marché", "stratégie"],
           moduleId: 4
         },
         {
           id: "4.1",
-          title: "Sophistication de marché",
-          videoUrl: "/videos/4-1-sophistication-marche.mp4",
-          tags: ["éducation", "marché", "stratégie"],
+          title: "Structure d'un tunnel d'éducation",
+          videoUrl: "https://www.tella.tv/video/41-d0k4",
+          tags: ["éducation", "tunnel", "stratégie"],
           moduleId: 4
         },
         {
           id: "4.2",
           title: "Comment s'enregistrer ?",
-          videoUrl: "/videos/4-2-comment-enregistrer.mp4",
+          videoUrl: "https://www.tella.tv/video/42-d085",
           tags: ["éducation", "technique", "contenu"],
           moduleId: 4
         },
         {
           id: "4.3",
           title: "Obtenir des case studies",
-          videoUrl: "/videos/4-3-obtenir-case-studies.mp4",
+          videoUrl: "https://www.tella.tv/video/43-1-e0bm",
           tags: ["éducation", "social proof", "conversion"],
           moduleId: 4
         },
         {
           id: "4.4",
           title: "Comment faire une thank you page ?",
-          videoUrl: "/videos/4-4-thank-you-page.mp4",
+          videoUrl: "https://www.tella.tv/video/44-5qvo",
           tags: ["éducation", "conversion", "web"],
           moduleId: 4
         },
         {
           id: "4.5",
           title: "Qualifier et préchauffer ses prospects",
-          videoUrl: "/videos/4-5-qualifier-prechauffer-prospects.mp4",
+          videoUrl: "https://www.tella.tv/video/45-1-9v5z",
           tags: ["éducation", "conversion", "qualification"],
           moduleId: 4
         }
@@ -568,105 +568,84 @@ const masterclassContent: MasterclassContent = {
       workbookUrl: "/workbooks/5-art-vsl.pdf",
       rubriques: [
         {
-          title: "Introduction",
-          paliers: [
-            {
-              id: "5.0",
-              title: "Introduction aux VSL",
-              videoUrl: formatVideoUrl("/videos/5-0-introduction-vsl.mp4"),
-              tags: ["VSL", "introduction", "fondamentaux"],
-              moduleId: 5,
-              rubrique: "Introduction"
-            }
-          ]
-        },
-        {
           title: "La théorie",
           paliers: [
             {
-              id: "5.1.0",
-              title: "Intro à voir absolument",
-              videoUrl: "/videos/5-1-0-intro-vsl.mp4",
-              tags: ["VSL", "introduction", "vidéo"],
+              id: "5",
+              title: "Intro à lire absolument",
+              videoUrl: "https://www.tella.tv/video/5-9i7f",
+              tags: ["VSL", "introduction", "fondamentaux"],
               moduleId: 5,
               rubrique: "La théorie"
             },
             {
-              id: "5.1.1",
-              title: "Le plan de ta SL",
-              videoUrl: "/videos/5-1-1-plan-sl.mp4",
-              tags: ["VSL", "plan", "structure"],
-              moduleId: 5,
-              rubrique: "La théorie"
-            },
-            {
-              id: "5.1.2",
+              id: "5.0",
               title: "Comment s'organiser pour écrire sa sales letter ?",
-              videoUrl: "/videos/5-1-2-organiser-sales-letter.mp4",
+              videoUrl: "https://www.tella.tv/video/50-e8pc",
               tags: ["VSL", "organisation", "sales letter"],
               moduleId: 5,
               rubrique: "La théorie"
             },
             {
-              id: "5.1.3",
+              id: "5.1",
               title: "Comment écrire une bonne headline / Un bon titre ?",
-              videoUrl: "/videos/5-1-3-headline-titre.mp4",
-              tags: ["VSL", "headline", "titre"],
+              videoUrl: "https://www.tella.tv/video/51-1-253j",
+              tags: ["VSL", "headline", "copywriting"],
               moduleId: 5,
               rubrique: "La théorie"
             },
             {
-              id: "5.1.4",
+              id: "5.2",
               title: "Comment avoir de la social proof",
-              videoUrl: "/videos/5-1-4-social-proof.mp4",
+              videoUrl: "https://www.tella.tv/video/52-gq11",
               tags: ["VSL", "social proof", "témoignages"],
               moduleId: 5,
               rubrique: "La théorie"
             },
             {
-              id: "5.1.5",
+              id: "5.3",
               title: "Identification du prospect en début de VSL",
-              videoUrl: "/videos/5-1-5-identification-prospect.mp4",
+              videoUrl: "https://www.tella.tv/video/53-euz9",
               tags: ["VSL", "identification", "persona"],
               moduleId: 5,
               rubrique: "La théorie"
             },
             {
-              id: "5.1.6",
+              id: "5.4",
               title: "Introduire le core concept",
-              videoUrl: "/videos/5-1-6-core-concept.mp4",
-              tags: ["VSL", "concept", "proposition"],
+              videoUrl: "https://www.tella.tv/video/54-5jjw",
+              tags: ["VSL", "concept", "stratégie"],
               moduleId: 5,
               rubrique: "La théorie"
             },
             {
-              id: "5.1.7",
-              title: "J'ai un background",
-              videoUrl: "/videos/5-1-7-background.mp4",
+              id: "5.5",
+              title: "\"J'ai un background\"",
+              videoUrl: "https://www.tella.tv/video/55-5wdr",
               tags: ["VSL", "crédibilité", "autorité"],
               moduleId: 5,
               rubrique: "La théorie"
             },
             {
-              id: "5.1.8",
-              title: "Apporter de la valeur et présenter les IUU",
-              videoUrl: "/videos/5-1-8-valeur-iuu.mp4",
-              tags: ["VSL", "valeur", "IUU"],
+              id: "5.6",
+              title: "Apporter de la valeur avec tes IUU (Insights Uniques et Utiles)",
+              videoUrl: "https://www.tella.tv/video/56-f83f",
+              tags: ["VSL", "valeur", "insights"],
               moduleId: 5,
               rubrique: "La théorie"
             },
             {
-              id: "5.1.9",
+              id: "5.7",
               title: "Apporter ta solution et booker un call",
-              videoUrl: "/videos/5-1-9-solution-call.mp4",
+              videoUrl: "https://www.tella.tv/video/57-9ioj",
               tags: ["VSL", "solution", "conversion"],
               moduleId: 5,
               rubrique: "La théorie"
             },
             {
-              id: "5.1.10",
+              id: "5.8",
               title: "Optimiser sa VSL",
-              videoUrl: "/videos/5-1-10-optimiser-vsl.mp4",
+              videoUrl: "https://www.tella.tv/video/58-94q1",
               tags: ["VSL", "optimisation", "amélioration"],
               moduleId: 5,
               rubrique: "La théorie"
@@ -677,26 +656,26 @@ const masterclassContent: MasterclassContent = {
           title: "La pratique",
           paliers: [
             {
-              id: "5.2.1",
+              id: "5.9",
               title: "Template de VSL long-form",
-              videoUrl: "/videos/5-2-1-template-long-form.mp4",
+              videoUrl: "https://www.loom.com/share/f83bffab0d424366a38e252a1a12145e?sid=92b9df6f-a182-409f-8c74-e955058abf93",
               tags: ["VSL", "template", "long-form"],
               moduleId: 5,
               rubrique: "La pratique"
             },
             {
-              id: "5.2.2",
+              id: "5.10",
               title: "Template de VSL short-form",
-              videoUrl: "/videos/5-2-2-template-short-form.mp4",
+              videoUrl: "https://www.loom.com/share/435c286b566a4154ae690936dbcafa8f?sid=35a73ac7-5a84-4fc2-bbf2-f995c94d13b0",
               tags: ["VSL", "template", "short-form"],
               moduleId: 5,
               rubrique: "La pratique"
             },
             {
-              id: "5.2.3",
-              title: "Comment s'enregistrer ?",
-              videoUrl: "/videos/5-2-3-enregistrement.mp4",
-              tags: ["VSL", "technique", "enregistrement"],
+              id: "5.11",
+              title: "Checklist d'une bonne VSL",
+              videoUrl: "https://www.tella.tv/video/checklist-dune-bonne-vsl-erxm",
+              tags: ["VSL", "checklist", "qualité"],
               moduleId: 5,
               rubrique: "La pratique"
             }
@@ -1117,25 +1096,14 @@ function FocusMode({
             {/* Lecteur vidéo */}
               <div className="aspect-video relative bg-surfaceLight rounded-xl overflow-hidden mb-8 shadow-2xl border border-white/5">
               {activeContent?.videoUrl ? (
-                formatVideoUrl(activeContent.videoUrl).includes('tella.tv') ? (
-                  <iframe
-                    src={formatVideoUrl(activeContent.videoUrl)}
-                    className="w-full h-full"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    style={{ aspectRatio: '16/9' }}
-                  />
-                ) : (
-                  <video 
-                    className="w-full h-full object-cover" 
-                    controls
-                    poster="/video-placeholder.jpg"
-                  >
-                    <source src={formatVideoUrl(activeContent.videoUrl)} type="video/mp4" />
-                    Votre navigateur ne supporte pas la lecture de vidéos.
-                  </video>
-                )
+                <iframe
+                  src={formatVideoUrl(activeContent.videoUrl)}
+                  className="w-full h-full"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  style={{ aspectRatio: '16/9' }}
+                />
               ) : (
                 <div className="absolute inset-0 flex items-center justify-center">
                     <p className="text-gray-400">Vidéo en cours de préparation</p>
@@ -1417,25 +1385,14 @@ function FocusMode({
                   className="aspect-video relative bg-surfaceLight rounded-xl overflow-hidden mb-8 shadow-2xl border border-white/5"
                 >
                 {activeContent.videoUrl ? (
-                  formatVideoUrl(activeContent.videoUrl).includes('tella.tv') ? (
-                    <iframe
-                      src={formatVideoUrl(activeContent.videoUrl)}
-                      className="w-full h-full"
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      style={{ aspectRatio: '16/9' }}
-                    />
-                  ) : (
-                    <video 
-                      className="w-full h-full object-cover" 
-                      controls
-                      poster="/video-placeholder.jpg"
-                    >
-                      <source src={formatVideoUrl(activeContent.videoUrl)} type="video/mp4" />
-                      Votre navigateur ne supporte pas la lecture de vidéos.
-                    </video>
-                  )
+                  <iframe
+                    src={formatVideoUrl(activeContent.videoUrl)}
+                    className="w-full h-full"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    style={{ aspectRatio: '16/9' }}
+                  />
                 ) : (
                   <div className="absolute inset-0 flex items-center justify-center">
                     <p className="text-textMuted">Vidéo en cours de préparation</p>
@@ -1804,7 +1761,10 @@ function ExploreMode({ setActiveModuleId, setActivePalierId, setViewMode }: Expl
 export default function MasterclassPage() {
   const [activeModuleId, setActiveModuleId] = useState<number>(-1);
   const [activePalierId, setActivePalierId] = useState<string | null>(null);
-  const [viewMode, setViewMode] = useState<'focus' | 'explore'>('focus');
+  const [viewMode, setViewMode] = useState<ViewMode>('explore');
+  const [showOptin, setShowOptin] = useState(false);
+  const [expandedModules, setExpandedModules] = useState<Set<number>>(new Set());
+  const [expandedRubriques, setExpandedRubriques] = useState<Map<number, Set<string>>>(new Map());
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [searchResults, setSearchResults] = useState<Palier[]>([]);
 
@@ -1924,7 +1884,7 @@ export default function MasterclassPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-300 leading-tight"
+              className="text-4xl md:text-5xl lg:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-300 leading-tight"
             >
               La Masterclass BPC
             </motion.h1>
@@ -1933,7 +1893,7 @@ export default function MasterclassPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-2xl md:text-3xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed"
+              className="text-lg md:text-2xl lg:text-3xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed"
             >
               Notre produit ultime, mis à disposition gratuitement pour les entrepreneurs et solopreneurs du B2B.
             </motion.p>
@@ -1942,16 +1902,16 @@ export default function MasterclassPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
-              className="flex flex-wrap gap-4 justify-center"
+              className="flex flex-col md:flex-row gap-4 justify-center"
             >
               <Button 
                 size="lg"
                 onClick={() => {
-                setActiveModuleId(-1);
-                setActivePalierId(null);
-                setViewMode('focus');
+                  setActiveModuleId(-1);
+                  setActivePalierId(null);
+                  setViewMode('focus');
                 }}
-                className="min-w-[200px] text-lg py-6 bg-button hover:bg-button/90 transform hover:scale-[1.02] transition-all duration-200"
+                className="w-full md:w-auto text-sm md:text-lg py-4 md:py-6 bg-button hover:bg-button/90 transform hover:scale-[1.02] transition-all duration-200"
               >
                 Commencer maintenant
               </Button>
@@ -1959,20 +1919,20 @@ export default function MasterclassPage() {
                 variant="outline"
                 size="lg"
                 href="#roadmap"
-                className="min-w-[200px] text-lg py-6 border-2 hover:bg-white/10 transform hover:scale-[1.02] transition-all duration-200"
+                className="w-full md:w-auto text-sm md:text-lg py-4 md:py-6 border-2 hover:bg-white/10 transform hover:scale-[1.02] transition-all duration-200"
               >
                 Obtenir ma roadmap
               </Button>
             </motion.div>
-            </div>
+          </div>
         </motion.div>
 
-        {/* Stats Section */}
+        {/* Stats Section - Hidden on mobile */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.8 }}
-          className="container-custom relative mt-16"
+          className="container-custom relative mt-16 hidden md:block"
         >
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             <div className="flex flex-col items-center text-center p-6 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10">
@@ -1980,10 +1940,10 @@ export default function MasterclassPage() {
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
                 </svg>
-          </div>
+              </div>
               <div className="text-3xl font-bold text-white mb-2">+2000</div>
               <div className="text-gray-300">Entrepreneurs formés</div>
-        </div>
+            </div>
 
             <div className="flex flex-col items-center text-center p-6 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10">
               <div className="w-12 h-12 mb-4 text-button">

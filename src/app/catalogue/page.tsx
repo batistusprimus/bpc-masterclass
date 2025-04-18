@@ -182,7 +182,7 @@ export default function CataloguePage() {
                     <Button 
                       variant={product.popular ? "primary" : "outline"} 
                       fullWidth
-                      href={product.title === "STARTER" ? "/catalogue/starter" : `#${product.title.toLowerCase()}`}
+                      href={product.title === "STARTER" ? "/catalogue/starter" : product.title === "ACCÉLÉRATEUR" ? "/catalogue/accelerateur" : `#${product.title.toLowerCase()}`}
                       className="group relative overflow-hidden"
                     >
                       <span className="relative z-10">{product.ctaText}</span>
