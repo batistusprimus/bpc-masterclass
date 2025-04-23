@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '@/components/Button';
+import { useRouter } from 'next/navigation';
 
 interface OptinFormProps {
   title?: string;
@@ -14,12 +15,23 @@ export default function OptinForm({
   buttonText = "Je veux ma roadmap gratuite",
   className = "",
 }: OptinFormProps) {
+  const router = useRouter();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    
+    // Here you would typically send the form data to your backend
+    // For now, we'll just redirect to the thank you page
+    router.push('/roadmap/merci');
+  };
+
   return (
     <div className={`bg-gray-800/70 backdrop-blur-sm rounded-lg p-8 shadow-xl border border-primary/40 ${className}`}>
       {title && <h3 className="text-2xl font-bold mb-4 text-accent">{title}</h3>}
       {subtitle && <p className="text-gray-300 mb-6">{subtitle}</p>}
       
-      <form className="space-y-4">
+      <form className="space-y-4" onSubmit={handleSubmit}>
         <div>
           <label htmlFor="name" className="block text-sm font-medium mb-1 text-gray-300">Nom</label>
           <input
