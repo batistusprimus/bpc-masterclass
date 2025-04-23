@@ -293,7 +293,7 @@ export default function CataloguePage() {
                   </p>
                 </div>
                 
-                <Button size="lg" className="w-full md:w-auto" href="#incubateur">
+                <Button size="lg" className="w-full md:w-auto" href="https://iclosed.com">
                   Postuler
                 </Button>
               </div>
@@ -377,7 +377,7 @@ export default function CataloguePage() {
               </p>
             </div>
             
-            <Button href="#" size="lg" className="w-full sm:w-auto">
+            <Button href="https://iclosed.com" size="lg" className="w-full sm:w-auto">
               Postuler maintenant
             </Button>
           </div>
@@ -416,7 +416,8 @@ export default function CataloguePage() {
                 role: "CEO de Lugus",
                 title: "+20 000€ générés dès le premier lancement",
                 videoId: "al1OJeYur9Y",
-                timestamp: "691"
+                timestamp: "691",
+                profileImage: "/Yann Grosjean.jpeg"
               },
               {
                 name: "Léon",
@@ -465,9 +466,20 @@ export default function CataloguePage() {
                   </div>
                   <h3 className="font-bold text-lg mb-3">{testimonial.title}</h3>
                   <div className="flex items-center">
-                    <div className="w-10 h-10 bg-button rounded-full flex items-center justify-center mr-3">
-                      <span className="text-primary font-bold text-sm">{testimonial.name.charAt(0)}</span>
-                    </div>
+                    {testimonial.profileImage ? (
+                      <div className="w-10 h-10 rounded-full overflow-hidden mr-3 relative">
+                        <Image
+                          src={testimonial.profileImage}
+                          alt={testimonial.name}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    ) : (
+                      <div className="w-10 h-10 bg-button rounded-full flex items-center justify-center mr-3">
+                        <span className="text-primary font-bold text-sm">{testimonial.name.charAt(0)}</span>
+                      </div>
+                    )}
                     <div>
                       <p className="font-bold">{testimonial.name}</p>
                       <p className="text-sm text-gray-400">{testimonial.role}</p>
@@ -677,7 +689,7 @@ export default function CataloguePage() {
             </p>
             
             <div className="flex flex-col sm:flex-row justify-center items-center gap-4 md:gap-6 mb-8 md:mb-10">
-              <Button href="#solutions" size="lg" className="w-full sm:w-auto text-lg px-8 py-4 group relative overflow-hidden">
+              <Button href="https://iclosed.com" size="lg" className="w-full sm:w-auto text-lg px-8 py-4 group relative overflow-hidden">
                 <span className="relative z-10">Choisir mon programme</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-button/0 via-button/30 to-button/0 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
               </Button>

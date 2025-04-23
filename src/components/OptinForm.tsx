@@ -157,7 +157,7 @@ export default function OptinForm({
                 const country = countryCodes.find(c => c.code === e.target.value);
                 if (country) setSelectedCountry(country);
               }}
-              className="px-2 py-2 md:px-3 md:py-3 bg-gray-700/80 border border-primary/30 rounded-md text-white text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-primary shadow-inner min-w-[90px] max-w-[90px]"
+              className="px-2 py-2 md:px-3 md:py-3 bg-gray-700/80 border border-primary/30 rounded-md text-white text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-primary shadow-inner w-[80px]"
               style={{
                 fontSize: '16px',
                 lineHeight: '1.5'
@@ -165,7 +165,7 @@ export default function OptinForm({
             >
               {countryCodes.map((country) => (
                 <option key={country.code} value={country.code} className="py-1">
-                  {country.flag} {country.dial_code}
+                  {country.flag}
                 </option>
               ))}
             </select>
@@ -193,12 +193,11 @@ export default function OptinForm({
             <select
               id="business"
               name="business"
-              className="mobile-select w-full px-3 py-2 md:px-4 md:py-3 bg-gray-700/80 border border-primary/30 rounded-md text-white text-base focus:outline-none focus:ring-2 focus:ring-primary shadow-inner"
+              className="w-full px-3 py-2 md:px-4 md:py-3 bg-gray-700/80 border border-primary/30 rounded-md text-white text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-primary shadow-inner appearance-none"
               required
               style={{
                 fontSize: '16px',
-                lineHeight: '1.5',
-                height: '48px'
+                lineHeight: '1.5'
               }}
             >
               <option value="" disabled selected>Sélectionne ton C.A annuel</option>

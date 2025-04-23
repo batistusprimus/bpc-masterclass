@@ -111,24 +111,28 @@ h4, h5, h6 {
 /* Styles pour les selects sur mobile */
 @media (max-width: 768px) {
   select {
-    font-size: 16px !important;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
   }
-  
-  select option {
-    font-size: 16px !important;
-    padding: 12px !important;
-    background-color: #1F2937;
-    color: white;
+
+  select::-ms-expand {
+    display: none;
   }
 }
 
-/* Fix pour le positionnement du select sur iOS */
-select::-webkit-scrollbar {
-  width: 0 !important;
-}
-
+/* Suppression des styles par défaut du navigateur */
 select {
-  scrollbar-width: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+/* Styles spécifiques pour iOS */
+@supports (-webkit-touch-callout: none) {
+  select {
+    background-color: transparent !important;
+  }
 }
 
 /* Style pour le menu déroulant sur mobile */
