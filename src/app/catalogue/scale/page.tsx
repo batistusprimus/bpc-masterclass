@@ -45,7 +45,7 @@ const testimonials: Testimonial[] = [
   }
 ];
 
-export default function AccelerateurPage() {
+export default function ScalePage() {
   const [showDemo, setShowDemo] = useState(false);
   const [timeLeft, setTimeLeft] = useState(24 * 60 * 60); // 24 heures en secondes
 
@@ -79,8 +79,8 @@ export default function AccelerateurPage() {
         <div className="container-custom py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <span className="text-button font-bold">ACCÉLÉRATEUR</span>
-              <span className="text-gray-300">Accompagnement personnalisé B2B</span>
+              <span className="text-button font-bold">SCALE</span>
+              <span className="text-gray-300">Service clé en main pour solopreneurs</span>
               <div className="hidden md:flex items-center gap-2 text-sm text-gray-400">
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -96,11 +96,11 @@ export default function AccelerateurPage() {
                 <span>14 jours de garantie</span>
               </div>
               <Button 
-                href="https://buy.stripe.com/6oEdRFeqt5vV18s5ky" 
+                href="https://calendly.com/baptistepiocelle/scale" 
                 size="sm"
                 className="group relative overflow-hidden"
               >
-                <span className="relative z-10">Accéder à l'ACCÉLÉRATEUR - 987€</span>
+                <span className="relative z-10">Réserver un appel - 4 500€</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-button/0 via-button/30 to-button/0 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
               </Button>
             </div>
@@ -125,7 +125,7 @@ export default function AccelerateurPage() {
               className="inline-block bg-button/20 backdrop-blur-sm px-6 py-2 rounded-full mb-6 border border-button/30"
             >
               <p className="text-sm md:text-base font-medium">
-                🔥 ACCÉLÉRATEUR – Le programme d'accompagnement B2B personnalisé
+                🔥 SCALE – Le service clé en main pour solopreneurs
               </p>
             </motion.div>
             
@@ -135,7 +135,7 @@ export default function AccelerateurPage() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-300 leading-tight"
             >
-              Structure ton business B2B pour 10k€/mois
+              Un tunnel B2B clé en main pour scaler immédiatement
             </motion.h1>
             
             <motion.p
@@ -144,7 +144,7 @@ export default function AccelerateurPage() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed mb-8"
             >
-              En 30 jours, tu structures ton tunnel de vente B2B pour générer des leads qualifiés, closer plus efficacement et poser les fondations d'un business scalable.
+              Pour les solopreneurs avancés (+5k€/mois) qui veulent déléguer entièrement leur système B2B et scaler proprement.
             </motion.p>
 
             {/* Preuve sociale */}
@@ -175,11 +175,11 @@ export default function AccelerateurPage() {
               className="flex flex-col sm:flex-row items-center justify-center gap-4"
             >
               <Button 
-                href="https://buy.stripe.com/6oEdRFeqt5vV18s5ky" 
+                href="https://calendly.com/baptistepiocelle/scale" 
                 size="lg"
                 className="group relative overflow-hidden"
               >
-                <span className="relative z-10">👉 Je rejoins l'ACCÉLÉRATEUR - 987€</span>
+                <span className="relative z-10">👉 Réserver un appel - 4 500€</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-button/0 via-button/30 to-button/0 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
               </Button>
               <div className="flex items-center gap-2 text-sm text-gray-400">
@@ -208,7 +208,7 @@ export default function AccelerateurPage() {
           >
             <div className="inline-block bg-button/20 backdrop-blur-sm px-6 py-2 rounded-full mb-6 border border-button/30">
               <p className="text-sm md:text-base font-medium text-gray-300">
-                Un système adapté à ton profil
+                Un service adapté aux solopreneurs
               </p>
             </div>
             <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-300">
@@ -220,26 +220,26 @@ export default function AccelerateurPage() {
             {[
               {
                 emoji: "👨‍💼",
-                title: "Freelances & consultants",
-                description: "Tu as déjà une offre mais pas de système structuré",
+                title: "Solopreneurs avancés",
+                description: "Tu génères déjà +5k€/mois et tu veux scaler proprement",
                 gradient: "from-blue-500/20 via-transparent to-transparent"
               },
               {
                 emoji: "🎯",
-                title: "Ventes instables",
-                description: "Tu vends un peu mais sans régularité",
+                title: "Business B2B",
+                description: "Tu veux un tunnel de vente B2B clé en main",
                 gradient: "from-green-500/20 via-transparent to-transparent"
               },
               {
                 emoji: "🚀",
-                title: "Business scalable",
-                description: "Tu veux structurer ton acquisition sans accompagnement à 10k€",
+                title: "Scalers",
+                description: "Tu veux déléguer entièrement ton système pour te concentrer sur la croissance",
                 gradient: "from-purple-500/20 via-transparent to-transparent"
               },
               {
                 emoji: "⚡️",
-                title: "Accompagnement",
-                description: "Tu veux un feedback personnalisé sur ton tunnel",
+                title: "Professionnels",
+                description: "Tu veux un service clé en main sans accompagnement récurrent",
                 gradient: "from-yellow-500/20 via-transparent to-transparent"
               }
             ].map((item, index) => (
@@ -249,7 +249,7 @@ export default function AccelerateurPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.2 }}
-                className="group relative bg-gray-800/30 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/30 hover:border-button/30 transition-all duration-500 overflow-hidden"
+                className="group relative bg-gray-800/30 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/30 hover:border-green-500/30 transition-all duration-500"
               >
                 {/* Background gradient */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
@@ -314,17 +314,17 @@ export default function AccelerateurPage() {
           >
             <div className="inline-block bg-button/20 backdrop-blur-sm px-6 py-2 rounded-full mb-6 border border-button/30">
               <p className="text-sm md:text-base font-medium text-gray-300">
-                Un système qui te fait gagner du temps
+                Un service qui te fait gagner du temps
               </p>
             </div>
             <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-300">
-              ACCÉLÉRATEUR vs STARTER
+              SCALE vs ACCÉLÉRATEUR
             </h2>
           </motion.div>
 
           <div className="max-w-4xl mx-auto">
             <div className="grid md:grid-cols-2 gap-8">
-              {/* STARTER Column */}
+              {/* ACCÉLÉRATEUR Column */}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -333,10 +333,10 @@ export default function AccelerateurPage() {
               >
                 <div className="text-center mb-8">
                   <div className="inline-block bg-gray-500/20 px-4 py-2 rounded-lg mb-4">
-                    <p className="text-gray-400 font-medium">STARTER</p>
+                    <p className="text-gray-400 font-medium">ACCÉLÉRATEUR</p>
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-300 mb-2">99€ pour lancer ton système</h3>
-                  <p className="text-gray-400">Tu fais tout seul</p>
+                  <h3 className="text-2xl font-bold text-gray-300 mb-2">987€ pour un retour sur investissement rapide</h3>
+                  <p className="text-gray-400">On construit avec toi</p>
                 </div>
                 <div className="space-y-4">
                   {[
@@ -364,7 +364,7 @@ export default function AccelerateurPage() {
                 </div>
               </motion.div>
 
-              {/* ACCÉLÉRATEUR Column */}
+              {/* SCALE Column */}
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -374,17 +374,17 @@ export default function AccelerateurPage() {
                 <div className="absolute top-0 right-0 w-32 h-32 bg-button/10 rounded-bl-full blur-3xl" />
                 <div className="text-center mb-8">
                   <div className="inline-block bg-button/20 px-4 py-2 rounded-lg mb-4">
-                    <p className="text-button font-medium">ACCÉLÉRATEUR</p>
+                    <p className="text-button font-medium">SCALE</p>
                   </div>
-                  <h3 className="text-2xl font-bold text-button mb-2">987€ pour un retour sur investissement rapide</h3>
-                  <p className="text-gray-400">On construit avec toi</p>
+                  <h3 className="text-2xl font-bold text-button mb-2">4 500€ pour un business en pilote automatique</h3>
+                  <p className="text-gray-400">On fait tout pour toi</p>
                 </div>
                 <div className="space-y-4">
                   {[
                     "✅ Accès à la méthode BPC",
                     "✅ Templates et ressources",
                     "✅ 4 sessions 1:1",
-                    "✅ On construit avec toi",
+                    "✅ On fait tout pour toi",
                     "✅ Feedback stratégique à chaque étape",
                     "✅ Relecture de ton tunnel (pages, séquences, messages)",
                     "🚀 Système validé + affûté"
@@ -448,7 +448,7 @@ export default function AccelerateurPage() {
           >
             <div className="inline-block bg-button/20 backdrop-blur-sm px-6 py-2 rounded-full mb-6 border border-button/30">
               <p className="text-sm md:text-base font-medium text-gray-300">
-                Un système complet pour lancer ton business B2B
+                Un service complet pour lancer ton business
               </p>
             </div>
             <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-300">
@@ -464,46 +464,46 @@ export default function AccelerateurPage() {
               viewport={{ once: true }}
               className="text-center mb-8"
             >
-              <h3 className="text-2xl font-bold text-button mb-2">Le programme ACCÉLÉRATEUR</h3>
-              <p className="text-gray-300">La méthode complète pour structurer ton business B2B</p>
+              <h3 className="text-2xl font-bold text-button mb-2">Le programme SCALE</h3>
+              <p className="text-gray-300">Le service clé en main pour ton business</p>
             </motion.div>
 
             <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
               {[
                 {
                   emoji: "🎓",
-                  title: "Masterclass BPC complète",
-                  description: "Accès immédiat à tous les modules sans drip",
+                  title: "Contenu complet",
+                  description: "Accès à tout le contenu STARTER + ACCÉLÉRATEUR",
                   gradient: "from-blue-500/20 via-transparent to-transparent"
                 },
                 {
-                  emoji: "📝",
-                  title: "Templates optimisés",
-                  description: "Notion & GHL prêts à l'emploi pour ton tunnel",
+                  emoji: "🎯",
+                  title: "Workshop stratégique",
+                  description: "2h de session Google Meet animée par Rémi",
                   gradient: "from-purple-500/20 via-transparent to-transparent"
                 },
                 {
-                  emoji: "🎥",
-                  title: "Formations exclusives",
-                  description: "Vidéos supplémentaires non présentes dans le Starter",
+                  emoji: "🚀",
+                  title: "Tunnel GHL clé en main",
+                  description: "Création complète de l'offre & funnel (pages, emails, automatisations)",
                   gradient: "from-yellow-500/20 via-transparent to-transparent"
                 },
                 {
-                  emoji: "📊",
-                  title: "Modèles de tunnels",
-                  description: "VSL, séquences mails, scripts de closing",
+                  emoji: "📱",
+                  title: "Pack LinkedIn",
+                  description: "20 posts prêts à publier + roadmap éditoriale complète",
                   gradient: "from-green-500/20 via-transparent to-transparent"
                 },
                 {
-                  emoji: "🎯",
-                  title: "Audit personnalisé",
-                  description: "Feedback asynchrone sur ton tunnel (vidéo Loom)",
+                  emoji: "🎥",
+                  title: "Vidéos scriptées",
+                  description: "3 vidéos (VSL, autorité, closing) scriptées via IA avec instructions de tournage",
                   gradient: "from-red-500/20 via-transparent to-transparent"
                 },
                 {
-                  emoji: "💬",
-                  title: "Support personnalisé",
-                  description: "Accès à un canal de support + feedbacks personnalisés",
+                  emoji: "📊",
+                  title: "Campagne Meta Ads",
+                  description: "Setup complet d'une campagne publicitaire par Hugo",
                   gradient: "from-indigo-500/20 via-transparent to-transparent"
                 }
               ].map((item, index) => (
@@ -513,7 +513,7 @@ export default function AccelerateurPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="group relative bg-gray-800/30 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/30 hover:border-button/30 transition-all duration-500"
+                  className="group relative bg-gray-800/30 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/30 hover:border-green-500/30 transition-all duration-500"
                 >
                   {/* Background gradient */}
                   <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl`} />
@@ -551,8 +551,7 @@ export default function AccelerateurPage() {
                   emoji: "🎥",
                   title: "Formations exclusives",
                   description: "Vidéos supplémentaires non présentes dans le Starter. Techniques avancées de closing, optimisation de tunnel, etc.",
-                  gradient: "from-green-500/20 via-transparent to-transparent",
-                  highlight: true
+                  gradient: "from-green-500/20 via-transparent to-transparent"
                 },
                 {
                   emoji: "📊",
@@ -573,11 +572,7 @@ export default function AccelerateurPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className={`group relative bg-gray-800/30 backdrop-blur-sm rounded-2xl p-8 border transition-all duration-500 ${
-                    item.highlight 
-                      ? "border-green-500/50 shadow-lg shadow-green-500/20" 
-                      : "border-gray-700/30 hover:border-green-500/30"
-                  }`}
+                  className="group relative bg-gray-800/30 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/30 hover:border-green-500/30 transition-all duration-500"
                 >
                   {/* Background gradient */}
                   <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl`} />
@@ -636,7 +631,7 @@ export default function AccelerateurPage() {
             </h2>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8">
             {[
               {
                 title: "46 414,25€ en une transaction",
@@ -669,7 +664,7 @@ export default function AccelerateurPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.2 }}
-                className="group relative bg-gray-800/30 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/30 hover:border-button/30 transition-all duration-500 overflow-hidden"
+                className="group relative bg-gray-800/30 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/30 hover:border-green-500/30 transition-all duration-500"
               >
                 {/* Background gradient */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
@@ -728,14 +723,14 @@ export default function AccelerateurPage() {
           >
             <div className="inline-block bg-button/20 backdrop-blur-sm px-6 py-2 rounded-full mb-6 border border-button/30">
               <p className="text-sm md:text-base font-medium text-gray-300">
-                Des résultats concrets en 7 jours
+                Des résultats concrets en 30 jours
               </p>
             </div>
             <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-300">
               🚀 Ce que tu gagnes
             </h2>
             <p className="text-gray-300 max-w-2xl mx-auto text-lg">
-              En 7 jours, tu peux transformer ton business B2B
+              En 30 jours, tu peux transformer ton business
             </p>
           </motion.div>
 
@@ -743,8 +738,8 @@ export default function AccelerateurPage() {
             {[
               {
                 emoji: "🎯",
-                title: "Leads qualifiés",
-                description: "Tu génères des leads qualifiés toutes les semaines",
+                title: "Business en pilote automatique",
+                description: "Tu as un business qui tourne sans toi",
                 gradient: "from-blue-500/20 via-transparent to-transparent"
               },
               {
@@ -772,7 +767,7 @@ export default function AccelerateurPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="group relative bg-gray-800/30 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/30 hover:border-button/30 transition-all duration-500 hover:scale-[1.02]"
+                className="group relative bg-gray-800/30 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/30 hover:border-green-500/30 transition-all duration-500"
               >
                 {/* Background gradient */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl`} />
@@ -807,7 +802,7 @@ export default function AccelerateurPage() {
               {
                 value: "30 jours",
                 label: "Temps moyen pour structurer",
-                description: "Un tunnel de vente qui convertit",
+                description: "Un business qui tourne en pilote automatique",
                 icon: "⏱️"
               },
               {
@@ -829,7 +824,7 @@ export default function AccelerateurPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="group relative bg-gray-800/30 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-700/30 hover:border-button/30 transition-all duration-500"
+                className="group relative bg-gray-800/30 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-700/30 hover:border-green-500/30 transition-all duration-500"
               >
                 <div className="text-4xl mb-4">{stat.icon}</div>
                 <p className="text-4xl font-bold text-button mb-2">{stat.value}</p>
@@ -847,11 +842,11 @@ export default function AccelerateurPage() {
             className="mt-16 text-center"
           >
             <Button 
-              href="https://buy.stripe.com/6oEdRFeqt5vV18s5ky" 
+              href="https://calendly.com/baptistepiocelle/scale" 
               size="lg"
               className="group relative overflow-hidden"
             >
-              <span className="relative z-10">👉 Je rejoins l'ACCÉLÉRATEUR - 987€</span>
+              <span className="relative z-10">👉 Réserver un appel - 4 500€</span>
               <div className="absolute inset-0 bg-gradient-to-r from-button/0 via-button/30 to-button/0 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
             </Button>
             <div className="mt-4 flex items-center justify-center gap-2 text-sm text-gray-400">
@@ -897,21 +892,18 @@ export default function AccelerateurPage() {
             {[
               {
                 icon: "💎",
-                title: "Accès à vie",
-                description: "987€ une fois, accès à vie. Toutes les mises à jour incluses gratuitement.",
-                highlight: true
+                title: "4 500€",
+                description: "Paiement unique, service clé en main"
               },
               {
                 icon: "✅",
-                title: "Résultats garantis",
-                description: "Si tu suis les modules, tu structures ton tunnel en 30 jours. Point.",
-                highlight: false
+                title: "14 jours",
+                description: "Garantie satisfait ou remboursé"
               },
               {
                 icon: "🔄",
-                title: "Remboursement",
-                description: "Si tu n'arrives à rien implémenter après avoir suivi les modules, on te rembourse.",
-                highlight: false
+                title: "0.5%",
+                description: "Taux de remboursement"
               }
             ].map((item, index) => (
               <motion.div
@@ -920,11 +912,7 @@ export default function AccelerateurPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className={`group relative bg-gray-800/30 backdrop-blur-sm rounded-2xl p-8 border transition-all duration-500 ${
-                  item.highlight 
-                    ? "border-button/50 shadow-lg shadow-button/20" 
-                    : "border-gray-700/30 hover:border-button/30"
-                }`}
+                className="group relative bg-gray-800/30 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/30 hover:border-green-500/30 transition-all duration-500"
               >
                 <div className="relative z-10">
                   <div className="text-5xl mb-6">{item.icon}</div>
@@ -963,11 +951,11 @@ export default function AccelerateurPage() {
             className="mt-16 text-center"
           >
             <Button 
-              href="https://buy.stripe.com/6oEdRFeqt5vV18s5ky" 
+              href="https://calendly.com/baptistepiocelle/scale" 
               size="lg"
               className="group relative overflow-hidden"
             >
-              <span className="relative z-10">👉 Je commence maintenant - 987€</span>
+              <span className="relative z-10">👉 Réserver un appel - 4 500€</span>
               <div className="absolute inset-0 bg-gradient-to-r from-button/0 via-button/30 to-button/0 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
             </Button>
             <div className="mt-4 flex items-center justify-center gap-2 text-sm text-gray-400">
@@ -1005,10 +993,10 @@ export default function AccelerateurPage() {
             {/* Prix et valeur */}
             <div className="mb-8">
               <div className="inline-flex items-center gap-4 bg-gray-800/30 backdrop-blur-sm px-8 py-4 rounded-full border border-gray-700/30">
-                <div className="text-4xl font-bold text-button">987€</div>
+                <div className="text-4xl font-bold text-button">4 500€</div>
                 <div className="text-left">
                   <p className="text-gray-300">Paiement unique</p>
-                  <p className="text-sm text-gray-400">Accès à vie</p>
+                  <p className="text-sm text-gray-400">Service clé en main</p>
                 </div>
               </div>
             </div>
@@ -1066,11 +1054,11 @@ export default function AccelerateurPage() {
             {/* CTA Principal */}
             <div className="mb-8">
               <Button 
-                href="https://buy.stripe.com/6oEdRFeqt5vV18s5ky" 
+                href="https://calendly.com/baptistepiocelle/scale" 
                 size="lg"
                 className="group relative overflow-hidden"
               >
-                <span className="relative z-10">👉 Je rejoins l'ACCÉLÉRATEUR - 987€</span>
+                <span className="relative z-10">👉 Réserver un appel - 4 500€</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-button/0 via-button/30 to-button/0 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
               </Button>
             </div>
@@ -1122,20 +1110,24 @@ export default function AccelerateurPage() {
           <div className="max-w-3xl mx-auto space-y-6">
             {[
               {
-                question: "Est-ce que je dois avoir déjà une offre ?",
-                answer: "Oui, l'Accélérateur est conçu pour les freelances et consultants qui ont déjà une offre mais qui veulent structurer leur tunnel de vente pour plus de stabilité."
+                question: "Est-ce que je dois avoir déjà un business B2B ?",
+                answer: "Oui, SCALE est conçu pour les solopreneurs qui génèrent déjà +5k€/mois et qui veulent déléguer entièrement leur système B2B pour scaler proprement."
               },
               {
-                question: "Combien de temps faut-il pour voir des résultats ?",
-                answer: "La plupart de nos clients commencent à voir des résultats dans les 30 premiers jours, avec une augmentation significative de leurs leads qualifiés et de leur taux de conversion."
+                question: "Combien de temps faut-il pour recevoir le tunnel clé en main ?",
+                answer: "Le tunnel est livré complet et installé directement chez vous. Le workshop stratégique initial de 2h avec Rémi permet de cadrer le projet, puis nous nous occupons de tout : création de l'offre, du funnel GHL, des contenus LinkedIn et des vidéos."
               },
               {
                 question: "Est-ce que je peux me faire rembourser ?",
-                answer: "Si tu n'arrives à rien implémenter après avoir suivi les modules → oui. Notre taux de remboursement est de 0.5% seulement."
+                answer: "Oui, nous offrons une garantie de 14 jours satisfait ou remboursé. Notre taux de remboursement est de seulement 0.5%, preuve de la qualité de notre service."
               },
               {
-                question: "Et après l'Accélérateur ?",
-                answer: "Tu auras un tunnel de vente complet et optimisé qui te permettra d'atteindre 10k€/mois de manière prévisible. Tu pourras ensuite passer à l'étape suivante si tu souhaites scaler davantage."
+                question: "Que se passe-t-il après la livraison du tunnel ?",
+                answer: "Vous recevez un tunnel B2B complet et fonctionnel, avec tous les contenus nécessaires (posts LinkedIn, vidéos, campagne Meta Ads). Vous pouvez commencer à l'utiliser immédiatement pour générer des leads et des ventes."
+              },
+              {
+                question: "Est-ce que je peux personnaliser le tunnel ?",
+                answer: "Le tunnel est créé sur mesure selon vos besoins lors du workshop stratégique initial. Nous prenons en compte votre offre, votre cible et vos objectifs pour créer un système parfaitement adapté à votre business."
               }
             ].map((item, index) => (
               <motion.div
@@ -1169,16 +1161,16 @@ export default function AccelerateurPage() {
           >
             <div className="inline-block bg-button/20 backdrop-blur-sm px-6 py-2 rounded-full mb-6 border border-button/30">
               <p className="text-sm md:text-base font-medium text-gray-300">
-                Dernière chance de rejoindre l'ACCÉLÉRATEUR
+                Dernière chance de rejoindre SCALE
               </p>
             </div>
 
             <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-300">
-              30 jours. 10k€/mois. 1 tunnel optimisé.
+              30 jours. Business en pilote automatique. Service clé en main.
             </h2>
 
             <p className="text-xl text-gray-300 mb-8">
-              Structure ton business B2B dès aujourd'hui.
+              Transforme ton business dès aujourd'hui.
             </p>
 
             {/* Valeur et garanties */}
@@ -1186,8 +1178,8 @@ export default function AccelerateurPage() {
               {[
                 {
                   icon: "💎",
-                  title: "987€",
-                  description: "Paiement unique, accès à vie"
+                  title: "4 500€",
+                  description: "Paiement unique, service clé en main"
                 },
                 {
                   icon: "✅",
@@ -1223,11 +1215,11 @@ export default function AccelerateurPage() {
             {/* CTA Principal */}
             <div className="mb-8">
               <Button 
-                href="https://buy.stripe.com/6oEdRFeqt5vV18s5ky" 
+                href="https://calendly.com/baptistepiocelle/scale" 
                 size="lg"
                 className="group relative overflow-hidden"
               >
-                <span className="relative z-10">👉 Je rejoins l'ACCÉLÉRATEUR - 987€</span>
+                <span className="relative z-10">👉 Réserver un appel - 4 500€</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-button/0 via-button/30 to-button/0 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
               </Button>
             </div>
