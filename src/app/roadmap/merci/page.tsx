@@ -135,7 +135,6 @@ export default function RoadmapThankYou() {
         {/* Testimonials Section */}
         <Testimonials />
       </main>
-      <Footer />
     </>
   );
 } 
