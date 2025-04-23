@@ -1435,6 +1435,440 @@ const masterclassContent: MasterclassContent = {
           moduleId: 8
         }
       ]
+    },
+    {
+      id: 9,
+      title: "BONUS - Les clés du Scale",
+      description: "Des vidéos exclusives pour débloquer tes problématiques business une par une.",
+      icon: "🎬",
+      color: "#FF0000", // Red
+      paliers: [
+        {
+          id: "9.0",
+          title: "Comment lancer un business à 1M€ par an - la VRAIE Méthode",
+          videoUrl: "https://www.youtube.com/embed/1uIVc0pK008",
+          tags: ["business", "scale", "stratégie"],
+          moduleId: 9,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
+        },
+        {
+          id: "9.1",
+          title: "Quel type de contenu créer pour attirer ses premiers clients ?",
+          videoUrl: "https://www.youtube.com/embed/jeNZeHtO0IY",
+          tags: ["contenu", "acquisition", "clients"],
+          moduleId: 9,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
+        },
+        {
+          id: "9.2",
+          title: "Pourquoi la plupart des freelances n'atteindront jamais 10K€/mois (et comment faire autrement)",
+          videoUrl: "https://www.youtube.com/embed/RtOfuQQx5vI",
+          tags: ["freelance", "revenus", "stratégie"],
+          moduleId: 9,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
+        },
+        {
+          id: "9.3",
+          title: "Comment construire un TUNNEL en 1 heure pour attirer tes clients",
+          videoUrl: "https://www.youtube.com/embed/qospSz9_Glg",
+          tags: ["tunnel", "acquisition", "clients"],
+          moduleId: 9,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
+        },
+        {
+          id: "9.4",
+          title: "Écrire et publier une VSL pour transformer n'importe qui en client en 2h",
+          videoUrl: "https://www.youtube.com/embed/zJwCe0SVle8",
+          tags: ["VSL", "conversion", "clients"],
+          moduleId: 9,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
+        },
+        {
+          id: "9.5",
+          title: "Comment lancer un bon produit digital ?",
+          videoUrl: "https://www.youtube.com/embed/wdUVOjexoAg",
+          tags: ["produit", "digital", "lancement"],
+          moduleId: 9,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
+        },
+        {
+          id: "9.6",
+          title: "Comment ce freelance est passé de 0 à 2000 par mois en 3 semaines | Témoignage",
+          videoUrl: "https://www.youtube.com/embed/K2YsABjkRiE",
+          tags: ["freelance", "témoignage", "croissance"],
+          moduleId: 9,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
+        },
+        {
+          id: "9.7",
+          title: "Comment ce client a fait 20k€ sur le lancement de sa formation | Témoignage",
+          videoUrl: "https://www.youtube.com/embed/al1OJeYur9Y",
+          tags: ["formation", "témoignage", "lancement"],
+          moduleId: 9,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
+        },
+        {
+          id: "9.8",
+          title: "Adopter le mindset de croissance pour évoluer dans l'entrepreneuriat",
+          videoUrl: "https://www.youtube.com/embed/xDXKrPBCck8",
+          tags: ["mindset", "croissance", "entrepreneuriat"],
+          moduleId: 9,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
+        },
+        {
+          id: "9.9",
+          title: "Étude de cas | Comment faire 1.749.074 vues et 300 000€ en 75 jours et 35 posts",
+          videoUrl: "https://www.youtube.com/embed/UkYmi9HNdf4",
+          tags: ["étude de cas", "vues", "revenus"],
+          moduleId: 9,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
+        },
+        {
+          id: "9.10",
+          title: "Comment choisir le bon marché pour ta future offre ?",
+          videoUrl: "https://www.youtube.com/embed/b-TL1y2hU1Q",
+          tags: ["marché", "offre", "stratégie"],
+          moduleId: 9,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
+        },
+        {
+          id: "9.11",
+          title: "Pourquoi ne PAS créer de contenu te faire perdre de l'argent",
+          videoUrl: "https://www.youtube.com/embed/8upOvqJ2tdA",
+          tags: ["contenu", "stratégie", "argent"],
+          moduleId: 9,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
+        },
+        {
+          id: "9.12",
+          title: "Créer ton personal branding en 10 minutes",
+          videoUrl: "https://www.youtube.com/embed/SoprcPQN1ok",
+          tags: ["personal branding", "stratégie", "image"],
+          moduleId: 9,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
+        },
+        {
+          id: "9.13",
+          title: "Comment je suis passé de 10K€/mois à 83.333€/mois avec mon business de service",
+          videoUrl: "https://www.youtube.com/embed/uA9SVQDsSHw",
+          tags: ["business", "service", "croissance"],
+          moduleId: 9,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
+        },
+        {
+          id: "9.14",
+          title: "Nouveau modèle de pricing en 10 minutes",
+          videoUrl: "https://www.youtube.com/embed/7Z2zeo9S1E8",
+          tags: ["pricing", "stratégie", "prix"],
+          moduleId: 9,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
+        },
+        {
+          id: "9.15",
+          title: "J'ai fait presque 1M en service B2B, je détruis les mythes",
+          videoUrl: "https://www.youtube.com/embed/cCIRCOrQFA8",
+          tags: ["B2B", "service", "mythes"],
+          moduleId: 9,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
+        },
+        {
+          id: "9.16",
+          title: "3 règles essentielles pour performer en copywriting",
+          videoUrl: "https://www.youtube.com/embed/SuOh9UhafCc",
+          tags: ["copywriting", "règles", "performance"],
+          moduleId: 9,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
+        },
+        {
+          id: "9.17",
+          title: "Comment faire 145 000€ avec ce que vous avez déjà",
+          videoUrl: "https://www.youtube.com/embed/sT-KiO9FGKs",
+          tags: ["revenus", "stratégie", "optimisation"],
+          moduleId: 9,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
+        },
+        {
+          id: "9.18",
+          title: "Passer de 0 à 1M€/an avec 99,99% de chances de succès",
+          videoUrl: "https://www.youtube.com/embed/AUW_z21Lk4U",
+          tags: ["croissance", "stratégie", "succès"],
+          moduleId: 9,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
+        },
+        {
+          id: "9.19",
+          title: "A player vs débutants, qui recruter et comment",
+          videoUrl: "https://www.youtube.com/embed/nsTbVJKJ5KM",
+          tags: ["recrutement", "équipe", "stratégie"],
+          moduleId: 9,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
+        },
+        {
+          id: "9.20",
+          title: "Le framework derrière une offre à 3 500€ par mois",
+          videoUrl: "https://www.youtube.com/embed/MhrbpRX6y2c",
+          tags: ["offre", "framework", "prix"],
+          moduleId: 9,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
+        },
+        {
+          id: "9.21",
+          title: "Le business modèle parfait pour 2025 : comment gagner 1M€ sans salariés",
+          videoUrl: "https://www.youtube.com/embed/pRtCpiVmJCQ",
+          tags: ["business modèle", "scale", "revenus"],
+          moduleId: 9,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
+        },
+        {
+          id: "9.22",
+          title: "Pourquoi tu n'arrives pas à scaler (et comment exploser tes revenus en 90 jours)",
+          videoUrl: "https://www.youtube.com/embed/nSGA7SzVVP4",
+          tags: ["scale", "revenus", "stratégie"],
+          moduleId: 9,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
+        },
+        {
+          id: "9.23",
+          title: "Hack LinkedIn à 1M€ : comment exploser ton business avec 1 post par jour",
+          videoUrl: "https://www.youtube.com/embed/QbJkaUyKCA4",
+          tags: ["LinkedIn", "acquisition", "contenu"],
+          moduleId: 9,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
+        },
+        {
+          id: "9.24",
+          title: "Comment closer des contrats à 20K€ sans appeler un seul prospect",
+          videoUrl: "https://www.youtube.com/embed/Es7A-FY0EyA",
+          tags: ["vente", "contrats", "stratégie"],
+          moduleId: 9,
+          callToAction: {
+            explore: {
+              text: "Consulter les modules disponibles",
+              href: "/masterclass?viewMode=explore"
+            },
+            newsletter: {
+              text: "S'inscrire à la newsletter",
+              href: "/media#newsletter"
+            }
+          }
+        }
+      ]
     }
   ]
 };
