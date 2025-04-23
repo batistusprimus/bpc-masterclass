@@ -6,6 +6,14 @@ import Button from '@/components/Button';
 import OptinForm from '@/components/OptinForm';
 import LogoMarquee from '@/components/LogoMarquee';
 
+type HomeTestimonial = {
+  quote: string;
+  detail: string;
+  name: string;
+  role: string;
+  image?: string | null;
+};
+
 export default function Home() {
   return (
     <>
@@ -212,19 +220,22 @@ export default function Home() {
                 detail: "Tout a été mis en place sans que j'aie à lever le petit doigt : tunnel, mails, pub, VSL, prise de rendez-vous, setting, closing.",
                 name: "Yann Grosjean",
                 role: "CEO de Lugus",
-              },
+                image: "/Yann Grosjean.jpeg"
+              } as HomeTestimonial,
               {
                 quote: "+300 000€ générés en 75 jours via une stratégie de contenu LinkedIn",
                 detail: "On a lancé 35 posts en 75 jours. Résultat : +1,7M de vues, 4 posts viraux, +4000 abonnés, et plus de 300 000€ générés.",
                 name: "Anaïs R.",
                 role: "CEO de A&C",
-              },
+                image: "/anais-remaoun.webp"
+              } as HomeTestimonial,
               {
                 quote: "+75% de rentabilité sur 6 mois sans recruter ni déléguer",
                 detail: "Je voulais scaler sans sacrifier ma liberté. En quelques semaines, j'ai restructuré mes offres, internalisé l'acquisition, et lancé un système qui tourne.",
                 name: "CEO anonyme",
                 role: "prestataire B2B indépendant",
-              },
+                image: null
+              } as HomeTestimonial,
             ].map((testimonial, index) => (
               <div key={index} className="bg-black/40 backdrop-blur-sm rounded-xl p-8 border border-white/5 hover:border-button/20 transition-colors duration-300">
                 <div className="mb-6">
@@ -232,9 +243,21 @@ export default function Home() {
                   <p className="text-gray-300 italic">{testimonial.detail}</p>
                 </div>
                 <div className="flex items-center">
-                  <div className="w-12 h-12 bg-gradient-to-br from-button to-graph rounded-full flex items-center justify-center mr-4">
-                    <span className="text-primary font-bold text-lg">{testimonial.name.charAt(0)}</span>
-                  </div>
+                  {testimonial.image ? (
+                    <div className="w-12 h-12 rounded-full overflow-hidden mr-4">
+                      <Image
+                        src={testimonial.image}
+                        alt={testimonial.name}
+                        width={48}
+                        height={48}
+                        className="object-cover"
+                      />
+                    </div>
+                  ) : (
+                    <div className="w-12 h-12 bg-gradient-to-br from-button to-graph rounded-full flex items-center justify-center mr-4">
+                      <span className="text-primary font-bold text-lg">{testimonial.name.charAt(0)}</span>
+                    </div>
+                  )}
                   <div>
                     <p className="font-bold text-white">{testimonial.name}</p>
                     <p className="text-sm text-gray-400">{testimonial.role}</p>

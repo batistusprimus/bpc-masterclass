@@ -8,6 +8,15 @@ import { useState, useEffect } from "react";
 import Testimonials from "@/components/Testimonials";
 
 const TESTIMONIAL_IMAGES = [
+  "/Yann Grosjean.jpeg",
+  "/Thierry Lorfils .jpg",
+  "/Samantha Piat.jpeg",
+  "/Joris Genty.jpeg",
+  "/jean_michel_ly_v2.png",
+  "/Giacomo Genna.jpeg",
+  "/Floriane Bobée.jpeg",
+  "/Caroline rousset.jpg",
+  "/Axelle Guer .jpeg",
   "/1682719923684.jpeg",
   "/1702830864459.jpeg",
   "/1728625826972.jpeg",
