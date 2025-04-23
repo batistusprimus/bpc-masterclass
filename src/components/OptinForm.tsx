@@ -36,10 +36,10 @@ export default function OptinForm({
     // Supprime les espaces du numéro de téléphone
     const cleanPhone = phoneInput.replace(/\s/g, '');
     
-    // Si le numéro commence par 0, on le remplace par l'indicatif du pays
+    // Formatage du numéro avec le préfixe complet et des espaces
     const phoneNumber = cleanPhone.startsWith('0') 
-      ? `${selectedCountry.dial_code}${cleanPhone.slice(1)}`
-      : `${selectedCountry.dial_code}${cleanPhone}`;
+      ? `${selectedCountry.dial_code} ${cleanPhone.slice(1).match(/.{1,2}/g)?.join(' ') || ''}`
+      : `${selectedCountry.dial_code} ${cleanPhone.match(/.{1,2}/g)?.join(' ') || ''}`;
     
     // Récupération des données du formulaire
     const data = {
@@ -89,11 +89,12 @@ export default function OptinForm({
     // Si le numéro commence par 0, on le supprime
     const cleanNumbers = numbers.startsWith('0') ? numbers.slice(1) : numbers;
     
-    // Format: XX XX XX XX XX
-    const match = cleanNumbers.match(/^(\d{0,2})(\d{0,2})(\d{0,2})(\d{0,2})(\d{0,2})$/);
+    // Format: 6 XX XX XX XX
+    const match = cleanNumbers.match(/^(\d{1})(\d{0,2})(\d{0,2})(\d{0,2})(\d{0,2})$/);
     if (match) {
-      const parts = match.slice(1).filter(Boolean);
-      return parts.join(' ');
+      const [_, first, ...parts] = match;
+      const remainingParts = parts.filter(Boolean);
+      return first + (remainingParts.length > 0 ? ' ' + remainingParts.join(' ') : '');
     }
     return cleanNumbers;
   };
