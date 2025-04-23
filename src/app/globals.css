@@ -107,3 +107,83 @@ h4, h5, h6 {
 .font-title { font-family: 'Anton', sans-serif; }
 .font-subtitle { font-family: 'Archivo Black', sans-serif; }
 .font-body { font-family: 'Montserrat', sans-serif; }
+
+/* Styles pour les selects sur mobile */
+@media (max-width: 768px) {
+  select {
+    font-size: 16px !important;
+  }
+  
+  select option {
+    font-size: 16px !important;
+    padding: 12px !important;
+    background-color: #1F2937;
+    color: white;
+  }
+}
+
+/* Fix pour le positionnement du select sur iOS */
+select::-webkit-scrollbar {
+  width: 0 !important;
+}
+
+select {
+  scrollbar-width: none;
+}
+
+/* Style pour le menu déroulant sur mobile */
+@supports (-webkit-touch-callout: none) {
+  select {
+    -webkit-appearance: menulist !important;
+  }
+  
+  select option {
+    margin: 40px 0;
+  }
+}
+
+/* Styles spécifiques pour le select mobile dans le formulaire d'optin */
+@media (max-width: 768px) {
+  .mobile-select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+
+  .mobile-select:focus {
+    position: relative;
+    z-index: 1000;
+  }
+
+  /* Style du menu déroulant natif sur mobile */
+  .mobile-select option {
+    font-size: 16px;
+    padding: 16px;
+    background-color: #1F2937;
+    color: white;
+    border: none;
+  }
+}
+
+/* Styles pour iOS */
+@supports (-webkit-touch-callout: none) {
+  .mobile-select {
+    font-size: 16px !important;
+    padding: 12px !important;
+  }
+  
+  .mobile-select option {
+    font-size: 16px !important;
+    padding: 16px !important;
+  }
+}
+
+/* Suppression des styles par défaut du navigateur */
+.mobile-select::-ms-expand {
+  display: none;
+}
+
+.mobile-select:focus {
+  outline: none;
+  border-color: var(--color-button);
+}

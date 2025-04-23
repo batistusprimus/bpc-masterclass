@@ -105,12 +105,12 @@ export default function OptinForm({
   };
 
   return (
-    <div className={`bg-gray-800/70 backdrop-blur-sm rounded-lg p-8 shadow-xl border border-primary/40 ${className}`}>
-      {title && <h3 className="text-2xl font-bold mb-4 text-accent">{title}</h3>}
-      {subtitle && <p className="text-gray-300 mb-6">{subtitle}</p>}
+    <div className={`bg-gray-800/70 backdrop-blur-sm rounded-lg p-4 md:p-8 shadow-xl border border-primary/40 ${className}`}>
+      {title && <h3 className="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-accent">{title}</h3>}
+      {subtitle && <p className="text-gray-300 text-sm md:text-base mb-4 md:mb-6">{subtitle}</p>}
       
-      <form className="space-y-4" onSubmit={handleSubmit}>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <form className="space-y-3 md:space-y-4" onSubmit={handleSubmit}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
           <div>
             <label htmlFor="firstName" className="block text-sm font-medium mb-1 text-gray-300">Prénom</label>
             <input
@@ -118,7 +118,7 @@ export default function OptinForm({
               id="firstName"
               name="firstName"
               placeholder="Ton prénom"
-              className="w-full px-4 py-3 bg-gray-700/80 border border-primary/30 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-primary shadow-inner"
+              className="w-full px-3 py-2 md:px-4 md:py-3 bg-gray-700/80 border border-primary/30 rounded-md text-white text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-primary shadow-inner"
               required
             />
           </div>
@@ -130,7 +130,7 @@ export default function OptinForm({
               id="lastName"
               name="lastName"
               placeholder="Ton nom"
-              className="w-full px-4 py-3 bg-gray-700/80 border border-primary/30 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-primary shadow-inner"
+              className="w-full px-3 py-2 md:px-4 md:py-3 bg-gray-700/80 border border-primary/30 rounded-md text-white text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-primary shadow-inner"
               required
             />
           </div>
@@ -143,7 +143,7 @@ export default function OptinForm({
             id="email"
             name="email"
             placeholder="ton@email.com"
-            className="w-full px-4 py-3 bg-gray-700/80 border border-primary/30 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-primary shadow-inner"
+            className="w-full px-3 py-2 md:px-4 md:py-3 bg-gray-700/80 border border-primary/30 rounded-md text-white text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-primary shadow-inner"
             required
           />
         </div>
@@ -157,10 +157,14 @@ export default function OptinForm({
                 const country = countryCodes.find(c => c.code === e.target.value);
                 if (country) setSelectedCountry(country);
               }}
-              className="px-3 py-3 bg-gray-700/80 border border-primary/30 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-primary shadow-inner"
+              className="px-2 py-2 md:px-3 md:py-3 bg-gray-700/80 border border-primary/30 rounded-md text-white text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-primary shadow-inner min-w-[90px] max-w-[90px]"
+              style={{
+                fontSize: '16px',
+                lineHeight: '1.5'
+              }}
             >
               {countryCodes.map((country) => (
-                <option key={country.code} value={country.code}>
+                <option key={country.code} value={country.code} className="py-1">
                   {country.flag} {country.dial_code}
                 </option>
               ))}
@@ -170,10 +174,14 @@ export default function OptinForm({
               id="phone"
               name="phone"
               placeholder="6 12 34 56 78"
-              className="flex-1 px-4 py-3 bg-gray-700/80 border border-primary/30 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-primary shadow-inner"
+              className="flex-1 px-3 py-2 md:px-4 md:py-3 bg-gray-700/80 border border-primary/30 rounded-md text-white text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-primary shadow-inner"
               required
               onChange={handlePhoneChange}
               maxLength={14}
+              style={{
+                fontSize: '16px',
+                lineHeight: '1.5'
+              }}
             />
           </div>
           <p className="text-xs text-gray-400 mt-1">Format: XX XX XX XX XX</p>
@@ -181,28 +189,40 @@ export default function OptinForm({
         
         <div>
           <label htmlFor="business" className="block text-sm font-medium mb-1 text-gray-300">Ton C.A Annuel</label>
-          <select
-            id="business"
-            name="business"
-            className="w-full px-4 py-3 bg-gray-700/80 border border-primary/30 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-primary shadow-inner"
-            required
-          >
-            <option value="">Sélectionne ton C.A annuel</option>
-            <option value="0">0€ - Je démarre</option>
-            <option value="less-than-10k">Moins de 10 000€</option>
-            <option value="10k-50k">10 000€ - 50 000€</option>
-            <option value="50k-100k">50 000€ - 100 000€</option>
-            <option value="100k-500k">100 000€ - 500 000€</option>
-            <option value="500k-1m">500 000€ - 1 million €</option>
-            <option value="1m-5m">1 million € - 5 millions €</option>
-          </select>
+          <div className="relative">
+            <select
+              id="business"
+              name="business"
+              className="mobile-select w-full px-3 py-2 md:px-4 md:py-3 bg-gray-700/80 border border-primary/30 rounded-md text-white text-base focus:outline-none focus:ring-2 focus:ring-primary shadow-inner"
+              required
+              style={{
+                fontSize: '16px',
+                lineHeight: '1.5',
+                height: '48px'
+              }}
+            >
+              <option value="" disabled selected>Sélectionne ton C.A annuel</option>
+              <option value="0">0€ - Je démarre</option>
+              <option value="less-than-10k">Moins de 10k€</option>
+              <option value="10k-50k">10k€ - 50k€</option>
+              <option value="50k-100k">50k€ - 100k€</option>
+              <option value="100k-500k">100k€ - 500k€</option>
+              <option value="500k-1m">500k€ - 1M€</option>
+              <option value="1m-5m">1M€ - 5M€</option>
+            </select>
+            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-white">
+              <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
+              </svg>
+            </div>
+          </div>
         </div>
         
-        <Button type="submit" fullWidth size="lg" onClick={handleButtonClick}>
+        <Button type="submit" fullWidth size="lg" onClick={handleButtonClick} className="text-sm md:text-base py-3">
           {buttonText}
         </Button>
         
-        <p className="text-xs text-gray-400 text-center mt-4">
+        <p className="text-xs text-gray-400 text-center mt-3 md:mt-4">
           En soumettant ce formulaire, tu acceptes de recevoir des emails de BPC Group.
           Nous respectons ta vie privée et ne partagerons jamais tes données.
         </p>

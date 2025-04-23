@@ -127,34 +127,34 @@ export default function Testimonials() {
   }, []);
 
   return (
-    <section className="py-20 bg-primary relative overflow-hidden">
+    <section className="py-12 md:py-20 bg-primary relative overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0 bg-gradient-to-br from-button/10 via-transparent to-primary/10 mix-blend-overlay" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-button/10 rounded-full blur-[120px] opacity-30" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] md:w-[800px] h-[600px] md:h-[800px] bg-button/10 rounded-full blur-[120px] opacity-30" />
       
       <div className="container-custom relative">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-8 md:mb-12"
         >
-          <div className="inline-block bg-button/20 backdrop-blur-sm px-6 py-2 rounded-full mb-6 border border-button/30">
+          <div className="inline-block bg-button/20 backdrop-blur-sm px-4 md:px-6 py-2 rounded-full mb-4 md:mb-6 border border-button/30">
             <p className="text-sm md:text-base font-medium text-gray-300">
               Des résultats concrets et vérifiables
             </p>
           </div>
-          <h2 className="text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-300">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-300">
             💬 Témoignages
           </h2>
-          <p className="text-gray-300 max-w-2xl mx-auto">
+          <p className="text-gray-300 max-w-2xl mx-auto text-sm md:text-base">
             Ce que disent les entrepreneurs formés
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-4 md:gap-8 max-w-7xl mx-auto">
           {/* Témoignages à gauche */}
-          <div className="grid gap-6">
+          <div className="grid gap-4 md:gap-6">
             {displayedTestimonials.slice(0, 3).map((testimonial, index) => (
               <motion.div
                 key={index}
@@ -162,17 +162,18 @@ export default function Testimonials() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.2 }}
-                className="group relative bg-gray-800/30 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/30 hover:border-button/30 transition-all duration-500"
+                className="group relative bg-gray-800/30 backdrop-blur-sm rounded-xl md:rounded-2xl p-6 md:p-8 border border-gray-700/30 hover:border-button/30 transition-all duration-500"
               >
                 <div className="relative z-10">
-                  <div className="flex items-start gap-4 mb-4">
+                  <div className="flex items-start gap-3 md:gap-4 mb-4">
                     {testimonial.image ? (
-                      <div className="w-12 h-12 rounded-full overflow-hidden relative bg-gray-800/50">
+                      <div className="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden relative bg-gray-800/50">
                         <Image
                           src={testimonial.image}
                           alt={testimonial.author}
                           width={48}
                           height={48}
+                          sizes="(max-width: 768px) 40px, 48px"
                           className="rounded-full object-cover"
                           priority={index < 3}
                           loading={index < 3 ? "eager" : "lazy"}
@@ -182,30 +183,30 @@ export default function Testimonials() {
                         />
                       </div>
                     ) : (
-                      <div className="w-12 h-12 rounded-full bg-button/20 flex items-center justify-center text-button font-bold">
+                      <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-button/20 flex items-center justify-center text-button font-bold text-sm md:text-base">
                         {testimonial.author.charAt(0)}
                       </div>
                     )}
                     <div>
-                      <h3 className="font-bold text-white text-lg">{testimonial.author}</h3>
-                      <p className="text-button text-sm">{testimonial.role}</p>
+                      <h3 className="font-bold text-white text-base md:text-lg">{testimonial.author}</h3>
+                      <p className="text-button text-xs md:text-sm">{testimonial.role}</p>
                       {testimonial.results && (
-                        <p className="text-green-500 text-sm font-bold mt-1">{testimonial.results}</p>
+                        <p className="text-green-500 text-xs md:text-sm font-bold mt-1">{testimonial.results}</p>
                       )}
                     </div>
                   </div>
 
-                  <div className="space-y-4">
-                    <p className="text-gray-300 text-lg">{testimonial.quote}</p>
+                  <div className="space-y-3 md:space-y-4">
+                    <p className="text-gray-300 text-sm md:text-lg">{testimonial.quote}</p>
                     {testimonial.detail && (
-                      <p className="text-gray-400 text-sm italic">{testimonial.detail}</p>
+                      <p className="text-gray-400 text-xs md:text-sm italic">{testimonial.detail}</p>
                     )}
                   </div>
 
                   {testimonial.stars && (
-                    <div className="flex gap-1 mt-4">
+                    <div className="flex gap-1 mt-3 md:mt-4">
                       {[1, 2, 3, 4, 5].map((star) => (
-                        <svg key={star} className="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                        <svg key={star} className="w-4 h-4 md:w-5 md:h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
                           <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                         </svg>
                       ))}
@@ -217,17 +218,17 @@ export default function Testimonials() {
           </div>
 
           {/* Colonne de droite */}
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-4 md:gap-6">
             {/* Widget testimonial.to */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-gray-800/30 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/30"
+              className="bg-gray-800/30 backdrop-blur-sm rounded-xl md:rounded-2xl p-6 md:p-8 border border-gray-700/30"
             >
               <iframe 
                 src="https://embed.testimonial.to/w/baptiste-piocelle/?animated=on&theme=light&shadowColor=ffffff"
-                className="w-full h-[500px] border-0 rounded-lg"
+                className="w-full h-[400px] md:h-[500px] border-0 rounded-lg"
                 title="Témoignages en direct"
               />
             </motion.div>
@@ -240,17 +241,18 @@ export default function Testimonials() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.2 }}
-                className="group relative bg-gray-800/30 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/30 hover:border-button/30 transition-all duration-500"
+                className="group relative bg-gray-800/30 backdrop-blur-sm rounded-xl md:rounded-2xl p-6 md:p-8 border border-gray-700/30 hover:border-button/30 transition-all duration-500"
               >
                 <div className="relative z-10">
-                  <div className="flex items-start gap-4 mb-4">
+                  <div className="flex items-start gap-3 md:gap-4 mb-4">
                     {testimonial.image ? (
-                      <div className="w-12 h-12 rounded-full overflow-hidden relative bg-gray-800/50">
+                      <div className="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden relative bg-gray-800/50">
                         <Image
                           src={testimonial.image}
                           alt={testimonial.author}
                           width={48}
                           height={48}
+                          sizes="(max-width: 768px) 40px, 48px"
                           className="rounded-full object-cover"
                           priority={index < 3}
                           loading={index < 3 ? "eager" : "lazy"}
@@ -260,30 +262,30 @@ export default function Testimonials() {
                         />
                       </div>
                     ) : (
-                      <div className="w-12 h-12 rounded-full bg-button/20 flex items-center justify-center text-button font-bold">
+                      <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-button/20 flex items-center justify-center text-button font-bold text-sm md:text-base">
                         {testimonial.author.charAt(0)}
                       </div>
                     )}
                     <div>
-                      <h3 className="font-bold text-white text-lg">{testimonial.author}</h3>
-                      <p className="text-button text-sm">{testimonial.role}</p>
+                      <h3 className="font-bold text-white text-base md:text-lg">{testimonial.author}</h3>
+                      <p className="text-button text-xs md:text-sm">{testimonial.role}</p>
                       {testimonial.results && (
-                        <p className="text-green-500 text-sm font-bold mt-1">{testimonial.results}</p>
+                        <p className="text-green-500 text-xs md:text-sm font-bold mt-1">{testimonial.results}</p>
                       )}
                     </div>
                   </div>
 
-                  <div className="space-y-4">
-                    <p className="text-gray-300 text-lg">{testimonial.quote}</p>
+                  <div className="space-y-3 md:space-y-4">
+                    <p className="text-gray-300 text-sm md:text-lg">{testimonial.quote}</p>
                     {testimonial.detail && (
-                      <p className="text-gray-400 text-sm italic">{testimonial.detail}</p>
+                      <p className="text-gray-400 text-xs md:text-sm italic">{testimonial.detail}</p>
                     )}
                   </div>
 
                   {testimonial.stars && (
-                    <div className="flex gap-1 mt-4">
+                    <div className="flex gap-1 mt-3 md:mt-4">
                       {[1, 2, 3, 4, 5].map((star) => (
-                        <svg key={star} className="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                        <svg key={star} className="w-4 h-4 md:w-5 md:h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
                           <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                         </svg>
                       ))}
