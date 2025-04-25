@@ -1,24 +1,23 @@
-import { Anton, Archivo_Black, Montserrat } from 'next/font/google';
+import localFont from 'next/font/local';
 
-export const anton = Anton({ 
-  weight: '400', 
-  subsets: ['latin'],
-  display: 'swap',
-  preload: true,
-  fallback: ['system-ui', 'arial']
-});
+// Utilisation de polices système et web sûres
+export const anton = {
+  className: 'font-anton',
+  style: {
+    fontFamily: 'Anton, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+  },
+};
 
-export const archivo = Archivo_Black({ 
-  weight: '400', 
-  subsets: ['latin'],
-  display: 'swap',
-  preload: true,
-  fallback: ['system-ui', 'arial']
-});
+export const archivo = {
+  className: 'font-archivo',
+  style: {
+    fontFamily: 'Archivo Black, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+  },
+};
 
-export const montserrat = Montserrat({ 
-  subsets: ['latin'],
-  display: 'swap',
-  preload: true,
-  fallback: ['system-ui', 'arial']
-}); 
+export const montserrat = {
+  className: 'font-montserrat',
+  style: {
+    fontFamily: 'Montserrat, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+  },
+}; 
