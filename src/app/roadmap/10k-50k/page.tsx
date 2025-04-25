@@ -1,14 +1,10 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Anton, Archivo_Black, Montserrat } from 'next/font/google';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaRocket, FaLightbulb, FaChartLine, FaClock, FaBullseye, FaUsers, FaComments, FaCheckCircle, FaStar } from 'react-icons/fa';
 import Link from 'next/link';
-
-const anton = Anton({ weight: '400', subsets: ['latin'] });
-const archivo = Archivo_Black({ weight: '400', subsets: ['latin'] });
-const montserrat = Montserrat({ subsets: ['latin'] });
+import { anton, archivo, montserrat } from '@/app/fonts';
 
 const roadmapSteps = [
   {
