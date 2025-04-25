@@ -413,9 +413,9 @@ export default function InternationalPresentation() {
               {/* Founder Section */}
               <motion.div 
                 variants={itemVariants} 
-                className="space-y-12"
+                className="space-y-12 text-center md:text-left"
               >
-                <h2 className={`text-6xl font-bold ${textGradient} text-center md:text-left`}>
+                <h2 className={`text-6xl font-bold ${textGradient}`}>
                   Founder
                 </h2>
                 <div className="space-y-8">
@@ -430,7 +430,7 @@ export default function InternationalPresentation() {
                       />
                     </div>
                   </div>
-                  <div className="text-center md:text-left space-y-4">
+                  <div className="space-y-4 text-center md:text-left">
                     <h3 className="text-4xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500">
                       Baptiste Piocelle
                     </h3>
@@ -444,9 +444,9 @@ export default function InternationalPresentation() {
               {/* Platform Section */}
               <motion.div 
                 variants={itemVariants} 
-                className="space-y-12"
+                className="space-y-12 text-center md:text-left"
               >
-                <h2 className={`text-6xl font-bold ${textGradient} text-center md:text-left`}>
+                <h2 className={`text-6xl font-bold ${textGradient}`}>
                   Our Platform
                 </h2>
                 <div className="space-y-8">
@@ -460,32 +460,32 @@ export default function InternationalPresentation() {
                     </a>
                   </div>
                   <div className="space-y-6 text-gray-300">
-                    <p className="text-xl leading-relaxed">
+                    <p className="text-xl leading-relaxed text-center md:text-left">
                       Our masterclass platform is a comprehensive learning ecosystem designed to empower B2B founders and entrepreneurs with cutting-edge strategies and tools.
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="p-6 rounded-2xl bg-gradient-to-br from-gray-800/20 to-gray-900/20 backdrop-blur-sm border border-white/10 hover:from-gray-800/30 hover:to-gray-900/30 transition-all duration-300">
-                        <div className="flex items-start space-x-4">
+                        <div className="flex items-start space-x-4 justify-center md:justify-start">
                           <span className="w-3 h-3 bg-blue-500 rounded-full mt-2"></span>
-                          <span>Access to exclusive training modules and resources</span>
+                          <span className="text-center md:text-left">Access to exclusive training modules and resources</span>
                         </div>
                       </div>
                       <div className="p-6 rounded-2xl bg-gradient-to-br from-gray-800/20 to-gray-900/20 backdrop-blur-sm border border-white/10 hover:from-gray-800/30 hover:to-gray-900/30 transition-all duration-300">
-                        <div className="flex items-start space-x-4">
+                        <div className="flex items-start space-x-4 justify-center md:justify-start">
                           <span className="w-3 h-3 bg-purple-500 rounded-full mt-2"></span>
-                          <span>Live sessions with industry experts and successful entrepreneurs</span>
+                          <span className="text-center md:text-left">Live sessions with industry experts and successful entrepreneurs</span>
                         </div>
                       </div>
                       <div className="p-6 rounded-2xl bg-gradient-to-br from-gray-800/20 to-gray-900/20 backdrop-blur-sm border border-white/10 hover:from-gray-800/30 hover:to-gray-900/30 transition-all duration-300">
-                        <div className="flex items-start space-x-4">
+                        <div className="flex items-start space-x-4 justify-center md:justify-start">
                           <span className="w-3 h-3 bg-pink-500 rounded-full mt-2"></span>
-                          <span>Practical tools and templates for immediate implementation</span>
+                          <span className="text-center md:text-left">Practical tools and templates for immediate implementation</span>
                         </div>
                       </div>
                       <div className="p-6 rounded-2xl bg-gradient-to-br from-gray-800/20 to-gray-900/20 backdrop-blur-sm border border-white/10 hover:from-gray-800/30 hover:to-gray-900/30 transition-all duration-300">
-                        <div className="flex items-start space-x-4">
+                        <div className="flex items-start space-x-4 justify-center md:justify-start">
                           <span className="w-3 h-3 bg-blue-500 rounded-full mt-2"></span>
-                          <span>Community support and networking opportunities</span>
+                          <span className="text-center md:text-left">Community support and networking opportunities</span>
                         </div>
                       </div>
                     </div>
