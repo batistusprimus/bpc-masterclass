@@ -102,6 +102,50 @@ const staggerChildren = {
 };
 
 export default function MediaPage() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [error, setError] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setError('');
+
+    const formData = new FormData(e.currentTarget);
+    const name = formData.get('name') as string;
+    const email = formData.get('email') as string;
+
+    try {
+      const response = await fetch('https://services.leadconnectorhq.com/hooks/7ivqWaWGJdNIRJkNzJbd/webhook-trigger/80a40bfe-c7d3-4d0a-b84a-ada50adbfa35', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          firstName: name,
+          source: 'Website Newsletter',
+          mappingReference: {
+            email: 'email',
+            firstName: 'firstName',
+            source: 'source'
+          }
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to subscribe');
+      }
+
+      setIsSuccess(true);
+      e.currentTarget.reset();
+    } catch (err) {
+      setError('Une erreur est survenue. Veuillez réessayer.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <>
       {/* Hero Section */}
@@ -192,43 +236,50 @@ export default function MediaPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <form 
-              onSubmit={(e) => {
-                e.preventDefault();
-                alert('Inscription à la newsletter en cours de développement');
-              }} 
-              className="flex flex-col gap-6"
-            >
-              <div className="space-y-2">
-                <label htmlFor="name" className="text-sm font-medium text-gray-300">Ton prénom</label>
-                <input
-                  id="name"
-                  type="text"
-                  placeholder="John Doe"
-                  className="w-full bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl px-5 py-4 focus:outline-none focus:ring-2 focus:ring-button focus:border-transparent transition-all duration-200 placeholder:text-gray-500"
-                  required
-                />
+            {isSuccess ? (
+              <div className="text-center py-8">
+                <h3 className="text-2xl font-bold text-white mb-4">Merci pour ton inscription !</h3>
+                <p className="text-gray-300">Tu recevras bientôt notre première newsletter.</p>
               </div>
-              <div className="space-y-2">
-                <label htmlFor="email" className="text-sm font-medium text-gray-300">Ton email professionnel</label>
-                <input
-                  id="email"
-                  type="email"
-                  placeholder="john@company.com"
-                  className="w-full bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl px-5 py-4 focus:outline-none focus:ring-2 focus:ring-button focus:border-transparent transition-all duration-200 placeholder:text-gray-500"
-                  required
-                />
-              </div>
-              <Button 
-                type="submit" 
-                className="w-full py-4 text-lg font-medium transform hover:scale-[1.02] transition-all duration-200 shadow-xl shadow-button/20"
-              >
-                Recevoir la newsletter
-              </Button>
-              <p className="text-sm text-gray-400 text-center">
-                Tu peux te désabonner à tout moment. Pas de spam.
-              </p>
-            </form>
+            ) : (
+              <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+                <div className="space-y-2">
+                  <label htmlFor="name" className="text-sm font-medium text-gray-300">Ton prénom</label>
+                  <input
+                    id="name"
+                    name="name"
+                    type="text"
+                    placeholder="John Doe"
+                    className="w-full bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl px-5 py-4 focus:outline-none focus:ring-2 focus:ring-button focus:border-transparent transition-all duration-200 placeholder:text-gray-500"
+                    required
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label htmlFor="email" className="text-sm font-medium text-gray-300">Ton email professionnel</label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    placeholder="john@company.com"
+                    className="w-full bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl px-5 py-4 focus:outline-none focus:ring-2 focus:ring-button focus:border-transparent transition-all duration-200 placeholder:text-gray-500"
+                    required
+                  />
+                </div>
+                {error && (
+                  <p className="text-red-500 text-sm text-center">{error}</p>
+                )}
+                <Button 
+                  type="submit" 
+                  className="w-full py-4 text-lg font-medium transform hover:scale-[1.02] transition-all duration-200 shadow-xl shadow-button/20"
+                  disabled={isLoading}
+                >
+                  {isLoading ? 'Inscription en cours...' : 'Recevoir la newsletter'}
+                </Button>
+                <p className="text-sm text-gray-400 text-center">
+                  Tu peux te désabonner à tout moment. Pas de spam.
+                </p>
+              </form>
+            )}
           </motion.div>
 
           <div className="mt-24">
