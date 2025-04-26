@@ -2,6 +2,7 @@ import './globals.css';
 import type { Metadata } from 'next';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import Script from 'next/script';
 
 export const metadata: Metadata = {
   title: 'BPC Masterclass | La masterclass ultime pour entrepreneurs B2B',
@@ -32,6 +33,10 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <Script
+          src="https://app.iclosed.io/assets/widget.js"
+          strategy="lazyOnload"
+        />
       </body>
     </html>
   );

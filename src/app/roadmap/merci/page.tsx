@@ -7,6 +7,7 @@ import Button from '@/components/Button';
 import Image from 'next/image';
 import Testimonials from '@/components/Testimonials';
 import LoadingScreen from '@/components/LoadingScreen';
+import Script from 'next/script';
 
 export default function RoadmapThankYou() {
   const [isLoading, setIsLoading] = useState(true);
@@ -115,10 +116,18 @@ export default function RoadmapThankYou() {
                   </div>
                   <h3 className="text-2xl font-bold text-white">Réserve ton créneau</h3>
                 </div>
-                {/* Replace with your actual Calendly embed code */}
-                <div className="aspect-[3/4] bg-gray-700/50 rounded-xl flex items-center justify-center border border-primary/20">
-                  <p className="text-gray-400">Calendly Embed</p>
-                </div>
+                {/* iClosed inline widget begin */}
+                <div
+                  className="iclosed-widget"
+                  data-url="https://app.iclosed.io/e/baptistepiocelle/diagnostic-b2b"
+                  title="Diagnostic"
+                  style={{ width: "100%", height: "620px" }}
+                ></div>
+                <Script
+                  src="https://app.iclosed.io/assets/widget.js"
+                  strategy="lazyOnload"
+                />
+                {/* iClosed inline widget end */}
               </div>
               <div className="text-center mt-8">
                 <a href="/masterclass" className="text-gray-400 hover:text-accent transition-colors inline-flex items-center group">

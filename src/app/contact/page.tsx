@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Testimonials from '@/components/Testimonials';
+import Script from 'next/script';
 
 export default function ContactPage() {
   return (
@@ -75,11 +76,18 @@ export default function ContactPage() {
               className="relative"
             >
               <div className="bg-gray-800/30 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/30">
-                <iframe
-                  src="https://calendly.com/baptistepiocelle/diagnostic"
-                  className="w-full h-[600px] rounded-lg"
-                  title="Calendrier de rendez-vous"
+                {/* iClosed inline widget begin */}
+                <div
+                  className="iclosed-widget"
+                  data-url="https://app.iclosed.io/e/baptistepiocelle/contact"
+                  title="Contact"
+                  style={{ width: "100%", height: "620px" }}
+                ></div>
+                <Script
+                  src="https://app.iclosed.io/assets/widget.js"
+                  strategy="lazyOnload"
                 />
+                {/* iClosed inline widget end */}
               </div>
             </motion.div>
           </div>
@@ -106,7 +114,7 @@ export default function ContactPage() {
             </p>
             <div className="flex justify-center">
               <a
-                href="https://calendly.com/baptistepiocelle/diagnostic"
+                href="https://app.iclosed.io/e/baptistepiocelle/contact"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center px-8 py-4 bg-button text-white rounded-xl font-medium hover:bg-button/90 transition-all duration-200"

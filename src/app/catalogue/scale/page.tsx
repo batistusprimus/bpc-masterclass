@@ -6,6 +6,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import Testimonials from "@/components/Testimonials";
+import Script from "next/script";
 
 const TESTIMONIAL_IMAGES = [
   "/1682719923684.jpeg",
@@ -96,7 +97,7 @@ export default function ScalePage() {
                 <span>14 jours de garantie</span>
               </div>
               <Button 
-                href="https://calendly.com/baptistepiocelle/scale" 
+                href="https://app.iclosed.io/e/baptistepiocelle/scale" 
                 size="sm"
                 className="group relative overflow-hidden"
               >
@@ -175,7 +176,7 @@ export default function ScalePage() {
               className="flex flex-col sm:flex-row items-center justify-center gap-4"
             >
               <Button 
-                href="https://calendly.com/baptistepiocelle/scale" 
+                href="https://app.iclosed.io/e/baptistepiocelle/scale" 
                 size="lg"
                 className="group relative overflow-hidden"
               >
@@ -842,7 +843,7 @@ export default function ScalePage() {
             className="mt-16 text-center"
           >
             <Button 
-              href="https://calendly.com/baptistepiocelle/scale" 
+              href="https://app.iclosed.io/e/baptistepiocelle/scale" 
               size="lg"
               className="group relative overflow-hidden"
             >
@@ -951,7 +952,7 @@ export default function ScalePage() {
             className="mt-16 text-center"
           >
             <Button 
-              href="https://calendly.com/baptistepiocelle/scale" 
+              href="https://app.iclosed.io/e/baptistepiocelle/scale" 
               size="lg"
               className="group relative overflow-hidden"
             >
@@ -1054,7 +1055,7 @@ export default function ScalePage() {
             {/* CTA Principal */}
             <div className="mb-8">
               <Button 
-                href="https://calendly.com/baptistepiocelle/scale" 
+                href="https://app.iclosed.io/e/baptistepiocelle/scale" 
                 size="lg"
                 className="group relative overflow-hidden"
               >
@@ -1086,177 +1087,21 @@ export default function ScalePage() {
               </svg>
               <span>14 jours de garantie satisfait ou remboursé</span>
             </div>
-          </motion.div>
-        </div>
-      </section>
 
-      {/* FAQ avec preuve sociale */}
-      <section className="py-20 bg-gray-900">
-        <div className="container-custom">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-300">
-              ❓ Questions fréquentes
-            </h2>
-            <p className="text-gray-300 max-w-2xl mx-auto">
-              Les questions que se posent les entrepreneurs avant de commencer
-            </p>
-          </motion.div>
-
-          <div className="max-w-3xl mx-auto space-y-6">
-            {[
-              {
-                question: "Est-ce que je dois avoir déjà un business B2B ?",
-                answer: "Oui, SCALE est conçu pour les solopreneurs qui génèrent déjà +5k€/mois et qui veulent déléguer entièrement leur système B2B pour scaler proprement."
-              },
-              {
-                question: "Combien de temps faut-il pour recevoir le tunnel clé en main ?",
-                answer: "Le tunnel est livré complet et installé directement chez vous. Le workshop stratégique initial de 2h avec Rémi permet de cadrer le projet, puis nous nous occupons de tout : création de l'offre, du funnel GHL, des contenus LinkedIn et des vidéos."
-              },
-              {
-                question: "Est-ce que je peux me faire rembourser ?",
-                answer: "Oui, nous offrons une garantie de 14 jours satisfait ou remboursé. Notre taux de remboursement est de seulement 0.5%, preuve de la qualité de notre service."
-              },
-              {
-                question: "Que se passe-t-il après la livraison du tunnel ?",
-                answer: "Vous recevez un tunnel B2B complet et fonctionnel, avec tous les contenus nécessaires (posts LinkedIn, vidéos, campagne Meta Ads). Vous pouvez commencer à l'utiliser immédiatement pour générer des leads et des ventes."
-              },
-              {
-                question: "Est-ce que je peux personnaliser le tunnel ?",
-                answer: "Le tunnel est créé sur mesure selon vos besoins lors du workshop stratégique initial. Nous prenons en compte votre offre, votre cible et vos objectifs pour créer un système parfaitement adapté à votre business."
-              }
-            ].map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-primary/30 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/30"
-              >
-                <h3 className="text-xl font-bold mb-3 text-button">{item.question}</h3>
-                <p className="text-gray-300">{item.answer}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Mini-offre Finale avec urgence */}
-      <section className="py-20 bg-gradient-to-b from-gray-900 to-primary relative overflow-hidden">
-        {/* Background Effects */}
-        <div className="absolute inset-0 bg-gradient-to-br from-button/10 via-transparent to-primary/10 mix-blend-overlay" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-button/10 rounded-full blur-[120px] opacity-30" />
-        
-        <div className="container-custom text-center">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="max-w-3xl mx-auto"
-          >
-            <div className="inline-block bg-button/20 backdrop-blur-sm px-6 py-2 rounded-full mb-6 border border-button/30">
-              <p className="text-sm md:text-base font-medium text-gray-300">
-                Dernière chance de rejoindre SCALE
-              </p>
-            </div>
-
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-300">
-              30 jours. Business en pilote automatique. Service clé en main.
-            </h2>
-
-            <p className="text-xl text-gray-300 mb-8">
-              Transforme ton business dès aujourd'hui.
-            </p>
-
-            {/* Valeur et garanties */}
-            <div className="grid md:grid-cols-3 gap-4 mb-8">
-              {[
-                {
-                  icon: "💎",
-                  title: "4 500€",
-                  description: "Paiement unique, service clé en main"
-                },
-                {
-                  icon: "✅",
-                  title: "14 jours",
-                  description: "Garantie satisfait ou remboursé"
-                },
-                {
-                  icon: "🔄",
-                  title: "0.5%",
-                  description: "Taux de remboursement"
-                }
-              ].map((item, index) => (
-                <div key={index} className="bg-gray-800/30 backdrop-blur-sm rounded-xl p-4 border border-gray-700/30">
-                  <div className="text-2xl mb-2">{item.icon}</div>
-                  <p className="font-bold text-button">{item.title}</p>
-                  <p className="text-sm text-gray-400">{item.description}</p>
-                </div>
-              ))}
-            </div>
-
-            {/* Compteur d'urgence */}
-            <div className="mb-8">
-              <div className="inline-flex items-center gap-2 bg-gray-800/30 backdrop-blur-sm px-6 py-3 rounded-full border border-gray-700/30">
-                <svg className="w-5 h-5 text-button" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <p className="text-sm text-gray-300">
-                  Prochaine mise à jour dans <span className="text-button font-bold">{formatTime(timeLeft)}</span>
-                </p>
-              </div>
-            </div>
-
-            {/* CTA Principal */}
-            <div className="mb-8">
-              <Button 
-                href="https://calendly.com/baptistepiocelle/scale" 
-                size="lg"
-                className="group relative overflow-hidden"
-              >
-                <span className="relative z-10">👉 Réserver un appel - 4 500€</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-button/0 via-button/30 to-button/0 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
-              </Button>
-            </div>
-
-            {/* Preuve sociale */}
-            <div className="flex items-center justify-center gap-4 mb-4">
-              <div className="flex -space-x-4">
-                {getRandomImages(5).map((img, i) => (
-                  <RoundedAvatar
-                    key={i}
-                    src={img}
-                    alt="Entrepreneur formé"
-                  />
-                ))}
-              </div>
-              <p className="text-sm text-gray-400">
-                <span className="text-button font-bold">+2.000</span> entrepreneurs formés
-              </p>
-            </div>
-
-            {/* Valeur totale */}
-            <div className="mb-4">
-              <div className="inline-flex items-center gap-2 bg-gray-800/30 backdrop-blur-sm px-4 py-2 rounded-full border border-gray-700/30">
-                <div className="text-xl font-bold text-green-400">+5.000€</div>
-                <div className="text-left">
-                  <p className="text-sm text-gray-300">Valeur totale</p>
-                  <p className="text-xs text-gray-400">Formations, templates, audit, support</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Garantie */}
-            <div className="flex items-center justify-center gap-2 text-sm text-gray-400">
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <span>14 jours de garantie satisfait ou remboursé</span>
+            {/* Ajout du widget iClosed */}
+            <div className="bg-gray-800/30 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/30 mt-8">
+              {/* iClosed inline widget begin */}
+              <div
+                className="iclosed-widget"
+                data-url="https://app.iclosed.io/e/baptistepiocelle/scale"
+                title="SCALE"
+                style={{ width: "100%", height: "620px" }}
+              ></div>
+              <Script
+                src="https://app.iclosed.io/assets/widget.js"
+                strategy="lazyOnload"
+              />
+              {/* iClosed inline widget end */}
             </div>
           </motion.div>
         </div>

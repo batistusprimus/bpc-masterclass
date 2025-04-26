@@ -2,6 +2,7 @@ import Button from "@/components/Button";
 import Image from "next/image";
 import LogoMarquee from "@/components/LogoMarquee";
 import Link from "next/link";
+import Script from "next/script";
 
 export default function CataloguePage() {
   return (
@@ -293,7 +294,7 @@ export default function CataloguePage() {
                   </p>
                 </div>
                 
-                <Button size="lg" className="w-full md:w-auto" href="https://iclosed.com">
+                <Button size="lg" className="w-full md:w-auto" href="https://app.iclosed.io/e/baptistepiocelle/incubateur-bpc">
                   Postuler
                 </Button>
               </div>
@@ -377,9 +378,25 @@ export default function CataloguePage() {
               </p>
             </div>
             
-            <Button href="https://iclosed.com" size="lg" className="w-full sm:w-auto">
+            <Button href="https://app.iclosed.io/e/baptistepiocelle/incubateur-bpc" size="lg" className="w-full sm:w-auto">
               Postuler maintenant
             </Button>
+
+            {/* Ajout du widget iClosed */}
+            <div className="bg-gray-800/30 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/30 mt-8">
+              {/* iClosed inline widget begin */}
+              <div
+                className="iclosed-widget"
+                data-url="https://app.iclosed.io/e/baptistepiocelle/incubateur-bpc"
+                title="Incubateur BPC"
+                style={{ width: "100%", height: "620px" }}
+              ></div>
+              <Script
+                src="https://app.iclosed.io/assets/widget.js"
+                strategy="lazyOnload"
+              />
+              {/* iClosed inline widget end */}
+            </div>
           </div>
         </div>
       </section>
@@ -693,7 +710,7 @@ export default function CataloguePage() {
                 <span className="relative z-10">Choisir mon programme</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-button/0 via-button/30 to-button/0 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
               </Button>
-              <Link href="https://calendly.com/baptistepiocelle/diagnostic" target="_blank" rel="noopener noreferrer">
+              <Link href="https://app.iclosed.io/e/baptistepiocelle/diagnostic-b2b" target="_blank" rel="noopener noreferrer">
                 <Button variant="outline" size="lg" className="w-full sm:w-auto text-lg px-8 py-4 group relative overflow-hidden">
                   <span className="relative z-10">Prendre RDV pour un diagnostic</span>
                   <div className="absolute inset-0 bg-gradient-to-r from-gray-800/0 via-gray-800/30 to-gray-800/0 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
