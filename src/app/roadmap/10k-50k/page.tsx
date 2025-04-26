@@ -12,7 +12,7 @@ const roadmapSteps = [
     title: "Structure ton offre en 3 niveaux",
     subtitle: "La capture du marché",
     description: "Tu dois capturer tout le spectre de ton marché. Pas une seule offre à un seul prix. Tu perds trop.",
-    duration: "1 semaine",
+    duration: "5 jours",
     icon: FaChartLine,
     color: "#9F99EB",
     tips: [
@@ -33,7 +33,7 @@ const roadmapSteps = [
     title: "Crée un lead magnet qui qualifie",
     subtitle: "L'attraction des bons leads",
     description: "Tu ne veux pas juste des emails. Tu veux les bons leads. Un guide c'est bien. Un audit, une checklist actionnable, ou un mini outil ? Bien mieux.",
-    duration: "1 semaine",
+    duration: "3 jours",
     icon: FaBullseye,
     color: "#99E5EB",
     tips: [
@@ -54,7 +54,7 @@ const roadmapSteps = [
     title: "Mets en place ta séquence email evergreen",
     subtitle: "L'automatisation de la vente",
     description: "Un lead sans séquence = un prospect perdu. Tu veux automatiser la valeur + vendre sans être là.",
-    duration: "1 semaine",
+    duration: "7 jours",
     icon: FaRocket,
     color: "#9B8E7D",
     tips: [
@@ -75,7 +75,7 @@ const roadmapSteps = [
     title: "Monte ton tunnel Notion",
     subtitle: "La simplicité efficace",
     description: "Pas besoin d'un funnel complexe. Tu veux une landing claire + un Calendly + ton pipe de suivi.",
-    duration: "1 semaine",
+    duration: "4 jours",
     icon: FaUsers,
     color: "#9F99EB",
     tips: [
@@ -96,7 +96,7 @@ const roadmapSteps = [
     title: "Lance ta machine de contenu",
     subtitle: "La création de valeur",
     description: "Tu ne postes plus au hasard. Tu postes pour nourrir ton pipe.",
-    duration: "1 semaine",
+    duration: "5 jours",
     icon: FaComments,
     color: "#99E5EB",
     tips: [
@@ -117,7 +117,7 @@ const roadmapSteps = [
     title: "Industrialise ton outreach",
     subtitle: "La prospection à l'échelle",
     description: "Tu ne peux plus prospecter à la main tous les jours. Tu dois avoir une base, des séquences, des relances.",
-    duration: "1 semaine",
+    duration: "4 jours",
     icon: FaUsers,
     color: "#9B8E7D",
     tips: [
@@ -138,7 +138,7 @@ const roadmapSteps = [
     title: "Commence à déléguer ou automatiser",
     subtitle: "La scalabilité",
     description: "Si tu fais encore tout, tu plafonnes. Tu dois sortir de l'exécution répétitive.",
-    duration: "1 semaine",
+    duration: "2 jours",
     icon: FaStar,
     color: "#9F99EB",
     tips: [
@@ -450,7 +450,7 @@ const Roadmap10k50k = () => {
                     <span className="text-3xl md:text-4xl">🌟</span>
                   </div>
                   <div className="text-center md:text-left">
-                    <h3 className={`${archivo.className} text-2xl md:text-3xl text-[#FFF1DE]`}>Léa, UX Designer freelance</h3>
+                    <h3 className={`${archivo.className} text-2xl md:text-3xl text-[#FFF1DE]`}>Thomas, consultant en stratégie digitale</h3>
                     <p className={`${montserrat.className} text-gray-300 text-base md:text-lg`}>Transformation en 30 jours</p>
                   </div>
                 </div>
@@ -462,7 +462,7 @@ const Roadmap10k50k = () => {
                     <ul className={`${montserrat.className} text-gray-300 text-base md:text-lg space-y-3 md:space-y-4`}>
                       <li className="flex items-center gap-3">
                         <div className="w-2 h-2 rounded-full bg-red-500"></div>
-                        Des missions à 600€
+                        Des missions à 800€
                       </li>
                       <li className="flex items-center gap-3">
                         <div className="w-2 h-2 rounded-full bg-red-500"></div>
@@ -470,7 +470,7 @@ const Roadmap10k50k = () => {
                       </li>
                       <li className="flex items-center gap-3">
                         <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                        Expertise en UX
+                        Expertise en stratégie
                       </li>
                     </ul>
                   </div>
@@ -500,11 +500,11 @@ const Roadmap10k50k = () => {
                     <ul className={`${montserrat.className} text-gray-300 text-base md:text-lg space-y-3 md:space-y-4`}>
                       <li className="flex items-center gap-3">
                         <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                        1.800€/mois récurrents
+                        2.500€/mois récurrents
                       </li>
                       <li className="flex items-center gap-3">
                         <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                        3 clients à 1200€
+                        2 clients à 1500€
                       </li>
                       <li className="flex items-center gap-3">
                         <div className="w-2 h-2 rounded-full bg-green-500"></div>
@@ -518,11 +518,11 @@ const Roadmap10k50k = () => {
                   <h4 className={`${anton.className} text-xl md:text-2xl text-white mb-6 md:mb-8`}>Le parcours en détail</h4>
                   <div className="space-y-4 md:space-y-6">
                     {[
-                      "Créé un lead magnet 'Audit UX Express'",
+                      "Créé un lead magnet 'Audit Stratégie Digital'",
                       "Mis en place une séquence email de 7 jours",
                       "Lancé 3 posts par semaine sur LinkedIn",
                       "Automatisé le processus de qualification",
-                      "Signé 3 clients en 3 semaines"
+                      "Signé 2 clients en 3 semaines"
                     ].map((step, index) => (
                       <motion.div
                         key={index}

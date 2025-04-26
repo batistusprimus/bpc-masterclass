@@ -15,7 +15,7 @@ const roadmapSteps = [
     title: "Optimise ton tunnel de conversion",
     subtitle: "La simplicité qui convertit",
     description: "Trop de friction tue la prise de rendez-vous. Trop d'infos = pas d'action.",
-    duration: "1 semaine",
+    duration: "3 jours",
     icon: "📈",
     color: "#9F99EB",
     tips: [
@@ -36,7 +36,7 @@ const roadmapSteps = [
     title: "Délègue la qualification des leads",
     subtitle: "L'automatisation de la qualification",
     description: "Tu perds du temps avec des appels non qualifiés ? Normal, tu qualifies à la main.",
-    duration: "1 semaine",
+    duration: "4 jours",
     icon: "👥",
     color: "#99E5EB",
     tips: [
@@ -57,7 +57,7 @@ const roadmapSteps = [
     title: "Tourne une VSL qui vend sans toi",
     subtitle: "La scalabilité du pitch",
     description: "Tu veux scaler ? Ton pitch doit vivre sans toi. Tu en as marre de répéter la même chose ? Pose une vidéo qui le fait à ta place.",
-    duration: "1 semaine",
+    duration: "5 jours",
     icon: "🚀",
     color: "#9B8E7D",
     tips: [
@@ -78,7 +78,7 @@ const roadmapSteps = [
     title: "Lancer ta première campagne Meta Ads",
     subtitle: "L'acquisition payante",
     description: "Tu n'as pas besoin de budget énorme. Tu as besoin d'un test propre. Objectif = optin ou call. Rien d'autre.",
-    duration: "1 semaine",
+    duration: "4 jours",
     icon: "🎯",
     color: "#9F99EB",
     tips: [
@@ -99,7 +99,7 @@ const roadmapSteps = [
     title: "Automatise ton onboarding client",
     subtitle: "La livraison sans friction",
     description: "Tu clos → mais après, c'est le flou. Tu perds du temps à renvoyer les mêmes infos, les mêmes liens.",
-    duration: "1 semaine",
+    duration: "3 jours",
     icon: "✅",
     color: "#99E5EB",
     tips: [
@@ -121,7 +121,7 @@ const roadmapSteps = [
     title: "Repackage une offre premium",
     subtitle: "La montée en valeur",
     description: "Tu as une offre qui tourne ? Parfait. Maintenant, crée sa version montée en valeur.",
-    duration: "1 semaine",
+    duration: "5 jours",
     icon: "⭐",
     color: "#9B8E7D",
     tips: [
@@ -142,7 +142,7 @@ const roadmapSteps = [
     title: "Revois ton pipe + tes stats de closing",
     subtitle: "La data-driven decision",
     description: "Tu ne peux plus bosser au doigt mouillé. Tu dois voir où tu perds les deals. À quel moment. Pourquoi.",
-    duration: "1 semaine",
+    duration: "6 jours",
     icon: "📊",
     color: "#9F99EB",
     tips: [

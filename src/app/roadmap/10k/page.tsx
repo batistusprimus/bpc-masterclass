@@ -16,7 +16,7 @@ const roadmapSteps = [
     title: "Identifie précisément ce qui a généré tes ventes",
     subtitle: "Comprendre ce qui fonctionne",
     description: "Tu dois comprendre ce qui a fonctionné pour les ventes précédentes. Revois tes 3 derniers clients : d'où viennent-ils ? Pourquoi ont-ils acheté ?",
-    duration: "1 semaine",
+    duration: "2h",
     icon: FaChartLine,
     color: "#9F99EB",
     tips: [
@@ -37,7 +37,7 @@ const roadmapSteps = [
     title: "Repositionne ton offre sur ce segment",
     subtitle: "Creuser là où ça a déjà payé",
     description: "Tu ne dois pas chercher de nouveaux marchés. Tu dois creuser là où ça a déjà payé. Reformule ton offre en fonction des vrais mots de tes clients.",
-    duration: "1 semaine",
+    duration: "2 jours",
     icon: FaBullseye,
     color: "#99E5EB",
     tips: [
@@ -58,7 +58,7 @@ const roadmapSteps = [
     title: "Ajoute une couche de contenu pour nourrir ton pipe",
     subtitle: "La machine de nurturing",
     description: "Tu as déjà quelques leads chauds, mais tu n'entretiens rien. Il te faut une machine de nurturing, même minimale.",
-    duration: "1 semaine",
+    duration: "2 jours",
     icon: FaComments,
     color: "#9B8E7D",
     tips: [
@@ -79,7 +79,7 @@ const roadmapSteps = [
     title: "Systématise ta prospection manuelle",
     subtitle: "La qualité plutôt que la quantité",
     description: "Tu ne dois pas envoyer plus de messages. Tu dois envoyer les bons. 15 messages ciblés/semaine → mais ultra-personnalisés.",
-    duration: "1 semaine",
+    duration: "1 jour",
     icon: FaUsers,
     color: "#9F99EB",
     tips: [
@@ -99,8 +99,8 @@ const roadmapSteps = [
     phase: "ÉTAPE 5",
     title: "Crée un mini-funnel (page + Calendly + séquence)",
     subtitle: "Le minimum viable pour convertir",
-    description: "T'as pas besoin d'un tunnel funnel VSL Ads copywriter pro. Mais tu dois pouvoir dire : 'Tu veux en parler ? Clique ici.'",
-    duration: "1 semaine",
+    description: "Tu n'as pas besoin d'un tunnel de vente complexe. Un simple point d'entrée clair et professionnel suffit pour convertir tes prospects en clients.",
+    duration: "5 jours",
     icon: FaRocket,
     color: "#99E5EB",
     tips: [
@@ -121,7 +121,7 @@ const roadmapSteps = [
     title: "Refais un appel de vente enregistré (et analysé)",
     subtitle: "L'amélioration continue",
     description: "Tu n'as pas besoin d'un nouveau script. Tu dois améliorer ton closing actuel. Enregistre 1 call et analyse-le.",
-    duration: "1 semaine",
+    duration: "1 jour",
     icon: FaComments,
     color: "#9B8E7D",
     tips: [
@@ -142,7 +142,7 @@ const roadmapSteps = [
     title: "Installe ton pipe de conversion",
     subtitle: "La visibilité sur ton pipeline",
     description: "Tu dois voir visuellement où tu perds de l'argent. Un tableau clair avec : Nouveaux leads, Conversations en cours, Appels bookés, Propositions envoyées, Clients closés.",
-    duration: "1 semaine",
+    duration: "3 jours",
     icon: FaChartLine,
     color: "#9F99EB",
     tips: [
@@ -189,7 +189,7 @@ const RoadmapTemplate = () => {
             Roadmap<br />10k€
           </h1>
           <p className={`${montserrat.className} text-xl sm:text-2xl md:text-3xl text-gray-300 max-w-3xl mx-auto leading-relaxed`}>
-            T'as signé, mais tu sais pas refaire
+            T'as signé, mais tu sais pas refaire. Concrétise ton business en 14 jours.
           </p>
         </motion.div>
       </div>

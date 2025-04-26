@@ -15,13 +15,13 @@ const roadmapSteps = [
     title: "Formalise ta méthode propriétaire",
     subtitle: "La scalabilité du savoir-faire",
     description: "Si tu veux scaler, tu dois vendre une méthode reproductible, pas juste un savoir-faire flou.",
-    duration: "1 semaine",
+    duration: "15 jours",
     icon: "📘",
     color: "#9F99EB",
     tips: [
       "Découpe ce que tu fais naturellement en un framework clair",
       "Donne-lui un nom. Structure-le en étapes. Documente chaque étape.",
-      "Module : 1.7 – Signature System + Produit Process"
+      "Module 1 : La méthode propriétaire"
     ],
     tasks: [
       "Analyser ton processus actuel",
@@ -36,13 +36,13 @@ const roadmapSteps = [
     title: "Sépare vente et delivery",
     subtitle: "La délégation stratégique",
     description: "Tu ne dois plus tout faire. Chaque nouvelle vente ne doit pas t'enfermer dans plus de prod.",
-    duration: "1 semaine",
+    duration: "12 jours",
     icon: "🎯",
     color: "#99E5EB",
     tips: [
       "Délègue la delivery, ou standardise-la à fond",
       "Objectif : 80% de la valeur délivrée sans toi en call",
-      "Module : 5.0 – Delivery + 5.2 – SOPs"
+      "Module 8 : La délégation stratégique"
     ],
     tasks: [
       "Identifier les tâches déléguables",
@@ -57,13 +57,13 @@ const roadmapSteps = [
     title: "Recrute ton rôle critique",
     subtitle: "Le premier pas vers l'équipe",
     description: "Tu es seul à gérer l'acquisition, la gestion client, les livrables. Stop.",
-    duration: "1 semaine",
+    duration: "10 jours",
     icon: "👥",
     color: "#9B8E7D",
     tips: [
       "Liste ce qui te prend de l'énergie + ce que tu ne veux plus faire",
       "Recrute ou sous-traite 1 rôle clé : bras droit, closer, ops, prod",
-      "Module : 5.4 – Premier recrutement"
+      "Focus sur l'identification et le recrutement du bon profil"
     ],
     tasks: [
       "Définir le rôle critique",
@@ -78,13 +78,13 @@ const roadmapSteps = [
     title: "Transforme ton offre en programme signature",
     subtitle: "Le passage à l'échelle",
     description: "Tu ne peux plus vendre du 1:1 pur. Tu dois packager une méthode complète, à suivre avec ou sans toi.",
-    duration: "1 semaine",
+    duration: "15 jours",
     icon: "📚",
     color: "#9F99EB",
     tips: [
       "Prends ton offre 1:1 actuelle",
       "Structure-la sous forme de programme : modules, templates, étapes, suivi",
-      "Module : 1.8 – Passage 1:1 → Produit Signature"
+      "Module 1 : Le programme signature"
     ],
     tasks: [
       "Structurer le programme",
@@ -99,13 +99,13 @@ const roadmapSteps = [
     title: "Renforce ton système d'acquisition",
     subtitle: "L'industrialisation des canaux",
     description: "Tu ne veux plus de trous dans ton agenda. Tu veux une machine.",
-    duration: "1 semaine",
+    duration: "12 jours",
     icon: "🎯",
     color: "#99E5EB",
     tips: [
       "Choisis 2 canaux à industrialiser (ex : Ads + Email, ou SEO + LinkedIn)",
       "Structure les actions hebdo. Mets en place des métriques de contrôle.",
-      "Module : 3.5 – Acquisition Multicanal"
+      "Module 2 : L'acquisition multicanal"
     ],
     tasks: [
       "Sélectionner les canaux",
@@ -120,13 +120,13 @@ const roadmapSteps = [
     title: "Mets en place ton dashboard hebdo",
     subtitle: "Le pilotage data-driven",
     description: "Sans chiffres = pilotage à l'instinct. À ce niveau, c'est non négociable.",
-    duration: "1 semaine",
+    duration: "8 jours",
     icon: "📊",
     color: "#9B8E7D",
     tips: [
       "Mets en place un dashboard CEO (Notion ou GHL)",
       "Tu y suis : Nombres de leads, Closing rate, CA signé, Récurrence / churn, Charge de prod",
-      "Module : 5.1 – KPI & Pilotage"
+      "Focus sur la mise en place des KPIs clés"
     ],
     tasks: [
       "Créer le dashboard",
@@ -141,13 +141,13 @@ const roadmapSteps = [
     title: "Crée une offre backend",
     subtitle: "La montée en valeur",
     description: "Ton vrai levier maintenant ? Tes clients actuels. Tu dois créer une suite logique à ton programme. Un backend.",
-    duration: "1 semaine",
+    duration: "18 jours",
     icon: "🚀",
     color: "#9F99EB",
     tips: [
       "Crée une montée en gamme : consulting, 1:1 stratégique, mastermind, upgrade",
       "Objectif : augmenter ton LTV, fidéliser, libérer de la charge commerciale",
-      "Module : 1.9 – Backend Offer"
+      "Module 1 : L'offre backend"
     ],
     tasks: [
       "Définir l'offre backend",
@@ -188,7 +188,7 @@ const RoadmapTemplate = () => {
             Roadmap<br />100k€ – 500k€
           </h1>
           <p className={`${montserrat.className} text-xl sm:text-2xl md:text-3xl text-gray-300 max-w-3xl mx-auto leading-relaxed`}>
-            Passage en mode business, pas juste freelance amélioré
+            Scale, sans te cramer, et sans mourrir d'hyper croissance.
           </p>
         </motion.div>
       </div>

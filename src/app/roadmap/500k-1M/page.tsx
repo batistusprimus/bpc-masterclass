@@ -15,13 +15,13 @@ const roadmapSteps = [
     title: "Recrute une équipe de direction",
     subtitle: "Le leadership distribué",
     description: "Tu ne peux plus tout superviser. Tu as besoin de relais. Pas juste un assistant. Un COO. Un Head of Ops. Un CSM. Du vrai pilotage.",
-    duration: "1 semaine",
+    duration: "3 semaines",
     icon: "👥",
     color: "#9F99EB",
     tips: [
       "Liste les 2 décisions que tu prends trop souvent",
       "Recrute ou forme les rôles qui te libèrent du centre du jeu",
-      "Module : 5.4 – Recrutement stratégique"
+      "Formation : Recrutement stratégique"
     ],
     tasks: [
       "Identifier les décisions critiques",
@@ -36,13 +36,13 @@ const roadmapSteps = [
     title: "Industrialise ta génération de leads",
     subtitle: "L'acquisition multicanal",
     description: "L'organique pur, c'est fini. Tu veux du prévisible, du synchronisé, du scalable.",
-    duration: "1 semaine",
+    duration: "4 semaines",
     icon: "🎯",
     color: "#99E5EB",
     tips: [
       "Structure ton système autour de 3 canaux max (ex : Ads + Newsletter + LinkedIn)",
       "Automations, contenus evergreen, relances, workflows",
-      "Module : 3.5 – Systèmes d'Acquisition Multicanal"
+      "Formation : Systèmes d'Acquisition Multicanal"
     ],
     tasks: [
       "Sélectionner les canaux",
@@ -57,13 +57,13 @@ const roadmapSteps = [
     title: "Déploie un vrai process de closing",
     subtitle: "La vente systémique",
     description: "Tu closes bien ? Parfait. Mais ce n'est plus à toi de tout faire. Tu dois poser un process de vente transmissible.",
-    duration: "1 semaine",
+    duration: "3 semaines",
     icon: "🤝",
     color: "#9B8E7D",
     tips: [
       "Recrute 1 closer ou forme un membre de l'équipe",
       "Documente le script, l'objection-handling, les follow-ups",
-      "Module : 6.2 – Sales Process & Formation"
+      "Formation : Sales Process & Formation"
     ],
     tasks: [
       "Créer le process de vente",
@@ -78,13 +78,13 @@ const roadmapSteps = [
     title: "Scaler la delivery sans sacrifier l'expérience",
     subtitle: "La production industrialisée",
     description: "Plus de clients = plus de prod. Mais tu ne peux pas baisser la qualité. Tu dois l'élever. Structurer. Standardiser.",
-    duration: "1 semaine",
+    duration: "4 semaines",
     icon: "⚡",
     color: "#9F99EB",
     tips: [
       "Crée une prod en cohortes ou en blocs scalables",
       "Installe des CSM, des templates, des tutoriels, des QAs",
-      "Module : 5.5 – Delivery Scalable"
+      "Formation : Delivery Scalable"
     ],
     tasks: [
       "Structurer la production",
@@ -99,13 +99,13 @@ const roadmapSteps = [
     title: "Crée une Academy interne",
     subtitle: "La formation systémique",
     description: "Tu ne veux plus former en live chaque nouveau membre. Tu veux qu'il puisse monter en autonomie dès la première semaine.",
-    duration: "1 semaine",
+    duration: "3 semaines",
     icon: "📚",
     color: "#99E5EB",
     tips: [
       "Crée un espace Notion ou un LMS avec onboarding, SOPs, rôles, vidéos",
       "Tout nouveau membre = 7 jours = opérationnel",
-      "Module : 5.6 – Academy & SOPs internes"
+      "Formation : Academy & SOPs internes"
     ],
     tasks: [
       "Créer l'espace de formation",
@@ -120,13 +120,13 @@ const roadmapSteps = [
     title: "Pilote comme un vrai CEO",
     subtitle: "Le pilotage stratégique",
     description: "Tu ne dois plus bosser sur des tâches. Tu dois suivre des chiffres. Toutes les semaines. Tous les mois.",
-    duration: "1 semaine",
+    duration: "3 semaines",
     icon: "📊",
     color: "#9B8E7D",
     tips: [
       "Installe ton cockpit CEO : leads, CA signé, closing rate, delivery score, cashflow",
       "Fais une MBR (Monthly Business Review) avec ton équipe",
-      "Module : 5.1 – Pilotage Avancé"
+      "Formation : Pilotage Avancé"
     ],
     tasks: [
       "Créer le dashboard",
@@ -141,13 +141,13 @@ const roadmapSteps = [
     title: "Travaille ton autorité publique",
     subtitle: "Le leadership d'influence",
     description: "Tu ne vends plus à froid. Tu attires. Tu passes en mode : marque. Réputation. Leadership.",
-    duration: "1 semaine",
+    duration: "4 semaines",
     icon: "🌟",
     color: "#9F99EB",
     tips: [
       "Structure une présence YouTube, LinkedIn, presse ou ambassadeurs",
       "Tu ne postes plus. Tu imposes ton nom sur un segment",
-      "Module : 2.6 – Influence & Thought Leadership"
+      "Formation : Influence & Thought Leadership"
     ],
     tasks: [
       "Définir la stratégie d'influence",
@@ -188,7 +188,7 @@ const RoadmapTemplate = () => {
             Roadmap<br />500k€ – 1M€
           </h1>
           <p className={`${montserrat.className} text-xl sm:text-2xl md:text-3xl text-gray-300 max-w-3xl mx-auto leading-relaxed`}>
-            Du système stable à la machine scalable
+            Croissance saine, scale intense et ouverture de nouveaux marchés.
           </p>
         </motion.div>
       </div>
@@ -455,8 +455,8 @@ const RoadmapTemplate = () => {
                     <span className="text-3xl md:text-4xl">🌟</span>
                   </div>
                   <div className="text-center md:text-left">
-                    <h3 className={`${archivo.className} text-2xl md:text-3xl text-[#FFF1DE]`}>Sarah, coach business</h3>
-                    <p className={`${montserrat.className} text-gray-300 text-base md:text-lg`}>Transformation en 3 mois</p>
+                    <h3 className={`${archivo.className} text-2xl md:text-3xl text-[#FFF1DE]`}>Thomas, agence de marketing</h3>
+                    <p className={`${montserrat.className} text-gray-300 text-base md:text-lg`}>Transformation en 6 mois</p>
                   </div>
                 </div>
 
@@ -467,15 +467,15 @@ const RoadmapTemplate = () => {
                     <ul className={`${montserrat.className} text-gray-300 text-base md:text-lg space-y-3 md:space-y-4`}>
                       <li className="flex items-center gap-3">
                         <div className="w-2 h-2 rounded-full bg-red-500"></div>
-                        600k€/an
+                        750k€/an
                       </li>
                       <li className="flex items-center gap-3">
                         <div className="w-2 h-2 rounded-full bg-red-500"></div>
-                        Tout passait par elle
+                        Équipe de 8 personnes
                       </li>
                       <li className="flex items-center gap-3">
                         <div className="w-2 h-2 rounded-full bg-red-500"></div>
-                        Pas de système
+                        Process manuels
                       </li>
                     </ul>
                   </div>
@@ -490,11 +490,11 @@ const RoadmapTemplate = () => {
                       </li>
                       <li className="flex items-center gap-3">
                         <div className="w-2 h-2 rounded-full bg-[#9F99EB]"></div>
-                        Formation interne
+                        Système d'acquisition
                       </li>
                       <li className="flex items-center gap-3">
                         <div className="w-2 h-2 rounded-full bg-[#9F99EB]"></div>
-                        Prod industrialisée
+                        Academy interne
                       </li>
                     </ul>
                   </div>
@@ -505,15 +505,15 @@ const RoadmapTemplate = () => {
                     <ul className={`${montserrat.className} text-gray-300 text-base md:text-lg space-y-3 md:space-y-4`}>
                       <li className="flex items-center gap-3">
                         <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                        80% sans elle
+                        1.2M€/an
                       </li>
                       <li className="flex items-center gap-3">
                         <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                        2 closers formés
+                        15 personnes
                       </li>
                       <li className="flex items-center gap-3">
                         <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                        78 RDV/mois
+                        40% de marge
                       </li>
                     </ul>
                   </div>
@@ -523,11 +523,11 @@ const RoadmapTemplate = () => {
                   <h4 className={`${anton.className} text-xl md:text-2xl text-white mb-6 md:mb-8`}>Le parcours en détail</h4>
                   <div className="space-y-4 md:space-y-6">
                     {[
-                      "Identifié les coachs comme cible (ICP clair, budget, besoin urgent)",
-                      "Créé une offre \"Identité pro en 7 jours\" à 600€",
-                      "Envoyé 25 messages LinkedIn ciblés",
-                      "Booké 6 calls",
-                      "Travaillé gratuitement avec 1 client pour récolter de la preuve"
+                      "Recruté un COO pour gérer les opérations quotidiennes",
+                      "Mis en place un système d'acquisition multicanal (Ads + LinkedIn + Content)",
+                      "Créé une Academy interne pour former les nouveaux membres",
+                      "Industrialisé la production avec des templates et des process",
+                      "Mis en place un cockpit de pilotage avec KPIs clés"
                     ].map((step, index) => (
                       <motion.div
                         key={index}
@@ -581,13 +581,13 @@ const RoadmapTemplate = () => {
                 <p className={`${montserrat.className} text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 md:mb-10 lg:mb-12 max-w-2xl mx-auto`}>
                   Ce palier, tu ne le passes pas avec plus d'effort. Tu le passes avec des systèmes, des rôles, des chiffres. Tu n'es plus le cœur du business. Tu es le cerveau du système.
                 </p>
-                <Link href="/masterclass" target="_blank" rel="noopener noreferrer">
+                <Link href="/roadmap" target="_blank" rel="noopener noreferrer">
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     className={`${montserrat.className} bg-[#9F99EB] text-white px-8 sm:px-12 md:px-16 py-3 sm:py-4 md:py-5 rounded-full text-lg sm:text-xl md:text-2xl font-semibold hover:bg-[#8A84D9] transition-colors duration-300 shadow-[0_0_30px_rgba(159,153,235,0.3)]`}
                   >
-                    Découvrir la Masterclass
+                    Découvrir la Roadmap
                   </motion.button>
                 </Link>
               </div>

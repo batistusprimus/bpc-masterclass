@@ -26,13 +26,13 @@ const roadmapSteps: RoadmapStep[] = [
     title: "Installe un comité de direction hebdo",
     subtitle: "Le pilotage collectif",
     description: "Tu ne dois plus centraliser la décision. Tu dois créer un cercle qui prend le relais, qui suit, qui corrige.",
-    duration: "1 semaine",
+    duration: "3 semaines",
     icon: FaUsers,
     color: "#9F99EB",
     tips: [
       "Réunis ton COO, ton Head of Delivery, ton Head of Acquisition",
       "Mène une Weekly Business Review de 30 min tous les lundis",
-      "Module : 5.7 – CEO Ops Circle"
+      "Formation : CEO Ops Circle"
     ],
     tasks: [
       "Créer le comité",
@@ -47,13 +47,13 @@ const roadmapSteps: RoadmapStep[] = [
     title: "Rédige ta vision à 3 ans",
     subtitle: "Le cap stratégique",
     description: "Tu ne dois plus penser au trimestre. Tu dois penser au cap. Les chiffres, les projets, les produits : tu les alignes sur une direction.",
-    duration: "1 semaine",
+    duration: "4 semaines",
     icon: FaBullseye,
     color: "#99E5EB",
     tips: [
       "Écris une vision 3 ans claire (positionnement, impact, équipe, offre)",
       "Découpe-la en plan d'action annuel avec jalons trimestriels",
-      "Module : 5.8 – Vision + Roadmap annuelle"
+      "Formation : Vision + Roadmap annuelle"
     ],
     tasks: [
       "Définir la vision",
@@ -68,13 +68,13 @@ const roadmapSteps: RoadmapStep[] = [
     title: "Structure ta culture d'entreprise",
     subtitle: "Les fondations culturelles",
     description: "Tu ne peux pas tout contrôler. Mais tu peux influencer comment les gens pensent, réagissent, prennent des décisions.",
-    duration: "1 semaine",
+    duration: "3 semaines",
     icon: FaStar,
     color: "#9B8E7D",
     tips: [
       "Formalise 5 à 7 principes internes non négociables",
       "Rappelle-les chaque semaine dans tes rituels",
-      "Module : 5.9 – Culture & Leadership"
+      "Formation : Culture & Leadership"
     ],
     tasks: [
       "Définir les principes",
@@ -89,13 +89,13 @@ const roadmapSteps: RoadmapStep[] = [
     title: "Clarifie tous les rôles internes",
     subtitle: "L'organisation claire",
     description: "Tu ne veux plus de flou. Chaque rôle doit être clair, mesuré, responsabilisé.",
-    duration: "1 semaine",
+    duration: "3 semaines",
     icon: FaChartLine,
     color: "#9F99EB",
     tips: [
       "Crée un org chart propre",
       "Associe à chaque rôle une fiche mission + 3 KPIs + un canal de reporting",
-      "Module : 5.3 – RACI + Org-Chart"
+      "Formation : RACI + Org-Chart"
     ],
     tasks: [
       "Créer l'org chart",
@@ -110,13 +110,13 @@ const roadmapSteps: RoadmapStep[] = [
     title: "Prépare une expansion externe",
     subtitle: "La croissance maîtrisée",
     description: "Tu veux scaler sans charger l'interne ? Pense spin-off, partenaires, M&A, ou licencing.",
-    duration: "1 semaine",
+    duration: "4 semaines",
     icon: FaRocket,
     color: "#99E5EB",
     tips: [
       "Choisis un levier d'expansion externe à prototyper",
       "Ex : relancer une vieille offre avec un partenaire, ou lancer un produit adjacent",
-      "Module : 6.5 – Scale externe"
+      "Formation : Scale externe"
     ],
     tasks: [
       "Identifier les leviers",
@@ -131,13 +131,13 @@ const roadmapSteps: RoadmapStep[] = [
     title: "Mets en place un reporting mensuel",
     subtitle: "Le pilotage stratégique",
     description: "Tu pilotes au quotidien, mais tu veux de la vision. Le reporting mensuel = lecture à froid + décisions stratégiques.",
-    duration: "1 semaine",
+    duration: "3 semaines",
     icon: FaChartLine,
     color: "#9B8E7D",
     tips: [
       "Crée un tableau de bord PDF ou Notion auto-rempli chaque mois",
       "Y suivre : MRR, marge, leads, NPS, churn, cashflow",
-      "Module : 5.1 – KPI Advanced"
+      "Formation : KPI Advanced"
     ],
     tasks: [
       "Créer le dashboard",
@@ -152,13 +152,13 @@ const roadmapSteps: RoadmapStep[] = [
     title: "Sécurise la marge et le cash",
     subtitle: "La profitabilité stratégique",
     description: "Le risque maintenant, ce n'est pas l'échec. C'est la croissance non rentable.",
-    duration: "1 semaine",
+    duration: "4 semaines",
     icon: FaLightbulb,
     color: "#9F99EB",
     tips: [
       "Fixe une marge nette cible",
       "Établis ton seuil de sécurité cash + ton plan d'investissement à 6 mois",
-      "Module : 6.3 – Profitabilité stratégique"
+      "Formation : Profitabilité stratégique"
     ],
     tasks: [
       "Définir les objectifs",
@@ -592,13 +592,13 @@ const RoadmapTemplate = () => {
                 <p className={`${montserrat.className} text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 md:mb-10 lg:mb-12 max-w-2xl mx-auto`}>
                   Tu ne gagnes pas ce jeu en en faisant plus. Tu gagnes en pensant mieux, structurant mieux, en pilotant au bon niveau. Ce palier, tu le franchis en incarnant ton rôle de dirigeant.
                 </p>
-                <Link href="/masterclass" target="_blank" rel="noopener noreferrer">
+                <Link href="/roadmap" target="_blank" rel="noopener noreferrer">
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     className={`${montserrat.className} bg-[#9F99EB] text-white px-8 sm:px-12 md:px-16 py-3 sm:py-4 md:py-5 rounded-full text-lg sm:text-xl md:text-2xl font-semibold hover:bg-[#8A84D9] transition-colors duration-300 shadow-[0_0_30px_rgba(159,153,235,0.3)]`}
                   >
-                    Découvrir la Masterclass
+                    Découvrir la Roadmap
                   </motion.button>
                 </Link>
               </div>
