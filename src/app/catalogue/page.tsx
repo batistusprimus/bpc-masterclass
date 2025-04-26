@@ -300,46 +300,85 @@ export default function CataloguePage() {
               </div>
               
               <div className="md:w-5/12 bg-gray-900 rounded-lg overflow-hidden mt-6 md:mt-0">
-                <div className="aspect-video relative">
-                  {/* Video or Image Placeholder */}
-                  <div className="absolute inset-0 flex items-center justify-center bg-gray-800/50 backdrop-blur-sm">
-                    <div className="text-center p-6">
-                      <div className="w-20 h-20 bg-button/20 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-4 group hover:bg-button/30 transition-all cursor-pointer">
-                        <svg className="w-10 h-10 text-button group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                      </div>
-                      <p className="text-gray-300 font-medium">Découvrir l'incubateur en vidéo</p>
-                      <p className="text-sm text-gray-400 mt-2">Durée : 3 minutes</p>
-                    </div>
-                  </div>
-                </div>
-                
                 <div className="p-6">
-                  <div className="mb-4">
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="font-bold">Places restantes ce mois-ci</span>
-                      <span className="text-button font-bold">2/2</span>
+                  <div className="mb-6">
+                    <h4 className="text-xl font-bold mb-4 text-button">Disponibilité</h4>
+                    <div className="mb-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="font-bold">Places restantes ce mois-ci</span>
+                        <span className="text-button font-bold">2/2</span>
+                      </div>
+                      <div className="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
+                        <div className="bg-button h-full rounded-full transition-all duration-1000" style={{ width: '100%' }}></div>
+                      </div>
                     </div>
-                    <div className="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
-                      <div className="bg-button h-full rounded-full transition-all duration-1000" style={{ width: '100%' }}></div>
+                    
+                    <div className="mb-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="font-bold">Places prises cette année</span>
+                        <span className="text-button font-bold">4/12</span>
+                      </div>
+                      <div className="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
+                        <div className="bg-button h-full rounded-full transition-all duration-1000" style={{ width: '33.33%' }}></div>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center justify-between text-sm text-gray-300 mt-4">
+                      <span>Phase de test: 3 mois</span>
+                      <span>Ensuite: Partenariat</span>
                     </div>
                   </div>
-                  
-                  <div className="mb-4 mt-6">
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="font-bold">Places prises cette année</span>
-                      <span className="text-button font-bold">4/12</span>
-                    </div>
-                    <div className="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
-                      <div className="bg-button h-full rounded-full transition-all duration-1000" style={{ width: '33.33%' }}></div>
+
+                  <div className="mb-6">
+                    <h4 className="text-xl font-bold mb-4 text-button">Notre engagement</h4>
+                    <div className="space-y-4">
+                      {[
+                        {
+                          icon: "🎯",
+                          title: "Objectif 80k€/mois",
+                          description: "Nous nous engageons à atteindre cet objectif en 6 mois"
+                        },
+                        {
+                          icon: "⚡️",
+                          title: "Résultats rapides",
+                          description: "Premiers résultats visibles dès la phase de test"
+                        },
+                        {
+                          icon: "🤝",
+                          title: "Partenariat long terme",
+                          description: "Nous investissons dans ton succès sur le long terme"
+                        }
+                      ].map((item, index) => (
+                        <div key={index} className="bg-gray-800/50 rounded-lg p-4">
+                          <div className="flex items-start gap-3">
+                            <span className="text-2xl">{item.icon}</span>
+                            <div>
+                              <h5 className="font-bold mb-1">{item.title}</h5>
+                              <p className="text-sm text-gray-300">{item.description}</p>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
                     </div>
                   </div>
-                  
-                  <div className="flex items-center justify-between text-sm text-gray-300 mt-4">
-                    <span>Phase de test: 3 mois</span>
-                    <span>Ensuite: Partenariat</span>
+
+                  <div>
+                    <h4 className="text-xl font-bold mb-4 text-button">Prochaines étapes</h4>
+                    <div className="space-y-3">
+                      {[
+                        "1. Entretien de qualification",
+                        "2. Phase de test (3 mois)",
+                        "3. Partenariat officiel",
+                        "4. Scaling vers 80k€/mois"
+                      ].map((step, index) => (
+                        <div key={index} className="flex items-center gap-3 bg-gray-800/50 rounded-lg p-3">
+                          <div className="w-6 h-6 rounded-full bg-button/20 flex items-center justify-center">
+                            <span className="text-button font-bold">{index + 1}</span>
+                          </div>
+                          <span className="text-gray-300">{step}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -381,22 +420,6 @@ export default function CataloguePage() {
             <Button href="https://app.iclosed.io/e/baptistepiocelle/incubateur-bpc" size="lg" className="w-full sm:w-auto">
               Postuler maintenant
             </Button>
-
-            {/* Ajout du widget iClosed */}
-            <div className="bg-gray-800/30 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/30 mt-8">
-              {/* iClosed inline widget begin */}
-              <div
-                className="iclosed-widget"
-                data-url="https://app.iclosed.io/e/baptistepiocelle/incubateur-bpc"
-                title="Incubateur BPC"
-                style={{ width: "100%", height: "620px" }}
-              ></div>
-              <Script
-                src="https://app.iclosed.io/assets/widget.js"
-                strategy="lazyOnload"
-              />
-              {/* iClosed inline widget end */}
-            </div>
           </div>
         </div>
       </section>
@@ -706,7 +729,7 @@ export default function CataloguePage() {
             </p>
             
             <div className="flex flex-col sm:flex-row justify-center items-center gap-4 md:gap-6 mb-8 md:mb-10">
-              <Button href="https://iclosed.com" size="lg" className="w-full sm:w-auto text-lg px-8 py-4 group relative overflow-hidden">
+              <Button href="#" size="lg" className="w-full sm:w-auto text-lg px-8 py-4 group relative overflow-hidden">
                 <span className="relative z-10">Choisir mon programme</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-button/0 via-button/30 to-button/0 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
               </Button>

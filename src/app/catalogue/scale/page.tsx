@@ -94,7 +94,7 @@ export default function ScalePage() {
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <span>14 jours de garantie</span>
+                <span>Service premium</span>
               </div>
               <Button 
                 href="https://app.iclosed.io/e/baptistepiocelle/scale" 
@@ -145,7 +145,7 @@ export default function ScalePage() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed mb-8"
             >
-              Pour les solopreneurs avancés (+5k€/mois) qui veulent déléguer entièrement leur système B2B et scaler proprement.
+              Pour les solopreneurs avancés (+10k/15k€/mois) qui veulent déléguer entièrement leur système B2B et scaler proprement.
             </motion.p>
 
             {/* Preuve sociale */}
@@ -187,7 +187,7 @@ export default function ScalePage() {
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <span>14 jours de garantie</span>
+                <span>Service premium</span>
               </div>
             </motion.div>
           </div>
@@ -222,7 +222,7 @@ export default function ScalePage() {
               {
                 emoji: "👨‍💼",
                 title: "Solopreneurs avancés",
-                description: "Tu génères déjà +5k€/mois et tu veux scaler proprement",
+                description: "Tu génères déjà +10k/15k€/mois et tu veux scaler proprement",
                 gradient: "from-blue-500/20 via-transparent to-transparent"
               },
               {
@@ -347,7 +347,7 @@ export default function ScalePage() {
                     "❌ Tu fais seul",
                     "❌ Feedback stratégique",
                     "❌ Relecture de ton tunnel",
-                    "🎯 Système prêt en 7 jours"
+                    "🎯 Système prêt en 30 jours"
                   ].map((item, index) => (
                     <div key={index} className="flex items-start gap-3 p-4 bg-gray-900/50 rounded-xl border border-gray-700/30">
                       <div className={`mt-1 ${item.startsWith('❌') ? 'text-red-500' : item.startsWith('✅') ? 'text-green-500' : 'text-yellow-500'}`}>
@@ -384,11 +384,11 @@ export default function ScalePage() {
                   {[
                     "✅ Accès à la méthode BPC",
                     "✅ Templates et ressources",
-                    "✅ 4 sessions 1:1",
+                    "✅ Tunnel GHL clé en main",
                     "✅ On fait tout pour toi",
-                    "✅ Feedback stratégique à chaque étape",
-                    "✅ Relecture de ton tunnel (pages, séquences, messages)",
-                    "🚀 Système validé + affûté"
+                    "✅ Pack LinkedIn complet",
+                    "✅ Campagne Meta Ads",
+                    "🚀 Business en pilote automatique en 14 jours"
                   ].map((item, index) => (
                     <div key={index} className="flex items-start gap-3 p-4 bg-gray-900/50 rounded-xl border border-button/30 group hover:bg-button/10 transition-colors duration-300">
                       <div className={`mt-1 ${item.startsWith('❌') ? 'text-red-500' : item.startsWith('✅') ? 'text-green-500' : 'text-yellow-500'}`}>
@@ -498,7 +498,7 @@ export default function ScalePage() {
                 {
                   emoji: "🎥",
                   title: "Vidéos scriptées",
-                  description: "3 vidéos (VSL, autorité, closing) scriptées via IA avec instructions de tournage",
+                  description: "3 vidéos (VSL, autorité, closing) scriptées avec instructions de tournage",
                   gradient: "from-red-500/20 via-transparent to-transparent"
                 },
                 {
@@ -540,7 +540,7 @@ export default function ScalePage() {
             >
               <div className="inline-block bg-green-500/20 backdrop-blur-sm px-6 py-2 rounded-full mb-4 border border-green-500/30">
                 <p className="text-sm md:text-base font-medium text-green-400">
-                  Bonus offerts (+5.000€ de valeur)
+                  Bonus offerts (+20.000€ de valeur)
                 </p>
               </div>
               <p className="text-gray-300">Des ressources exclusives pour accélérer ta croissance</p>
@@ -549,21 +549,22 @@ export default function ScalePage() {
             <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
               {[
                 {
-                  emoji: "🎥",
-                  title: "Formations exclusives",
-                  description: "Vidéos supplémentaires non présentes dans le Starter. Techniques avancées de closing, optimisation de tunnel, etc.",
-                  gradient: "from-green-500/20 via-transparent to-transparent"
-                },
-                {
-                  emoji: "📊",
-                  title: "Modèles de tunnels",
-                  description: "VSL, séquences mails, scripts de closing optimisés et prêts à l'emploi.",
-                  gradient: "from-pink-500/20 via-transparent to-transparent"
+                  emoji: "💰",
+                  title: "Stratégie de pricing premium",
+                  description: "Positionnement haut de gamme et structure de prix optimisée pour maximiser ton ticket moyen (7.000€+)",
+                  gradient: "from-green-500/20 via-transparent to-transparent",
+                  highlight: true
                 },
                 {
                   emoji: "🎯",
-                  title: "Audit personnalisé",
-                  description: "Feedback asynchrone sur ton tunnel (vidéo Loom) pour l'optimiser rapidement.",
+                  title: "Automatisation avancée",
+                  description: "Système complet d'automatisation de tes ventes et de ton onboarding client (valeur 8.000€)",
+                  gradient: "from-pink-500/20 via-transparent to-transparent"
+                },
+                {
+                  emoji: "🚀",
+                  title: "Scaling Blueprint",
+                  description: "Plan d'action détaillé pour passer de 15k à 30k€/mois en 90 jours (valeur 5.000€)",
                   gradient: "from-indigo-500/20 via-transparent to-transparent"
                 }
               ].map((item, index) => (
@@ -581,7 +582,7 @@ export default function ScalePage() {
                   {/* Content */}
                   <div className="relative z-10">
                     <div className="text-5xl mb-6">{item.emoji}</div>
-                    <h3 className="text-xl font-bold mb-3 text-green-400">{item.title}</h3>
+                    <h3 className="text-xl font-bold mb-3 text-button">{item.title}</h3>
                     <p className="text-gray-300 leading-relaxed">{item.description}</p>
                   </div>
                 </motion.div>
@@ -601,7 +602,7 @@ export default function ScalePage() {
                 <span className="text-2xl">💎</span>
               </div>
               <p className="text-lg text-gray-300">
-                <span className="text-3xl font-bold text-green-400">+5.000€</span>
+                <span className="text-3xl font-bold text-green-400">+20.000€</span>
                 <span className="ml-2">de bonus offerts avec ton accès</span>
               </p>
             </div>
@@ -738,27 +739,27 @@ export default function ScalePage() {
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {[
               {
-                emoji: "🎯",
-                title: "Business en pilote automatique",
-                description: "Tu as un business qui tourne sans toi",
+                emoji: "💰",
+                title: "Revenus premium",
+                description: "Tu augmentes ton ticket moyen à 7.000€+ par client",
                 gradient: "from-blue-500/20 via-transparent to-transparent"
               },
               {
-                emoji: "💼",
-                title: "Closing efficace",
-                description: "Tu améliores ton taux de conversion",
+                emoji: "⚡️",
+                title: "Système automatisé",
+                description: "Ton business tourne en pilote automatique avec un système clé en main",
                 gradient: "from-purple-500/20 via-transparent to-transparent"
               },
               {
                 emoji: "🚀",
-                title: "Business scalable",
-                description: "Tu poses les fondations d'un business qui peut grandir",
+                title: "Scaling rapide",
+                description: "Tu passes de 15k à 30k€/mois en 90 jours",
                 gradient: "from-yellow-500/20 via-transparent to-transparent"
               },
               {
-                emoji: "💰",
-                title: "Revenus stables",
-                description: "Tu atteins 10k€/mois de manière prévisible",
+                emoji: "⏱️",
+                title: "Gain de temps",
+                description: "Tu te libères du temps grâce à l'automatisation complète",
                 gradient: "from-green-500/20 via-transparent to-transparent"
               }
             ].map((item, index) => (
@@ -801,21 +802,21 @@ export default function ScalePage() {
           >
             {[
               {
-                value: "30 jours",
-                label: "Temps moyen pour structurer",
-                description: "Un business qui tourne en pilote automatique",
+                value: "14 jours",
+                label: "Temps de mise en place",
+                description: "Un système clé en main prêt à l'emploi",
                 icon: "⏱️"
               },
               {
-                value: "10k€",
+                value: "30k€",
                 label: "Objectif mensuel",
-                description: "De revenus récurrents",
+                description: "De revenus récurrents en 90 jours",
                 icon: "💰"
               },
               {
-                value: "100%",
-                label: "Satisfaction",
-                description: "Clients satisfaits",
+                value: "7k€+",
+                label: "Ticket moyen",
+                description: "Par client premium",
                 icon: "⭐️"
               }
             ].map((stat, index) => (
@@ -854,7 +855,7 @@ export default function ScalePage() {
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              <span>14 jours de garantie satisfait ou remboursé</span>
+              <span>Service premium</span>
             </div>
           </motion.div>
         </div>
@@ -878,14 +879,14 @@ export default function ScalePage() {
           >
             <div className="inline-block bg-button/20 backdrop-blur-sm px-6 py-2 rounded-full mb-6 border border-button/30">
               <p className="text-sm md:text-base font-medium text-gray-300">
-                Nous prenons tous les risques pour toi
+                Un service premium pour entrepreneurs avancés
               </p>
             </div>
             <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-300">
-              🔐 Promesses & Garanties
+              🔐 Nos engagements
             </h2>
             <p className="text-gray-300 max-w-2xl mx-auto text-lg">
-              Nous sommes tellement sûrs de notre système que nous prenons tous les risques
+              Nous nous engageons à te fournir un service d'excellence
             </p>
           </motion.div>
 
@@ -893,18 +894,21 @@ export default function ScalePage() {
             {[
               {
                 icon: "💎",
-                title: "4 500€",
-                description: "Paiement unique, service clé en main"
+                title: "Service clé en main",
+                description: "4 500€ une fois, on s'occupe de tout. Système prêt en 14 jours.",
+                highlight: true
               },
               {
                 icon: "✅",
-                title: "14 jours",
-                description: "Garantie satisfait ou remboursé"
+                title: "Résultats garantis",
+                description: "Système éprouvé qui a permis à nos clients d'atteindre 30k€/mois en 90 jours.",
+                highlight: false
               },
               {
                 icon: "🔄",
-                title: "0.5%",
-                description: "Taux de remboursement"
+                title: "Support premium",
+                description: "Accès direct à l'équipe pour toute question ou ajustement.",
+                highlight: false
               }
             ].map((item, index) => (
               <motion.div
@@ -924,7 +928,7 @@ export default function ScalePage() {
             ))}
           </div>
 
-          {/* Preuve de garantie */}
+          {/* Preuve de qualité */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -938,8 +942,8 @@ export default function ScalePage() {
                 </svg>
               </div>
               <p className="text-lg text-gray-300">
-                <span className="text-3xl font-bold text-button">0.5%</span>
-                <span className="ml-2">de taux de remboursement seulement</span>
+                <span className="text-3xl font-bold text-button">100%</span>
+                <span className="ml-2">de clients satisfaits</span>
               </p>
             </div>
           </motion.div>
@@ -963,7 +967,7 @@ export default function ScalePage() {
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              <span>14 jours de garantie satisfait ou remboursé</span>
+              <span>Service premium</span>
             </div>
           </motion.div>
         </div>
@@ -984,7 +988,7 @@ export default function ScalePage() {
           >
             <div className="inline-block bg-button/20 backdrop-blur-sm px-6 py-2 rounded-full mb-6 border border-button/30">
               <p className="text-sm md:text-base font-medium text-gray-300">
-                Un investissement qui change tout
+                Un investissement stratégique pour ton business
               </p>
             </div>
             <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-300">
@@ -997,7 +1001,7 @@ export default function ScalePage() {
                 <div className="text-4xl font-bold text-button">4 500€</div>
                 <div className="text-left">
                   <p className="text-gray-300">Paiement unique</p>
-                  <p className="text-sm text-gray-400">Service clé en main</p>
+                  <p className="text-sm text-gray-400">Service clé en main en 14 jours</p>
                 </div>
               </div>
             </div>
@@ -1005,31 +1009,31 @@ export default function ScalePage() {
             {/* Valeur totale */}
             <div className="mb-8">
               <div className="inline-flex items-center gap-4 bg-gray-800/30 backdrop-blur-sm px-8 py-4 rounded-full border border-gray-700/30">
-                <div className="text-4xl font-bold text-green-400">+5.000€</div>
+                <div className="text-4xl font-bold text-green-400">+20.000€</div>
                 <div className="text-left">
                   <p className="text-gray-300">Valeur totale</p>
-                  <p className="text-sm text-gray-400">Formations, templates, audit, support</p>
+                  <p className="text-sm text-gray-400">Service complet + bonus exclusifs</p>
                 </div>
               </div>
             </div>
 
-            {/* Garanties */}
+            {/* Avantages */}
             <div className="grid md:grid-cols-3 gap-4 mb-8">
               {[
                 {
-                  icon: "✅",
+                  icon: "⚡️",
                   title: "14 jours",
-                  description: "Garantie satisfait ou remboursé"
+                  description: "Système prêt à l'emploi"
                 },
                 {
                   icon: "💎",
-                  title: "Accès à vie",
-                  description: "Toutes les mises à jour incluses"
+                  title: "Service premium",
+                  description: "Accompagnement personnalisé"
                 },
                 {
-                  icon: "🔄",
-                  title: "0.5%",
-                  description: "Taux de remboursement"
+                  icon: "🚀",
+                  title: "30k€",
+                  description: "Objectif mensuel en 90 jours"
                 }
               ].map((item, index) => (
                 <div key={index} className="bg-gray-800/30 backdrop-blur-sm rounded-xl p-4 border border-gray-700/30">
@@ -1080,12 +1084,12 @@ export default function ScalePage() {
               </p>
             </div>
 
-            {/* Garantie */}
+            {/* Service premium */}
             <div className="mt-4 flex items-center justify-center gap-2 text-sm text-gray-400">
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              <span>14 jours de garantie satisfait ou remboursé</span>
+              <span>Service premium</span>
             </div>
 
             {/* Ajout du widget iClosed */}

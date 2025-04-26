@@ -144,7 +144,7 @@ export default function AccelerateurPage() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-300 leading-tight"
             >
-              Structure ton business B2B pour 10k€/mois
+              Structure ton business B2B pour stabiliser 10k€/mois
             </motion.h1>
             
             <motion.p
@@ -481,8 +481,8 @@ export default function AccelerateurPage() {
               {[
                 {
                   emoji: "🎓",
-                  title: "Masterclass BPC complète",
-                  description: "Accès immédiat à tous les modules sans drip",
+                  title: "4 sessions 1-1 avec des experts",
+                  description: "Accompagnement personnalisé pour structurer ton tunnel",
                   gradient: "from-blue-500/20 via-transparent to-transparent"
                 },
                 {
@@ -558,21 +558,21 @@ export default function AccelerateurPage() {
               {[
                 {
                   emoji: "🎥",
-                  title: "Formations exclusives",
-                  description: "Vidéos supplémentaires non présentes dans le Starter. Techniques avancées de closing, optimisation de tunnel, etc.",
+                  title: "Formations avancées",
+                  description: "Techniques de closing avancées, optimisation de tunnel, stratégies de pricing premium",
                   gradient: "from-green-500/20 via-transparent to-transparent",
                   highlight: true
                 },
                 {
                   emoji: "📊",
-                  title: "Modèles de tunnels",
-                  description: "VSL, séquences mails, scripts de closing optimisés et prêts à l'emploi.",
+                  title: "Templates premium",
+                  description: "Séquences mails haut de gamme, scripts de closing premium, pages de vente optimisées",
                   gradient: "from-pink-500/20 via-transparent to-transparent"
                 },
                 {
                   emoji: "🎯",
-                  title: "Audit personnalisé",
-                  description: "Feedback asynchrone sur ton tunnel (vidéo Loom) pour l'optimiser rapidement.",
+                  title: "Audit stratégique",
+                  description: "Analyse complète de ton positionnement et de ta stratégie de prix pour maximiser tes revenus",
                   gradient: "from-indigo-500/20 via-transparent to-transparent"
                 }
               ].map((item, index) => (

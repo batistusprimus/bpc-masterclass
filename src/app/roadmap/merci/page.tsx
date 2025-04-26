@@ -59,17 +59,13 @@ export default function RoadmapThankYou() {
               </div>
               <div className="aspect-video relative rounded-2xl overflow-hidden shadow-2xl">
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/30 to-accent/30"></div>
-                {/* Replace with your actual video embed code */}
-                <div className="w-full h-full bg-gray-800 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-accent/20 flex items-center justify-center">
-                      <svg className="w-10 h-10 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                    </div>
-                    <p className="text-xl text-white">Vidéo sur le scale B2B</p>
-                  </div>
+                <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}>
+                  <iframe
+                    style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 0 }}
+                    src="https://www.tella.tv/video/cm9y9myqg000a0bjo3zdvefip/embed?b=0&title=0&a=1&loop=1&autoPlay=true&t=0&muted=1&wt=0"
+                    allowFullScreen
+                    allowTransparency
+                  ></iframe>
                 </div>
               </div>
               <div className="text-center mt-8 space-y-4">
