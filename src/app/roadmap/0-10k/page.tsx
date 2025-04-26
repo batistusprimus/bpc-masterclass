@@ -16,7 +16,7 @@ const roadmapSteps = [
     title: "Pose ta vision claire",
     subtitle: "La fondation de ton business",
     description: "Avant de penser offre ou client, tu dois savoir ce que tu veux construire, pourquoi tu le fais, et ce que tu refuses.",
-    duration: "1 semaine",
+    duration: "3 jours",
     icon: FaBullseye,
     color: "#9F99EB",
     tips: [
@@ -37,7 +37,7 @@ const roadmapSteps = [
     title: "Choisis une cible et un problème solvable",
     subtitle: "Le point de départ de ta vente",
     description: "Arrête de réfléchir à ce que tu veux vendre. Commence par identifier à qui.",
-    duration: "1 semaine",
+    duration: "4 jours",
     icon: FaUsers,
     color: "#99E5EB",
     tips: [
@@ -58,7 +58,7 @@ const roadmapSteps = [
     title: "Crée une offre simple, vendable et claire",
     subtitle: "L'art de la simplicité",
     description: "Pas besoin d'une formation. Pas besoin d'un site. Tu veux signer ? Propose une transformation en 1 phrase.",
-    duration: "1 semaine",
+    duration: "3 jours",
     icon: FaRocket,
     color: "#9B8E7D",
     tips: [
@@ -76,12 +76,12 @@ const roadmapSteps = [
   },
   {
     phase: "ÉTAPE 4",
-    title: "Pitch en 1 phrase qui percute",
-    subtitle: "Le pouvoir des mots",
-    description: "Si tu ne sais pas pitcher ton offre en 1 phrase, personne n'ira lire la suite.",
-    duration: "1 semaine",
-    icon: FaComments,
-    color: "#9F99EB",
+    title: "Crée un mini-funnel (page + Calendly + séquence)",
+    subtitle: "Le minimum viable pour convertir",
+    description: "Tu n'as pas besoin d'un tunnel de vente complexe. Un simple point d'entrée clair et professionnel suffit pour convertir tes prospects en clients.",
+    duration: "5 jours",
+    icon: FaRocket,
+    color: "#99E5EB",
     tips: [
       "Utilise des mots simples et concrets",
       "Évite le jargon et les termes techniques",
@@ -97,12 +97,12 @@ const roadmapSteps = [
   },
   {
     phase: "ÉTAPE 5",
-    title: "Parle à 30 personnes",
-    subtitle: "La puissance du contact direct",
-    description: "Tu veux vendre ? Parle à des gens. Maintenant. Oublie les posts. Oublie l'algo.",
-    duration: "1 semaine",
+    title: "Systématise ta prospection manuelle",
+    subtitle: "La qualité plutôt que la quantité",
+    description: "Tu ne dois pas envoyer plus de messages. Tu dois envoyer les bons. 15 messages ciblés/semaine → mais ultra-personnalisés.",
+    duration: "4 jours",
     icon: FaUsers,
-    color: "#99E5EB",
+    color: "#9F99EB",
     tips: [
       "La personnalisation est la clé du succès",
       "Un message par heure évite le spam",
@@ -121,7 +121,7 @@ const roadmapSteps = [
     title: "Fait un call = Vend un call",
     subtitle: "L'art de la vente consultative",
     description: "Tu ne vends pas ton offre. Tu vends un diagnostic. Ton job c'est d'écouter, structurer la douleur, poser les bonnes questions.",
-    duration: "1 semaine",
+    duration: "4 jours",
     icon: FaComments,
     color: "#9B8E7D",
     tips: [
@@ -142,7 +142,7 @@ const roadmapSteps = [
     title: "Récupère de la preuve sociale",
     subtitle: "Le pouvoir des témoignages",
     description: "Tu n'as pas besoin d'un portfolio. Tu as besoin d'un témoignage puissant.",
-    duration: "1 semaine",
+    duration: "3 jours",
     icon: FaStar,
     color: "#9F99EB",
     tips: [

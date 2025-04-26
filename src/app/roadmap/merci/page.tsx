@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Button from '@/components/Button';
@@ -11,6 +11,18 @@ import Script from 'next/script';
 
 export default function RoadmapThankYou() {
   const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Charger le script iClosed
+    const script = document.createElement('script');
+    script.src = 'https://app.iclosed.io/assets/widget.js';
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
 
   return (
     <>
@@ -89,20 +101,15 @@ export default function RoadmapThankYou() {
         </section>
 
         {/* Calendar Section */}
-        <section className="py-24 bg-gradient-to-b from-gray-900 to-black">
+        <section className="py-16 bg-gradient-to-b from-gray-900 to-black">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <div className="text-center mb-12">
-                <div className="inline-block p-2 px-4 rounded-full bg-accent/20 text-accent mb-4 backdrop-blur-sm border border-accent/30">
-                  <span className="text-sm font-semibold">Pendant que tu attends ta roadmap...</span>
-                </div>
-                <h2 className="text-4xl font-bold mb-6 text-white leading-tight">
-                  Est-ce que tu veux débloquer ton business avec nous lors d'un atelier 1-1 ?
-                </h2>
-                <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-                  Note : Cet atelier n'est PAS nécessaire pour recevoir ta roadmap, prends rdv uniquement si tu penses que c'est utile pour toi d'échanger sur tes problématiques de scale avec notre équipe lors d'un call d'analyse en 1-1.
-                </p>
+                <h2 className="text-3xl font-bold text-white mb-4">Pendant que tu attends ta roadmap...</h2>
+                <p className="text-gray-400">Est-ce que tu veux débloquer ton business avec nous lors d'un atelier 1-1 ?</p>
+                <p className="text-gray-500 text-sm mt-2">Note : Cet atelier n'est PAS nécessaire pour recevoir ta roadmap, prends rdv uniquement si tu penses que c'est utile pour toi d'échanger sur tes problématiques de scale avec notre équipe lors d'un call d'analyse en 1-1.</p>
               </div>
+
               <div id="calendly" className="bg-gray-800/50 rounded-2xl border border-primary/30 p-8 backdrop-blur-sm shadow-2xl">
                 <div className="flex items-center justify-center mb-6">
                   <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center mr-4">
@@ -117,12 +124,8 @@ export default function RoadmapThankYou() {
                   className="iclosed-widget"
                   data-url="https://app.iclosed.io/e/baptistepiocelle/diagnostic-b2b"
                   title="Diagnostic"
-                  style={{ width: "100%", height: "620px" }}
+                  style={{ width: "100%", height: "620px", minHeight: "620px" }}
                 ></div>
-                <Script
-                  src="https://app.iclosed.io/assets/widget.js"
-                  strategy="lazyOnload"
-                />
                 {/* iClosed inline widget end */}
               </div>
               <div className="text-center mt-8">
