@@ -31,7 +31,12 @@ interface Palier {
 }
 
 interface Rubrique {
+  id?: number; // Rendu optionnel
   title: string;
+  description?: string; // Rendu optionnel
+  icon?: string; // Rendu optionnel
+  color?: string; // Rendu optionnel
+  workbookUrl?: string; // Rendu optionnel
   paliers: Palier[];
 }
 
@@ -50,7 +55,7 @@ interface Introduction {
   title: string;
   description: string;
   videoUrl: string;
-  workbookUrl: string;
+  workbookUrl?: string; // Rendu optionnel
 }
 
 interface MasterclassContent {
@@ -114,7 +119,7 @@ const masterclassContent: MasterclassContent = {
     title: "Introduction - Commence ici",
     description: "Bienvenue dans la Masterclass BPC. Commence ton parcours ici!",
     videoUrl: formatVideoUrl("https://www.tella.tv/video/introduction-hg5d"),
-    workbookUrl: "/workbooks/introduction-masterclass.pdf",
+    // workbookUrl: "/workbooks/introduction-masterclass.pdf", // Retiré car pas de workbook pour l'introduction
   },
   modules: [
     {
@@ -123,7 +128,7 @@ const masterclassContent: MasterclassContent = {
       description: "Le mindset à adopter pour réussir",
       icon: "🧠",
       color: "#9F99EB", // Purple
-      workbookUrl: "https://notion.bpcorp.eu/Workbook-Module-0-Mindset-1ceb44663e10806cbe6bc0fcad82f930?pvs=4",
+      workbookUrl: "/workbooks/0-mindset.pdf", // URL locale au lieu de Notion
       paliers: [
         {
           id: "0.0",
@@ -499,7 +504,12 @@ const masterclassContent: MasterclassContent = {
           ]
         },
         {
+          id: 2.2,
           title: "Process Ads",
+          description: "Comment créer des campagnes publicitaires qui convertissent",
+          icon: "📱",
+          color: "#4CAF50", // Green
+          workbookUrl: "/workbooks/2-2-ads.pdf", // URL locale
           paliers: [
             {
               id: "2.2.1",
@@ -649,6 +659,7 @@ const masterclassContent: MasterclassContent = {
         },
         {
           title: "La prospection",
+          workbookUrl: "/workbooks/2-3-prospection.pdf", // URL locale
           paliers: [
             {
               id: "2.3.1",
