@@ -9,16 +9,17 @@ const PasswordPage = () => {
   const [password, setPassword] = useState(['', '', '', '', '', '']);
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
   const passwordRoutes = {
     'BPC847': '/roadmap/0-10k',
-    'BPC392': '/roadmap/10k-50k',
-    'BPC615': '/roadmap/50k-100k',
-    'BPC284': '/roadmap/100k-500k',
-    'BPC739': '/roadmap/500k-1M',
-    'BPC156': '/roadmap/1M-5M',
-    'BPC493': '/roadmap/5M+'
+    'BPC392': '/roadmap/10k',
+    'BPC615': '/roadmap/10k-50k',
+    'BPC284': '/roadmap/50k-100k',
+    'BPC739': '/roadmap/100k-500k',
+    'BPC156': '/roadmap/500k-1M',
+    'BPC493': '/roadmap/1M-5M'
   };
 
   useEffect(() => {
@@ -50,11 +51,26 @@ const PasswordPage = () => {
     const enteredPassword = password.join('');
     
     if (enteredPassword in passwordRoutes) {
-      window.location.href = passwordRoutes[enteredPassword as keyof typeof passwordRoutes];
+      setIsLoading(true);
+      setTimeout(() => {
+        window.location.href = passwordRoutes[enteredPassword as keyof typeof passwordRoutes];
+      }, 1000);
     } else {
       setError('Mot de passe incorrect');
       setPassword(['', '', '', '', '', '']);
       inputRefs.current[0]?.focus();
+    }
+  };
+
+  const handlePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    const pastedData = e.clipboardData.getData('text').trim();
+    
+    if (pastedData.length === 6) {
+      const newPassword = pastedData.split('').slice(0, 6);
+      setPassword(newPassword);
+      setError('');
+      inputRefs.current[5]?.focus();
     }
   };
 
@@ -90,6 +106,7 @@ const PasswordPage = () => {
                   value={char}
                   onChange={(e) => handleChange(index, e.target.value)}
                   onKeyDown={(e) => handleKeyDown(index, e)}
+                  onPaste={handlePaste}
                   className="w-12 h-12 text-center text-xl bg-black border border-[#9B8E7D] text-[#FFF1DE] rounded-lg focus:ring-2 focus:ring-[#9F99EB] focus:border-transparent transition-all duration-200 font-['Montserrat']"
                   maxLength={1}
                 />
@@ -120,9 +137,24 @@ const PasswordPage = () => {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               type="submit"
-              className="w-full bg-[#9F99EB] text-black py-3 rounded-lg font-['Archivo_Black'] hover:bg-[#8A84D9] transition-colors duration-200"
+              disabled={isLoading}
+              className="w-full bg-[#9F99EB] text-black py-3 rounded-lg font-['Archivo_Black'] hover:bg-[#8A84D9] transition-colors duration-200 relative"
             >
-              Accéder
+              {isLoading ? (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="absolute inset-0 flex items-center justify-center"
+                >
+                  <motion.div
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                    className="w-6 h-6 border-2 border-black border-t-transparent rounded-full"
+                  />
+                </motion.div>
+              ) : (
+                'Accéder'
+              )}
             </motion.button>
           </form>
         </div>
