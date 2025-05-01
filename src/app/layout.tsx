@@ -4,7 +4,6 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Script from 'next/script';
 import { Analytics } from "@vercel/analytics/react";
-import { GoogleAnalytics } from '@next/third-parties/google';
 
 export const metadata: Metadata = {
   title: 'BPC Masterclass | La masterclass ultime pour entrepreneurs B2B',
@@ -29,6 +28,20 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr">
+      <head>
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=G-TD1JS07QVN`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-TD1JS07QVN');
+          `}
+        </Script>
+      </head>
       <body>
         <Header />
         <main className="min-h-screen pt-20">
@@ -40,7 +53,6 @@ export default function RootLayout({
           strategy="lazyOnload"
         />
         <Analytics />
-        <GoogleAnalytics gaId="G-TD1JS07QVN" />
       </body>
     </html>
   );
