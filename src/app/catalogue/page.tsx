@@ -448,7 +448,7 @@ export default function CataloguePage() {
                 <div className="mb-4 md:mb-6">
                   <h4 className="text-base md:text-lg font-bold mb-2 text-button">Pour qui ?</h4>
                   <p className="text-gray-300 text-sm md:text-base">
-                    → Entrepreneurs B2B réalisant déjà entre 300k€ et 1M€/an<br />
+                    → Entrepreneurs B2B réalisant déjà entre 700k€ et 2M€/an<br />
                     → Dirigeants fatigués d&apos;être l&apos;homme-orchestre<br />
                     → Leaders qui savent qu&apos;atteindre 7 chiffres stables demande structure
                   </p>
@@ -584,7 +584,7 @@ export default function CataloguePage() {
                   <Button 
                     variant="primary" 
                     fullWidth
-                    href="#contact"
+                    href="https://app.iclosed.io/e/baptistepiocelle/bpc-private-scaling-lab"
                     className="group relative overflow-hidden"
                   >
                     <span className="relative z-10">Candidater maintenant</span>
