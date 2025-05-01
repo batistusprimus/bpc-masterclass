@@ -90,7 +90,7 @@ const PasswordPage = () => {
               transition={{ delay: 0.2, type: "spring" }}
               className="w-16 h-16 bg-[#9B8E7D] rounded-full flex items-center justify-center mx-auto mb-4"
             >
-              <FaLock className="text-[#FFF1DE] text-2xl" />
+              <FaLock size={24} className="text-[#FFF1DE]" />
             </motion.div>
             <h1 className="text-2xl font-['Anton'] text-[#FFF1DE] mb-2">Accès à ta roadmap personnalisée</h1>
             <p className="text-[#9B8E7D] font-['Montserrat']">Entre ton mot de passe reçu par mail et découvre ta roadmap</p>
@@ -119,7 +119,15 @@ const PasswordPage = () => {
                 onClick={() => setShowPassword(!showPassword)}
                 className="text-[#9B8E7D] hover:text-[#FFF1DE] transition-colors duration-200"
               >
-                {showPassword ? <FaEyeSlash /> : <FaEye />}
+                {showPassword ? (
+                  <span className="flex items-center justify-center">
+                    <FaEyeSlash size={20} />
+                  </span>
+                ) : (
+                  <span className="flex items-center justify-center">
+                    <FaEye size={20} />
+                  </span>
+                )}
               </button>
             </div>
 

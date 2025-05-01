@@ -3,6 +3,8 @@ import type { Metadata } from 'next';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Script from 'next/script';
+import { Analytics } from "@vercel/analytics/react";
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 export const metadata: Metadata = {
   title: 'BPC Masterclass | La masterclass ultime pour entrepreneurs B2B',
@@ -37,6 +39,8 @@ export default function RootLayout({
           src="https://app.iclosed.io/assets/widget.js"
           strategy="lazyOnload"
         />
+        <Analytics />
+        <GoogleAnalytics gaId="G-TD1JS07QVN" />
       </body>
     </html>
   );

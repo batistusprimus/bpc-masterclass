@@ -424,6 +424,179 @@ export default function CataloguePage() {
         </div>
       </section>
 
+      {/* BPC Private Scaling Lab Section */}
+      <section className="section bg-gray-900 py-12 md:py-16 px-4 md:px-0">
+        <div className="container-custom">
+          <div className="text-center mb-10 md:mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl mb-3 md:mb-4">BPC Private Scaling Lab</h2>
+            <p className="text-gray-300 max-w-2xl mx-auto mb-6 md:mb-8">
+              De 300k€ → 3M€/an. Bâtis un empire, pas juste un business.
+            </p>
+          </div>
+          
+          <div className="bg-primary rounded-lg p-6 md:p-8 lg:p-12 border-2 border-button mb-10 md:mb-12">
+            <div className="md:flex items-start gap-8 lg:gap-12">
+              <div className="md:w-7/12 mb-8 md:mb-0">
+                <div className="mb-6">
+                  <span className="inline-block bg-button text-primary px-3 py-1 md:px-4 md:py-2 rounded-full font-bold text-xs md:text-sm mb-3 md:mb-4">OFFRE EXCLUSIVE</span>
+                  <h3 className="text-2xl md:text-3xl font-bold mb-3 md:mb-4">BPC Private Scaling Lab</h3>
+                  <p className="text-gray-300 mb-4 md:mb-6 text-sm md:text-base">
+                    Un programme d&apos;accompagnement ultra-personnalisé pour les entrepreneurs B2B qui veulent passer de 300k€ à 3M€/an. Done With You + Done For You.
+                  </p>
+                </div>
+                
+                <div className="mb-4 md:mb-6">
+                  <h4 className="text-base md:text-lg font-bold mb-2 text-button">Pour qui ?</h4>
+                  <p className="text-gray-300 text-sm md:text-base">
+                    → Entrepreneurs B2B réalisant déjà entre 300k€ et 1M€/an<br />
+                    → Dirigeants fatigués d&apos;être l&apos;homme-orchestre<br />
+                    → Leaders qui savent qu&apos;atteindre 7 chiffres stables demande structure
+                  </p>
+                </div>
+
+                <div className="mb-4 md:mb-6">
+                  <h4 className="text-base md:text-lg font-bold mb-2 text-button">Investissement</h4>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div className="bg-gray-800/50 p-4 rounded-lg">
+                      <h5 className="font-bold mb-2">Cash</h5>
+                      <p className="text-2xl font-bold">100 000 €</p>
+                      <p className="text-sm text-gray-400">HT</p>
+                    </div>
+                    <div className="bg-gray-800/50 p-4 rounded-lg">
+                      <h5 className="font-bold mb-2">Plan 12 mois</h5>
+                      <p className="text-2xl font-bold">120 000 €</p>
+                      <p className="text-sm text-gray-400">10 000 €/mois</p>
+                    </div>
+                    <div className="bg-gray-800/50 p-4 rounded-lg">
+                      <h5 className="font-bold mb-2">Flex Plan</h5>
+                      <p className="text-2xl font-bold">30% upfront</p>
+                      <p className="text-sm text-gray-400">3 paliers de 30k€</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mb-4 md:mb-6">
+                  <h4 className="text-base md:text-lg font-bold mb-2 text-button">Contenu de l&apos;offre</h4>
+                  <div className="space-y-4">
+                    <div className="bg-gray-800/50 p-4 rounded-lg">
+                      <h5 className="font-bold mb-2">Écosystème Business</h5>
+                      <ul className="text-sm text-gray-300 space-y-2">
+                        <li>• (Re)création d&apos;une offre premium &gt;15k€/client</li>
+                        <li>• Tunnel d&apos;acquisition complet</li>
+                        <li>• CRM & process de closing structurés</li>
+                        <li>• Machine de contenu pour 12 mois</li>
+                        <li>• Copywriting complet de tous les assets</li>
+                      </ul>
+                    </div>
+                    <div className="bg-gray-800/50 p-4 rounded-lg">
+                      <h5 className="font-bold mb-2">Machine d&apos;Acquisition</h5>
+                      <ul className="text-sm text-gray-300 space-y-2">
+                        <li>• Campagnes LinkedIn Ads, Meta Ads, Google Ads</li>
+                        <li>• Système outbound (ICP, scraping, cold messaging)</li>
+                        <li>• Écosystème organique (SEO, LinkedIn, YouTube)</li>
+                      </ul>
+                    </div>
+                    <div className="bg-gray-800/50 p-4 rounded-lg">
+                      <h5 className="font-bold mb-2">Sales Ops & Team Building</h5>
+                      <ul className="text-sm text-gray-300 space-y-2">
+                        <li>• Recrutement de 3 profils clés (12 mois inclus)</li>
+                        <li>• Création des SOPs</li>
+                        <li>• Formation et intégration</li>
+                      </ul>
+                    </div>
+                    <div className="bg-gray-800/50 p-4 rounded-lg">
+                      <h5 className="font-bold mb-2">Coaching & Advisory</h5>
+                      <ul className="text-sm text-gray-300 space-y-2">
+                        <li>• Call stratégique 1:1 hebdomadaire</li>
+                        <li>• Accès WhatsApp direct (réponse &lt; 4h)</li>
+                        <li>• Audit stratégique trimestriel</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mb-4 md:mb-6">
+                  <h4 className="text-base md:text-lg font-bold mb-2 text-button">Garantie inégalée</h4>
+                  <p className="text-gray-300 text-sm md:text-base">
+                    &quot;We Work Until You Double&quot; - On s&apos;engage à rester avec toi au-delà des 12 mois, sans supplément, tant que ton chiffre d&apos;affaires net n&apos;a pas au minimum doublé.
+                  </p>
+                </div>
+
+                <div className="mb-4 md:mb-6">
+                  <h4 className="text-base md:text-lg font-bold mb-2 text-button">Next Step</h4>
+                  <p className="text-gray-300 text-sm md:text-base">
+                    Candidature express (3 min) ➔ Call de sélection (30 min) ➔ Signature ➔ Onboarding
+                  </p>
+                  <p className="text-button text-sm mt-2">
+                    ⚡️ Les candidatures 2025 sont strictement limitées à 5 nouveaux membres.
+                  </p>
+                </div>
+              </div>
+
+              <div className="md:w-5/12">
+                <div className="bg-gray-800/50 p-6 rounded-lg">
+                  <h4 className="text-lg font-bold mb-4 text-button">Ce que tu économises</h4>
+                  <ul className="space-y-3">
+                    <li className="flex items-start">
+                      <svg className="w-5 h-5 text-button mt-1 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span className="text-sm">Consultant acquisition: 40 000 €</span>
+                    </li>
+                    <li className="flex items-start">
+                      <svg className="w-5 h-5 text-button mt-1 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span className="text-sm">Agence contenu 12 mois: 20 000 €</span>
+                    </li>
+                    <li className="flex items-start">
+                      <svg className="w-5 h-5 text-button mt-1 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span className="text-sm">Copywriter senior: 15 000 €</span>
+                    </li>
+                    <li className="flex items-start">
+                      <svg className="w-5 h-5 text-button mt-1 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span className="text-sm">Coach exécutif: 30 000 €</span>
+                    </li>
+                    <li className="flex items-start">
+                      <svg className="w-5 h-5 text-button mt-1 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span className="text-sm">Recrutement & salaires: 60 000 €</span>
+                    </li>
+                    <li className="flex items-start">
+                      <svg className="w-5 h-5 text-button mt-1 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span className="text-sm">Retraites et masterminds: 15 000 €</span>
+                    </li>
+                  </ul>
+                  <div className="mt-4 pt-4 border-t border-gray-700">
+                    <p className="text-lg font-bold">Total: ≈ 180 000 €</p>
+                    <p className="text-sm text-gray-400">sans Codex ni garantie de résultats</p>
+                  </div>
+                </div>
+
+                <div className="mt-6">
+                  <Button 
+                    variant="primary" 
+                    fullWidth
+                    href="#contact"
+                    className="group relative overflow-hidden"
+                  >
+                    <span className="relative z-10">Candidater maintenant</span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-button/0 via-button/30 to-button/0 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Video Testimonials */}
       <section className="section bg-gray-900 py-12 md:py-16 px-4 md:px-0 relative overflow-hidden">
         {/* Background Pattern */}
