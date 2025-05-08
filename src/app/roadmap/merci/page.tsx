@@ -41,16 +41,17 @@ export default function RoadmapThankYou() {
               <div className="inline-block p-2 px-4 rounded-full bg-white/10 text-accent mb-4 backdrop-blur-sm border border-white/20">
                 <span className="text-sm font-semibold">Opportunité exclusive</span>
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white leading-tight max-w-5xl mx-auto">
-                <span className="block">Important, avant de regarder tes emails</span>
-                <span className="block">regarde cette vidéo sur le scale B2B</span>
+              <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-white leading-tight max-w-5xl mx-auto">
+                <span className="block">Important, avant de regarder</span>
+                <span className="block">tes emails, regarde cette vidéo</span>
+                <span className="block">sur le scale B2B</span>
               </h1>
-              <p className="text-lg md:text-xl mb-6 text-gray-200 max-w-3xl mx-auto font-medium">
+              <p className="text-sm md:text-base mb-6 text-gray-200 max-w-3xl mx-auto font-medium">
                 Et débloque l'opportunité de parler de tes problématiques avec un expert de l'équipe BPC
               </p>
             </div>
           </div>
-          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 animate-bounce">
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 animate-bounce">
             <a href="#video-section" className="text-white hover:text-accent transition-colors">
               <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
@@ -65,7 +66,7 @@ export default function RoadmapThankYou() {
           <div className="container mx-auto px-4 relative">
             <div className="max-w-4xl mx-auto">
               <div className="text-center mb-12">
-                <h2 className="text-4xl font-bold mb-4 text-white">
+                <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-4 text-white">
                   Félicitations, tu vas découvrir comment résoudre les problèmes qui t'empêche de collecter plus de cash
                 </h2>
               </div>

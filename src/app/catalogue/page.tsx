@@ -49,9 +49,16 @@ export default function CataloguePage() {
               {
                 title: "STARTER",
                 badge: "AUTONOMIE",
+                mrr: "0€ → 10k€ MRR",
                 description: "La méthode BPC, accessible en 24h. Tous les outils pour construire ton système de vente B2B, sans te perdre dans les vidéos YouTube ou les formations bullshit.",
-                price: "99€",
-                priceLabel: "INVESTISSEMENT MINIMAL",
+                usp: "Système de vente B2B clé en main en 7 jours",
+                mechanism: "Templates + Méthode = Exécution rapide",
+                directBenefits: [
+                  "Un tunnel de vente prêt à l'emploi",
+                  "Des scripts de vente testés et optimisés",
+                  "Un CRM Notion pour suivre tes prospects",
+                  "Une roadmap d'implémentation jour par jour"
+                ],
                 features: [
                   "Accès à tous les modules vidéo de la Masterclass",
                   "50+ templates Notion & GHL : offre, tunnel, scripts, CRM, roadmap",
@@ -68,9 +75,16 @@ export default function CataloguePage() {
               {
                 title: "ACCÉLÉRATEUR",
                 badge: "ACCOMPAGNEMENT",
+                mrr: "10k€ → 30k€ MRR",
                 description: "Tu veux qu'on t'aide à bien appliquer la méthode ? On co-construit ton système avec toi : offre, tunnel, contenus, tout est challengé et validé par un expert BPC.",
-                price: "987€",
-                priceLabel: "RETOUR SUR INVESTISSEMENT RAPIDE",
+                usp: "Validation de ton système par un expert BPC",
+                mechanism: "Co-construction + Feedback = Résultats garantis",
+                directBenefits: [
+                  "Ton offre validée et optimisée",
+                  "Ton tunnel de vente challengé et amélioré",
+                  "Tes contenus relus et optimisés",
+                  "Ton système d'acquisition validé"
+                ],
                 features: [
                   "Tout le contenu du Starter",
                   "Audit business complet (offre, cible, canal, positionnement)",
@@ -87,9 +101,16 @@ export default function CataloguePage() {
               {
                 title: "SCALE",
                 badge: "DÉLÉGATION",
+                mrr: "30k€ → 80k€ MRR",
                 description: "Tu n'as pas le temps ? Tu veux que ce soit fait pour toi, par une équipe qui l'a déjà fait pour des dizaines de clients B2B à 6 ou 7 chiffres ? On te livre un système d'acquisition prêt à scaler.",
-                price: "4.500€",
-                priceLabel: "INVESTISSEMENT STRATÉGIQUE",
+                usp: "Système d'acquisition clé en main",
+                mechanism: "Délégation + Expertise = Scaling immédiat",
+                directBenefits: [
+                  "Ton système d'acquisition complet",
+                  "Tes contenus créés et optimisés",
+                  "Tes vidéos tournées et montées",
+                  "Ton équipe recrutée et formée"
+                ],
                 features: [
                   "Tout le contenu du Starter + Accélérateur",
                   "Workshop stratégique de 2h (vision, positionnement, objectif)",
@@ -117,14 +138,51 @@ export default function CataloguePage() {
                 )}
                 <div className="p-8 bg-gray-900/80 backdrop-blur-sm flex-grow flex flex-col h-full">
                   <div>
-                    <div className="inline-block bg-button/20 px-3 py-1 rounded-full text-xs font-medium mb-4">
-                      {product.badge}
+                    <div className="flex flex-col gap-2 mb-4">
+                      <div className="inline-block bg-button/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-bold border border-button/30 shadow-lg shadow-button/10">
+                        {product.badge}
+                      </div>
+                      <div className="inline-block bg-gray-800/50 backdrop-blur-sm px-4 py-2 rounded-lg text-button font-bold text-lg border border-gray-700/50 shadow-lg shadow-gray-900/20">
+                        {product.mrr}
+                      </div>
                     </div>
                     <h3 className="text-2xl font-bold mb-2">{product.title}</h3>
                     <p className="text-gray-300 mb-6">{product.description}</p>
+                    
+                    {/* USP et Mécanisme */}
+                    <div className="mb-6 space-y-4">
+                      <div className="bg-gray-800/50 backdrop-blur-sm p-4 rounded-lg border border-gray-700/50">
+                        <h4 className="text-button font-bold mb-2">Ce que tu obtiens</h4>
+                        <p className="text-white">{product.usp}</p>
+                      </div>
+                      <div className="bg-gray-800/50 backdrop-blur-sm p-4 rounded-lg border border-gray-700/50">
+                        <h4 className="text-button font-bold mb-2">Comment ça marche</h4>
+                        <p className="text-white">{product.mechanism}</p>
+                      </div>
+                    </div>
+
+                    {/* Bénéfices directs */}
                     <div className="mb-6">
-                      <div className="text-xs text-gray-400 mb-1">{product.priceLabel}</div>
-                      <div className="text-4xl font-bold">{product.price}</div>
+                      <h4 className="text-lg font-bold mb-3 text-button flex items-center">
+                        <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                        Bénéfices directs
+                      </h4>
+                      <ul className="space-y-3">
+                        {product.directBenefits.map((benefit, index) => (
+                          <li key={index} className="flex items-start bg-gray-800/30 p-3 rounded-lg">
+                            <svg className="w-5 h-5 text-button mt-1 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span className="text-sm">{benefit}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className="mb-6">
+                      <div className="text-xs text-gray-400 mb-1">{product.ctaText}</div>
                     </div>
                     
                     {/* Pour qui section */}
@@ -186,7 +244,7 @@ export default function CataloguePage() {
                       href={product.title === "STARTER" ? "/catalogue/starter" : product.title === "ACCÉLÉRATEUR" ? "/catalogue/accelerateur" : product.title === "SCALE" ? "/catalogue/scale" : `#${product.title.toLowerCase()}`}
                       className="group relative overflow-hidden"
                     >
-                      <span className="relative z-10">{product.ctaText}</span>
+                      <span className="relative z-10">Découvrir l'offre</span>
                       <div className="absolute inset-0 bg-gradient-to-r from-button/0 via-button/30 to-button/0 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
                     </Button>
                   </div>
@@ -635,7 +693,7 @@ export default function CataloguePage() {
               {
                 name: "Léon",
                 role: "Entrepreneur B2B",
-                title: "De 0 à 30k€/mois en 90 jours",
+                title: "De 0 à 2k€/mois de MRR en 3 semaines",
                 videoId: "K2YsABjkRiE",
                 timestamp: "42"
               }
