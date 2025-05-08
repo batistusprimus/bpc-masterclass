@@ -1,23 +1,20 @@
 import localFont from 'next/font/local';
 
 // Utilisation de polices système et web sûres
-export const anton = {
-  className: 'font-anton',
-  style: {
-    fontFamily: 'Anton, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-  },
-};
+export const anton = localFont({
+  src: '../public/fonts/Anton-Regular.woff2',
+  variable: '--font-anton',
+  display: 'swap',
+});
 
-export const archivo = {
-  className: 'font-archivo',
-  style: {
-    fontFamily: 'Archivo Black, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-  },
-};
+export const archivo = localFont({
+  src: '../public/fonts/ArchivoBlack-Regular.woff2',
+  variable: '--font-archivo',
+  display: 'swap',
+});
 
-export const montserrat = {
-  className: 'font-montserrat',
-  style: {
-    fontFamily: 'Montserrat, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-  },
-}; 
+export const montserrat = localFont({
+  src: '../public/fonts/Montserrat-Regular.woff2',
+  variable: '--font-montserrat',
+  display: 'swap',
+}); 
