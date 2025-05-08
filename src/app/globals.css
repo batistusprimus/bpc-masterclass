@@ -14,16 +14,16 @@
 body {
   background-color: #000000;
   color: #FFFFFF;
-  font-family: var(--font-montserrat), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--font-montserrat);
 }
 
 h1, h2, h3 {
-  font-family: var(--font-anton), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--font-anton);
   color: #FFF1DE;
 }
 
 h4, h5, h6 {
-  font-family: var(--font-archivo), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--font-archivo);
 }
 
 .btn {

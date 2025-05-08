@@ -1,20 +1,25 @@
-import localFont from 'next/font/local';
+import { Anton, Archivo_Black, Montserrat } from 'next/font/google';
 
 // Utilisation de polices système et web sûres
-export const anton = localFont({
-  src: '../public/fonts/Anton-Regular.woff2',
-  variable: '--font-anton',
+export const anton = Anton({
+  weight: '400',
+  subsets: ['latin'],
   display: 'swap',
+  preload: true,
+  fallback: ['system-ui', 'sans-serif'],
 });
 
-export const archivo = localFont({
-  src: '../public/fonts/ArchivoBlack-Regular.woff2',
-  variable: '--font-archivo',
+export const archivo = Archivo_Black({
+  weight: '400',
+  subsets: ['latin'],
   display: 'swap',
+  preload: true,
+  fallback: ['system-ui', 'sans-serif'],
 });
 
-export const montserrat = localFont({
-  src: '../public/fonts/Montserrat-Regular.woff2',
-  variable: '--font-montserrat',
+export const montserrat = Montserrat({
+  subsets: ['latin'],
   display: 'swap',
+  preload: true,
+  fallback: ['system-ui', 'sans-serif'],
 }); 
