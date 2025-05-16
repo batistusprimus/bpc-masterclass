@@ -7,6 +7,9 @@ interface OptinFormProps {
   subtitle?: string;
   buttonText?: string;
   className?: string;
+  defaultRevenue?: string;
+  businessType?: string;
+  mainGoal?: string;
 }
 
 const countryCodes = [
@@ -23,9 +26,19 @@ export default function OptinForm({
   subtitle = "Laisse-nous tes coordonnées et reçois ta roadmap dans les 24h",
   buttonText = "Je veux ma roadmap gratuite",
   className = "",
+  defaultRevenue = "",
+  businessType = "",
+  mainGoal = "",
 }: OptinFormProps) {
   const router = useRouter();
   const [selectedCountry, setSelectedCountry] = React.useState(countryCodes[0]);
+  const [selectedRevenue, setSelectedRevenue] = React.useState(defaultRevenue);
+
+  React.useEffect(() => {
+    if (defaultRevenue) {
+      setSelectedRevenue(defaultRevenue);
+    }
+  }, [defaultRevenue]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     console.log('Formulaire soumis !');
@@ -48,6 +61,8 @@ export default function OptinForm({
       email: formData.get('email'),
       phone: phoneNumber,
       business: formData.get('business'),
+      businessType: businessType,
+      mainGoal: mainGoal,
       source: 'roadmap_optin'
     };
 
@@ -185,36 +200,6 @@ export default function OptinForm({
             />
           </div>
           <p className="text-xs text-gray-400 mt-1">Format: XX XX XX XX XX</p>
-        </div>
-        
-        <div>
-          <label htmlFor="business" className="block text-sm font-medium mb-1 text-gray-300">Ton C.A Annuel</label>
-          <div className="relative">
-            <select
-              id="business"
-              name="business"
-              className="w-full px-3 py-2 md:px-4 md:py-3 bg-gray-700/80 border border-primary/30 rounded-md text-white text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-primary shadow-inner appearance-none"
-              required
-              style={{
-                fontSize: '16px',
-                lineHeight: '1.5'
-              }}
-            >
-              <option value="" disabled selected>Sélectionne ton C.A annuel</option>
-              <option value="0">0€ - Je démarre</option>
-              <option value="less-than-10k">Moins de 10k€</option>
-              <option value="10k-50k">10k€ - 50k€</option>
-              <option value="50k-100k">50k€ - 100k€</option>
-              <option value="100k-500k">100k€ - 500k€</option>
-              <option value="500k-1m">500k€ - 1M€</option>
-              <option value="1m-5m">1M€ - 5M€</option>
-            </select>
-            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-white">
-              <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
-              </svg>
-            </div>
-          </div>
         </div>
         
         <Button type="submit" fullWidth size="lg" onClick={handleButtonClick} className="text-sm md:text-base py-3">

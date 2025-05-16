@@ -22,11 +22,6 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToOptin = (e: React.MouseEvent) => {
-    e.preventDefault();
-    router.push('/#optin');
-  };
-
   return (
     <header 
       className="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-primary bg-opacity-90 backdrop-blur-md shadow-lg"
@@ -58,9 +53,8 @@ export default function Header() {
         <div className="flex items-center space-x-3 md:space-x-4">
           <div className="hidden md:flex">
             <Link 
-              href="/#optin" 
+              href="/roadmap" 
               className="btn text-sm lg:text-base"
-              onClick={scrollToOptin}
             >
               Obtenir ma Roadmap Personnalisée
             </Link>
@@ -129,12 +123,9 @@ export default function Header() {
           </Link>
           <div className="pt-4 px-4">
             <Link 
-              href="/#optin" 
+              href="/roadmap" 
               className="btn w-full text-center py-3"
-              onClick={(e) => {
-                scrollToOptin(e);
-                setIsMenuOpen(false);
-              }}
+              onClick={() => setIsMenuOpen(false)}
             >
               Obtenir ma Roadmap Personnalisée
             </Link>

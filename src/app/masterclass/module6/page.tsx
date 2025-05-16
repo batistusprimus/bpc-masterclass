@@ -578,12 +578,23 @@ function ExploreMode({ setActivePalierId, setViewMode }: {
   );
 }
 
-export default function Module25Page() {
+export default function Module6Page() {
   const [activePalierId, setActivePalierId] = useState<string | null>(null);
   const [viewMode, setViewMode] = useState<ViewMode>('explore');
   
   // Déterminer le contenu actif
   const activeContent = moduleContent.paliers?.find(p => p.id === activePalierId) || null;
+
+  // Récupérer l'ID du palier depuis le localStorage au chargement
+  useEffect(() => {
+    const storedPalierId = localStorage.getItem('selectedPalierId');
+    if (storedPalierId) {
+      setActivePalierId(storedPalierId);
+      setViewMode('focus');
+      // Nettoyer le localStorage après utilisation
+      localStorage.removeItem('selectedPalierId');
+    }
+  }, []);
 
   // Si aucun palier n'est sélectionné et qu'on est en mode focus, sélectionner le premier
   useEffect(() => {

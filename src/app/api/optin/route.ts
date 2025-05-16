@@ -33,7 +33,9 @@ export async function POST(request: Request) {
           phone: formattedPhone,
           tags: ['roadmap_request'],
           customField: {
-            business_revenue: data.business
+            business_revenue: data.business,
+            business_type: data.businessType,
+            main_goal: data.mainGoal
           }
         }
       })
