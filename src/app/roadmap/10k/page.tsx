@@ -240,6 +240,18 @@ const RoadmapTemplate = () => {
                       Le problème : t'as pas encore de système qui crée des RDV chaque semaine. Ce plan t'aide à construire une machine de vente artisanale, mais stable et prévisible.
                     </p>
                   </div>
+
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+                    <Link href="/contact" target="_blank" rel="noopener noreferrer">
+                      <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className={`${montserrat.className} bg-[#9F99EB] text-white px-8 sm:px-12 md:px-16 py-3 sm:py-4 md:py-5 rounded-full text-lg sm:text-xl md:text-2xl font-semibold hover:bg-[#8A84D9] transition-colors duration-300 shadow-[0_0_30px_rgba(159,153,235,0.3)] w-full sm:w-auto`}
+                      >
+                        Appel de diagnostic
+                      </motion.button>
+                    </Link>
+                  </div>
                 </div>
 
                 <div className="mt-8 md:mt-12 flex items-center gap-4 md:gap-6">
@@ -586,15 +598,26 @@ const RoadmapTemplate = () => {
                 <p className={`${montserrat.className} text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 md:mb-10 lg:mb-12 max-w-2xl mx-auto`}>
                   Rejoins-nous dès maintenant et commence ton parcours vers une vente reproductible
                 </p>
-                <Link href="/masterclass" target="_blank" rel="noopener noreferrer">
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className={`${montserrat.className} bg-[#9F99EB] text-white px-8 sm:px-12 md:px-16 py-3 sm:py-4 md:py-5 rounded-full text-lg sm:text-xl md:text-2xl font-semibold hover:bg-[#8A84D9] transition-colors duration-300 shadow-[0_0_30px_rgba(159,153,235,0.3)]`}
-                  >
-                    Découvrir la Masterclass
-                  </motion.button>
-                </Link>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Link href="/masterclass" target="_blank" rel="noopener noreferrer">
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className={`${montserrat.className} bg-[#9F99EB] text-white px-8 sm:px-12 md:px-16 py-3 sm:py-4 md:py-5 rounded-full text-lg sm:text-xl md:text-2xl font-semibold hover:bg-[#8A84D9] transition-colors duration-300 shadow-[0_0_30px_rgba(159,153,235,0.3)] w-full sm:w-auto`}
+                    >
+                      Découvrir la Masterclass
+                    </motion.button>
+                  </Link>
+                  <Link href="/catalogue" target="_blank" rel="noopener noreferrer">
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className={`${montserrat.className} bg-white text-[#9F99EB] px-8 sm:px-12 md:px-16 py-3 sm:py-4 md:py-5 rounded-full text-lg sm:text-xl md:text-2xl font-semibold hover:bg-gray-100 transition-colors duration-300 shadow-[0_0_30px_rgba(255,255,255,0.3)] w-full sm:w-auto`}
+                    >
+                      Voir le catalogue
+                    </motion.button>
+                  </Link>
+                </div>
               </div>
             </div>
           </motion.div>

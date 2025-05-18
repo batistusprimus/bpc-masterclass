@@ -230,14 +230,26 @@ const RoadmapTemplate = () => {
                 <div className="space-y-4 md:space-y-6">
                   <div className="bg-[#1a1a1a] rounded-xl md:rounded-2xl p-4 md:p-6 border border-white/5">
                     <p className={`${montserrat.className} text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 leading-relaxed`}>
-                      Tu sais closer. Tu délivres. T'as des résultats. Mais tout repose encore sur toi. Tu vends. Tu livres. Tu suis. Tu ajustes. T'as pas une entreprise. T'as une équipe de toi tout seul. Et ça bloque.
+                      Tu as une machine optimisée. Des leads qui arrivent. Des ventes qui se font. Mais tu veux plus. Plus de leads. Plus de ventes. Plus d'impact.
                     </p>
                   </div>
 
                   <div className="bg-[#1a1a1a] rounded-xl md:rounded-2xl p-4 md:p-6 border border-white/5">
                     <p className={`${montserrat.className} text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 leading-relaxed`}>
-                      Ce palier, c'est le switch : tu deviens chef d'orchestre, pas exécutant principal. Tu poses des systèmes. Tu recrutes. Tu standardises. Tu délègues. Tu pilotes.
+                      Ce palier, c'est le passage de l'optimisation à la scalabilité. Tu ne t'optimises plus : tu scales. Tu multiplies tes canaux, tes offres, tes équipes.
                     </p>
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+                    <Link href="/contact" target="_blank" rel="noopener noreferrer">
+                      <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className={`${montserrat.className} bg-[#9F99EB] text-white px-8 sm:px-12 md:px-16 py-3 sm:py-4 md:py-5 rounded-full text-lg sm:text-xl md:text-2xl font-semibold hover:bg-[#8A84D9] transition-colors duration-300 shadow-[0_0_30px_rgba(159,153,235,0.3)] w-full sm:w-auto`}
+                      >
+                        Appel de diagnostic
+                      </motion.button>
+                    </Link>
                   </div>
                 </div>
 
@@ -576,20 +588,31 @@ const RoadmapTemplate = () => {
 
               <div className="relative z-10 text-center">
                 <h2 className={`${anton.className} text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[#FFF1DE] mb-4 md:mb-6 lg:mb-8`}>
-                  Prêt à passer en mode business ?
+                  Prêt à scaler ton business ?
                 </h2>
                 <p className={`${montserrat.className} text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 md:mb-10 lg:mb-12 max-w-2xl mx-auto`}>
-                  À ce stade, le blocage n'est plus commercial. C'est structurel. Ce palier, tu le passes avec des process, une équipe et un pilotage.
+                  Tu ne gagnes pas ce jeu en en faisant plus. Tu gagnes en multipliant, en diversifiant, en scalant. Ce palier, tu le franchis en rendant ton business plus scalable.
                 </p>
-                <Link href="/masterclass" target="_blank" rel="noopener noreferrer">
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className={`${montserrat.className} bg-[#9F99EB] text-white px-8 sm:px-12 md:px-16 py-3 sm:py-4 md:py-5 rounded-full text-lg sm:text-xl md:text-2xl font-semibold hover:bg-[#8A84D9] transition-colors duration-300 shadow-[0_0_30px_rgba(159,153,235,0.3)]`}
-                  >
-                    Découvrir la Masterclass
-                  </motion.button>
-                </Link>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Link href="/roadmap" target="_blank" rel="noopener noreferrer">
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className={`${montserrat.className} bg-[#9F99EB] text-white px-8 sm:px-12 md:px-16 py-3 sm:py-4 md:py-5 rounded-full text-lg sm:text-xl md:text-2xl font-semibold hover:bg-[#8A84D9] transition-colors duration-300 shadow-[0_0_30px_rgba(159,153,235,0.3)] w-full sm:w-auto`}
+                    >
+                      Découvrir la Roadmap
+                    </motion.button>
+                  </Link>
+                  <Link href="/catalogue" target="_blank" rel="noopener noreferrer">
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className={`${montserrat.className} bg-white text-[#9F99EB] px-8 sm:px-12 md:px-16 py-3 sm:py-4 md:py-5 rounded-full text-lg sm:text-xl md:text-2xl font-semibold hover:bg-gray-100 transition-colors duration-300 shadow-[0_0_30px_rgba(255,255,255,0.3)] w-full sm:w-auto`}
+                    >
+                      Voir le catalogue
+                    </motion.button>
+                  </Link>
+                </div>
               </div>
             </div>
           </motion.div>

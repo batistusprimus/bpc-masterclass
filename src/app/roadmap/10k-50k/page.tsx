@@ -225,14 +225,26 @@ const Roadmap10k50k = () => {
                 <div className="space-y-4 md:space-y-6">
                   <div className="bg-[#1a1a1a] rounded-xl md:rounded-2xl p-4 md:p-6 border border-white/5">
                     <p className={`${montserrat.className} text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 leading-relaxed`}>
-                      Mais ce n'est pas encore stable. Un mois tu signes. Un autre, silence radio. Tu tournes avec ton instinct. T'as des skills, mais pas encore de machine.
+                      Tu as un système qui fonctionne. Des clients qui arrivent. Des ventes qui se font. Mais tu veux plus. Plus de clients. Plus de revenus. Plus d'impact.
                     </p>
                   </div>
 
                   <div className="bg-[#1a1a1a] rounded-xl md:rounded-2xl p-4 md:p-6 border border-white/5">
                     <p className={`${montserrat.className} text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 leading-relaxed`}>
-                      Ce palier, c'est la bascule vers l'attraction régulière. Tu ne veux plus chercher : tu veux que les leads arrivent. Tu poses donc les 3 piliers : offre structurée, tunnel solide, contenu intentionnel.
+                      Ce palier, c'est le passage de l'artisanat à l'industrialisation. Tu ne vends plus au feeling. Tu construis une machine de vente.
                     </p>
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+                    <Link href="/contact" target="_blank" rel="noopener noreferrer">
+                      <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className={`${montserrat.className} bg-[#9F99EB] text-white px-8 sm:px-12 md:px-16 py-3 sm:py-4 md:py-5 rounded-full text-lg sm:text-xl md:text-2xl font-semibold hover:bg-[#8A84D9] transition-colors duration-300 shadow-[0_0_30px_rgba(159,153,235,0.3)] w-full sm:w-auto`}
+                      >
+                        Appel de diagnostic
+                      </motion.button>
+                    </Link>
                   </div>
                 </div>
 
@@ -571,20 +583,31 @@ const Roadmap10k50k = () => {
 
               <div className="relative z-10 text-center">
                 <h2 className={`${anton.className} text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[#FFF1DE] mb-4 md:mb-6 lg:mb-8`}>
-                  Prêt à construire ta machine à leads ?
+                  Prêt à industrialiser ta vente ?
                 </h2>
                 <p className={`${montserrat.className} text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 md:mb-10 lg:mb-12 max-w-2xl mx-auto`}>
-                  Rejoins-nous dès maintenant et transforme ton business en une machine à générer du revenu
+                  Tu ne gagnes pas ce jeu en en faisant plus. Tu gagnes en automatisant, en systématisant, en industrialisant. Ce palier, tu le franchis en construisant une machine de vente.
                 </p>
-                <Link href="/masterclass" target="_blank" rel="noopener noreferrer">
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className={`${montserrat.className} bg-[#9F99EB] text-white px-8 sm:px-12 md:px-16 py-3 sm:py-4 md:py-5 rounded-full text-lg sm:text-xl md:text-2xl font-semibold hover:bg-[#8A84D9] transition-colors duration-300 shadow-[0_0_30px_rgba(159,153,235,0.3)]`}
-                  >
-                    Découvrir la Masterclass
-                  </motion.button>
-                </Link>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Link href="/roadmap" target="_blank" rel="noopener noreferrer">
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className={`${montserrat.className} bg-[#9F99EB] text-white px-8 sm:px-12 md:px-16 py-3 sm:py-4 md:py-5 rounded-full text-lg sm:text-xl md:text-2xl font-semibold hover:bg-[#8A84D9] transition-colors duration-300 shadow-[0_0_30px_rgba(159,153,235,0.3)] w-full sm:w-auto`}
+                    >
+                      Découvrir la Roadmap
+                    </motion.button>
+                  </Link>
+                  <Link href="/catalogue" target="_blank" rel="noopener noreferrer">
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className={`${montserrat.className} bg-white text-[#9F99EB] px-8 sm:px-12 md:px-16 py-3 sm:py-4 md:py-5 rounded-full text-lg sm:text-xl md:text-2xl font-semibold hover:bg-gray-100 transition-colors duration-300 shadow-[0_0_30px_rgba(255,255,255,0.3)] w-full sm:w-auto`}
+                    >
+                      Voir le catalogue
+                    </motion.button>
+                  </Link>
+                </div>
               </div>
             </div>
           </motion.div>

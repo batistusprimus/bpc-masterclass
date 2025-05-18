@@ -229,14 +229,26 @@ const Roadmap50k100k = () => {
                 <div className="space-y-4 md:space-y-6">
                   <div className="bg-[#1a1a1a] rounded-xl md:rounded-2xl p-4 md:p-6 border border-white/5">
                     <p className={`${montserrat.className} text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 leading-relaxed`}>
-                      Mais tu travailles encore au feeling. Tu closes quand t'es en forme. T'es visible quand t'as le temps. T'as des leads… quand t'y penses.
+                      Tu as une machine qui tourne. Des leads qui arrivent. Des ventes qui se font. Mais tu veux plus. Plus de leads. Plus de ventes. Plus d'impact.
                     </p>
                   </div>
 
                   <div className="bg-[#1a1a1a] rounded-xl md:rounded-2xl p-4 md:p-6 border border-white/5">
                     <p className={`${montserrat.className} text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 leading-relaxed`}>
-                      Ce palier est celui de la prévisibilité. Tu veux pouvoir dire : "Je sais combien je vais signer le mois prochain." Tu poses donc un vrai tunnel. Tu automatises. Tu te structures. Tu penses comme un CEO, pas comme un freelance bien payé.
+                      Ce palier, c'est le passage de l'industrialisation à l'optimisation. Tu ne construis plus ta machine : tu l'optimises. Tu la rends plus efficace, plus rentable, plus scalable.
                     </p>
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+                    <Link href="/contact" target="_blank" rel="noopener noreferrer">
+                      <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className={`${montserrat.className} bg-[#9F99EB] text-white px-8 sm:px-12 md:px-16 py-3 sm:py-4 md:py-5 rounded-full text-lg sm:text-xl md:text-2xl font-semibold hover:bg-[#8A84D9] transition-colors duration-300 shadow-[0_0_30px_rgba(159,153,235,0.3)] w-full sm:w-auto`}
+                      >
+                        Appel de diagnostic
+                      </motion.button>
+                    </Link>
                   </div>
                 </div>
 
@@ -575,20 +587,31 @@ const Roadmap50k100k = () => {
 
               <div className="relative z-10 text-center">
                 <h2 className={`${anton.className} text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[#FFF1DE] mb-4 md:mb-6 lg:mb-8`}>
-                  Prêt à construire ton système prévisible ?
+                  Prêt à optimiser ta machine ?
                 </h2>
                 <p className={`${montserrat.className} text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 md:mb-10 lg:mb-12 max-w-2xl mx-auto`}>
-                  Rejoins-nous dès maintenant et transforme ton business en une machine à générer du revenu
+                  Tu ne gagnes pas ce jeu en en faisant plus. Tu gagnes en optimisant, en automatisant, en scalant. Ce palier, tu le franchis en rendant ta machine plus efficace.
                 </p>
-                <Link href="/masterclass" target="_blank" rel="noopener noreferrer">
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className={`${montserrat.className} bg-[#9F99EB] text-white px-8 sm:px-12 md:px-16 py-3 sm:py-4 md:py-5 rounded-full text-lg sm:text-xl md:text-2xl font-semibold hover:bg-[#8A84D9] transition-colors duration-300 shadow-[0_0_30px_rgba(159,153,235,0.3)]`}
-                  >
-                    Découvrir la Masterclass
-                  </motion.button>
-                </Link>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Link href="/roadmap" target="_blank" rel="noopener noreferrer">
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className={`${montserrat.className} bg-[#9F99EB] text-white px-8 sm:px-12 md:px-16 py-3 sm:py-4 md:py-5 rounded-full text-lg sm:text-xl md:text-2xl font-semibold hover:bg-[#8A84D9] transition-colors duration-300 shadow-[0_0_30px_rgba(159,153,235,0.3)] w-full sm:w-auto`}
+                    >
+                      Découvrir la Roadmap
+                    </motion.button>
+                  </Link>
+                  <Link href="/catalogue" target="_blank" rel="noopener noreferrer">
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className={`${montserrat.className} bg-white text-[#9F99EB] px-8 sm:px-12 md:px-16 py-3 sm:py-4 md:py-5 rounded-full text-lg sm:text-xl md:text-2xl font-semibold hover:bg-gray-100 transition-colors duration-300 shadow-[0_0_30px_rgba(255,255,255,0.3)] w-full sm:w-auto`}
+                    >
+                      Voir le catalogue
+                    </motion.button>
+                  </Link>
+                </div>
               </div>
             </div>
           </motion.div>
