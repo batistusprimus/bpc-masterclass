@@ -351,9 +351,17 @@ export default function Home() {
                     Ne laisse pas passer cette opportunité d&apos;accélérer ta croissance. 
                     Rejoins notre masterclass gratuite dès aujourd&apos;hui.
                   </p>
-                  <Button href="/masterclass" size="lg" className="w-full px-8 py-4 text-lg">
-                    Accéder à la Masterclass
-                  </Button>
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <Button href="/masterclass" size="lg" className="w-full px-8 py-4 text-lg">
+                      Accéder à la Masterclass
+                    </Button>
+                    <Link
+                      href="/contact"
+                      className="btn-outline w-full px-8 py-4 text-lg text-center"
+                    >
+                      Réserver un appel de diagnostic
+                    </Link>
+                  </div>
                   <p className="text-sm text-gray-400">
                     100% gratuit • Accès immédiat • Sans engagement
                   </p>

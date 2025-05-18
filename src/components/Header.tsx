@@ -36,11 +36,17 @@ export default function Header() {
           <Link href="/" className="text-contrast hover:text-title transition-colors text-sm lg:text-base">
             Accueil
           </Link>
-          <Link href="/masterclass" className="text-contrast hover:text-title transition-colors text-sm lg:text-base">
-            Masterclass
+          <Link href="/masterclass" className="text-contrast hover:text-title transition-colors text-sm lg:text-base flex items-center gap-2 group">
+            <span>Masterclass</span>
+            <span className="px-2 py-0.5 text-xs font-medium rounded-full bg-button/10 text-button border border-button/20 group-hover:bg-button/20 group-hover:border-button/30 transition-all duration-300">
+              Gratuit
+            </span>
           </Link>
           <Link href="/catalogue" className="text-contrast hover:text-title transition-colors text-sm lg:text-base">
             Catalogue
+          </Link>
+          <Link href="/contact" className="text-contrast hover:text-title transition-colors text-sm lg:text-base">
+            Diagnostic B2B Gratuit
           </Link>
           <Link href="/media" className="text-contrast hover:text-title transition-colors text-sm lg:text-base">
             Media
@@ -95,10 +101,13 @@ export default function Header() {
           </Link>
           <Link 
             href="/masterclass" 
-            className="text-contrast hover:text-title transition-colors py-3 px-4 hover:bg-white/5 rounded-lg"
+            className="text-contrast hover:text-title transition-colors py-3 px-4 flex items-center gap-2 group"
             onClick={() => setIsMenuOpen(false)}
           >
-            Masterclass
+            <span>Masterclass</span>
+            <span className="px-2 py-0.5 text-xs font-medium rounded-full bg-button/10 text-button border border-button/20 group-hover:bg-button/20 group-hover:border-button/30 transition-all duration-300">
+              Gratuit
+            </span>
           </Link>
           <Link 
             href="/catalogue" 
@@ -106,6 +115,13 @@ export default function Header() {
             onClick={() => setIsMenuOpen(false)}
           >
             Catalogue
+          </Link>
+          <Link 
+            href="/contact" 
+            className="text-contrast hover:text-title transition-colors py-3 px-4 hover:bg-white/5 rounded-lg"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            Diagnostic B2B Gratuit
           </Link>
           <Link 
             href="/media" 

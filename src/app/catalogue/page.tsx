@@ -947,7 +947,7 @@ export default function CataloguePage() {
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-block bg-button/20 backdrop-blur-sm px-6 py-2 rounded-full mb-6 border border-button/30">
               <p className="text-sm md:text-base font-medium">
-                Plus de 200 entrepreneurs B2B accompagnés
+                Passe à l'action maintenant
               </p>
             </div>
             
@@ -959,32 +959,19 @@ export default function CataloguePage() {
               Que tu commences avec STARTER ou que tu sois prêt pour SCALE, nous avons la solution adaptée à ton niveau et à tes objectifs.
             </p>
             
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-4 md:gap-6 mb-8 md:mb-10">
-              <Button href="#" size="lg" className="w-full sm:w-auto text-lg px-8 py-4 group relative overflow-hidden">
-                <span className="relative z-10">Choisir mon programme</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-button/0 via-button/30 to-button/0 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
-              </Button>
-              <Link href="https://app.iclosed.io/e/baptistepiocelle/diagnostic-b2b" target="_blank" rel="noopener noreferrer">
-                <Button variant="outline" size="lg" className="w-full sm:w-auto text-lg px-8 py-4 group relative overflow-hidden">
-                  <span className="relative z-10">Prendre RDV pour un diagnostic</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-gray-800/0 via-gray-800/30 to-gray-800/0 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
-                </Button>
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-4 md:gap-6">
+              <Link
+                href="/catalogue/starter"
+                className="btn text-lg px-8 py-4"
+              >
+                Découvrir STARTER
               </Link>
-            </div>
-
-            <div className="grid grid-cols-3 gap-4 md:gap-8 max-w-3xl mx-auto">
-              <div className="bg-gray-900/50 backdrop-blur-sm rounded-lg p-6 text-center transform hover:scale-105 transition-transform duration-300">
-                <p className="text-2xl md:text-3xl font-bold text-button mb-2">200+</p>
-                <p className="text-sm text-gray-400">Clients satisfaits</p>
-              </div>
-              <div className="bg-gray-900/50 backdrop-blur-sm rounded-lg p-6 text-center transform hover:scale-105 transition-transform duration-300">
-                <p className="text-2xl md:text-3xl font-bold text-button mb-2">95%</p>
-                <p className="text-sm text-gray-400">Taux de satisfaction</p>
-              </div>
-              <div className="bg-gray-900/50 backdrop-blur-sm rounded-lg p-6 text-center transform hover:scale-105 transition-transform duration-300">
-                <p className="text-2xl md:text-3xl font-bold text-button mb-2">24h</p>
-                <p className="text-sm text-gray-400">Accès immédiat</p>
-              </div>
+              <Link
+                href="/contact"
+                className="btn-outline text-lg px-8 py-4"
+              >
+                Réserver un appel de diagnostic
+              </Link>
             </div>
           </div>
         </div>

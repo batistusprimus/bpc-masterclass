@@ -48,15 +48,15 @@ export default function BpcGroupPage() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-button/10 rounded-full blur-[100px] opacity-30" />
         
         <div className="container-custom relative">
-          <div className="grid lg:grid-cols-2 gap-2 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 items-start overflow-hidden">
             <motion.div 
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="relative"
+              className="relative mb-8 lg:mb-0"
             >
-              <div className="relative aspect-[4/5] w-full max-w-[500px] mx-auto lg:mr-[-25%] lg:ml-[25%]">
+              <div className="relative aspect-[4/5] w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl mx-auto min-h-[300px]">
                 <Image
                   src="/93A62779-936C-436F-9F09-E08260E57209.JPG"
                   alt="Baptiste Piocelle - Fondateur de BPC GROUP"
@@ -74,7 +74,7 @@ export default function BpcGroupPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="space-y-6 lg:pl-6"
+              className="space-y-6 lg:pl-6 min-w-0"
             >
               <h2 className="text-4xl lg:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-300">Notre Histoire</h2>
               

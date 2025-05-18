@@ -3060,6 +3060,7 @@ export default function MasterclassPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
+            className="flex flex-col items-center gap-6"
           >
             <AssistantChat />
           </motion.div>
@@ -3128,6 +3129,49 @@ export default function MasterclassPage() {
           />
         )}
       </div>
+
+      {/* Section finale avec CTA */}
+      <section className="relative py-20 md:py-32 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-button/20 to-primary">
+          <div className="absolute inset-0 opacity-10" style={{
+            backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(255,255,255,0.15) 1px, transparent 0)',
+            backgroundSize: '32px 32px'
+          }}></div>
+        </div>
+
+        <div className="container-custom relative z-10 px-4 md:px-0">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="inline-block bg-button/20 backdrop-blur-sm px-6 py-2 rounded-full mb-6 border border-button/30">
+              <p className="text-sm md:text-base font-medium">
+                Passe à l'action maintenant
+              </p>
+            </div>
+            
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 md:mb-8 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+              Prêt à transformer ton business B2B ?
+            </h2>
+            
+            <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-8 md:mb-10">
+              Commence par suivre la masterclass gratuite ou réserve un appel de diagnostic pour un accompagnement personnalisé.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-4 md:gap-6">
+              <Link
+                href="/masterclass?viewMode=explore"
+                className="btn text-lg px-8 py-4"
+              >
+                Accéder à la Masterclass
+              </Link>
+              <Link
+                href="/contact"
+                className="btn-outline text-lg px-8 py-4"
+              >
+                Réserver un appel de diagnostic
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 } 
