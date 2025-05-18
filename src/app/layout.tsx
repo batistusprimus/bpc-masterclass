@@ -30,6 +30,7 @@ export default function RootLayout({
   return (
     <html lang="fr" className={`${anton.variable} ${archivo.variable} ${montserrat.variable}`}>
       <head>
+        <meta property="og:image" content="/5.png" />
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=G-TD1JS07QVN`}
           strategy="afterInteractive"
