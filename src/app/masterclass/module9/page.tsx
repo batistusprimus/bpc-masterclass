@@ -908,7 +908,7 @@ function ExploreMode({ setActivePalierId, setViewMode }: {
   return (
     <div className="min-h-screen bg-background">
       {/* En-tête */}
-      <div className="sticky top-0 z-10 bg-background/80 backdrop-blur-sm border-b border-border p-4">
+      <div className="sticky top-0 z-10 bg-surfaceDark border-b border-border p-4">
         <div className="container mx-auto flex items-center justify-between">
           <Link 
             href="/masterclass"
@@ -923,41 +923,62 @@ function ExploreMode({ setActivePalierId, setViewMode }: {
       {/* Contenu */}
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-4xl mx-auto">
-          {/* Module Overview Card */}
-          <RoadmapCard
-            title="Roadmap personnalisée"
-            description="Obtenir ma roadmap personnalisée pour aller plus vite dans mon business B2B et atteindre mes objectifs plus rapidement."
-            buttonText="Obtenir ma roadmap"
-            buttonHref="/roadmap"
-            className="mb-8"
-          />
+          {/* Roadmap Card */}
+          <div className="bg-surfaceMedium rounded-2xl p-8 border border-border mb-8" style={{ borderColor: COLORS.primary + '40' }}>
+            <div className="flex items-center gap-3 mb-4">
+              <div className="p-2 rounded-lg" style={{ backgroundColor: COLORS.primary + '20' }}>
+                <svg className="w-6 h-6" style={{ color: COLORS.primary }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                </svg>
+              </div>
+              <h2 className="text-2xl font-bold" style={{ color: COLORS.primary }}>
+                Roadmap personnalisée
+              </h2>
+            </div>
+            <p className="text-textSecondary mb-6">
+              Obtenir ma roadmap personnalisée pour aller plus vite dans mon business B2B et atteindre mes objectifs plus rapidement.
+            </p>
+            <Link
+              href="/roadmap"
+              className="inline-flex items-center justify-center px-6 py-3 rounded-lg transition-colors"
+              style={{ 
+                backgroundColor: COLORS.primary,
+                color: '#FFFFFF'
+              }}
+            >
+              Obtenir ma roadmap
+              <svg className="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </Link>
+          </div>
 
-          <div className="bg-surfaceMedium/50 backdrop-blur-sm rounded-2xl p-8 border border-white/5 shadow-2xl mb-8">
-            <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300 mb-4">
+          {/* Module Overview Card */}
+          <div className="bg-surfaceMedium rounded-2xl p-8 border border-border mb-8">
+            <h1 className="text-4xl font-bold text-white mb-4">
               {moduleContent.icon} {moduleContent.title}
             </h1>
-            <p className="text-gray-300 text-lg leading-relaxed mb-8">
+            <p className="text-textSecondary text-lg leading-relaxed mb-8">
               {moduleContent.description}
             </p>
 
-            {/* Liste des paliers avec style distinctif */}
-            <div className="space-y-8">
+            {/* Liste des paliers */}
+            <div className="grid gap-4">
               {moduleContent.paliers?.map((palier) => (
                 <motion.button
                   key={palier.id}
-                  className="w-full text-left p-6 bg-surfaceLight/30 backdrop-blur-sm rounded-xl border border-white/5 shadow-lg hover:bg-surfaceLight/50 transition-all duration-200 group"
+                  className="w-full text-left p-6 bg-surfaceLight rounded-xl border border-border hover:bg-surfaceMedium transition-colors"
                   onClick={() => {
                     setActivePalierId(palier.id);
                     setViewMode('focus');
                     scrollToTop();
                   }}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                  whileHover={{ scale: 1.01 }}
+                  whileTap={{ scale: 0.99 }}
                 >
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 rounded-full bg-primary/50 group-hover:bg-primary transition-colors"></div>
-                    <h3 className="text-xl font-semibold text-white">{palier.title}</h3>
-                  </div>
+                  <h3 className="text-xl font-semibold text-white">
+                    {palier.title}
+                  </h3>
                 </motion.button>
               ))}
             </div>
@@ -965,18 +986,29 @@ function ExploreMode({ setActivePalierId, setViewMode }: {
 
           {/* Workbook */}
           {moduleContent.workbookUrl && (
-            <div className="bg-surfaceMedium/50 backdrop-blur-sm rounded-2xl p-8 border border-white/5 shadow-2xl">
-              <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300 mb-4">
-                Workbook du module
-              </h2>
-              <p className="text-gray-300 mb-6">
+            <div className="bg-surfaceMedium rounded-2xl p-8 border border-border" style={{ borderColor: COLORS.secondary + '40' }}>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="p-2 rounded-lg" style={{ backgroundColor: COLORS.secondary + '20' }}>
+                  <svg className="w-6 h-6" style={{ color: COLORS.secondary }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                  </svg>
+                </div>
+                <h2 className="text-2xl font-bold" style={{ color: COLORS.secondary }}>
+                  Workbook du module
+                </h2>
+              </div>
+              <p className="text-textSecondary mb-6">
                 Télécharge le workbook pour suivre ta progression et mettre en pratique les concepts appris.
               </p>
               <a
                 href={moduleContent.workbookUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-6 py-3 bg-primary text-white rounded-lg hover:bg-opacity-90 transition-colors shadow-lg"
+                className="inline-flex items-center justify-center px-6 py-3 rounded-lg transition-colors"
+                style={{ 
+                  backgroundColor: COLORS.secondary,
+                  color: '#000000'
+                }}
               >
                 <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
