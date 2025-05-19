@@ -1,932 +1,1274 @@
+'use client';
+
+import { useState, useEffect } from 'react';
 import Button from "@/components/Button";
 import Image from "next/image";
 import LogoMarquee from "@/components/LogoMarquee";
 import Link from "next/link";
-import Script from "next/script";
+import { motion } from 'framer-motion';
+import { Anton, Archivo_Black, Montserrat } from 'next/font/google';
+import Testimonials from "@/components/Testimonials";
+
+const anton = Anton({ 
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-anton',
+});
+
+const archivoBlack = Archivo_Black({ 
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-archivo-black',
+});
+
+const montserrat = Montserrat({ 
+  subsets: ['latin'],
+  variable: '--font-montserrat',
+});
+
+// Ajouter l'interface pour le type Product
+interface Product {
+  title: string;
+  badge: string;
+  mrr: string;
+  problem: string;
+  symptoms: string[];
+  consequences: string[];
+  solution: {
+    title: string;
+    description: string;
+    features: string[];
+  };
+  ctaText: string;
+  popular: boolean;
+  price: string;
+}
 
 export default function CataloguePage() {
+  const [showBackToTop, setShowBackToTop] = useState(false);
+  const [activeSolution, setActiveSolution] = useState<string | null>(null);
+  const [progress, setProgress] = useState(0);
+  const [availableSlots, setAvailableSlots] = useState(3);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+
+  // Gestion du scroll pour le bouton "Retour en haut" et la barre de progression
+  useEffect(() => {
+    const handleScroll = () => {
+      // Gestion du bouton retour en haut
+      setShowBackToTop(window.scrollY > 500);
+
+      // Gestion de la barre de progression
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const currentProgress = (window.scrollY / totalHeight) * 100;
+      setProgress(Math.min(100, currentProgress));
+
+      // Gestion de la solution active
+      const solutions = ['starter', 'scale', 'incubateur'];
+      for (const solution of solutions) {
+        const element = document.getElementById(solution);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= 100 && rect.bottom >= 100) {
+            setActiveSolution(solution);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Fonction pour scroller vers une solution spécifique
+  const scrollToSolution = (solutionId: string) => {
+    const element = document.getElementById(solutionId);
+    if (element) {
+      const offset = 100; // Ajustement pour le filtre sticky
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+      setActiveSolution(solutionId);
+    }
+  };
+
   return (
-    <>
+    <div 
+      className="min-h-screen bg-primary text-contrast font-montserrat"
+      style={{
+        fontFamily: `var(--font-montserrat), var(--font-archivo-black), var(--font-anton)`
+      }}
+    >
+      {/* Barre de progression */}
+      <div className="fixed top-0 left-0 right-0 z-50 h-1 bg-white/10">
+        <div 
+          className="h-full bg-button transition-all duration-300"
+          style={{ width: `${progress}%` }}
+        ></div>
+      </div>
+
       {/* Hero Section */}
-      <section className="relative pt-20 md:pt-32 pb-16 md:pb-20 overflow-hidden">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 bg-gradient-to-b from-primary to-gray-900">
-          <div className="absolute inset-0 opacity-5" style={{
-            backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(255,255,255,0.15) 1px, transparent 0)',
-            backgroundSize: '24px 24px'
-          }}></div>
+      <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        {/* Background amélioré */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] opacity-5 animate-pulse"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-button/20 via-transparent to-graph/20"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.1),transparent_70%)]"></div>
         </div>
 
-        <div className="container-custom relative z-10 px-4 md:px-0">
-          <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-block bg-button/20 backdrop-blur-sm px-6 py-2 rounded-full mb-6 border border-button/30">
-              <p className="text-sm md:text-base font-medium">
+        <div className="container-custom relative z-10 px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            {/* Client Avatars Section */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="relative mb-8"
+            >
+              <div className="flex items-center justify-center gap-2 mb-4">
+                <div className="relative flex -space-x-4">
+                  {[
+                    { name: "Samantha Piat", avatar: "/Samantha%20Piat.jpeg" },
+                    { name: "Stevy", avatar: "/1734882654773.jpeg" },
+                    { name: "Jean Michel Ly", avatar: "/jean_michel_ly_v2.png" },
+                    { name: "Joris Genty", avatar: "/Joris%20Genty.jpeg" },
+                    { name: "Giacomo Genna", avatar: "/Giacomo%20Genna.jpeg" },
+                    { name: "Floriane Bobée", avatar: "/Floriane%20Bob%C3%A9e.jpeg" },
+                    { name: "Caroline Rousset", avatar: "/Caroline%20rousset.jpg" },
+                    { name: "Axelle Guer", avatar: "/Axelle%20Guer%20.jpeg" }
+                  ].map((client, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.3, delay: index * 0.1 }}
+                      className="relative w-10 h-10 md:w-12 md:h-12 rounded-full border-2 border-white/10 overflow-hidden bg-white/5 backdrop-blur-sm flex flex-col items-center justify-center"
+                      style={{ minWidth: 40, minHeight: 40 }}
+                    >
+                      <Image
+                        src={client.avatar}
+                        alt={client.name}
+                        width={48}
+                        height={48}
+                        className="object-cover rounded-full"
+                        unoptimized
+                      />
+                    </motion.div>
+                  ))}
+                  <div className="relative w-10 h-10 md:w-12 md:h-12 rounded-full border-2 border-white/10 bg-white/5 backdrop-blur-sm flex items-center justify-center">
+                    <span className="text-white text-sm font-medium">+200</span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Badge animé */}
+            <div className="inline-block bg-gradient-to-r from-button/20 to-button/10 backdrop-blur-sm px-6 py-2 rounded-full mb-8 border border-button/30 animate-fade-in shadow-lg shadow-button/10 hover:shadow-xl hover:shadow-button/20 transition-all duration-300 transform hover:scale-105">
+              <p className="text-sm md:text-base font-medium bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                 Solutions B2B testées et approuvées
               </p>
             </div>
-            <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-              Nos solutions
+
+            {/* Titre principal avec effet de gradient */}
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-title mb-8 bg-gradient-to-r from-white via-button to-white bg-clip-text text-transparent animate-fade-in bg-[length:200%_auto] animate-gradient">
+              Tu veux scaler ton business B2B ?
             </h1>
-            <p className="text-lg md:text-xl text-gray-300 mb-6 md:mb-8">
-              Des programmes conçus pour accélérer ta croissance B2B et maximiser tes résultats.
+            
+            {/* Sous-titre avec effet de flou */}
+            <p className="text-xl md:text-2xl text-gray-300 mb-12 animate-fade-in-delay-1 max-w-2xl mx-auto backdrop-blur-sm bg-black/20 p-4 rounded-xl border border-white/5">
+              +5.000 leads B2B qualifiés générés pour nos clients en 2024
             </p>
-          </div>
-        </div>
-      </section>
 
-      {/* Direct Solutions Section */}
-      <section className="section bg-primary py-12 md:py-16 px-4 md:px-0">
-        <div className="container-custom">
-          <div className="text-center mb-10 md:mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl mb-3 md:mb-4 font-title">Solutions directes</h2>
-            <p className="text-gray-300 max-w-2xl mx-auto">
-              Nos formations et programmes clés en main, disponibles immédiatement pour aller plus vite dans ta croissance.
-            </p>
-          </div>
-          
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {[
-              {
-                title: "STARTER",
-                badge: "AUTONOMIE",
-                mrr: "0€ → 10k€ MRR",
-                description: "La méthode BPC, accessible en 24h. Tous les outils pour construire ton système de vente B2B, sans te perdre dans les vidéos YouTube ou les formations bullshit.",
-                usp: "Système de vente B2B clé en main en 7 jours",
-                mechanism: "Templates + Méthode = Exécution rapide",
-                directBenefits: [
-                  "Un tunnel de vente prêt à l'emploi",
-                  "Des scripts de vente testés et optimisés",
-                  "Un CRM Notion pour suivre tes prospects",
-                  "Une roadmap d'implémentation jour par jour"
-                ],
-                features: [
-                  "Accès à tous les modules vidéo de la Masterclass",
-                  "50+ templates Notion & GHL : offre, tunnel, scripts, CRM, roadmap",
-                  "Workbook PDF complet avec exercices + checklist d'implémentation",
-                  "Accès à vie aux mises à jour + accès communautaire Discord",
-                  "Mini-audit de positionnement automatique",
-                ],
-                ctaText: "Commencer maintenant",
-                popular: false,
-                audience: "Les solopreneurs débrouillards qui veulent faire eux-mêmes, ceux qui veulent valider la méthode avant d'investir plus, ceux qui préfèrent avancer à leur rythme.",
-                benefits: "Tu sais quoi vendre, à qui, comment, et sur quel canal. Tu gagnes des mois d'errance avec un système déjà structuré. Tu peux lancer ton tunnel en 7 jours chrono.",
-                result: "Tu as une version opérationnelle de ton offre, ton positionnement, et ton système d'acquisition. Tu peux tout lancer en autonomie, avec une direction claire et un plan solide."
-              },
-              {
-                title: "ACCÉLÉRATEUR",
-                badge: "ACCOMPAGNEMENT",
-                mrr: "10k€ → 30k€ MRR",
-                description: "Tu veux qu'on t'aide à bien appliquer la méthode ? On co-construit ton système avec toi : offre, tunnel, contenus, tout est challengé et validé par un expert BPC.",
-                usp: "Validation de ton système par un expert BPC",
-                mechanism: "Co-construction + Feedback = Résultats garantis",
-                directBenefits: [
-                  "Ton offre validée et optimisée",
-                  "Ton tunnel de vente challengé et amélioré",
-                  "Tes contenus relus et optimisés",
-                  "Ton système d'acquisition validé"
-                ],
-                features: [
-                  "Tout le contenu du Starter",
-                  "Audit business complet (offre, cible, canal, positionnement)",
-                  "4 sessions 1:1 avec un expert BPC (1h/séance)",
-                  "Co-création de ton offre avec retours précis",
-                  "Relecture et correction de ta landing page et séquences mails",
-                ],
-                ctaText: "Rejoindre le programme",
-                popular: true,
-                audience: "Les indépendants sérieux qui veulent exécuter rapidement, ceux qui veulent du feedback et des réponses, ceux qui ont déjà tenté des trucs sans résultat stable.",
-                benefits: "Tu valides ton offre avec nous en 7 jours. Tu écris moins, tu testes plus, tu signes plus vite. Tu gagnes des mois de test avec un retour stratégique sur chaque étape.",
-                result: "Tu passes de l'idée floue à un système qui vend. Tu clarifies tout, tu construis avec méthode, et tu démarres ta prospection sur des rails."
-              },
-              {
-                title: "SCALE",
-                badge: "DÉLÉGATION",
-                mrr: "30k€ → 80k€ MRR",
-                description: "Tu n'as pas le temps ? Tu veux que ce soit fait pour toi, par une équipe qui l'a déjà fait pour des dizaines de clients B2B à 6 ou 7 chiffres ? On te livre un système d'acquisition prêt à scaler.",
-                usp: "Système d'acquisition clé en main",
-                mechanism: "Délégation + Expertise = Scaling immédiat",
-                directBenefits: [
-                  "Ton système d'acquisition complet",
-                  "Tes contenus créés et optimisés",
-                  "Tes vidéos tournées et montées",
-                  "Ton équipe recrutée et formée"
-                ],
-                features: [
-                  "Tout le contenu du Starter + Accélérateur",
-                  "Workshop stratégique de 2h (vision, positionnement, objectif)",
-                  "Création complète de ton offre et de ton tunnel",
-                  "Pack de 20 posts LinkedIn + roadmap de contenu",
-                  "3 vidéos tournées et scriptées (VSL, autorité, close)",
-                ],
-                ctaText: "Passer à l'échelle",
-                popular: false,
-                audience: "Les solopreneurs qui veulent s'extraire de l'opérationnel, ceux qui ont un business qui tourne et veulent passer à l'échelle, ceux qui veulent déployer un vrai tunnel de vente pro.",
-                benefits: "Tu restes focus client, nous on exécute pour toi. Tu récupères un système clé en main testé et validé. Tu peux scaler dès le mois suivant, sans guesswork.",
-                result: "Ton système tourne. Tu sais d'où viennent tes leads, ce qu'ils lisent, pourquoi ils achètent. Tu scales proprement, sans y passer tes soirées."
-              },
-            ].map((product, index) => (
-              <div 
-                key={index} 
-                className={`rounded-lg overflow-hidden transition-all duration-300 hover:transform hover:scale-105 hover:shadow-2xl hover:shadow-button/20 flex flex-col ${
-                  product.popular ? 'border-2 border-button ring-4 ring-button ring-opacity-20' : 'border border-gray-800'
-                }`}
+            {/* Témoignage amélioré */}
+            <div className="flex flex-col md:flex-row items-center justify-center gap-8 mb-12 animate-fade-in-delay-2">
+              <div className="bg-gradient-to-br from-black/40 to-black/20 backdrop-blur-md rounded-2xl p-6 border border-white/10 hover:border-button/30 transition-all duration-300 w-full md:w-auto transform hover:scale-[1.02] shadow-xl shadow-black/20">
+                <div className="flex items-center gap-4">
+                  <div className="w-16 h-16 rounded-full overflow-hidden relative flex-shrink-0 ring-2 ring-button/20">
+                    <Image
+                      src="/Yann Grosjean.jpeg"
+                      alt="Yann Grosjean"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="text-left">
+                    <p className="text-lg md:text-xl font-bold mb-1 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                      "+20 000€ générés dès le premier lancement"
+                    </p>
+                    <div className="flex items-center gap-2">
+                      <p className="text-sm text-gray-300">Yann Grosjean</p>
+                      <span className="text-button">•</span>
+                      <p className="text-sm text-gray-400">CEO de Lugus</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* CTA Principal amélioré */}
+            <div className="animate-fade-in-delay-3">
+              <Link 
+                href="/contact" 
+                className="group relative inline-flex items-center justify-center px-12 py-5 text-lg md:text-xl font-medium text-white bg-gradient-to-r from-button to-button/80 rounded-xl shadow-lg shadow-button/20 hover:shadow-xl hover:shadow-button/30 transition-all duration-300 hover:scale-105 overflow-hidden"
               >
-                {product.popular && (
-                  <div className="bg-button text-primary text-center py-2 font-bold">
-                    LE PLUS POPULAIRE
-                  </div>
-                )}
-                <div className="p-8 bg-gray-900/80 backdrop-blur-sm flex-grow flex flex-col h-full">
-                  <div>
-                    <div className="flex flex-col gap-2 mb-4">
-                      <div className="inline-block bg-button/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-bold border border-button/30 shadow-lg shadow-button/10">
-                        {product.badge}
-                      </div>
-                      <div className="inline-block bg-gray-800/50 backdrop-blur-sm px-4 py-2 rounded-lg text-button font-bold text-lg border border-gray-700/50 shadow-lg shadow-gray-900/20">
-                        {product.mrr}
-                      </div>
-                    </div>
-                    <h3 className="text-2xl font-bold mb-2">{product.title}</h3>
-                    <p className="text-gray-300 mb-6">{product.description}</p>
-                    
-                    {/* USP et Mécanisme */}
-                    <div className="mb-6 space-y-4">
-                      <div className="bg-gray-800/50 backdrop-blur-sm p-4 rounded-lg border border-gray-700/50">
-                        <h4 className="text-button font-bold mb-2">Ce que tu obtiens</h4>
-                        <p className="text-white">{product.usp}</p>
-                      </div>
-                      <div className="bg-gray-800/50 backdrop-blur-sm p-4 rounded-lg border border-gray-700/50">
-                        <h4 className="text-button font-bold mb-2">Comment ça marche</h4>
-                        <p className="text-white">{product.mechanism}</p>
-                      </div>
-                    </div>
-
-                    {/* Bénéfices directs */}
-                    <div className="mb-6">
-                      <h4 className="text-lg font-bold mb-3 text-button flex items-center">
-                        <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                        </svg>
-                        Bénéfices directs
-                      </h4>
-                      <ul className="space-y-3">
-                        {product.directBenefits.map((benefit, index) => (
-                          <li key={index} className="flex items-start bg-gray-800/30 p-3 rounded-lg">
-                            <svg className="w-5 h-5 text-button mt-1 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                            </svg>
-                            <span className="text-sm">{benefit}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div className="mb-6">
-                      <div className="text-xs text-gray-400 mb-1">{product.ctaText}</div>
-                    </div>
-                    
-                    {/* Pour qui section */}
-                    <div className="mb-6">
-                      <h4 className="text-lg font-bold mb-2 text-button flex items-center">
-                        <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                        </svg>
-                        Pour qui ?
-                      </h4>
-                      <p className="text-gray-300 text-sm">{product.audience}</p>
-                    </div>
-                    
-                    {/* Bénéfices section */}
-                    <div className="mb-6">
-                      <h4 className="text-lg font-bold mb-2 text-button flex items-center">
-                        <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                        </svg>
-                        Bénéfices
-                      </h4>
-                      <p className="text-gray-300 text-sm">{product.benefits}</p>
-                    </div>
-                    
-                    {/* Ce que tu reçois */}
-                    <h4 className="text-lg font-bold mb-3 text-button flex items-center">
-                      <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                      </svg>
-                      Ce que tu reçois
-                    </h4>
-                    <ul className="space-y-3 mb-8">
-                      {product.features.map((feature, featureIndex) => (
-                        <li key={featureIndex} className="flex items-start">
-                          <svg className="w-5 h-5 text-button mt-1 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                          </svg>
-                          <span className="text-sm">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    
-                    {/* Résultat attendu */}
-                    <div className="mb-8">
-                      <h4 className="text-lg font-bold mb-2 text-button flex items-center">
-                        <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        Résultat attendu
-                      </h4>
-                      <p className="text-gray-300 text-sm">{product.result}</p>
-                    </div>
-                  </div>
-                  
-                  <div className="mt-auto pt-4">
-                    <Button 
-                      variant={product.popular ? "primary" : "outline"} 
-                      fullWidth
-                      href={product.title === "STARTER" ? "/catalogue/starter" : product.title === "ACCÉLÉRATEUR" ? "/catalogue/accelerateur" : product.title === "SCALE" ? "/catalogue/scale" : `#${product.title.toLowerCase()}`}
-                      className="group relative overflow-hidden"
-                    >
-                      <span className="relative z-10">Découvrir l'offre</span>
-                      <div className="absolute inset-0 bg-gradient-to-r from-button/0 via-button/30 to-button/0 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
-                    </Button>
-                  </div>
-                </div>
+                <span className="relative z-10">Réserver un appel de diagnostic gratuit</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-button/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              </Link>
+              <div className="mt-4 flex items-center justify-center text-sm text-gray-400">
+                <span className="flex items-center gap-1">
+                  <span className="w-2 h-2 rounded-full bg-button animate-pulse"></span>
+                  {availableSlots} créneaux disponibles
+                </span>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
+            </div>
 
-      {/* Client Logos Section */}
-      <section className="section bg-gray-900 py-12 md:py-16 px-4 md:px-0">
-        <div className="container-custom">
-          <div className="text-center mb-6 md:mb-8">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl mb-3 md:mb-4 font-title">Ils nous font confiance</h2>
-            <p className="text-gray-300 max-w-2xl mx-auto">
-              Des entrepreneurs B2B qui ont transformé leur activité grâce à nos programmes
-            </p>
-          </div>
-          
-          {/* Logos Marquee */}
-          <div className="relative bg-primary/30 backdrop-blur-sm rounded-xl overflow-hidden mb-6 border border-gray-800/30">
-            <div className="absolute top-0 left-0 w-10 sm:w-16 md:w-32 h-full bg-gradient-to-r from-gray-900 to-transparent z-10 pointer-events-none"></div>
-            <div className="absolute top-0 right-0 w-10 sm:w-16 md:w-32 h-full bg-gradient-to-l from-gray-900 to-transparent z-10 pointer-events-none"></div>
-            
-            <div className="py-5 sm:py-6 md:py-8">
-              <LogoMarquee />
+            {/* Micro-CTA amélioré */}
+            <div className="mt-12 animate-fade-in-delay-4">
+              <a 
+                href="#solutions"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSolution('starter');
+                }}
+                className="group inline-flex items-center gap-2 bg-gradient-to-r from-button/10 to-button/5 rounded-xl px-6 py-3 text-button font-bold hover:bg-button/20 transition-all duration-300 border border-button/20 hover:border-button/30"
+              >
+                Découvrir nos solutions
+                <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
             </div>
           </div>
         </div>
+
+        {/* Ajouter un élément de transition */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-primary to-transparent"></div>
       </section>
 
-      {/* Incubator Section */}
-      <section className="section bg-primary py-12 md:py-16 px-4 md:px-0">
-        <div className="container-custom">
-          <div className="text-center mb-10 md:mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl mb-3 md:mb-4">L&apos;Incubateur BPC</h2>
-            <p className="text-gray-300 max-w-2xl mx-auto mb-6 md:mb-8">
-              Notre programme d&apos;élite sur revshare pour les entrepreneurs B2B ambitieux qui veulent 
-              dépasser les 80k€/mois avec une équipe d&apos;associés à leurs côtés.
-            </p>
-          </div>
-          
-          <div className="bg-primary rounded-lg p-6 md:p-8 lg:p-12 border border-button mb-10 md:mb-12">
-            <div className="md:flex items-start gap-8 lg:gap-12">
-              <div className="md:w-7/12 mb-8 md:mb-0">
-                <div className="mb-6">
-                  <span className="inline-block bg-button text-primary px-3 py-1 md:px-4 md:py-2 rounded-full font-bold text-xs md:text-sm mb-3 md:mb-4">REVSHARE UNIQUEMENT</span>
-                  <h3 className="text-2xl md:text-3xl font-bold mb-3 md:mb-4">Incubateur BPC</h3>
-                  <p className="text-gray-300 mb-4 md:mb-6 text-sm md:text-base">
-                    Un programme d'association avec notre équipe d'experts. 3 mois de test et de lancement, puis un partenariat durable où nous devenons de véritables associés dans ton business.
-                  </p>
-                </div>
-                
-                <div className="mb-4 md:mb-6">
-                  <h4 className="text-base md:text-lg font-bold mb-2 text-button">Pour qui ?</h4>
-                  <p className="text-gray-300 text-sm md:text-base">
-                    → Les entrepreneurs qui veulent se concentrer uniquement sur leur livraison<br />
-                    → Ceux qui cherchent de véritables associés pour dépasser les 80k€/mois<br />
-                    → Les experts qui excellent dans leur domaine mais pas dans le business
-                  </p>
-                </div>
-                
-                <div className="mb-4 md:mb-6">
-                  <h4 className="text-base md:text-lg font-bold mb-2 text-button">Ce que nous faisons pour toi</h4>
-                  <p className="text-gray-300 text-sm md:text-base">
-                    Nous prenons la pleine responsabilité de ton succès commercial<br />
-                    Nous gérons tout : marketing, vente, opérations, recrutement<br />
-                    Nous manageons ton équipe pour toi et optimisons chaque aspect
-                  </p>
-                </div>
-                
-                <div className="grid sm:grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8">
-                  {[
-                    {
-                      title: "Partenariat complet",
-                      description: "Nous devenons tes associés opérationnels et prenons en charge l'intégralité de ton business, sauf ta livraison client."
-                    },
-                    {
-                      title: "Revshare avantageux",
-                      description: "Un partenariat basé sur le revshare, alignant parfaitement nos intérêts : si tu gagnes, nous gagnons."
-                    },
-                    {
-                      title: "Phase d'essai",
-                      description: "3 mois de test et lancement pour valider la collaboration avant de concrétiser le partenariat à long terme."
-                    },
-                    {
-                      title: "Tu restes le visage",
-                      description: "Tu restes l'expert et le visage de ta marque, pendant que nous gérons tous les aspects business en coulisses."
-                    },
-                  ].map((feature, index) => (
-                    <div key={index} className="bg-gray-900 rounded-lg p-6">
-                      <h4 className="text-xl font-bold mb-2">{feature.title}</h4>
-                      <p className="text-gray-300">{feature.description}</p>
-                    </div>
-                  ))}
-                </div>
-                
-                <div className="mb-6 md:mb-8">
-                  <h4 className="text-base md:text-lg font-bold mb-2 text-button">Résultat attendu</h4>
-                  <p className="text-gray-300 text-sm md:text-base">
-                    Tu dépasses les 80k€/mois en te concentrant uniquement sur ce que tu aimes faire.<br />
-                    Tu bénéficies d'une équipe complète sans avoir à la gérer, la recruter ou la former.<br />
-                    Tu construis un véritable actif à long terme, pas seulement un business qui tourne.
-                  </p>
-                </div>
-                
-                <Button size="lg" className="w-full md:w-auto" href="https://app.iclosed.io/e/baptistepiocelle/incubateur-bpc">
-                  Postuler
-                </Button>
-              </div>
-              
-              <div className="md:w-5/12 bg-gray-900 rounded-lg overflow-hidden mt-6 md:mt-0">
-                <div className="p-6">
-                  <div className="mb-6">
-                    <h4 className="text-xl font-bold mb-4 text-button">Disponibilité</h4>
-                    <div className="mb-4">
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="font-bold">Places restantes ce mois-ci</span>
-                        <span className="text-button font-bold">2/2</span>
-                      </div>
-                      <div className="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
-                        <div className="bg-button h-full rounded-full transition-all duration-1000" style={{ width: '100%' }}></div>
-                      </div>
-                    </div>
-                    
-                    <div className="mb-4">
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="font-bold">Places prises cette année</span>
-                        <span className="text-button font-bold">4/12</span>
-                      </div>
-                      <div className="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
-                        <div className="bg-button h-full rounded-full transition-all duration-1000" style={{ width: '33.33%' }}></div>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-center justify-between text-sm text-gray-300 mt-4">
-                      <span>Phase de test: 3 mois</span>
-                      <span>Ensuite: Partenariat</span>
-                    </div>
-                  </div>
-
-                  <div className="mb-6">
-                    <h4 className="text-xl font-bold mb-4 text-button">Notre engagement</h4>
-                    <div className="space-y-4">
-                      {[
-                        {
-                          icon: "🎯",
-                          title: "Objectif 80k€/mois",
-                          description: "Nous nous engageons à atteindre cet objectif en 6 mois"
-                        },
-                        {
-                          icon: "⚡️",
-                          title: "Résultats rapides",
-                          description: "Premiers résultats visibles dès la phase de test"
-                        },
-                        {
-                          icon: "🤝",
-                          title: "Partenariat long terme",
-                          description: "Nous investissons dans ton succès sur le long terme"
-                        }
-                      ].map((item, index) => (
-                        <div key={index} className="bg-gray-800/50 rounded-lg p-4">
-                          <div className="flex items-start gap-3">
-                            <span className="text-2xl">{item.icon}</span>
-                            <div>
-                              <h5 className="font-bold mb-1">{item.title}</h5>
-                              <p className="text-sm text-gray-300">{item.description}</p>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div>
-                    <h4 className="text-xl font-bold mb-4 text-button">Prochaines étapes</h4>
-                    <div className="space-y-3">
-                      {[
-                        "1. Entretien de qualification",
-                        "2. Phase de test (3 mois)",
-                        "3. Partenariat officiel",
-                        "4. Scaling vers 80k€/mois"
-                      ].map((step, index) => (
-                        <div key={index} className="flex items-center gap-3 bg-gray-800/50 rounded-lg p-3">
-                          <div className="w-6 h-6 rounded-full bg-button/20 flex items-center justify-center">
-                            <span className="text-button font-bold">{index + 1}</span>
-                          </div>
-                          <span className="text-gray-300">{step}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div className="text-center">
-            <p className="text-gray-400 mb-4 md:mb-6 text-sm md:text-base">L'incubateur accepte seulement 2 candidats par mois et 12 par an. 4 places ont déjà été prises cette année.</p>
-            
-            <div className="max-w-3xl mx-auto bg-gray-900 rounded-lg p-4 md:p-6 border border-gray-800 mb-6 md:mb-8">
-              <h4 className="font-bold text-lg md:text-xl mb-3 md:mb-4 text-left">Critères de sélection</h4>
-              
-              <ul className="space-y-3 md:space-y-4 text-left">
-                {[
-                  "Tu génères au moins 10 à 15K€/mois de chiffre d'affaires stable.",
-                  "Tu vises clairement le million d'euros par an et tu veux t'en donner les moyens.",
-                  "Tu as une offre B2B vendable, même si elle mérite d'être retravaillée.",
-                  "Tu veux construire un système de croissance structuré, pas juste signer plus au feeling.",
-                  "Tu es prêt à être challengé sur ta stratégie, ton exécution et ton positionnement.",
-                  "Tu es disponible pour implémenter chaque semaine (ou faire implémenter).",
-                  "Tu es coachable et tu veux t'entourer d'experts.",
-                  "Tu es capable de déléguer ou prêt à structurer une équipe efficace.",
-                  "Tu cherches une vision long terme, pas une rustine court terme.",
-                  "Tu es prêt à investir sérieusement pour scaler ton business B2B."
-                ].map((critere, index) => (
-                  <li key={index} className="flex items-start">
-                    <svg className="w-5 h-5 text-button mt-1 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>{critere}</span>
-                  </li>
-                ))}
-              </ul>
-              <p className="mt-4 md:mt-6 text-gray-300 text-xs md:text-sm">
-                Si tu remplis ces critères, tu es probablement un excellent candidat pour notre programme Incubateur.
-              </p>
-            </div>
-            
-            <Button href="https://app.iclosed.io/e/baptistepiocelle/incubateur-bpc" size="lg" className="w-full sm:w-auto">
-              Postuler maintenant
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* BPC Private Scaling Lab Section */}
-      <section className="section bg-gray-900 py-12 md:py-16 px-4 md:px-0">
-        <div className="container-custom">
-          <div className="text-center mb-10 md:mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl mb-3 md:mb-4">BPC Private Scaling Lab</h2>
-            <p className="text-gray-300 max-w-2xl mx-auto mb-6 md:mb-8">
-              De 300k€ → 3M€/an. Bâtis un empire, pas juste un business.
-            </p>
-          </div>
-          
-          <div className="bg-primary rounded-lg p-6 md:p-8 lg:p-12 border-2 border-button mb-10 md:mb-12">
-            <div className="md:flex items-start gap-8 lg:gap-12">
-              <div className="md:w-7/12 mb-8 md:mb-0">
-                <div className="mb-6">
-                  <span className="inline-block bg-button text-primary px-3 py-1 md:px-4 md:py-2 rounded-full font-bold text-xs md:text-sm mb-3 md:mb-4">OFFRE EXCLUSIVE</span>
-                  <h3 className="text-2xl md:text-3xl font-bold mb-3 md:mb-4">BPC Private Scaling Lab</h3>
-                  <p className="text-gray-300 mb-4 md:mb-6 text-sm md:text-base">
-                    Un programme d&apos;accompagnement ultra-personnalisé pour les entrepreneurs B2B qui veulent passer de 300k€ à 3M€/an. Done With You + Done For You.
-                  </p>
-                </div>
-                
-                <div className="mb-4 md:mb-6">
-                  <h4 className="text-base md:text-lg font-bold mb-2 text-button">Pour qui ?</h4>
-                  <p className="text-gray-300 text-sm md:text-base">
-                    → Entrepreneurs B2B réalisant déjà entre 700k€ et 2M€/an<br />
-                    → Dirigeants fatigués d&apos;être l&apos;homme-orchestre<br />
-                    → Leaders qui savent qu&apos;atteindre 7 chiffres stables demande structure
-                  </p>
-                </div>
-
-                <div className="mb-4 md:mb-6">
-                  <h4 className="text-base md:text-lg font-bold mb-2 text-button">Investissement</h4>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div className="bg-gray-800/50 p-4 rounded-lg">
-                      <h5 className="font-bold mb-2">Cash</h5>
-                      <p className="text-2xl font-bold">100 000 €</p>
-                      <p className="text-sm text-gray-400">HT</p>
-                    </div>
-                    <div className="bg-gray-800/50 p-4 rounded-lg">
-                      <h5 className="font-bold mb-2">Plan 12 mois</h5>
-                      <p className="text-2xl font-bold">120 000 €</p>
-                      <p className="text-sm text-gray-400">10 000 €/mois</p>
-                    </div>
-                    <div className="bg-gray-800/50 p-4 rounded-lg">
-                      <h5 className="font-bold mb-2">Flex Plan</h5>
-                      <p className="text-2xl font-bold">30% upfront</p>
-                      <p className="text-sm text-gray-400">3 paliers de 30k€</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mb-4 md:mb-6">
-                  <h4 className="text-base md:text-lg font-bold mb-2 text-button">Contenu de l&apos;offre</h4>
-                  <div className="space-y-4">
-                    <div className="bg-gray-800/50 p-4 rounded-lg">
-                      <h5 className="font-bold mb-2">Écosystème Business</h5>
-                      <ul className="text-sm text-gray-300 space-y-2">
-                        <li>• (Re)création d&apos;une offre premium &gt;15k€/client</li>
-                        <li>• Tunnel d&apos;acquisition complet</li>
-                        <li>• CRM & process de closing structurés</li>
-                        <li>• Machine de contenu pour 12 mois</li>
-                        <li>• Copywriting complet de tous les assets</li>
-                      </ul>
-                    </div>
-                    <div className="bg-gray-800/50 p-4 rounded-lg">
-                      <h5 className="font-bold mb-2">Machine d&apos;Acquisition</h5>
-                      <ul className="text-sm text-gray-300 space-y-2">
-                        <li>• Campagnes LinkedIn Ads, Meta Ads, Google Ads</li>
-                        <li>• Système outbound (ICP, scraping, cold messaging)</li>
-                        <li>• Écosystème organique (SEO, LinkedIn, YouTube)</li>
-                      </ul>
-                    </div>
-                    <div className="bg-gray-800/50 p-4 rounded-lg">
-                      <h5 className="font-bold mb-2">Sales Ops & Team Building</h5>
-                      <ul className="text-sm text-gray-300 space-y-2">
-                        <li>• Recrutement de 3 profils clés (12 mois inclus)</li>
-                        <li>• Création des SOPs</li>
-                        <li>• Formation et intégration</li>
-                      </ul>
-                    </div>
-                    <div className="bg-gray-800/50 p-4 rounded-lg">
-                      <h5 className="font-bold mb-2">Coaching & Advisory</h5>
-                      <ul className="text-sm text-gray-300 space-y-2">
-                        <li>• Call stratégique 1:1 hebdomadaire</li>
-                        <li>• Accès WhatsApp direct (réponse &lt; 4h)</li>
-                        <li>• Audit stratégique trimestriel</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mb-4 md:mb-6">
-                  <h4 className="text-base md:text-lg font-bold mb-2 text-button">Garantie inégalée</h4>
-                  <p className="text-gray-300 text-sm md:text-base">
-                    &quot;We Work Until You Double&quot; - On s&apos;engage à rester avec toi au-delà des 12 mois, sans supplément, tant que ton chiffre d&apos;affaires net n&apos;a pas au minimum doublé.
-                  </p>
-                </div>
-
-                <div className="mb-4 md:mb-6">
-                  <h4 className="text-base md:text-lg font-bold mb-2 text-button">Next Step</h4>
-                  <p className="text-gray-300 text-sm md:text-base">
-                    Candidature express (3 min) ➔ Call de sélection (30 min) ➔ Signature ➔ Onboarding
-                  </p>
-                  <p className="text-button text-sm mt-2">
-                    ⚡️ Les candidatures 2025 sont strictement limitées à 5 nouveaux membres.
-                  </p>
-                </div>
-              </div>
-
-              <div className="md:w-5/12">
-                <div className="bg-gray-800/50 p-6 rounded-lg">
-                  <h4 className="text-lg font-bold mb-4 text-button">Ce que tu économises</h4>
-                  <ul className="space-y-3">
-                    <li className="flex items-start">
-                      <svg className="w-5 h-5 text-button mt-1 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span className="text-sm">Consultant acquisition: 40 000 €</span>
-                    </li>
-                    <li className="flex items-start">
-                      <svg className="w-5 h-5 text-button mt-1 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span className="text-sm">Agence contenu 12 mois: 20 000 €</span>
-                    </li>
-                    <li className="flex items-start">
-                      <svg className="w-5 h-5 text-button mt-1 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span className="text-sm">Copywriter senior: 15 000 €</span>
-                    </li>
-                    <li className="flex items-start">
-                      <svg className="w-5 h-5 text-button mt-1 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span className="text-sm">Coach exécutif: 30 000 €</span>
-                    </li>
-                    <li className="flex items-start">
-                      <svg className="w-5 h-5 text-button mt-1 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span className="text-sm">Recrutement & salaires: 60 000 €</span>
-                    </li>
-                    <li className="flex items-start">
-                      <svg className="w-5 h-5 text-button mt-1 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span className="text-sm">Retraites et masterminds: 15 000 €</span>
-                    </li>
-                  </ul>
-                  <div className="mt-4 pt-4 border-t border-gray-700">
-                    <p className="text-lg font-bold">Total: ≈ 180 000 €</p>
-                    <p className="text-sm text-gray-400">sans Codex ni garantie de résultats</p>
-                  </div>
-                </div>
-
-                <div className="mt-6">
-                  <Button 
-                    variant="primary" 
-                    fullWidth
-                    href="https://app.iclosed.io/e/baptistepiocelle/bpc-private-scaling-lab"
-                    className="group relative overflow-hidden"
-                  >
-                    <span className="relative z-10">Candidater maintenant</span>
-                    <div className="absolute inset-0 bg-gradient-to-r from-button/0 via-button/30 to-button/0 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Video Testimonials */}
-      <section className="section bg-gray-900 py-12 md:py-16 px-4 md:px-0 relative overflow-hidden">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0" style={{
-            backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(255,255,255,0.15) 1px, transparent 0)',
-            backgroundSize: '24px 24px'
-          }}></div>
+      {/* Logos Clients Section */}
+      <section className="relative py-20 overflow-hidden -mt-16">
+        {/* Background avec effet de gradient et grille */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] opacity-5"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-primary via-transparent to-button/10"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.1),transparent_70%)]"></div>
         </div>
 
         <div className="container-custom relative z-10">
-          <div className="text-center mb-10 md:mb-16">
-            <div className="inline-block bg-button/20 backdrop-blur-sm px-6 py-2 rounded-full mb-4 border border-button/30">
-              <p className="text-sm md:text-base font-medium">
-                Résultats concrets
-              </p>
-            </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl mb-3 md:mb-4 font-title bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-              Témoignages vidéo
-            </h2>
-            <p className="text-gray-300 max-w-2xl mx-auto">
-              Découvrez les résultats obtenus par nos clients
-            </p>
+          <div className="text-center mb-12">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <h2 className="text-3xl md:text-4xl font-archivo-black mb-6 bg-gradient-to-r from-[#FFF1DE] to-gray-300 bg-clip-text text-transparent">
+                Ils nous font confiance
+              </h2>
+            </motion.div>
           </div>
           
-          <div className="grid sm:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto">
-            {[
-              {
-                name: "Yann Grosjean",
-                role: "CEO de Lugus",
-                title: "+20 000€ générés dès le premier lancement",
-                videoId: "al1OJeYur9Y",
-                timestamp: "691",
-                profileImage: "/Yann Grosjean.jpeg"
-              },
-              {
-                name: "Léon",
-                role: "Entrepreneur B2B",
-                title: "De 0 à 2k€/mois de MRR en 3 semaines",
-                videoId: "K2YsABjkRiE",
-                timestamp: "42"
-              }
-            ].map((testimonial, index) => (
-              <div key={index} className="group bg-primary/30 backdrop-blur-sm rounded-lg overflow-hidden hover:transform hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-button/20">
-                <div className="relative aspect-video bg-graph">
-                  {testimonial.videoId ? (
-                    <a 
-                      href={`https://www.youtube.com/watch?v=${testimonial.videoId}${testimonial.timestamp ? `&t=${testimonial.timestamp}s` : ''}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block w-full h-full"
-                    >
-                      <Image
-                        src={`https://i.ytimg.com/vi/${testimonial.videoId}/hqdefault.jpg`}
-                        alt={`Témoignage de ${testimonial.name}`}
-                        fill
-                        className="object-cover transition-transform duration-300 group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 group-hover:bg-opacity-20 transition-all">
-                        <div className="w-16 h-16 rounded-full bg-white bg-opacity-20 backdrop-blur-sm flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
-                          <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M8 5v14l11-7z" />
-                          </svg>
+          <div className="relative">
+            {/* Effet de dégradé sur les bords */}
+            <div className="absolute top-0 left-0 w-32 h-full bg-gradient-to-r from-primary to-transparent z-10 pointer-events-none"></div>
+            <div className="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-primary to-transparent z-10 pointer-events-none"></div>
+            
+            {/* Conteneur des logos avec effet de glassmorphism */}
+            <div className="relative bg-black/30 backdrop-blur-md rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-black/20">
+              <div className="absolute inset-0 bg-gradient-to-br from-button/5 to-transparent"></div>
+              
+              {/* Animation de brillance */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent animate-shine"></div>
+              
+              <div className="py-12 px-4">
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1, delay: 0.2 }}
+                >
+                  <LogoMarquee />
+                </motion.div>
+              </div>
+            </div>
+
+            {/* Badge de confiance */}
+            <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2">
+              <div className="bg-gradient-to-r from-button/20 to-button/10 backdrop-blur-sm px-6 py-3 rounded-full border border-button/30 shadow-lg shadow-button/10">
+                <div className="flex items-center gap-2">
+                  <svg className="w-5 h-5 text-button" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
+                  <span className="text-sm font-medium text-white">+200 entrepreneurs accompagnés</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section Solutions */}
+      <section className="relative py-20 bg-gradient-to-b from-black/40 to-transparent">
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] opacity-5"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-button/10 via-transparent to-graph/10"></div>
+        </div>
+
+        <div className="container-custom relative z-10 px-4">
+          <div className="max-w-4xl mx-auto">
+            {/* En-tête de la section avec filtre intégré */}
+            <div className="text-center mb-12 bg-black/40 backdrop-blur-sm rounded-xl p-8 border border-white/5">
+              <h2 className="text-3xl md:text-4xl font-title mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                Quel est ton CA annuel actuel ?
+              </h2>
+              <p className="text-xl text-gray-300 mb-8">
+                On a la solution adaptée à ton niveau
+              </p>
+
+              {/* Filtre rapide amélioré */}
+              <div className="flex flex-wrap gap-3 justify-center">
+                <button 
+                  onClick={() => scrollToSolution('starter')}
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
+                    activeSolution === 'starter' 
+                      ? 'bg-button text-white shadow-lg shadow-button/20' 
+                      : 'bg-white/5 text-gray-300 hover:bg-white/10'
+                  }`}
+                >
+                  &lt; 24k€/an
+                </button>
+                <button 
+                  onClick={() => scrollToSolution('accelerateur')}
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
+                    activeSolution === 'accelerateur' 
+                      ? 'bg-button text-white shadow-lg shadow-button/20' 
+                      : 'bg-white/5 text-gray-300 hover:bg-white/10'
+                  }`}
+                >
+                  24k€ - 80k€/an
+                </button>
+                <button 
+                  onClick={() => scrollToSolution('scale')}
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
+                    activeSolution === 'scale' 
+                      ? 'bg-button text-white shadow-lg shadow-button/20' 
+                      : 'bg-white/5 text-gray-300 hover:bg-white/10'
+                  }`}
+                >
+                  80k€ - 120k€/an
+                </button>
+                <button 
+                  onClick={() => scrollToSolution('incubateur')}
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
+                    activeSolution === 'incubateur' 
+                      ? 'bg-button text-white shadow-lg shadow-button/20' 
+                      : 'bg-white/5 text-gray-300 hover:bg-white/10'
+                  }`}
+                >
+                  120k€ - 600k€/an
+                </button>
+                <button 
+                  onClick={() => scrollToSolution('scaling-lab')}
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
+                    activeSolution === 'scaling-lab' 
+                      ? 'bg-button text-white shadow-lg shadow-button/20' 
+                      : 'bg-white/5 text-gray-300 hover:bg-white/10'
+                  }`}
+                >
+                  600k€ - 3M€/an
+                </button>
+              </div>
+            </div>
+
+            {/* Solutions Grid */}
+            <div className="space-y-8">
+              {/* STARTER */}
+              <div id="starter" className="scroll-mt-32">
+                <div className="relative w-full bg-gradient-to-br from-[#FF5A5F]/10 via-black/40 to-[#FF5A5F]/10 rounded-xl md:rounded-3xl border border-white/10 shadow-xl backdrop-blur-md overflow-hidden">
+                  <div className="p-3 md:p-8 border-b border-white/5">
+                    <div className="flex items-center gap-2 md:gap-4">
+                      <div className="w-8 h-8 md:w-12 md:h-12 rounded-lg md:rounded-2xl bg-[#FF5A5F]/20 flex items-center justify-center shadow-lg shadow-[#FF5A5F]/10">
+                        <span className="text-base md:text-xl font-bold text-[#FF5A5F]">1</span>
+                      </div>
+                      <div className="flex-grow min-w-0">
+                        <h3 className="text-lg md:text-3xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                          STARTER
+                        </h3>
+                        <div className="flex items-center gap-1.5 md:gap-3 mt-0.5 md:mt-2">
+                          <span className="px-2 py-0.5 rounded-full bg-[#10B981]/20 text-[#10B981] text-xs md:text-sm font-medium">
+                            CA &lt; 24k€/an
+                          </span>
                         </div>
                       </div>
-                    </a>
-                  ) : (
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-16 h-16 rounded-full bg-white bg-opacity-20 backdrop-blur-sm flex items-center justify-center cursor-pointer hover:bg-opacity-30 transition-all">
-                        <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M8 5v14l11-7z" />
+                      <span className="px-2 py-0.5 md:px-4 md:py-2 rounded-lg md:rounded-xl bg-white/10 text-gray-300 text-xs md:text-sm font-bold whitespace-nowrap">
+                        Accès à vie
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="p-3 md:p-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6">
+                      <div className="space-y-2 md:space-y-4">
+                        <div className="bg-gradient-to-br from-[#FF5A5F]/10 to-[#FF5A5F]/5 rounded-lg md:rounded-2xl p-2.5 md:p-5 border border-[#FF5A5F]/20">
+                          <div className="flex items-center gap-1.5 md:gap-2 text-[#FF5A5F] font-medium mb-1.5 md:mb-3">
+                            <svg className="w-3.5 h-3.5 md:w-5 md:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                            </svg>
+                            <span className="text-xs md:text-base">Symptômes</span>
+                          </div>
+                          {/* STARTER - Symptômes */}
+                          <ul className="space-y-1.5 md:space-y-3">
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#FF5A5F] mt-0.5 md:mt-1">•</span>
+                              <span>Tu passes plus de temps à chercher des clients qu'à les servir</span>
+                            </li>
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#FF5A5F] mt-0.5 md:mt-1">•</span>
+                              <span>Tu n'as pas de processus clair pour convertir tes prospects</span>
+                            </li>
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#FF5A5F] mt-0.5 md:mt-1">•</span>
+                              <span>Tu ne sais pas comment structurer tes offres pour maximiser tes revenus</span>
+                            </li>
+                          </ul>
+                        </div>
+
+                        <div className="bg-gradient-to-br from-[#FF5A5F]/10 to-[#FF5A5F]/5 rounded-lg md:rounded-2xl p-2.5 md:p-5 border border-[#FF5A5F]/20">
+                          <div className="flex items-center gap-1.5 md:gap-2 text-[#FF5A5F] font-medium mb-1.5 md:mb-3">
+                            <svg className="w-3.5 h-3.5 md:w-5 md:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                            <span className="text-xs md:text-base">Conséquences</span>
+                          </div>
+                          {/* STARTER - Conséquences */}
+                          <ul className="space-y-1.5 md:space-y-3">
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#FF5A5F] mt-0.5 md:mt-1">•</span>
+                              <span>Tu te sens perdu et débordé par la gestion de ton activité</span>
+                            </li>
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#FF5A5F] mt-0.5 md:mt-1">•</span>
+                              <span>Tu doutes de ta capacité à réussir et à te développer</span>
+                            </li>
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#FF5A5F] mt-0.5 md:mt-1">•</span>
+                              <span>Tu as peur de stagner et de ne jamais atteindre tes objectifs</span>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+
+                      <div className="space-y-2 md:space-y-4">
+                        <div className="bg-gradient-to-br from-[#10B981]/10 to-[#10B981]/5 rounded-lg md:rounded-2xl p-2.5 md:p-5 border border-[#10B981]/20">
+                          <div className="flex items-center gap-1.5 md:gap-2 text-[#10B981] font-medium mb-1.5 md:mb-3">
+                            <svg className="w-3.5 h-3.5 md:w-5 md:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span className="text-xs md:text-base">Solutions</span>
+                          </div>
+                          {/* STARTER - Solutions */}
+                          <ul className="space-y-1.5 md:space-y-3">
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#10B981] mt-0.5 md:mt-1">•</span>
+                              <span>Des systèmes à copier/coller pour générer des prospects</span>
+                            </li>
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#10B981] mt-0.5 md:mt-1">•</span>
+                              <span>Savoir quoi vendre, à qui, quand et comment</span>
+                            </li>
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#10B981] mt-0.5 md:mt-1">•</span>
+                              <span>Stabiliser tes revenus et rester focus</span>
+                            </li>
+                          </ul>
+                        </div>
+
+                        <div className="bg-gradient-to-br from-[#10B981]/10 to-[#10B981]/5 rounded-lg md:rounded-2xl p-2.5 md:p-5 border border-[#10B981]/20">
+                          <div className="flex items-center gap-1.5 md:gap-2 text-[#10B981] font-medium mb-1.5 md:mb-3">
+                            <svg className="w-3.5 h-3.5 md:w-5 md:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                            </svg>
+                            <span className="text-xs md:text-base">Résultats</span>
+                          </div>
+                          {/* STARTER - Résultats */}
+                          <ul className="space-y-1.5 md:space-y-3">
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#10B981] mt-0.5 md:mt-1">•</span>
+                              <span>2 à 5 nouveaux clients / mois</span>
+                            </li>
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#10B981] mt-0.5 md:mt-1">•</span>
+                              <span>Des offres haut de gamme qui se vendent</span>
+                            </li>
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#10B981] mt-0.5 md:mt-1">•</span>
+                              <span>Un système duplicable et adaptable en 7 jours</span>
+                            </li>
+                          </ul>
+                        </div>
+
+                        <div className="bg-gradient-to-br from-[#10B981]/5 to-transparent rounded-lg md:rounded-2xl p-2.5 md:p-5 border border-[#10B981]/10">
+                          <div className="flex items-center gap-2 md:gap-3">
+                            <div className="w-6 h-6 md:w-10 md:h-10 rounded-full bg-[#10B981]/20 flex items-center justify-center flex-shrink-0">
+                              <svg className="w-3 h-3 md:w-5 md:h-5 text-[#10B981]" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                              </svg>
+                            </div>
+                            <div className="min-w-0">
+                              <p className="text-xs md:text-sm text-gray-300 font-medium">"La meilleure checklist pour ne plus se prendre la tête et avancer sur son business rapidement."</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <Link 
+                          href="/catalogue/starter" 
+                          className="group relative flex items-center justify-center w-full px-3 py-2 md:px-6 md:py-4 rounded-lg md:rounded-2xl bg-gradient-to-r from-[#10B981] to-[#10B981]/80 text-white font-medium shadow-lg shadow-[#10B981]/20 hover:shadow-xl hover:shadow-[#10B981]/30 transition-all duration-300 hover:scale-[1.02]"
+                        >
+                          <span className="text-sm md:text-lg">Découvrir STARTER</span>
+                          <svg className="w-3.5 h-3.5 md:w-5 md:h-5 ml-1.5 md:ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                          </svg>
+                          <div className="absolute inset-0 rounded-lg md:rounded-2xl bg-gradient-to-r from-[#10B981]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* ACCÉLÉRATEUR */}
+              <div id="accelerateur" className="scroll-mt-32">
+                <div className="relative w-full bg-gradient-to-br from-[#F97316]/10 via-black/40 to-[#F97316]/10 rounded-xl md:rounded-3xl border border-white/10 shadow-xl backdrop-blur-md overflow-hidden">
+                  <div className="p-3 md:p-8 border-b border-white/5">
+                    <div className="flex items-center gap-2 md:gap-4">
+                      <div className="w-8 h-8 md:w-12 md:h-12 rounded-lg md:rounded-2xl bg-[#F97316]/20 flex items-center justify-center shadow-lg shadow-[#F97316]/10">
+                        <span className="text-base md:text-xl font-bold text-[#F97316]">2</span>
+                      </div>
+                      <div className="flex-grow min-w-0">
+                        <h3 className="text-lg md:text-3xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                          ACCÉLÉRATEUR
+                        </h3>
+                        <div className="flex items-center gap-1.5 md:gap-3 mt-0.5 md:mt-2">
+                          <span className="px-2 py-0.5 rounded-full bg-[#10B981]/20 text-[#10B981] text-xs md:text-sm font-medium">
+                            CA 24k€ - 80k€/an
+                          </span>
+                        </div>
+                      </div>
+                      <span className="px-2 py-0.5 md:px-4 md:py-2 rounded-lg md:rounded-xl bg-white/10 text-gray-300 text-xs md:text-sm font-bold whitespace-nowrap">
+                        14 jours
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="p-3 md:p-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6">
+                      <div className="space-y-2 md:space-y-4">
+                        <div className="bg-gradient-to-br from-[#F97316]/10 to-[#F97316]/5 rounded-lg md:rounded-2xl p-2.5 md:p-5 border border-[#F97316]/20">
+                          <div className="flex items-center gap-1.5 md:gap-2 text-[#F97316] font-medium mb-1.5 md:mb-3">
+                            <svg className="w-3.5 h-3.5 md:w-5 md:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                            </svg>
+                            <span className="text-xs md:text-base">Symptômes</span>
+                          </div>
+                          {/* ACCELERATOR - Symptômes */}
+                          <ul className="space-y-1.5 md:space-y-3">
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#F97316] mt-0.5 md:mt-1">•</span>
+                              <span>Tu as des clients mais tu ne sais pas comment les fidéliser</span>
+                            </li>
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#F97316] mt-0.5 md:mt-1">•</span>
+                              <span>Tu perds des opportunités à cause d'un processus de vente inefficace</span>
+                            </li>
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#F97316] mt-0.5 md:mt-1">•</span>
+                              <span>Tu n'arrives pas à augmenter tes prix malgré la qualité de ton service</span>
+                            </li>
+                          </ul>
+                        </div>
+
+                        <div className="bg-gradient-to-br from-[#F97316]/10 to-[#F97316]/5 rounded-lg md:rounded-2xl p-2.5 md:p-5 border border-[#F97316]/20">
+                          <div className="flex items-center gap-1.5 md:gap-2 text-[#F97316] font-medium mb-1.5 md:mb-3">
+                            <svg className="w-3.5 h-3.5 md:w-5 md:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                            <span className="text-xs md:text-base">Conséquences</span>
+                          </div>
+                          <ul className="space-y-1.5 md:space-y-3">
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#F97316] mt-0.5 md:mt-1">•</span>
+                              <span>Tu te sens frustré de ne pas pouvoir valoriser ton expertise</span>
+                            </li>
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#F97316] mt-0.5 md:mt-1">•</span>
+                              <span>Tu as peur de perdre tes clients existants</span>
+                            </li>
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#F97316] mt-0.5 md:mt-1">•</span>
+                              <span>Tu te sens coincé dans une situation qui ne te satisfait pas</span>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+
+                      <div className="space-y-2 md:space-y-4">
+                        <div className="bg-gradient-to-br from-[#10B981]/10 to-[#10B981]/5 rounded-lg md:rounded-2xl p-2.5 md:p-5 border border-[#10B981]/20">
+                          <div className="flex items-center gap-1.5 md:gap-2 text-[#10B981] font-medium mb-1.5 md:mb-3">
+                            <svg className="w-3.5 h-3.5 md:w-5 md:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span className="text-xs md:text-base">Solutions</span>
+                          </div>
+                          {/* ACCELERATOR - Solutions */}
+                          <ul className="space-y-1.5 md:space-y-3">
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#10B981] mt-0.5 md:mt-1">•</span>
+                              <span>Doubler son volume d'affaire en 30 jours.</span>
+                            </li>
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#10B981] mt-0.5 md:mt-1">•</span>
+                              <span>Identifier les points de blocages du business.</span>
+                            </li>
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#10B981] mt-0.5 md:mt-1">•</span>
+                              <span>Se positionner comme acteur incontournable de ton industrie.</span>
+                            </li>
+                          </ul>
+                        </div>
+
+                        <div className="bg-gradient-to-br from-[#10B981]/10 to-[#10B981]/5 rounded-lg md:rounded-2xl p-2.5 md:p-5 border border-[#10B981]/20">
+                          <div className="flex items-center gap-1.5 md:gap-2 text-[#10B981] font-medium mb-1.5 md:mb-3">
+                            <svg className="w-3.5 h-3.5 md:w-5 md:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                            </svg>
+                            <span className="text-xs md:text-base">Résultats</span>
+                          </div>
+                          {/* ACCELERATOR - Résultats */}
+                          <ul className="space-y-1.5 md:space-y-3">
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#10B981] mt-0.5 md:mt-1">•</span>
+                              <span>5 à 10 clients B2B qualifiés/mois.</span>
+                            </li>
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#10B981] mt-0.5 md:mt-1">•</span>
+                              <span>Un système d'acquisition qui tourne.</span>
+                            </li>
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#10B981] mt-0.5 md:mt-1">•</span>
+                              <span>Des prix qui augmentent en moyenne de 20%.</span>
+                            </li>
+                          </ul>
+                        </div>
+
+                        <div className="bg-gradient-to-br from-[#10B981]/5 to-transparent rounded-lg md:rounded-2xl p-2.5 md:p-5 border border-[#10B981]/10">
+                          <div className="flex items-center gap-2 md:gap-3">
+                            <div className="w-6 h-6 md:w-10 md:h-10 rounded-full bg-[#10B981]/20 flex items-center justify-center flex-shrink-0">
+                              <svg className="w-3 h-3 md:w-5 md:h-5 text-[#10B981]" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                              </svg>
+                            </div>
+                            <div className="min-w-0">
+                              <p className="text-xs md:text-sm text-gray-300 font-medium">"J'ai grandement apprécié le professionnalisme et l'efficacité de Baptiste. (...) Cela permet de se booster et de gagner en compétence avec une rapidité sans précédent ! ⚡"</p>
+                              <p className="text-[10px] md:text-xs text-gray-400">Joris Genty, CEO LinkedBy Agency</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <Link 
+                          href="/catalogue/accelerateur" 
+                          className="group relative flex items-center justify-center w-full px-3 py-2 md:px-6 md:py-4 rounded-lg md:rounded-2xl bg-gradient-to-r from-[#10B981] to-[#10B981]/80 text-white font-medium shadow-lg shadow-[#10B981]/20 hover:shadow-xl hover:shadow-[#10B981]/30 transition-all duration-300 hover:scale-[1.02]"
+                        >
+                          <span className="text-sm md:text-lg">Découvrir l'ACCÉLÉRATEUR</span>
+                          <svg className="w-3.5 h-3.5 md:w-5 md:h-5 ml-1.5 md:ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                          </svg>
+                          <div className="absolute inset-0 rounded-lg md:rounded-2xl bg-gradient-to-r from-[#10B981]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* SCALE */}
+              <div id="scale" className="scroll-mt-32">
+                <div className="relative w-full bg-gradient-to-br from-[#3B82F6]/10 via-black/40 to-[#3B82F6]/10 rounded-xl md:rounded-3xl border border-white/10 shadow-xl backdrop-blur-md overflow-hidden">
+                  <div className="p-3 md:p-8 border-b border-white/5">
+                    <div className="flex items-center gap-2 md:gap-4">
+                      <div className="w-8 h-8 md:w-12 md:h-12 rounded-lg md:rounded-2xl bg-[#3B82F6]/20 flex items-center justify-center shadow-lg shadow-[#3B82F6]/10">
+                        <span className="text-base md:text-xl font-bold text-[#3B82F6]">3</span>
+                      </div>
+                      <div className="flex-grow min-w-0">
+                        <h3 className="text-lg md:text-3xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                          SCALE
+                        </h3>
+                        <div className="flex items-center gap-1.5 md:gap-3 mt-0.5 md:mt-2">
+                          <span className="px-2 py-0.5 rounded-full bg-[#10B981]/20 text-[#10B981] text-xs md:text-sm font-medium">
+                            CA 80k€ - 120k€/an
+                          </span>
+                        </div>
+                      </div>
+                      <span className="px-2 py-0.5 md:px-4 md:py-2 rounded-lg md:rounded-xl bg-white/10 text-gray-300 text-xs md:text-sm font-bold whitespace-nowrap">
+                        30 jours
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="p-3 md:p-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6">
+                      <div className="space-y-2 md:space-y-4">
+                        <div className="bg-gradient-to-br from-[#3B82F6]/10 to-[#3B82F6]/5 rounded-lg md:rounded-2xl p-2.5 md:p-5 border border-[#3B82F6]/20">
+                          <div className="flex items-center gap-1.5 md:gap-2 text-[#3B82F6] font-medium mb-1.5 md:mb-3">
+                            <svg className="w-3.5 h-3.5 md:w-5 md:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                            </svg>
+                            <span className="text-xs md:text-base">Symptômes</span>
+                          </div>
+                          {/* SCALE - Symptômes */}
+                          <ul className="space-y-1.5 md:space-y-3">
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#3B82F6] mt-0.5 md:mt-1">•</span>
+                              <span>Tu es submergé par le travail.</span>
+                            </li>
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#3B82F6] mt-0.5 md:mt-1">•</span>
+                              <span>Tu peux pas délivrer et gérer l'acquisition.</span>
+                            </li>
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#3B82F6] mt-0.5 md:mt-1">•</span>
+                              <span>T'as pas l'argent ou la confiance pour tout déléguer</span>
+                            </li>
+                          </ul>
+                        </div>
+
+                        <div className="bg-gradient-to-br from-[#3B82F6]/10 to-[#3B82F6]/5 rounded-lg md:rounded-2xl p-2.5 md:p-5 border border-[#3B82F6]/20">
+                          <div className="flex items-center gap-1.5 md:gap-2 text-[#3B82F6] font-medium mb-1.5 md:mb-3">
+                            <svg className="w-3.5 h-3.5 md:w-5 md:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                            <span className="text-xs md:text-base">Conséquences</span>
+                          </div>
+                          <ul className="space-y-1.5 md:space-y-3">
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#3B82F6] mt-0.5 md:mt-1">•</span>
+                              <span>Tu te sens épuisé et débordé.</span>
+                            </li>
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#3B82F6] mt-0.5 md:mt-1">•</span>
+                              <span>Un business en dents de scie.</span>
+                            </li>
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#3B82F6] mt-0.5 md:mt-1">•</span>
+                              <span>Tu as peur de perdre le contrôle.</span>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+
+                      <div className="space-y-2 md:space-y-4">
+                        <div className="bg-gradient-to-br from-[#10B981]/10 to-[#10B981]/5 rounded-lg md:rounded-2xl p-2.5 md:p-5 border border-[#10B981]/20">
+                          <div className="flex items-center gap-1.5 md:gap-2 text-[#10B981] font-medium mb-1.5 md:mb-3">
+                            <svg className="w-3.5 h-3.5 md:w-5 md:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span className="text-xs md:text-base">Solutions</span>
+                          </div>
+                          {/* SCALE - Solutions */}
+                          <ul className="space-y-1.5 md:space-y-3">
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#10B981] mt-0.5 md:mt-1">•</span>
+                              <span>Déléguer progressivement les tâches low values.</span>
+                            </li>
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#10B981] mt-0.5 md:mt-1">•</span>
+                              <span>Automatiser ton acquisition/conversion.</span>
+                            </li>
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#10B981] mt-0.5 md:mt-1">•</span>
+                              <span>Rester dans ta zone de génie.</span>
+                            </li>
+                          </ul>
+                        </div>
+
+                        <div className="bg-gradient-to-br from-[#10B981]/10 to-[#10B981]/5 rounded-lg md:rounded-2xl p-2.5 md:p-5 border border-[#10B981]/20">
+                          <div className="flex items-center gap-1.5 md:gap-2 text-[#10B981] font-medium mb-1.5 md:mb-3">
+                            <svg className="w-3.5 h-3.5 md:w-5 md:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                            </svg>
+                            <span className="text-xs md:text-base">Résultats</span>
+                          </div>
+                          {/* SCALE - Résultats */}
+                          <ul className="space-y-1.5 md:space-y-3">
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#10B981] mt-0.5 md:mt-1">•</span>
+                              <span>+20h gagnées par semaine.</span>
+                            </li>
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#10B981] mt-0.5 md:mt-1">•</span>
+                              <span>Un système d'acquisition qui tourne sans toi.</span>
+                            </li>
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#10B981] mt-0.5 md:mt-1">•</span>
+                              <span>Un système installé en 30j pour doubler ton C.A.</span>
+                            </li>
+                          </ul>
+                        </div>
+
+                        <div className="bg-gradient-to-br from-[#10B981]/5 to-transparent rounded-lg md:rounded-2xl p-2.5 md:p-5 border border-[#10B981]/10">
+                          <div className="flex items-center gap-2 md:gap-3">
+                            <div className="w-6 h-6 md:w-10 md:h-10 rounded-full bg-[#10B981]/20 flex items-center justify-center flex-shrink-0">
+                              <Image src="/Yann Grosjean.jpeg" alt="Yann Grosjean" width={40} height={40} className="rounded-full object-cover" />
+                            </div>
+                            <div className="min-w-0">
+                              <p className="text-xs md:text-sm text-gray-300 font-medium">"+20 000€ générés dès le premier lancement avec un système de vente entièrement délégué. Tout a été mis en place sans que j'aie à lever le petit doigt : tunnel, mails, pub, VSL, prise de rendez-vous, setting, closing. De mon côté ? J'ai juste conçu un programme utile, fait les bons choix stratégiques avec eux… et livré l'accompagnement."</p>
+                              <p className="text-[10px] md:text-xs text-gray-400">Yann Grosjean</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <Link 
+                          href="/catalogue/scale" 
+                          className="group relative flex items-center justify-center w-full px-3 py-2 md:px-6 md:py-4 rounded-lg md:rounded-2xl bg-gradient-to-r from-[#10B981] to-[#10B981]/80 text-white font-medium shadow-lg shadow-[#10B981]/20 hover:shadow-xl hover:shadow-[#10B981]/30 transition-all duration-300 hover:scale-[1.02]"
+                        >
+                          <span className="text-sm md:text-lg">Découvrir SCALE</span>
+                          <svg className="w-3.5 h-3.5 md:w-5 md:h-5 ml-1.5 md:ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                          </svg>
+                          <div className="absolute inset-0 rounded-lg md:rounded-2xl bg-gradient-to-r from-[#10B981]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* INCUBATEUR */}
+              <div id="incubateur" className="scroll-mt-32">
+                <div className="relative w-full bg-gradient-to-br from-[#8B5CF6]/10 via-black/40 to-[#8B5CF6]/10 rounded-xl md:rounded-3xl border border-white/10 shadow-xl backdrop-blur-md overflow-hidden">
+                  <div className="p-3 md:p-8 border-b border-white/5">
+                    <div className="flex items-center gap-2 md:gap-4">
+                      <div className="w-8 h-8 md:w-12 md:h-12 rounded-lg md:rounded-2xl bg-[#8B5CF6]/20 flex items-center justify-center shadow-lg shadow-[#8B5CF6]/10">
+                        <span className="text-base md:text-xl font-bold text-[#8B5CF6]">4</span>
+                      </div>
+                      <div className="flex-grow min-w-0">
+                        <h3 className="text-lg md:text-3xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                          INCUBATEUR
+                        </h3>
+                        <div className="flex items-center gap-1.5 md:gap-3 mt-0.5 md:mt-2">
+                          <span className="px-2 py-0.5 rounded-full bg-[#10B981]/20 text-[#10B981] text-xs md:text-sm font-medium">
+                            CA 120k€ - 600k€/an
+                          </span>
+                        </div>
+                      </div>
+                      <span className="px-2 py-0.5 md:px-4 md:py-2 rounded-lg md:rounded-xl bg-white/10 text-gray-300 text-xs md:text-sm font-bold whitespace-nowrap">
+                        90 jours
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="p-3 md:p-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6">
+                      <div className="space-y-2 md:space-y-4">
+                        <div className="bg-gradient-to-br from-[#8B5CF6]/10 to-[#8B5CF6]/5 rounded-lg md:rounded-2xl p-2.5 md:p-5 border border-[#8B5CF6]/20">
+                          <div className="flex items-center gap-1.5 md:gap-2 text-[#8B5CF6] font-medium mb-1.5 md:mb-3">
+                            <svg className="w-3.5 h-3.5 md:w-5 md:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                            </svg>
+                            <span className="text-xs md:text-base">Symptômes</span>
+                          </div>
+                          {/* INCUBATEUR - Symptômes */}
+                          <ul className="space-y-1.5 md:space-y-3">
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#8B5CF6] mt-0.5 md:mt-1">•</span>
+                              <span>T'arrives pas à tout déléguer.</span>
+                            </li>
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#8B5CF6] mt-0.5 md:mt-1">•</span>
+                              <span>Ton business est trop dépendant de toi.</span>
+                            </li>
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#8B5CF6] mt-0.5 md:mt-1">•</span>
+                              <span>Tu manques de ressources pour investir dans la croissance</span>
+                            </li>
+                          </ul>
+                        </div>
+
+                        <div className="bg-gradient-to-br from-[#8B5CF6]/10 to-[#8B5CF6]/5 rounded-lg md:rounded-2xl p-2.5 md:p-5 border border-[#8B5CF6]/20">
+                          <div className="flex items-center gap-1.5 md:gap-2 text-[#8B5CF6] font-medium mb-1.5 md:mb-3">
+                            <svg className="w-3.5 h-3.5 md:w-5 md:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                            <span className="text-xs md:text-base">Conséquences</span>
+                          </div>
+                          <ul className="space-y-1.5 md:space-y-3">
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#8B5CF6] mt-0.5 md:mt-1">•</span>
+                              <span>Tu te sens limité dans tes ambitions</span>
+                            </li>
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#8B5CF6] mt-0.5 md:mt-1">•</span>
+                              <span>Tu as peur de manquer d'opportunités</span>
+                            </li>
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#8B5CF6] mt-0.5 md:mt-1">•</span>
+                              <span>Tu te sens seul face aux décisions stratégiques</span>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+
+                      <div className="space-y-2 md:space-y-4">
+                        <div className="bg-gradient-to-br from-[#10B981]/10 to-[#10B981]/5 rounded-lg md:rounded-2xl p-2.5 md:p-5 border border-[#10B981]/20">
+                          <div className="flex items-center gap-1.5 md:gap-2 text-[#10B981] font-medium mb-1.5 md:mb-3">
+                            <svg className="w-3.5 h-3.5 md:w-5 md:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span className="text-xs md:text-base">Solutions</span>
+                          </div>
+                          {/* INCUBATEUR - Solutions */}
+                          <ul className="space-y-1.5 md:space-y-3">
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#10B981] mt-0.5 md:mt-1">•</span>
+                              <span>T'entourer des meilleurs dans leur domaine.</span>
+                            </li>
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#10B981] mt-0.5 md:mt-1">•</span>
+                              <span>Ambitionner de faire 10X sur ton business.</span>
+                            </li>
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#10B981] mt-0.5 md:mt-1">•</span>
+                              <span>Systémiser ton business et tes revenus.</span>
+                            </li>
+                          </ul>
+                        </div>
+
+                        <div className="bg-gradient-to-br from-[#10B981]/10 to-[#10B981]/5 rounded-lg md:rounded-2xl p-2.5 md:p-5 border border-[#10B981]/20">
+                          <div className="flex items-center gap-1.5 md:gap-2 text-[#10B981] font-medium mb-1.5 md:mb-3">
+                            <svg className="w-3.5 h-3.5 md:w-5 md:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                            </svg>
+                            <span className="text-xs md:text-base">Résultats</span>
+                          </div>
+                          {/* INCUBATEUR - Résultats */}
+                          <ul className="space-y-1.5 md:space-y-3">
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#10B981] mt-0.5 md:mt-1">•</span>
+                              <span>Une croissance saine jusqu'à 100k€/mois.</span>
+                            </li>
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#10B981] mt-0.5 md:mt-1">•</span>
+                              <span>Des systèmes déployables en 90 jours.</span>
+                            </li>
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#10B981] mt-0.5 md:mt-1">•</span>
+                              <span>Tu n'es plus seul dans ton business.</span>
+                            </li>
+                          </ul>
+                        </div>
+
+                        <div className="bg-gradient-to-br from-[#10B981]/5 to-transparent rounded-lg md:rounded-2xl p-2.5 md:p-5 border border-[#10B981]/10">
+                          <div className="flex items-center gap-2 md:gap-3">
+                            <div className="w-6 h-6 md:w-10 md:h-10 rounded-full bg-[#10B981]/20 flex items-center justify-center flex-shrink-0">
+                              <svg className="w-3 h-3 md:w-5 md:h-5 text-[#10B981]" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                              </svg>
+                            </div>
+                            <div className="min-w-0">
+                              <p className="text-xs md:text-sm text-gray-300 font-medium">"17M€+ de C.A générés par nos clients et partenaires."</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <Link 
+                          href="https://app.iclosed.io/e/baptistepiocelle/incubateur-bpc" 
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group relative flex items-center justify-center w-full px-3 py-2 md:px-6 md:py-4 rounded-lg md:rounded-2xl bg-gradient-to-r from-[#10B981] to-[#10B981]/80 text-white font-medium shadow-lg shadow-[#10B981]/20 hover:shadow-xl hover:shadow-[#10B981]/30 transition-all duration-300 hover:scale-[1.02]"
+                        >
+                          <span className="text-sm md:text-lg">Découvrir l'INCUBATEUR</span>
+                          <svg className="w-3.5 h-3.5 md:w-5 md:h-5 ml-1.5 md:ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                          </svg>
+                          <div className="absolute inset-0 rounded-lg md:rounded-2xl bg-gradient-to-r from-[#10B981]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* SCALING LAB */}
+              <div id="scaling-lab" className="scroll-mt-32">
+                <div className="relative w-full bg-gradient-to-br from-[#6366F1]/10 via-black/40 to-[#6366F1]/10 rounded-xl md:rounded-3xl border border-white/10 shadow-xl backdrop-blur-md overflow-hidden">
+                  <div className="p-3 md:p-8 border-b border-white/5">
+                    <div className="flex items-center gap-2 md:gap-4">
+                      <div className="w-8 h-8 md:w-12 md:h-12 rounded-lg md:rounded-2xl bg-[#6366F1]/20 flex items-center justify-center shadow-lg shadow-[#6366F1]/10">
+                        <span className="text-base md:text-xl font-bold text-[#6366F1]">5</span>
+                      </div>
+                      <div className="flex-grow min-w-0">
+                        <h3 className="text-lg md:text-3xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                          SCALING LAB
+                        </h3>
+                        <div className="flex items-center gap-1.5 md:gap-3 mt-0.5 md:mt-2">
+                          <span className="px-2 py-0.5 rounded-full bg-[#10B981]/20 text-[#10B981] text-xs md:text-sm font-medium">
+                            CA 600k€ - 3M€/an
+                          </span>
+                        </div>
+                      </div>
+                      <span className="px-2 py-0.5 md:px-4 md:py-2 rounded-lg md:rounded-xl bg-white/10 text-gray-300 text-xs md:text-sm font-bold whitespace-nowrap">
+                        180 jours
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="p-3 md:p-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6">
+                      <div className="space-y-2 md:space-y-4">
+                        <div className="bg-gradient-to-br from-[#6366F1]/10 to-[#6366F1]/5 rounded-lg md:rounded-2xl p-2.5 md:p-5 border border-[#6366F1]/20">
+                          <div className="flex items-center gap-1.5 md:gap-2 text-[#6366F1] font-medium mb-1.5 md:mb-3">
+                            <svg className="w-3.5 h-3.5 md:w-5 md:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                            </svg>
+                            <span className="text-xs md:text-base">Symptômes</span>
+                          </div>
+                          {/* SCALING LAB - Symptômes */}
+                          <ul className="space-y-1.5 md:space-y-3">
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#6366F1] mt-0.5 md:mt-1">•</span>
+                              <span>Un CEO piégé dans l'opérationnel.</span>
+                            </li>
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#6366F1] mt-0.5 md:mt-1">•</span>
+                              <span>Tu passes ton temps à éteindre des incendies.</span>
+                            </li>
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#6366F1] mt-0.5 md:mt-1">•</span>
+                              <span>Tes équipes sont désorganisées, tu gères encore TOUT.</span>
+                            </li>
+                          </ul>
+                        </div>
+
+                        <div className="bg-gradient-to-br from-[#6366F1]/10 to-[#6366F1]/5 rounded-lg md:rounded-2xl p-2.5 md:p-5 border border-[#6366F1]/20">
+                          <div className="flex items-center gap-1.5 md:gap-2 text-[#6366F1] font-medium mb-1.5 md:mb-3">
+                            <svg className="w-3.5 h-3.5 md:w-5 md:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                            <span className="text-xs md:text-base">Conséquences</span>
+                          </div>
+                          {/* SCALING LAB - Conséquences */}
+                          <ul className="space-y-1.5 md:space-y-3">
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#6366F1] mt-0.5 md:mt-1">•</span>
+                              <span>Une vision oubliée.</span>
+                            </li>
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#6366F1] mt-0.5 md:mt-1">•</span>
+                              <span>T'es proche du burnout.</span>
+                            </li>
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#6366F1] mt-0.5 md:mt-1">•</span>
+                              <span>Tu génères pas autant que tu mérites.</span>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+
+                      <div className="space-y-2 md:space-y-4">
+                        <div className="bg-gradient-to-br from-[#10B981]/10 to-[#10B981]/5 rounded-lg md:rounded-2xl p-2.5 md:p-5 border border-[#10B981]/20">
+                          <div className="flex items-center gap-1.5 md:gap-2 text-[#10B981] font-medium mb-1.5 md:mb-3">
+                            <svg className="w-3.5 h-3.5 md:w-5 md:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span className="text-xs md:text-base">Solutions</span>
+                          </div>
+                          {/* SCALING LAB - Solutions */}
+                          <ul className="space-y-1.5 md:space-y-3">
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#10B981] mt-0.5 md:mt-1">•</span>
+                              <span>Structurer tes process interne.</span>
+                            </li>
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#10B981] mt-0.5 md:mt-1">•</span>
+                              <span>Internaliser les compétences clés.</span>
+                            </li>
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#10B981] mt-0.5 md:mt-1">•</span>
+                              <span>Déployer un système d'acquisition d'envergure.</span>
+                            </li>
+                          </ul>
+                        </div>
+
+                        <div className="bg-gradient-to-br from-[#10B981]/10 to-[#10B981]/5 rounded-lg md:rounded-2xl p-2.5 md:p-5 border border-[#10B981]/20">
+                          <div className="flex items-center gap-1.5 md:gap-2 text-[#10B981] font-medium mb-1.5 md:mb-3">
+                            <svg className="w-3.5 h-3.5 md:w-5 md:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                            </svg>
+                            <span className="text-xs md:text-base">Résultats</span>
+                          </div>
+                          {/* SCALING LAB - Résultats */}
+                          <ul className="space-y-1.5 md:space-y-3">
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#10B981] mt-0.5 md:mt-1">•</span>
+                              <span>Une acquisition qui supporte ta croissance.</span>
+                            </li>
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#10B981] mt-0.5 md:mt-1">•</span>
+                              <span>Des équipes efficaces et fidèles, sans drama.</span>
+                            </li>
+                            <li className="flex items-start gap-1.5 md:gap-3 text-gray-300 text-xs md:text-base">
+                              <span className="text-[#10B981] mt-0.5 md:mt-1">•</span>
+                              <span>Les fondations stables pour traverser le désert entre 3M€ et 10M€</span>
+                            </li>
+                          </ul>
+                        </div>
+
+                        <div className="bg-gradient-to-br from-[#10B981]/5 to-transparent rounded-lg md:rounded-2xl p-2.5 md:p-5 border border-[#10B981]/10">
+                          <div className="flex items-center gap-2 md:gap-3">
+                            <div className="w-6 h-6 md:w-10 md:h-10 rounded-full bg-[#10B981]/20 flex items-center justify-center flex-shrink-0">
+                              <Image src="/anais-remaoun.webp" alt="Anaïs Remaoun" width={40} height={40} className="rounded-full object-cover" />
+                            </div>
+                            <div className="min-w-0">
+                              <p className="text-xs md:text-sm text-gray-300 font-medium">"+300 000€ générés en 75 jours via une stratégie de contenu LinkedIn On a lancé 35 posts en 75 jours. Résultat : +1,7M de vues, 4 posts viraux, +4000 abonnés, et plus de 300 000€ générés. Ce n'est pas juste du contenu. C'est une stratégie testée, analysée, optimisée."</p>
+                              <p className="text-[10px] md:text-xs text-gray-400">Anaïs Remaoun</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <Link 
+                          href="https://app.iclosed.io/e/baptistepiocelle/bpc-private-scaling-lab" 
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group relative flex items-center justify-center w-full px-3 py-2 md:px-6 md:py-4 rounded-lg md:rounded-2xl bg-gradient-to-r from-[#10B981] to-[#10B981]/80 text-white font-medium shadow-lg shadow-[#10B981]/20 hover:shadow-xl hover:shadow-[#10B981]/30 transition-all duration-300 hover:scale-[1.02]"
+                        >
+                          <span className="text-sm md:text-lg">Découvrir le SCALING LAB</span>
+                          <svg className="w-3.5 h-3.5 md:w-5 md:h-5 ml-1.5 md:ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                          </svg>
+                          <div className="absolute inset-0 rounded-lg md:rounded-2xl bg-gradient-to-r from-[#10B981]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* CTA Final */}
+            <div className="text-center mt-16">
+              <div className="relative max-w-2xl mx-auto bg-gradient-to-br from-black/60 via-black/40 to-black/60 backdrop-blur-xl rounded-2xl p-8 border border-white/10 shadow-2xl overflow-hidden">
+                {/* Effet de brillance */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent animate-shine"></div>
+                
+                {/* Contenu principal */}
+                <div className="relative z-10">
+                  <h3 className="text-2xl md:text-3xl font-title mb-4 bg-gradient-to-r from-white via-button to-white bg-clip-text text-transparent">
+                    Tu hésites encore ?
+                  </h3>
+                  
+                  <p className="text-lg text-gray-300 mb-6">
+                    Réserve un appel stratégique de 45 minutes pour identifier les opportunités de croissance de ton business
+                  </p>
+
+                  {/* CTA Button */}
+                  <div className="space-y-3">
+                    <Link 
+                      href="https://app.iclosed.io/e/baptistepiocelle/diagnostic-b2b" 
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group relative inline-flex items-center justify-center px-8 py-3 text-lg font-medium text-white bg-gradient-to-r from-button to-button/80 rounded-xl shadow-lg shadow-button/20 hover:shadow-xl hover:shadow-button/30 transition-all duration-300 hover:scale-105 overflow-hidden"
+                    >
+                      <span className="relative z-10">Réserver mon diagnostic stratégique</span>
+                      <div className="absolute inset-0 bg-gradient-to-r from-button/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    </Link>
+
+                    {/* Badge de confiance */}
+                    <div className="flex items-center justify-center gap-4 text-sm text-gray-400">
+                      <div className="flex items-center gap-1.5">
+                        <svg className="w-4 h-4 text-button" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
+                        <span>45 min</span>
                       </div>
-                    </div>
-                  )}
-                </div>
-                <div className="p-6">
-                  <div className="inline-block bg-button/20 px-3 py-1 rounded-full text-xs font-medium mb-3">
-                    TÉMOIGNAGE CLIENT
-                  </div>
-                  <h3 className="font-bold text-lg mb-3">{testimonial.title}</h3>
-                  <div className="flex items-center">
-                    {testimonial.profileImage ? (
-                      <div className="w-10 h-10 rounded-full overflow-hidden mr-3 relative">
-                        <Image
-                          src={testimonial.profileImage}
-                          alt={testimonial.name}
-                          fill
-                          className="object-cover"
-                        />
+                      <div className="w-1 h-1 rounded-full bg-gray-600"></div>
+                      <div className="flex items-center gap-1.5">
+                        <svg className="w-4 h-4 text-button" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                        <span>+200 CEO sont déjà passés par là</span>
                       </div>
-                    ) : (
-                      <div className="w-10 h-10 bg-button rounded-full flex items-center justify-center mr-3">
-                        <span className="text-primary font-bold text-sm">{testimonial.name.charAt(0)}</span>
-                      </div>
-                    )}
-                    <div>
-                      <p className="font-bold">{testimonial.name}</p>
-                      <p className="text-sm text-gray-400">{testimonial.role}</p>
                     </div>
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Written Testimonials */}
-      <section className="section bg-primary py-12 px-4">
-        <div className="container-custom">
-          <div className="text-center mb-8">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl mb-3 font-title">Témoignages écrits</h2>
-            <p className="text-gray-300 max-w-2xl mx-auto">
-              Découvrez les retours d'expérience de nos clients
-            </p>
-          </div>
-
-          <div className="flex flex-col lg:flex-row gap-8">
-            {/* Testimonials Grid */}
-            <div className="lg:w-2/3">
-              <div className="grid sm:grid-cols-2 gap-4 md:gap-6">
-                {[
-                  {
-                    quote: "Le formateur : un vrai expert du sujet. Il a une très bonne connaissance de la plateforme LinkedIn et du fonctionnement de l'algo. Baptiste utilise le copywriting et quelques techniques de SEO pour optimiser les posts.\n\nLa dynamique de groupe : 10 personnes avec une entraide quotidienne. Chaque stagiaire échange sur les réussites et les échecs.",
-                    name: "Jean-Michel LY",
-                    role: "Entrepreneur B2B",
-                  },
-                  {
-                    quote: "+300 000€ générés en 75 jours via une stratégie de contenu LinkedIn\n\nOn a lancé 35 posts en 75 jours. Résultat : +1,7M de vues, 4 posts viraux, +4000 abonnés, et plus de 300 000€ générés.\n\nCe n'est pas juste du contenu. C'est une stratégie testée, analysée, optimisée.\n\nOn savait quoi poster, à quel moment, et comment convertir.",
-                    name: "Anaïs R.",
-                    role: "CEO de A&C",
-                  },
-                  {
-                    quote: "J'ai grandement apprécié le professionnalisme et l'efficacité de Baptiste. En gardant une trame générale de sa formation, il réussit aussi à s'adapter aux besoins et profils de chacun. Cela permet de se booster et de gagner en compétence avec une rapidité sans précédent ! ⚡",
-                    name: "Joris Genty",
-                    role: "Entrepreneur",
-                  },
-                  {
-                    quote: "Si tu lis ça, c'est sûrement que t'es en train de zieuter la page de Baptiste et hésiter à rejoindre son programme.\n\nJ'ai été accompagnée par Baptiste pendant près de 3 mois. Résultat :\n– Des posts LinkedIn à +20k vues alors que j'avais même pas 100 contacts.\n– Création de ma newsletter La Taverne avec d'excellents retours.\n– Conversations riches suite à mes posts.",
-                    name: "Axelle Guer",
-                    role: "Entrepreneure",
-                  },
-                  {
-                    quote: "+75% de rentabilité sur 6 mois sans recruter ni déléguer dans tous les sens\n\nJe voulais scaler sans sacrifier ma liberté. En quelques semaines, j'ai restructuré mes offres, internalisé l'acquisition, et lancé un système qui tourne.\n\nAujourd'hui, je sais exactement où va chaque euro, chaque heure. Je fais plus de cash, avec moins d'efforts et surtout, sans team à gérer.",
-                    name: "CEO anonyme",
-                    role: "Prestataire B2B indépendant",
-                  },
-                  {
-                    quote: "Grâce à Baptiste j'ai réussi à préparer un nombre de posts LinkedIn que je n'aurais pas imaginé avant son coaching. Ses explications sont limpides, ses trames faciles à mettre en œuvre. Il est disponible et super cool.",
-                    name: "Guillaume",
-                    role: "Client B2B",
-                  },
-                  {
-                    quote: "Je te trouve direct, tranché et brut, et c'est ça que je recherche dans les formats vidéos + des preuves à l'appui/démos etc...\n\nLa majorité des éléments sont pertinents et ont du sens, il y a une cohérence, c'est bien construit. J'ai beaucoup de clés pour tout déchirer maintenant !",
-                    name: "Samantha Piat",
-                    role: "Entrepreneure",
-                  },
-                  {
-                    quote: "+20 000€ générés dès le premier lancement avec un système de vente entièrement délégué\n\nTout a été mis en place sans que j'aie à lever le petit doigt : tunnel, mails, pub, VSL, prise de rendez-vous, setting, closing.\n\nDe mon côté ? J'ai juste conçu un programme utile, fait les bons choix stratégiques avec eux… et livré l'accompagnement.",
-                    name: "Yann Grosjean",
-                    role: "CEO de Lugus",
-                  },
-                  {
-                    quote: "Et pour se former au mieux >>> allez voir directement Baptiste Piocelle. Un super bootcamp que j'ai suivi : Simple, Complet, Actionnable, Résultats à la clef ❤️",
-                    name: "Giacomo Genna",
-                    role: "Entrepreneur",
-                  },
-                  {
-                    quote: "Autant pour une personne expérimentée que pour un débutant, la formation de Baptiste est une vraie mine d'or. En quelques heures, j'ai radicalement changé ma façon de créer du contenu sur les plateformes.",
-                    name: "Thierry Lorfils",
-                    role: "Expert contenu",
-                  },
-                  {
-                    quote: "Baptiste m'a aidé à y voir plus clair pour me lancer dans l'écriture sur LinkedIn. En 1h, j'ai eu un plan d'action efficace avec un ensemble d'outils pour m'aider dans l'écriture et la publication.",
-                    name: "Mathieu",
-                    role: "Entrepreneur B2B",
-                  },
-                  {
-                    quote: "J'ai apprécié ton écoute et ta grande expertise. J'ai énormément appris, tu es objectif et nous avons eu un réel échange bénéfique. Tu m'as aidé à améliorer mon profil et le rendre plus efficient.",
-                    name: "Rousset",
-                    role: "Client",
-                  }
-                ].map((testimonial, index) => (
-                  <div key={index} className="bg-gray-900/50 backdrop-blur-sm rounded-lg p-6 relative hover:bg-gray-900/70 transition-colors duration-300">
-                    <svg className="h-8 w-8 text-title opacity-20 absolute top-4 right-4" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-                    </svg>
-                    <p className="text-gray-300 mb-4 text-sm leading-relaxed">{testimonial.quote}</p>
-                    <div className="flex items-center">
-                      <div className="w-8 h-8 bg-button rounded-full flex items-center justify-center mr-3">
-                        <span className="text-primary font-bold text-xs">{testimonial.name.charAt(0)}</span>
-                      </div>
-                      <div>
-                        <p className="font-bold text-sm">{testimonial.name}</p>
-                        <p className="text-xs text-gray-400">{testimonial.role}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Testimonial.to Embed */}
-            <div className="lg:w-1/3 h-[800px] bg-gray-900/50 backdrop-blur-sm rounded-lg overflow-hidden">
-              <iframe
-                src="https://embed.testimonial.to/w/baptiste-piocelle/?animated=on&theme=light&shadowColor=ffffff"
-                width="100%"
-                height="100%"
-                frameBorder="0"
-                title="Témoignages en direct"
-                loading="lazy"
-                className="w-full h-full"
-              ></iframe>
             </div>
           </div>
         </div>
       </section>
+
+      {/* Témoignages Section */}
+      <Testimonials />
 
       {/* FAQ Section */}
-      <section className="section bg-primary py-12 md:py-16 px-4 md:px-0">
+      <section className="py-20 bg-black/40 backdrop-blur-sm">
         <div className="container-custom">
-          <div className="text-center mb-10 md:mb-16">
-            <div className="inline-block bg-button/20 backdrop-blur-sm px-6 py-2 rounded-full mb-4 border border-button/30">
-              <p className="text-sm md:text-base font-medium">
-                Tout savoir
-              </p>
-            </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl mb-3 md:mb-4 font-title bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Questions fréquentes</h2>
-            <p className="text-gray-300 max-w-2xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-title mb-6">Questions fréquentes</h2>
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
               Tu as des questions sur nos programmes ? Consulte notre FAQ ci-dessous.
             </p>
           </div>
-          
-          <div className="max-w-3xl mx-auto space-y-4 md:space-y-6">
+
+          <div className="max-w-3xl mx-auto space-y-6">
             {[
               {
-                question: "Quelle solution est la plus adaptée pour moi?",
-                answer: "Tout dépend de ta situation et de tes objectifs. STARTER (99€) est idéal pour démarrer avec la méthode BPC en autonomie. ACCÉLÉRATEUR (987€) convient si tu veux être guidé dans la mise en œuvre. SCALE (4.500€) est pour ceux qui veulent déléguer la création de leur système. L'INCUBATEUR est pour ceux qui veulent nous avoir comme associés et dépasser les 80k€/mois."
+                question: "Comment choisir la solution adaptée à mon business ?",
+                answer: "Tout dépend de ta situation actuelle et de tes objectifs. STARTER est idéal pour démarrer avec la méthode BPC en autonomie. ACCÉLÉRATEUR convient si tu veux être guidé dans la mise en œuvre. SCALE est pour ceux qui veulent déléguer la création de leur système. L'INCUBATEUR est pour ceux qui veulent nous avoir comme associés et dépasser les 80k€/mois. Le SCALING LAB est pour les entreprises qui veulent passer à l'échelle supérieure avec un CA entre 600k€ et 3M€."
               },
               {
-                question: "Puis-je évoluer d'un programme à l'autre?",
-                answer: "Absolument! Nos programmes sont conçus pour évoluer avec tes besoins. Tu peux commencer par STARTER, puis passer à l'ACCÉLÉRATEUR ou SCALE, et ensuite candidater à l'INCUBATEUR lorsque tu veux passer à l'échelle avec nous comme associés. Nous déduisons toujours le montant déjà investi."
+                question: "Comment fonctionne le processus d'intégration ?",
+                answer: "Chaque programme commence par un diagnostic approfondi de ton business. Nous identifions tes points forts, tes axes d'amélioration et définissons une stratégie claire. Ensuite, nous mettons en place un plan d'action personnalisé avec des étapes précises et des objectifs mesurables. Tu bénéficies d'un accompagnement continu et d'un accès à notre communauté d'entrepreneurs."
               },
               {
-                question: "Quelle est la différence entre SCALE et l'INCUBATEUR?",
-                answer: "SCALE est un service ponctuel où nous créons ton système d'acquisition pour toi, avec un support de 30 jours. L'INCUBATEUR est un véritable partenariat basé sur le revshare où nous devenons tes associés après une phase de test de 3 mois. Nous prenons en charge tous les aspects de ton business sauf ta livraison client."
+                question: "Quelle est la différence entre SCALE et l'INCUBATEUR ?",
+                answer: "SCALE est un programme intensif de 30 jours où nous créons et déployons ton système d'acquisition complet. L'INCUBATEUR est un partenariat stratégique sur 90 jours qui évolue vers une collaboration à long terme. Nous devenons tes associés après une phase de test de 3 mois, prenant en charge tous les aspects de ton business sauf ta livraison client."
               },
               {
-                question: "Comment fonctionne le modèle de revshare de l'INCUBATEUR?",
-                answer: "L'INCUBATEUR démarre par une phase de test de 3 mois, puis nous devenons officiellement tes associés. Nous partageons les revenus générés, ce qui aligne parfaitement nos intérêts. Les détails exacts du revshare sont discutés lors de l'entretien initial, car ils dépendent de ton business et de son potentiel."
+                question: "Comment fonctionne le SCALING LAB ?",
+                answer: "Le SCALING LAB est un programme sur 180 jours conçu pour les entreprises qui veulent passer à l'échelle supérieure. Nous travaillons sur la structuration de tes processus internes, l'internalisation des compétences clés et le déploiement d'un système d'acquisition d'envergure. L'objectif est de créer les fondations stables pour traverser le désert entre 3M€ et 10M€ de CA."
               },
               {
-                question: "Que se passe-t-il après les 3 mois de test de l'INCUBATEUR?",
-                answer: "Si la phase de test est concluante, nous officialisons le partenariat et continuons à développer ton business ensemble sur le long terme. Nous nous occupons de tout l'aspect business pendant que tu te concentres sur ta livraison client et ton expertise."
+                question: "Quels sont les résultats typiques de vos programmes ?",
+                answer: "Nos clients obtiennent des résultats concrets et mesurables. Par exemple, certains ont généré +300 000€ en 75 jours via une stratégie de contenu LinkedIn, d'autres ont doublé leur CA en 30 jours, et d'autres encore ont gagné +20h par semaine en déléguant efficacement. Les résultats varient selon le programme choisi et l'engagement de l'entrepreneur."
               },
               {
-                question: "Y a-t-il une garantie avec l'INCUBATEUR?",
-                answer: "L'INCUBATEUR fonctionne avec une phase de test de 3 mois qui sert de période d'évaluation mutuelle. Notre rémunération étant basée sur le revshare, nous ne gagnons que si tu gagnes, ce qui constitue la meilleure garantie d'alignement possible. Nous sommes 100% investis dans ton succès."
+                question: "Comment se déroule l'accompagnement au quotidien ?",
+                answer: "L'accompagnement est personnalisé et adapté à chaque programme. Tu bénéficies d'appels réguliers, d'un accès à notre plateforme de formation, de sessions de coaching individuelles et de masterminds de groupe. Nous utilisons des outils de suivi pour mesurer ta progression et ajuster la stratégie si nécessaire. Notre objectif est de te rendre autonome tout en restant disponible pour toi."
               },
+              {
+                question: "Quelle est la durée d'engagement minimale ?",
+                answer: "La durée varie selon le programme : STARTER est accessible à vie, ACCÉLÉRATEUR dure 14 jours, SCALE s'étend sur 30 jours, l'INCUBATEUR sur 90 jours, et le SCALING LAB sur 180 jours. Chaque programme est conçu pour te donner des résultats rapides tout en construisant des fondations solides pour le long terme."
+              }
             ].map((item, index) => (
               <div key={index} className="group bg-gray-900/50 backdrop-blur-sm rounded-lg border border-gray-800/30 hover:border-button/30 transition-colors duration-300">
-                <div className="p-6">
-                  <div className="flex items-center justify-between cursor-pointer">
+                <div 
+                  className="p-6 cursor-pointer"
+                  onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                >
+                  <div className="flex items-center justify-between">
                     <h3 className="text-xl font-bold group-hover:text-button transition-colors">{item.question}</h3>
-                    <div className="w-8 h-8 rounded-full bg-button/20 flex items-center justify-center group-hover:bg-button/30 transition-all">
+                    <div className={`w-8 h-8 rounded-full bg-button/20 flex items-center justify-center group-hover:bg-button/30 transition-all transform ${openFaq === index ? 'rotate-180' : ''}`}>
                       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                       </svg>
                     </div>
                   </div>
-                  <p className="text-gray-300 mt-4">{item.answer}</p>
+                  {openFaq === index && (
+                    <p className="text-gray-300 mt-4">{item.answer}</p>
+                  )}
                 </div>
               </div>
             ))}
@@ -934,48 +1276,166 @@ export default function CataloguePage() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="relative py-20 md:py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-button/20 to-primary">
-          <div className="absolute inset-0 opacity-10" style={{
-            backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(255,255,255,0.15) 1px, transparent 0)',
-            backgroundSize: '32px 32px'
-          }}></div>
-        </div>
+      {/* Bouton Retour en haut */}
+      {showBackToTop && (
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="fixed bottom-8 right-8 bg-button text-white p-3 rounded-full shadow-lg hover:scale-110 transition-transform duration-300 z-50"
+        >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+          </svg>
+        </button>
+      )}
 
-        <div className="container-custom relative z-10 px-4 md:px-0">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-block bg-button/20 backdrop-blur-sm px-6 py-2 rounded-full mb-6 border border-button/30">
-              <p className="text-sm md:text-base font-medium">
-                Passe à l'action maintenant
-              </p>
-            </div>
-            
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 md:mb-8 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-              Prêt à faire décoller ton business B2B ?
-            </h2>
-            
-            <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-8 md:mb-10">
-              Que tu commences avec STARTER ou que tu sois prêt pour SCALE, nous avons la solution adaptée à ton niveau et à tes objectifs.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-4 md:gap-6">
-              <Link
-                href="/catalogue/starter"
-                className="btn text-lg px-8 py-4"
-              >
-                Découvrir STARTER
-              </Link>
-              <Link
-                href="/contact"
-                className="btn-outline text-lg px-8 py-4"
-              >
-                Réserver un appel de diagnostic
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-    </>
+      {/* Mettre à jour les styles globaux pour inclure les polices */}
+      <style jsx global>{`
+        :root {
+          --font-anton: ${anton.style.fontFamily};
+          --font-archivo-black: ${archivoBlack.style.fontFamily};
+          --font-montserrat: ${montserrat.style.fontFamily};
+        }
+
+        .font-title {
+          font-family: var(--font-anton);
+        }
+
+        .font-archivo-black {
+          font-family: var(--font-archivo-black);
+        }
+
+        .font-montserrat {
+          font-family: var(--font-montserrat);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+          font-family: var(--font-anton);
+        }
+
+        p, span, div, button, a {
+          font-family: var(--font-montserrat);
+        }
+
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade-in {
+          animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        .animate-fade-in-delay-1 {
+          animation: fadeIn 0.8s ease-out 0.2s forwards;
+          opacity: 0;
+        }
+
+        .animate-fade-in-delay-2 {
+          animation: fadeIn 0.8s ease-out 0.4s forwards;
+          opacity: 0;
+        }
+
+        .animate-fade-in-delay-3 {
+          animation: fadeIn 0.8s ease-out 0.6s forwards;
+          opacity: 0;
+        }
+
+        .animate-fade-in-delay-4 {
+          animation: fadeIn 0.8s ease-out 0.8s forwards;
+          opacity: 0;
+        }
+
+        .perspective {
+          perspective: 1000px;
+        }
+
+        .preserve-3d {
+          transform-style: preserve-3d;
+        }
+
+        .backface-hidden {
+          backface-visibility: hidden;
+        }
+
+        .rotate-y-180 {
+          transform: rotateY(180deg);
+        }
+
+        @keyframes pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.5; }
+        }
+
+        .animate-pulse {
+          animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        .flip-card {
+          perspective: 1000px;
+          cursor: pointer;
+        }
+
+        .flip-card-inner {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          transition: transform 0.6s;
+          transform-style: preserve-3d;
+        }
+
+        .flip-card.flipped .flip-card-inner {
+          transform: rotateY(180deg);
+        }
+
+        .flip-card-front,
+        .flip-card-back {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          backface-visibility: hidden;
+          -webkit-backface-visibility: hidden;
+        }
+
+        .flip-card-back {
+          transform: rotateY(180deg);
+        }
+
+        @keyframes float {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-5px); }
+        }
+
+        .float-animation {
+          animation: float 2s ease-in-out infinite;
+        }
+
+        @keyframes gradient {
+          0% { background-position: 0% center; }
+          100% { background-position: 200% center; }
+        }
+
+        .animate-gradient {
+          animation: gradient 8s linear infinite;
+        }
+
+        @keyframes scroll {
+          0% { transform: translateY(0); opacity: 1; }
+          100% { transform: translateY(20px); opacity: 0; }
+        }
+
+        .animate-scroll {
+          animation: scroll 2s ease-in-out infinite;
+        }
+
+        @keyframes shine {
+          0% { transform: translateX(-100%); }
+          100% { transform: translateX(100%); }
+        }
+
+        .animate-shine {
+          animation: shine 3s infinite;
+        }
+      `}</style>
+    </div>
   );
 } 

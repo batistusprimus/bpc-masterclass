@@ -97,7 +97,25 @@ export default function MentionsLegales() {
         <section className="mb-12">
           <h2 className="text-2xl font-semibold mb-4 text-title">7. Cookies et tracking</h2>
           <p className="mb-4">
-            Le site n'utilise pas de cookies à des fins de tracking publicitaire ou d'analyse (Google Analytics, Meta Ads, etc.) à ce jour.
+            Le site utilise Google Analytics (GA4) pour analyser l'utilisation du site et améliorer l'expérience utilisateur. 
+            Ces données sont collectées de manière anonyme et ne permettent pas d'identifier personnellement les visiteurs.
+          </p>
+          <p className="mb-4">
+            Les données collectées incluent :
+          </p>
+          <ul className="list-disc pl-6 mb-6 space-y-2">
+            <li>Pages visitées et temps passé sur le site</li>
+            <li>Source de trafic (moteurs de recherche, réseaux sociaux, etc.)</li>
+            <li>Informations techniques (navigateur, appareil, localisation)</li>
+            <li>Comportement des utilisateurs (clics, défilement, etc.)</li>
+          </ul>
+          <p className="mb-4">
+            Ces données sont utilisées uniquement à des fins d'analyse et d'amélioration du site. 
+            Vous pouvez désactiver Google Analytics en utilisant un bloqueur de scripts ou en installant l'extension de navigateur appropriée.
+          </p>
+          <p className="mb-4">
+            Pour plus d'informations sur la manière dont Google utilise les données collectées, consultez la 
+            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-button hover:underline"> politique de confidentialité de Google</a>.
           </p>
         </section>
         

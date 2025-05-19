@@ -5,6 +5,7 @@ import Footer from '@/components/Footer';
 import Script from 'next/script';
 import { Analytics } from "@vercel/analytics/react";
 import { anton, archivo, montserrat } from './fonts';
+import AnalyticsListener from './analytics-listener';
 
 export const metadata: Metadata = {
   title: 'BPC Masterclass | La masterclass ultime pour entrepreneurs B2B',
@@ -28,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="fr" className={`${anton.variable} ${archivo.variable} ${montserrat.variable}`}>
+    <html lang="fr" className={`${anton.className} ${archivo.className} ${montserrat.className}`}>
       <head>
         <meta property="og:image" content="/5.png" />
         <Script
@@ -45,6 +46,8 @@ export default function RootLayout({
         </Script>
       </head>
       <body>
+        {/* Analytics pageview listener */}
+        <AnalyticsListener />
         <Header />
         <main className="min-h-screen pt-20">
           {children}
