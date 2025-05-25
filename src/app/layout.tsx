@@ -44,6 +44,14 @@ export default function RootLayout({
             gtag('config', 'G-TD1JS07QVN');
           `}
         </Script>
+        <Script
+          id="vtag-ai-js"
+          src="https://r2.leadsy.ai/tag.js"
+          data-pid="1AI9ufjJ6NQjUZUZK"
+          data-version="062024"
+          strategy="afterInteractive"
+          async
+        />
       </head>
       <body>
         {/* Analytics pageview listener */}
