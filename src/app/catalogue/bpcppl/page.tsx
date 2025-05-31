@@ -371,7 +371,9 @@ export default function BPCPPLPage() {
               className="flex flex-col items-start space-y-10"
             >
               <a
-                href="#form"
+                href="https://app.iclosed.io/e/baptistepiocelle/contact"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group relative inline-flex items-center px-10 py-5 text-lg font-medium rounded-xl text-[#FFF1DE] overflow-hidden"
               >
                 {/* Button background */}
@@ -694,7 +696,9 @@ export default function BPCPPLPage() {
               className="text-center mt-16"
             >
               <a
-                href="#form"
+                href="https://app.iclosed.io/e/baptistepiocelle/contact"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center px-8 py-4 border-2 border-[#9F99EB] text-lg font-semibold rounded-lg text-[#FFF1DE] bg-gradient-to-r from-[#9F99EB] to-[#99E5EB] hover:bg-transparent hover:text-[#9F99EB] transition-all duration-300 shadow-lg hover:shadow-[#9F99EB]/10"
               >
                 Vérifier mon éligibilité
@@ -821,7 +825,9 @@ export default function BPCPPLPage() {
               className="text-center"
             >
               <a
-                href="#form"
+                href="https://app.iclosed.io/e/baptistepiocelle/contact"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center px-8 py-4 border-2 border-[#9F99EB] text-lg font-medium rounded-xl text-[#FFF1DE] bg-gradient-to-r from-[#9F99EB] to-[#99E5EB] hover:bg-transparent hover:text-[#9F99EB] transition-all duration-300 shadow-lg hover:shadow-[#9F99EB]/10"
               >
                 Calculer mon ROI potentiel
@@ -931,7 +937,9 @@ export default function BPCPPLPage() {
                   Prêt à recevoir vos premiers leads qualifiés ?
                 </p>
                 <a
-                  href="#form"
+                  href="https://app.iclosed.io/e/baptistepiocelle/contact"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center px-6 py-2 border-2 border-[#9F99EB] text-base font-medium rounded-md text-[#FFF1DE] hover:bg-[#9F99EB] hover:text-black transition-colors"
                 >
                   Démarrer maintenant
@@ -1198,7 +1206,9 @@ export default function BPCPPLPage() {
                 Prêt à calculer votre ROI potentiel ?
               </p>
               <a
-                href="#form"
+                href="https://app.iclosed.io/e/baptistepiocelle/contact"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center px-8 py-4 border-2 border-[#9F99EB] text-lg font-medium rounded-xl text-[#FFF1DE] bg-gradient-to-r from-[#9F99EB] to-[#99E5EB] hover:bg-transparent hover:text-[#9F99EB] transition-all duration-300 shadow-lg hover:shadow-[#9F99EB]/10"
               >
                 Calculer mon ROI personnalisé
@@ -1209,7 +1219,7 @@ export default function BPCPPLPage() {
         </div>
       </section>
 
-      {/* Form Section */}
+      {/* Form Section - Remplacé par un CTA */}
       <section id="form" className="py-32 bg-black relative overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0 z-0">
@@ -1228,187 +1238,33 @@ export default function BPCPPLPage() {
               className="text-center mb-12"
             >
               <h2 className={`${anton.className} text-4xl md:text-5xl mb-6 text-[#FFF1DE]`}>
-                Formulaire d'éligibilité
+                Prêt à démarrer ?
               </h2>
               <p className={`${archivoBlack.className} text-xl text-[#9B8E7D] max-w-2xl mx-auto`}>
-                Recueillir les informations clés pour savoir en moins de 2 min si l'entreprise est éligible à l'offre Pay Per Lead.
+                Répondez à quelques questions rapides pour vérifier votre éligibilité et calculer votre ROI potentiel.
               </p>
             </motion.div>
 
-            {/* Form */}
+            {/* CTA Button */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               viewport={{ once: true }}
+              className="text-center"
             >
-              <form onSubmit={handleSubmit} className="bg-[#1A1A1A] p-8 rounded-lg border border-[#9B8E7D]">
-                <div className="space-y-6">
-                  {/* Personal Info */}
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-sm font-medium text-[#FFF1DE] mb-2">
-                        Prénom & Nom *
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        placeholder="Alexandre Dupont"
-                        className="w-full px-4 py-3 rounded-lg bg-[#242424] border border-[#9B8E7D] text-[#FFF1DE] placeholder-[#9B8E7D] focus:border-[#9F99EB] focus:ring-[#9F99EB] transition-colors"
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-[#FFF1DE] mb-2">
-                        Email professionnel *
-                      </label>
-                      <input
-                        type="email"
-                        required
-                        placeholder="alex@entreprise.com"
-                        className="w-full px-4 py-3 rounded-lg bg-[#242424] border border-[#9B8E7D] text-[#FFF1DE] placeholder-[#9B8E7D] focus:border-[#9F99EB] focus:ring-[#9F99EB] transition-colors"
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      />
-                    </div>
-                  </div>
-
-                  {/* Company Info */}
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-sm font-medium text-[#FFF1DE] mb-2">
-                        Nom de l'entreprise *
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        placeholder="Growth Partners"
-                        className="w-full px-4 py-3 rounded-lg bg-[#242424] border border-[#9B8E7D] text-[#FFF1DE] placeholder-[#9B8E7D] focus:border-[#9F99EB] focus:ring-[#9F99EB] transition-colors"
-                        value={formData.company}
-                        onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-[#FFF1DE] mb-2">
-                        Site web *
-                      </label>
-                      <input
-                        type="url"
-                        required
-                        placeholder="https://growthpartners.io"
-                        className="w-full px-4 py-3 rounded-lg bg-[#242424] border border-[#9B8E7D] text-[#FFF1DE] placeholder-[#9B8E7D] focus:border-[#9F99EB] focus:ring-[#9F99EB] transition-colors"
-                        value={formData.website}
-                        onChange={(e) => setFormData({ ...formData, website: e.target.value })}
-                      />
-                    </div>
-                  </div>
-
-                  {/* Business Info */}
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-sm font-medium text-[#FFF1DE] mb-2">
-                        Chiffre d'affaires mensuel *
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        placeholder="50 000 €"
-                        className="w-full px-4 py-3 rounded-lg bg-[#242424] border border-[#9B8E7D] text-[#FFF1DE] placeholder-[#9B8E7D] focus:border-[#9F99EB] focus:ring-[#9F99EB] transition-colors"
-                        value={formData.revenue}
-                        onChange={(e) => setFormData({ ...formData, revenue: e.target.value })}
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-[#FFF1DE] mb-2">
-                        Ticket moyen client *
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        placeholder="7 000 €"
-                        className="w-full px-4 py-3 rounded-lg bg-[#242424] border border-[#9B8E7D] text-[#FFF1DE] placeholder-[#9B8E7D] focus:border-[#9F99EB] focus:ring-[#9F99EB] transition-colors"
-                        value={formData.ticket}
-                        onChange={(e) => setFormData({ ...formData, ticket: e.target.value })}
-                      />
-                    </div>
-                  </div>
-
-                  {/* Offer Description */}
-                  <div>
-                    <label className="block text-sm font-medium text-[#FFF1DE] mb-2">
-                      Description rapide de l'offre *
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      placeholder="Conseil marketing B2B premium"
-                      className="w-full px-4 py-3 rounded-lg bg-[#242424] border border-[#9B8E7D] text-[#FFF1DE] placeholder-[#9B8E7D] focus:border-[#9F99EB] focus:ring-[#9F99EB] transition-colors"
-                      value={formData.offer}
-                      onChange={(e) => setFormData({ ...formData, offer: e.target.value })}
-                    />
-                  </div>
-
-                  {/* Objectives */}
-                  <div>
-                    <label className="block text-sm font-medium text-[#FFF1DE] mb-4">
-                      Objectif principal *
-                    </label>
-                    <div className="space-y-3">
-                      <label className="flex items-center space-x-3">
-                        <input
-                          type="checkbox"
-                          className="w-5 h-5 rounded border-[#9B8E7D] text-[#9F99EB] focus:ring-[#9F99EB]"
-                          checked={formData.objectives.moreLeads}
-                          onChange={(e) => setFormData({
-                            ...formData,
-                            objectives: { ...formData.objectives, moreLeads: e.target.checked }
-                          })}
-                        />
-                        <span className="text-[#FFF1DE]">Générer plus de leads</span>
-                      </label>
-                      <label className="flex items-center space-x-3">
-                        <input
-                          type="checkbox"
-                          className="w-5 h-5 rounded border-[#9B8E7D] text-[#9F99EB] focus:ring-[#9F99EB]"
-                          checked={formData.objectives.moreMeetings}
-                          onChange={(e) => setFormData({
-                            ...formData,
-                            objectives: { ...formData.objectives, moreMeetings: e.target.checked }
-                          })}
-                        />
-                        <span className="text-[#FFF1DE]">Obtenir plus de rendez-vous qualifiés</span>
-                      </label>
-                      <label className="flex items-center space-x-3">
-                        <input
-                          type="checkbox"
-                          className="w-5 h-5 rounded border-[#9B8E7D] text-[#9F99EB] focus:ring-[#9F99EB]"
-                          checked={formData.objectives.optimizeAcquisition}
-                          onChange={(e) => setFormData({
-                            ...formData,
-                            objectives: { ...formData.objectives, optimizeAcquisition: e.target.checked }
-                          })}
-                        />
-                        <span className="text-[#FFF1DE]">Optimiser mes systèmes d'acquisition</span>
-                      </label>
-                    </div>
-                  </div>
-
-                  {/* Submit Button */}
-                  <div className="text-center pt-6">
-                    <button
-                      type="submit"
-                      className="inline-flex items-center px-8 py-4 border-2 border-[#9F99EB] text-lg font-medium rounded-lg text-[#FFF1DE] bg-[#9F99EB] hover:bg-transparent hover:text-[#9F99EB] transition-all duration-300"
-                    >
-                      Vérifier mon éligibilité
-                      <ArrowRightIcon className="ml-2 h-5 w-5" />
-                    </button>
-                    <p className="mt-4 text-sm text-[#9B8E7D]">
-                      Réponse sous 24 h. Aucun engagement.
-                    </p>
-                  </div>
-                </div>
-              </form>
+              <a
+                href="https://app.iclosed.io/e/baptistepiocelle/contact"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-8 py-4 border-2 border-[#9F99EB] text-lg font-medium rounded-xl text-[#FFF1DE] bg-gradient-to-r from-[#9F99EB] to-[#99E5EB] hover:bg-transparent hover:text-[#9F99EB] transition-all duration-300 shadow-lg hover:shadow-[#9F99EB]/10"
+              >
+                Vérifier mon éligibilité
+                <ArrowRightIcon className="ml-2 h-5 w-5" />
+              </a>
+              <p className="mt-4 text-sm text-[#9B8E7D]">
+                Réponse sous 24 h. Aucun engagement.
+              </p>
             </motion.div>
           </div>
         </div>
@@ -1507,13 +1363,15 @@ export default function BPCPPLPage() {
                     <span className="text-3xl">💡</span>
                     <div>
                       <h4 className={`${archivoBlack.className} text-xl mb-2 text-[#FFF1DE]`}>
-                        Vous avez d'autres questions ?
+                        Vous avez des questions ?
                       </h4>
                       <p className="text-[#9B8E7D] text-lg mb-6">
                         Notre équipe d'experts est là pour vous répondre et vous accompagner dans votre projet de génération de leads.
                       </p>
                       <a
-                        href="#form"
+                        href="https://app.iclosed.io/e/baptistepiocelle/contact"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="inline-flex items-center px-6 py-3 border-2 border-[#9F99EB] text-base font-medium rounded-lg text-[#FFF1DE] hover:bg-[#9F99EB] hover:text-black transition-all duration-300"
                       >
                         Discuter avec un expert
@@ -1558,7 +1416,9 @@ export default function BPCPPLPage() {
               viewport={{ once: true }}
             >
               <a
-                href="#form"
+                href="https://app.iclosed.io/e/baptistepiocelle/contact"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center px-8 py-4 border-2 border-[#9F99EB] text-lg font-semibold rounded-lg text-[#FFF1DE] bg-gradient-to-r from-[#9F99EB] to-[#99E5EB] hover:bg-transparent hover:text-[#9F99EB] transition-all duration-300 shadow-lg hover:shadow-[#9F99EB]/10"
               >
                 Vérifier mon éligibilité

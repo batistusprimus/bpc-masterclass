@@ -71,7 +71,9 @@ export default function Header() {
             >
               <div className="py-2">
                 <a 
-                  href="/incubateur" 
+                  href="https://app.iclosed.io/e/baptistepiocelle/incubateur-bpc" 
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="block px-4 py-2 text-sm text-contrast hover:bg-[#9F99EB]/10 hover:text-[#9F99EB] transition-colors"
                   onClick={() => setIsSolutionsOpen(false)}
                 >
@@ -177,7 +179,9 @@ export default function Header() {
               }`}
             >
               <a 
-                href="/incubateur" 
+                href="https://app.iclosed.io/e/baptistepiocelle/incubateur-bpc" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="block py-2 px-8 text-sm text-contrast hover:bg-white/5 hover:text-title transition-colors"
                 onClick={() => {
                   setIsSolutionsOpen(false);
