@@ -8,6 +8,7 @@ import Link from "next/link";
 import { motion } from 'framer-motion';
 import { Anton, Archivo_Black, Montserrat } from 'next/font/google';
 import Testimonials from "@/components/Testimonials";
+import HeroAvatar from "@/components/HeroAvatar";
 
 const anton = Anton({ 
   weight: '400',
@@ -141,27 +142,20 @@ export default function CataloguePage() {
                     { name: "Caroline Rousset", avatar: "/Caroline%20rousset.jpg" },
                     { name: "Axelle Guer", avatar: "/Axelle%20Guer%20.jpeg" }
                   ].map((client, index) => (
-                    <motion.div
+                    <HeroAvatar
                       key={index}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.3, delay: index * 0.1 }}
-                      className="relative w-10 h-10 md:w-12 md:h-12 rounded-full border-2 border-white/10 overflow-hidden bg-white/5 backdrop-blur-sm flex flex-col items-center justify-center"
-                      style={{ minWidth: 40, minHeight: 40 }}
-                    >
-                      <Image
-                        src={client.avatar}
-                        alt={client.name}
-                        width={48}
-                        height={48}
-                        className="object-cover rounded-full"
-                        unoptimized
-                      />
-                    </motion.div>
+                      name={client.name}
+                      avatar={client.avatar}
+                      index={index}
+                    />
                   ))}
-                  <div className="relative w-10 h-10 md:w-12 md:h-12 rounded-full border-2 border-white/10 bg-white/5 backdrop-blur-sm flex items-center justify-center">
-                    <span className="text-white text-sm font-medium">+200</span>
-                  </div>
+                  <HeroAvatar
+                    name="Plus de clients"
+                    avatar=""
+                    index={8}
+                    isLast={true}
+                    extraText="+200"
+                  />
                 </div>
               </div>
             </motion.div>

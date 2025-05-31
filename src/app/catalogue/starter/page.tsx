@@ -1,53 +1,43 @@
 'use client';
 
 import Button from "@/components/Button";
-import RoundedAvatar from "@/components/RoundedAvatar";
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import Testimonials from "@/components/Testimonials";
 
-const TESTIMONIAL_IMAGES = [
-  "/1682719923684.jpeg",
-  "/1702830864459.jpeg",
-  "/1728625826972.jpeg",
-  "/1730449304405.jpeg",
-  "/1734125066194.jpeg",
-  "/1734882654773.jpeg",
-  "/iLjcvlnf_400x400.jpg",
-  "/maxresdefault.jpg",
-  "/e8ea093205059.5e1d38df331db.jpg",
-  "/Stevy.png",
-  "/Jean.png",
-  "/Arthur.png",
-  "/Adrien.png"
-];
+// Ajout des constantes de style pour la cohérence
+const sectionStyles = {
+  base: "py-24", // Augmentation de l'espacement vertical pour plus de respiration
+  dark: "bg-gray-900",
+  light: "bg-primary"
+};
 
-interface Testimonial {
-  quote: string;
-  author: string;
-  role: string;
-  results: string;
-}
+// Mise à jour des constantes de style pour la typographie
+const containerStyles = {
+  base: "container-custom max-w-4xl mx-auto",
+  text: "text-lg md:text-xl text-gray-300 leading-relaxed font-normal",
+  heading: "text-2xl md:text-3xl font-bold text-white mb-8",
+  subheading: "text-xl md:text-2xl font-medium text-button mb-6",
+  emphasis: "text-xl md:text-2xl font-medium text-white",
+  highlight: "text-xl md:text-2xl font-bold text-button"
+};
 
-const testimonials: Testimonial[] = [
-  {
-    quote: "En 3 jours, j'ai eu mon offre, ma page, mes premiers messages. Tout est prêt, plus qu'à envoyer.",
-    author: "Julien",
-    role: "coach B2B",
-    results: "2x son CA en 2 mois"
-  },
-  {
-    quote: "C'est carré, c'est rapide, c'est pas une énième formation. J'ai enfin un système qui tourne.",
-    author: "Sarah",
-    role: "freelance stratégie de marque",
-    results: "15 leads/mois en moyenne"
-  }
-];
+const cardStyles = {
+  base: "bg-gray-800/30 backdrop-blur-sm rounded-xl p-8 border border-gray-700/30",
+  accent: "border-button/30",
+  warning: "border-red-500/30"
+};
+
+const animationProps = {
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "-100px" },
+  transition: { duration: 0.6 }
+};
 
 export default function StarterPage() {
-  const [showDemo, setShowDemo] = useState(false);
   const [timeLeft, setTimeLeft] = useState(24 * 60 * 60); // 24 heures en secondes
+  const [lightbox, setLightbox] = useState<string|null>(null);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -63,1186 +53,1044 @@ export default function StarterPage() {
     return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
   };
 
-  // Fonction pour obtenir des images aléatoires uniques
-  const getRandomImages = (count: number) => {
-    const shuffled = [...TESTIMONIAL_IMAGES].sort(() => 0.5 - Math.random());
-    return shuffled.slice(0, count);
-  };
-
-  const testimonialImages = getRandomImages(5); // Pour les avatars en haut
-  const mainTestimonialImages = getRandomImages(2); // Pour les témoignages principaux
-
   return (
     <>
-      {/* Sticky CTA Bar avec compteur */}
-      <div className="fixed bottom-0 left-0 right-0 bg-primary/95 backdrop-blur-sm border-t border-button/30 z-50">
-        <div className="container-custom py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <span className="text-button font-bold">STARTER</span>
-              <span className="text-gray-300">Système de vente B2B en 7 jours</span>
-              <div className="hidden md:flex items-center gap-2 text-sm text-gray-400">
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <span>Prochaine mise à jour dans {formatTime(timeLeft)}</span>
-              </div>
+      {/* Sticky CTA Bar */}
+      <div className="fixed bottom-0 left-0 right-0 z-50 flex justify-center pointer-events-none">
+        <div className="w-full md:w-auto max-w-full flex justify-center">
+          <div className="bg-primary/95 backdrop-blur-sm border-t border-button/30 shadow-lg flex-1 md:flex-none flex items-center justify-between gap-2 md:gap-4 px-2 py-2 md:px-6 md:py-4 rounded-t-xl md:rounded-t-none max-w-xs w-[95vw] md:max-w-none pointer-events-auto">
+            <div className="flex items-center gap-2 md:gap-4">
+              <span className="text-button font-bold tracking-wider text-sm md:text-base">STARTER</span>
+              <span className="text-gray-300 text-sm md:text-base">Système de vente B2B en 7 jours</span>
             </div>
-            <div className="flex items-center gap-4">
-              <div className="hidden md:flex items-center gap-2 text-sm text-gray-400">
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <span>14 jours de garantie</span>
-              </div>
-              <Button 
-                href="https://buy.stripe.com/5kAcNB6Y16zZ7wQeV7" 
-                size="sm"
-                className="group relative overflow-hidden"
-              >
-                <span className="relative z-10">Accéder à STARTER - 99€</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-button/0 via-button/30 to-button/0 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
-              </Button>
-            </div>
+            <Button 
+              href="https://buy.stripe.com/5kAcNB6Y16zZ7wQeV7" 
+              size="sm"
+              className="group relative overflow-hidden shadow-lg hover:shadow-button/20 transition-all duration-300 text-xs md:text-sm px-3 py-2 md:px-5 md:py-2"
+            >
+              <span className="relative z-10">Oui je veux ce système</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-button/0 via-button/30 to-button/0 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+            </Button>
           </div>
         </div>
       </div>
 
-      {/* Hero Section avec preuve sociale */}
-      <section className="relative min-h-[80vh] flex items-center justify-center pt-32 pb-20 bg-gradient-to-b from-primary via-primary/90 to-gray-900 overflow-hidden">
-        {/* Background Effects */}
-        <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
-        <div className="absolute inset-0 bg-gradient-to-br from-button/20 via-transparent to-primary/20 mix-blend-overlay" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-button/30 rounded-full blur-[120px] opacity-50" />
-        
-        {/* Content */}
-        <div className="container-custom relative">
-          <div className="max-w-4xl mx-auto text-center">
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="inline-block bg-button/20 backdrop-blur-sm px-6 py-2 rounded-full mb-6 border border-button/30"
+      {/* 1. Big Promise Brutale */}
+      <section className={`${sectionStyles.base} ${sectionStyles.light} relative min-h-[75vh] flex items-center justify-center pt-8 md:pt-32 pb-12 md:pb-20`}>
+        {/* Background simplifié */}
+        <div className="absolute inset-0 bg-gradient-to-b from-primary via-primary/95 to-gray-900">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-button/5 via-transparent to-transparent"></div>
+        </div>
+
+        <div className={containerStyles.base}>
+          <div className="max-w-3xl mx-auto text-center relative">
+            <motion.div
+              className="mb-2 md:mb-6"
             >
-              <p className="text-sm md:text-base font-medium">
-                🔥 STARTER – Le système de vente B2B que tu peux lancer en 7 jours
-              </p>
+              <span className="inline-block px-4 py-1.5 bg-button/10 rounded-full text-button text-sm md:text-base font-medium tracking-wide">
+                SYSTÈME DE VENTE B2B EN 7 JOURS
+              </span>
             </motion.div>
-            
+
             <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-300 leading-tight"
+              className="text-4xl md:text-6xl font-bold mb-4 md:mb-8 bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-300 leading-tight tracking-tight"
             >
-              Lance ton système de vente B2B en 7 jours
+              Tu veux vraiment passer les 6 prochains mois à bidouiller pendant que d'autres signent 5k€/mois avec un système que je leur ai filé en 7 jours ?
             </motion.h1>
             
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed mb-8"
+            <motion.div
+              className="space-y-3 md:space-y-6 mb-6 md:mb-12"
             >
-              Tous les outils. Zéro bullshit. 99€ une fois, accès à vie.
+              <p className="text-base md:text-lg text-gray-400 italic font-normal max-w-2xl mx-auto">
+                Tu veux des clients, ou tu veux encore "travailler sur ton branding" ?
+              </p>
+
+              <p className="max-w-2xl mx-auto font-bold text-button text-lg md:text-2xl bg-button/10 border border-button/20 rounded-xl px-4 py-3 shadow-sm">
+                Ce Starter, c'est un raccourci. Pas une énième formation.<br />
+                Tu l'actives aujourd'hui → t'as des leads dans 7 jours.
+              </p>
+            </motion.div>
+
+            <motion.div
+            >
+              <Button 
+                href="https://buy.stripe.com/5kAcNB6Y16zZ7wQeV7" 
+                size="lg"
+                className="group relative overflow-hidden shadow-lg hover:shadow-button/20 transition-all duration-300 px-6 md:px-8 py-3 md:py-4"
+              >
+                <span className="relative z-10 font-medium text-base md:text-lg">→ Oui, je veux un système qui me ramène des clients cette semaine</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-button/0 via-button/30 to-button/0 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+              </Button>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* 2. Proof Stack */}
+      <section className={`${sectionStyles.base} ${sectionStyles.dark} relative`}>
+        <div className="absolute inset-0 bg-gradient-to-b from-gray-900 via-gray-900/95 to-gray-900"></div>
+        <div className={containerStyles.base}>
+          <motion.div 
+            className="space-y-8 relative"
+          >
+            <div className="space-y-6">
+              <motion.p
+                className={containerStyles.emphasis}
+              >
+                Écoute-moi bien.
+              </motion.p>
+
+              <motion.p
+                className={containerStyles.text}
+              >
+                J'ai déjà aidé <span className="text-button font-medium">237 freelances</span> à installer leur machine d'acquisition en 7 jours.
+              </motion.p>
+
+              <motion.p
+                className={containerStyles.highlight}
+              >
+                Pas en 6 mois. Pas en 1 an. En 7 putains de jours.
+              </motion.p>
+
+              <motion.div
+                className="space-y-4"
+              >
+                <p className={containerStyles.text}>
+                  Certains ont signé leurs premiers <span className="text-button font-medium">5.000€</span> en 10 jours après installation.
+                </p>
+                <p className={containerStyles.text}>
+                  D'autres sont montés à <span className="text-button font-medium">20.000€/mois</span> avec exactement les mêmes outils que je vais te donner.
+                </p>
+              </motion.div>
+
+              <motion.p
+                className={containerStyles.highlight}
+              >
+                Voici ce que ça donne concrètement :
+              </motion.p>
+
+              <div className="w-full flex flex-col md:flex-row items-center justify-center gap-4 py-4">
+                {[
+                  '/52ca1aef-3987-40bd-ba8f-f17c23089204.png',
+                  '/f9c46e64-1604-4daf-8264-6e96a8fade03.png',
+                  '/Baptiste Piocelle (1) (2).png',
+                  '/Screen Freebe (1) (4).png',
+                ].map((src, idx) => (
+                  <img
+                    key={src}
+                    src={src}
+                    alt={`Screenshot compte en banque ${idx + 1}`}
+                    className="max-w-full h-auto w-auto object-contain"
+                    style={{ maxHeight: '340px' }}
+                  />
+                ))}
+              </div>
+
+              <motion.p
+                className={containerStyles.emphasis}
+              >
+                Alors maintenant, tu as deux options :
+              </motion.p>
+
+              <motion.div
+                className="grid md:grid-cols-2 gap-6"
+              >
+                <div className={`${cardStyles.base} ${cardStyles.warning} hover:border-red-500/50 transition-colors duration-300`}>
+                  <p className="text-red-500 font-bold mb-2">Option 1</p>
+                  <p className={containerStyles.text}>Continuer à te raconter des histoires.</p>
+                </div>
+                <div className={`${cardStyles.base} ${cardStyles.accent} hover:border-button/50 transition-colors duration-300`}>
+                  <p className="text-button font-bold mb-2">Option 2</p>
+                  <p className={containerStyles.text}>Installer un système qui fonctionne.</p>
+                </div>
+              </motion.div>
+
+              <motion.div
+                className="space-y-4"
+              >
+                <p className={containerStyles.highlight}>
+                  Voici comment Léon a signé +2K en 3 semaines.
+                </p>
+                <div className={`${cardStyles.base} ${cardStyles.accent} p-8`}>
+                  <div className="aspect-video rounded-lg overflow-hidden">
+                    <iframe
+                      className="w-full h-full"
+                      src="https://www.youtube.com/embed/K2YsABjkRiE"
+                      title="Témoignage de Léon"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* 3. Lettre ouverte */}
+      <section className={`${sectionStyles.base} ${sectionStyles.light} relative`}>
+        <div className="absolute inset-0 bg-gradient-to-b from-primary via-primary/95 to-primary"></div>
+        <div className={containerStyles.base}>
+          <div className="max-w-[700px] mx-auto relative">
+            <div className="bg-white border border-gray-100 rounded-xl shadow-sm px-5 md:px-10 py-8 md:py-12">
+              <h2 className="font-serif text-3xl md:text-4xl font-bold text-black mb-8 text-center tracking-tight">LETTRE OUVERTE À CELUI QUI RAME</h2>
+              <div className="space-y-8">
+                <p className="italic text-lg md:text-xl text-gray-800 font-semibold text-center">Je vais être cash avec toi.</p>
+                <div className="space-y-4">
+                  <p className="text-[#222] text-lg md:text-xl leading-relaxed">
+                    Tu sais bosser. T'as de l'expertise. T'es pas un touriste.
+                  </p>
+                  <p className="font-bold text-lg md:text-xl leading-relaxed text-black">
+                    Mais tu fais comme 95% des indépendants : tu confonds activité et business.
+                  </p>
+                </div>
+                <div className="space-y-4">
+                  <p className="text-[#222] text-lg md:text-xl leading-relaxed">
+                    Tu postes, tu replies à deux DM, tu fais le mec sérieux.
+                  </p>
+                  <p className="text-[#222] text-lg md:text-xl leading-relaxed">
+                    Mais chaque matin, tu t'assois devant ton ordi en espérant qu'un prospect pense à toi.
+                  </p>
+                  <p className="text-[#222] text-lg md:text-xl leading-relaxed">
+                    Tu check tes mails, tu refresh LinkedIn, tu regardes si un like peut se transformer en appel.
+                  </p>
+                </div>
+                <div className="space-y-4">
+                  <p className="text-[#222] text-lg md:text-xl leading-relaxed">
+                    T'as pas de tunnel. Pas de CRM. Pas de plan. Juste ta bonne volonté et deux potes qui te recommandent une fois de temps en temps.
+                  </p>
+                  <p className="font-bold text-lg md:text-xl leading-relaxed text-black">
+                    T'appelles ça un business ? Moi j'appelle ça de la survie.
+                  </p>
+                </div>
+                <p className="font-bold text-lg md:text-xl text-center leading-relaxed text-black">
+                  Et tu recommences, mois après mois. Comme si l'univers allait soudainement t'envoyer 10k.
+                </p>
+                <div className="space-y-6">
+                  <p className="font-bold text-lg md:text-xl text-center leading-relaxed text-black">
+                    T'as de la valeur, oui. Mais ton expertise ne vaut rien sans système.
+                  </p>
+                  <div className="bg-gray-50 border border-gray-100 rounded-lg p-6">
+                    <p className="font-bold text-lg md:text-xl mb-3 text-black">
+                      Un vrai business, ça :
+                    </p>
+                    <ul className="space-y-3">
+                      <li className="flex items-start gap-3">
+                        <span className="font-bold text-black">→</span>
+                        <span className="text-[#222] text-lg">Ça attire.</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="font-bold text-black">→</span>
+                        <span className="text-[#222] text-lg">Ça convertit.</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="font-bold text-black">→</span>
+                        <span className="text-[#222] text-lg">Ça relance sans toi.</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <p className="font-bold text-lg md:text-xl text-center leading-relaxed text-black">
+                    Et c'est exactement ce que je vais t'installer.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. L'erreur fatale */}
+      <section className={`${sectionStyles.base} ${sectionStyles.dark} relative`}>
+        <div className="absolute inset-0 bg-gradient-to-b from-gray-900 via-gray-900/95 to-gray-900"></div>
+        <div className={containerStyles.base}>
+          <motion.div 
+            className="space-y-8 relative"
+          >
+            <motion.h2
+              className="text-3xl md:text-4xl font-bold text-red-500 text-center mb-12"
+            >
+              L'ERREUR FATALE QUE FONT 95% DES FREELANCES
+            </motion.h2>
+
+            <motion.div
+              className="space-y-6"
+            >
+              <div className={`${cardStyles.base} ${cardStyles.warning} p-8`}>
+                <ul className="space-y-4">
+                  <li className="flex items-start gap-4">
+                    <span className="text-red-500 font-medium text-2xl">→</span>
+                    <p className={containerStyles.text}>Tu vends ton temps, pas un système.</p>
+                  </li>
+                  <li className="flex items-start gap-4">
+                    <span className="text-red-500 font-medium text-2xl">→</span>
+                    <p className={containerStyles.text}>Tu veux des clients, mais t'as pas de machine pour les attirer.</p>
+                  </li>
+                  <li className="flex items-start gap-4">
+                    <span className="text-red-500 font-medium text-2xl">→</span>
+                    <p className={containerStyles.text}>Tu consommes des formations comme des séries Netflix, mais t'exécutes rien.</p>
+                  </li>
+                </ul>
+              </div>
+            </motion.div>
+
+            <motion.p
+              className={containerStyles.highlight}
+            >
+              Et c'est exactement pour ça que t'es coincé à 2 ou 3K par mois, à courir après des clients qui te respectent pas et qui négocient tes tarifs.
             </motion.p>
 
-            {/* Preuve sociale */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              className="flex items-center justify-center gap-4 mb-8"
-            >
-              <div className="flex -space-x-4">
-                {testimonialImages.map((img, i) => (
-                  <RoundedAvatar
-                    key={i}
-                    src={img}
-                    alt="Entrepreneur formé"
-                  />
-                ))}
-              </div>
-              <p className="text-sm text-gray-400">
-                <span className="text-button font-bold">+2.000</span> entrepreneurs formés depuis 4 ans
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="flex flex-col sm:flex-row items-center justify-center gap-4"
-            >
-              <Button 
-                href="https://buy.stripe.com/5kAcNB6Y16zZ7wQeV7" 
-                size="lg"
-                className="group relative overflow-hidden"
-              >
-                <span className="relative z-10">👉 Je prends STARTER maintenant - 99€</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-button/0 via-button/30 to-button/0 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
-              </Button>
-              <div className="flex items-center gap-2 text-sm text-gray-400">
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <span>14 jours de garantie</span>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Pour qui c'est fait ? */}
-      <section className="py-20 bg-primary relative overflow-hidden">
-        {/* Background Effects */}
-        <div className="absolute inset-0 bg-gradient-to-br from-button/10 via-transparent to-primary/10 mix-blend-overlay" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-button/10 rounded-full blur-[120px] opacity-30" />
-        
-        <div className="container-custom relative">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <div className="inline-block bg-button/20 backdrop-blur-sm px-6 py-2 rounded-full mb-6 border border-button/30">
-              <p className="text-sm md:text-base font-medium text-gray-300">
-                Un système adapté à ton profil
-              </p>
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-300">
-              🧠 Pour qui c'est fait ?
-            </h2>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {[
-              {
-                icon: "👨‍💼",
-                title: "Freelance & Consultant B2B",
-                description: "Tu es freelance, consultant, coach ou solopreneur B2B",
-                gradient: "from-blue-500/20 via-transparent to-transparent"
-              },
-              {
-                icon: "🎯",
-                title: "Indépendant du bouche à oreille",
-                description: "Tu veux vendre sans dépendre de ton réseau",
-                gradient: "from-green-500/20 via-transparent to-transparent"
-              },
-              {
-                icon: "🚀",
-                title: "Autonome & Méthodique",
-                description: "Tu préfères faire seul, mais avec une méthode claire",
-                gradient: "from-purple-500/20 via-transparent to-transparent"
-              },
-              {
-                icon: "⚡️",
-                title: "Pressé d'avancer",
-                description: "Tu veux aller vite et éviter les formations interminables",
-                gradient: "from-yellow-500/20 via-transparent to-transparent"
-              }
-            ].map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.2 }}
-                className="group relative bg-gray-800/30 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/30 hover:border-button/30 transition-all duration-500 overflow-hidden"
-              >
-                {/* Background gradient */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-                
-                {/* Content */}
-                <div className="relative z-10">
-                  <div className="text-5xl mb-6">{item.icon}</div>
-                  <h3 className="text-2xl font-bold mb-3 text-button">{item.title}</h3>
-                  <p className="text-gray-300 text-lg leading-relaxed">{item.description}</p>
-                </div>
-
-                {/* Hover indicator */}
-                <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <div className="text-button">
-                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Preuve sociale */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mt-16 text-center"
-          >
-            <div className="inline-flex flex-col sm:flex-row items-center gap-4 bg-gray-800/50 backdrop-blur-sm px-4 sm:px-8 py-4 rounded-full border border-gray-700/30 shadow-lg">
-              <div className="flex -space-x-4">
-                {getRandomImages(5).map((img, i) => (
-                  <RoundedAvatar
-                    key={i}
-                    src={img}
-                    alt="Entrepreneur formé"
-                  />
-                ))}
-              </div>
-              <p className="text-base sm:text-lg text-gray-300 whitespace-normal sm:whitespace-nowrap">
-                <span className="text-2xl sm:text-3xl font-bold text-button">2.000+</span>
-                <span className="ml-2">entrepreneurs formés depuis 4 ans</span>
-              </p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Comparison Section avec preuve sociale */}
-      <section className="py-20 bg-gray-900 relative overflow-hidden">
-        {/* Background Effects */}
-        <div className="absolute inset-0 bg-gradient-to-br from-button/10 via-transparent to-primary/10 mix-blend-overlay" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-button/10 rounded-full blur-[120px] opacity-30" />
-        
-        <div className="container-custom relative">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <div className="inline-block bg-button/20 backdrop-blur-sm px-6 py-2 rounded-full mb-6 border border-button/30">
-              <p className="text-sm md:text-base font-medium text-gray-300">
-                Un système qui te fait gagner du temps
-              </p>
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-300">
-              STARTER vs Formations YouTube
-            </h2>
-          </motion.div>
-
-          <div className="max-w-4xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-8">
-              {/* YouTube Column */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                className="bg-gray-800/30 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/30"
-              >
-                <div className="text-center mb-8">
-                  <div className="inline-block bg-red-500/20 px-4 py-2 rounded-lg mb-4">
-                    <p className="text-red-500 font-medium">Formations YouTube</p>
-                  </div>
-                  <h3 className="text-2xl font-bold text-gray-300 mb-2">Gratuit mais inefficace</h3>
-                  <p className="text-gray-400">Tu perds des mois à chercher</p>
-                </div>
-                <div className="space-y-4">
-                  {[
-                    "❌ Trop d'infos, pas de structure",
-                    "❌ Aucun template prêt à l'emploi",
-                    "❌ À toi d'inventer ton plan",
-                    "❌ Résultats aléatoires",
-                    "❌ Tu es seul face aux problèmes",
-                    "❌ Tu dois tout refaire à chaque mise à jour",
-                    "❌ Gratuit mais inefficace"
-                  ].map((item, index) => (
-                    <div key={index} className="flex items-start gap-3 p-4 bg-gray-900/50 rounded-xl border border-gray-700/30">
-                      <div className="text-red-500 mt-1">
-                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                      </div>
-                      <p className="text-gray-300">{item}</p>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-
-              {/* STARTER Column */}
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                className="bg-gray-800/30 backdrop-blur-sm rounded-2xl p-8 border border-button/30 relative overflow-hidden"
-              >
-                <div className="absolute top-0 right-0 w-32 h-32 bg-button/10 rounded-bl-full blur-3xl" />
-                <div className="text-center mb-8">
-                  <div className="inline-block bg-button/20 px-4 py-2 rounded-lg mb-4">
-                    <p className="text-button font-medium">STARTER</p>
-                  </div>
-                  <h3 className="text-2xl font-bold text-button mb-2">99€ pour gagner des mois</h3>
-                  <p className="text-gray-400">Tu lances en 7 jours</p>
-                </div>
-                <div className="space-y-4">
-                  {[
-                    "✅ Méthode claire en 7 modules",
-                    "✅ 50+ templates Notion & GHL",
-                    "✅ Workbook 7 jours + checklist",
-                    "✅ Offre + tunnel + canal prêts",
-                    "✅ Discord privé + entraide",
-                    "✅ Inclus gratuitement à vie",
-                    "✅ 99€ – une fois, tu gagnes des mois"
-                  ].map((item, index) => (
-                    <div key={index} className="flex items-start gap-3 p-4 bg-gray-900/50 rounded-xl border border-button/30 group hover:bg-button/10 transition-colors duration-300">
-                      <div className="text-button mt-1">
-                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                      </div>
-                      <p className="text-gray-300 group-hover:text-white transition-colors duration-300">{item}</p>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            </div>
-          </div>
-
-          {/* Preuve sociale */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mt-16 text-center"
-          >
-            <div className="inline-flex flex-col sm:flex-row items-center gap-4 bg-gray-800/50 backdrop-blur-sm px-4 sm:px-8 py-4 rounded-full border border-gray-700/30 shadow-lg">
-              <div className="flex -space-x-4">
-                {getRandomImages(5).map((img, i) => (
-                  <RoundedAvatar
-                    key={i}
-                    src={img}
-                    alt="Entrepreneur formé"
-                  />
-                ))}
-              </div>
-              <p className="text-base sm:text-lg text-gray-300 whitespace-normal sm:whitespace-nowrap">
-                <span className="text-2xl sm:text-3xl font-bold text-button">2.000+</span>
-                <span className="ml-2">entrepreneurs formés depuis 4 ans</span>
-              </p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Ce que tu obtiens avec visuels */}
-      <section className="py-20 bg-primary relative overflow-hidden">
-        {/* Background Effects */}
-        <div className="absolute inset-0 bg-gradient-to-br from-button/10 via-transparent to-primary/10 mix-blend-overlay" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-button/10 rounded-full blur-[120px] opacity-30" />
-        
-        <div className="container-custom relative">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <div className="inline-block bg-button/20 backdrop-blur-sm px-6 py-2 rounded-full mb-6 border border-button/30">
-              <p className="text-sm md:text-base font-medium text-gray-300">
-                Un système complet pour lancer ton business B2B
-              </p>
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-300">
-              🎯 Ce que tu obtiens
-            </h2>
-          </motion.div>
-
-          {/* Core Product */}
-          <div className="mb-16">
             <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-center mb-8"
+              className="space-y-6"
             >
-              <h3 className="text-2xl font-bold text-button mb-2">Le système STARTER</h3>
-              <p className="text-gray-300">La méthode complète pour lancer ton business B2B</p>
+              <p className={containerStyles.text}>
+                Pendant ce temps, d'autres freelances, pas plus intelligents que toi, signent des contrats de <span className="text-button font-medium">5 à 10K</span> sans lever le petit doigt.
+              </p>
+              <p className={containerStyles.emphasis}>
+                La différence ? Ils ont un système. Pas toi.
+              </p>
             </motion.div>
+          </motion.div>
+        </div>
+      </section>
 
-            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+      {/* 5. Voici ce que j'ai créé */}
+      <section className={`${sectionStyles.base} ${sectionStyles.light} relative`}>
+        <div className="absolute inset-0 bg-gradient-to-b from-primary via-primary/95 to-primary"></div>
+        <div className={containerStyles.base}>
+          <motion.div 
+            className="space-y-8 relative"
+          >
+            <motion.h2
+              className={containerStyles.heading}
+            >
+              Voici ce que j'ai créé pour les mecs comme toi
+            </motion.h2>
+
+            <div className="space-y-8">
+              <motion.p
+                className={containerStyles.text}
+              >
+                J'ai pris tout ce que j'installe pour mes clients à 5 chiffres… et je l'ai packagé pour les mecs qui veulent aller vite.
+              </motion.p>
+
+              <motion.p
+                className={containerStyles.highlight}
+              >
+                Pas réfléchir. Exécuter.
+              </motion.p>
+
+              <motion.div
+                className={`${cardStyles.base} ${cardStyles.accent} p-8`}
+              >
+                <p className={containerStyles.highlight}>
+                  Ce pack n'est pas fait pour réfléchir. Il est fait pour AGIR.
+                </p>
+                <p className={`${containerStyles.text} mb-6`}>
+                  En 7 jours, tu montes une machine qui fait le taf à ta place :
+                </p>
+                <ul className="space-y-4">
+                  <li className="flex items-start gap-4">
+                    <span className="text-button font-medium text-2xl">→</span>
+                    <p className={containerStyles.text}>Une offre claire que tu peux pitcher en 2 phrases — ou qui fait bander tes prospects.</p>
+                  </li>
+                  <li className="flex items-start gap-4">
+                    <span className="text-button font-medium text-2xl">→</span>
+                    <p className={containerStyles.text}>Un tunnel GHL qui tourne pendant que tu dors.</p>
+                  </li>
+                  <li className="flex items-start gap-4">
+                    <span className="text-button font-medium text-2xl">→</span>
+                    <p className={containerStyles.text}>Un CRM qui suit et relance automatiquement.</p>
+                  </li>
+                  <li className="flex items-start gap-4">
+                    <span className="text-button font-medium text-2xl">→</span>
+                    <p className={containerStyles.text}>Une séquence qui close sans que tu aies à supplier.</p>
+                  </li>
+                </ul>
+              </motion.div>
+
+              <motion.p
+                className={containerStyles.emphasis}
+              >
+                Tout est guidé. Tout est prêt.
+              </motion.p>
+
+              <motion.div
+                className="space-y-6"
+              >
+                <p className={containerStyles.text}>
+                  Prix ? <span className="text-button font-medium">99€</span>. Une fois. Pas d'abonnement. Pas de piège. Juste une installation express.
+                </p>
+                <p className={containerStyles.highlight}>
+                  Tu veux quoi de plus ? Que je t'amène les clients en trottinette ?
+                </p>
+              </motion.div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* 6. Ce que tu reçois */}
+      <section className={`${sectionStyles.base} ${sectionStyles.dark} relative`}>
+        <div className="absolute inset-0 bg-gradient-to-b from-gray-900 via-gray-900/95 to-gray-900"></div>
+        <div className={containerStyles.base}>
+          <motion.div 
+            className="space-y-8 relative"
+          >
+            <motion.h2
+              className={containerStyles.heading}
+            >
+              CE QUE TU REÇOIS (BRUT ET CONCRET)
+            </motion.h2>
+
+            <motion.p
+              className={`${containerStyles.text} text-center mb-12`}
+            >
+              Voilà exactement ce que tu obtiens quand tu cliques sur ce bouton :
+            </motion.p>
+
+            <motion.div
+              className="space-y-6"
+            >
+              <div className={`${cardStyles.base} ${cardStyles.accent} p-8`}>
+                <ul className="space-y-6">
+                  <li className="flex items-start gap-4">
+                    <span className="text-button font-medium text-2xl">→</span>
+                    <div>
+                      <p className="font-medium text-white mb-1">Une offre claire comme de l'eau de roche</p>
+                      <p className={containerStyles.text}>Tu ne bégaieras plus jamais quand quelqu'un te demande ce que tu fais.</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-4">
+                    <span className="text-button font-medium text-2xl">→</span>
+                    <div>
+                      <p className="font-medium text-white mb-1">Une séquence de prospection qui vend</p>
+                      <p className={containerStyles.text}>Fini les messages pathétiques du type "Salut, tu vas bien ? On pourrait échanger ?"</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-4">
+                    <span className="text-button font-medium text-2xl">→</span>
+                    <div>
+                      <p className="font-medium text-white mb-1">Un CRM automatisé</p>
+                      <p className={containerStyles.text}>Tu bosses pendant que ton système relance tes prospects tièdes.</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-4">
+                    <span className="text-button font-medium text-2xl">→</span>
+                    <div>
+                      <p className="font-medium text-white mb-1">50+ templates Notion & Go High Level</p>
+                      <p className={containerStyles.text}>Des assets prêts à l'emploi que tu peux copier-coller.</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-4">
+                    <span className="text-button font-medium text-2xl">→</span>
+                    <div>
+                      <p className="font-medium text-white mb-1">Accès à notre Discord privé</p>
+                      <p className={containerStyles.text}>T'es pas tout seul dans cette aventure.</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-4">
+                    <span className="text-button font-medium text-2xl">→</span>
+                    <div>
+                      <p className="font-medium text-white mb-1">Mises à jour à vie</p>
+                      <p className={containerStyles.text}>Le système évolue, tu évolues avec.</p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <div className={`${cardStyles.base} ${cardStyles.warning} p-8`}>
+                <p className={containerStyles.highlight}>
+                  BONUS
+                </p>
+                <p className={containerStyles.text}>
+                  Exercices guidés + fiches PDF pour accélérer ton implémentation.
+                </p>
+              </div>
+
+              <motion.div
+                className={`${cardStyles.base} ${cardStyles.accent} p-8`}
+              >
+                <p className={`${containerStyles.highlight} mb-4`}>
+                  Voici à quoi ressemble l'intérieur du produit :
+                </p>
+                <div className="aspect-video bg-gray-800 rounded-lg flex items-center justify-center">
+                  <p className="text-gray-400 italic">[SCREENSHOT DE L'INTÉRIEUR DU PRODUIT]</p>
+                </div>
+              </motion.div>
+
+              <motion.p
+                className={`${containerStyles.highlight} text-center`}
+              >
+                Et tout ça pour 99€. Le prix d'une soirée au restaurant que tu vas oublier demain.
+              </motion.p>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* 7. Pourquoi ce système marche */}
+      <section className={`${sectionStyles.base} ${sectionStyles.light} relative`}>
+        <div className="absolute inset-0 bg-gradient-to-b from-primary via-primary/95 to-primary"></div>
+        <div className={containerStyles.base}>
+          <motion.div 
+            className="space-y-8 relative"
+          >
+            <motion.h2
+              className={containerStyles.heading}
+            >
+              POURQUOI CE SYSTÈME MARCHE (ET MARCHE VITE)
+            </motion.h2>
+
+            <motion.p
+              className={`${containerStyles.highlight} text-center mb-12`}
+            >
+              Ce n'est pas de la magie. C'est de la mécanique pure.
+            </motion.p>
+
+            <motion.div
+              className="space-y-6"
+            >
+              <div className={`${cardStyles.base} ${cardStyles.accent} p-8`}>
+                <ul className="space-y-8">
+                  <li className="flex items-start gap-4">
+                    <span className="text-button font-medium text-2xl">→</span>
+                    <div>
+                      <p className="font-medium text-white mb-2">Il te force à clarifier ton positionnement</p>
+                      <p className={containerStyles.text}>Tu parles enfin à la bonne cible, celle qui a de l'argent et des problèmes que tu peux résoudre.</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-4">
+                    <span className="text-button font-medium text-2xl">→</span>
+                    <div>
+                      <p className="font-medium text-white mb-2">Il t'équipe avec les bons outils</p>
+                      <p className={containerStyles.text}>Plus de temps perdu à chercher "comment faire un tunnel" ou "quel CRM choisir".</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-4">
+                    <span className="text-button font-medium text-2xl">→</span>
+                    <div>
+                      <p className="font-medium text-white mb-2">Il te pousse à exécuter, pas réfléchir</p>
+                      <p className={containerStyles.text}>Tout est plug-and-play. Tu suis le plan, tu installes, tu lances.</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-4">
+                    <span className="text-button font-medium text-2xl">→</span>
+                    <div>
+                      <p className="font-medium text-white mb-2">Il t'installe une routine quotidienne</p>
+                      <p className={containerStyles.text}>Ton acquisition devient prévisible, pas aléatoire.</p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <motion.p
+                className={containerStyles.emphasis}
+              >
+                Pas besoin d'avoir du talent. Juste de suivre le plan.
+              </motion.p>
+
+              <motion.div
+                className={`${cardStyles.base} ${cardStyles.warning} p-8`}
+              >
+                <p className={containerStyles.text}>
+                  La vérité, c'est que la plupart des freelances échouent non pas par manque de compétence, mais par manque de système. Ils improvisent leur acquisition comme un gamin de 5 ans improvise au piano.
+                </p>
+              </motion.div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* 8. ILS ONT SUIVI LE PLAN, VOICI CE QU'ILS EN DISENT */}
+      <section className={`${sectionStyles.base} ${sectionStyles.light} relative`}>
+        <div className="absolute inset-0 bg-gradient-to-b from-primary via-primary/95 to-primary"></div>
+        <div className={containerStyles.base}>
+          <motion.div 
+            className="space-y-8 relative"
+          >
+            <motion.h2
+              className={containerStyles.heading}
+            >
+              ILS ONT SUIVI LE PLAN, VOICI CE QU'ILS EN DISENT
+            </motion.h2>
+            <Testimonials />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* 9. Jour par jour */}
+      <section className={`${sectionStyles.base} ${sectionStyles.dark} relative`}>
+        <div className="absolute inset-0 bg-gradient-to-b from-gray-900 via-gray-900/95 to-gray-900"></div>
+        <div className={containerStyles.base}>
+          <motion.div 
+            className="space-y-8 relative"
+          >
+            <motion.h2
+              className={containerStyles.heading}
+            >
+              JOUR PAR JOUR : TON PLAN D'ACTION STARTER
+            </motion.h2>
+
+            <motion.p
+              className={`${containerStyles.text} text-center mb-12`}
+            >
+              Voici exactement ce que tu fais pendant les 7 jours :
+            </motion.p>
+
+            <motion.div
+              className="grid md:grid-cols-2 gap-6"
+            >
               {[
                 {
-                  emoji: "🎥",
-                  title: "7 modules pas à pas",
-                  description: "La méthode complète pour créer ton système de vente B2B en 7 jours",
-                  gradient: "from-blue-500/20 via-transparent to-transparent"
+                  day: "Jour 1",
+                  title: "Clarification du positionnement",
+                  description: "Tu clarifie ton positionnement + ton offre. Fini le flou artistique."
                 },
                 {
-                  emoji: "📘",
-                  title: "Workbook 7 jours",
-                  description: "Un plan d'action détaillé jour par jour pour implémenter la méthode",
-                  gradient: "from-purple-500/20 via-transparent to-transparent"
+                  day: "Jour 2",
+                  title: "Séquence de prospection",
+                  description: "Tu construis ta séquence de prospection qui fait mouche à chaque fois."
                 },
                 {
-                  emoji: "🔍",
-                  title: "Mini-audit intelligent",
-                  description: "Un outil pour identifier tes blocages et savoir quoi corriger",
-                  gradient: "from-yellow-500/20 via-transparent to-transparent"
+                  day: "Jour 3",
+                  title: "Installation du tunnel",
+                  description: "Tu installes ton tunnel GHL (landing page + calendrier) qui convertit pendant ton sommeil."
+                },
+                {
+                  day: "Jour 4",
+                  title: "Configuration du CRM",
+                  description: "Tu paramètres ton CRM de suivi pour ne plus jamais perdre un lead chaud."
+                },
+                {
+                  day: "Jour 5",
+                  title: "Automatisation",
+                  description: "Tu intègres les templates Notion + outils d'automatisation pour gagner 10h par semaine."
+                },
+                {
+                  day: "Jour 6",
+                  title: "Routine d'acquisition",
+                  description: "Tu structures ta routine quotidienne d'acquisition. 30 minutes par jour, pas plus."
+                },
+                {
+                  day: "Jour 7",
+                  title: "Lancement",
+                  description: "Tu lances et tu vois arriver tes premiers leads entrants. Sans supplier. Sans mendier."
                 }
               ].map((item, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="group relative bg-gray-800/30 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/30 hover:border-button/30 transition-all duration-500"
+                  className={`${cardStyles.base} ${cardStyles.accent} hover:border-button/50 transition-all duration-300 hover:transform hover:scale-[1.02]`}
                 >
-                  {/* Background gradient */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl`} />
-                  
-                  {/* Content */}
-                  <div className="relative z-10">
-                    <div className="text-5xl mb-6">{item.emoji}</div>
-                    <h3 className="text-xl font-bold mb-3 text-button">{item.title}</h3>
-                    <p className="text-gray-300 leading-relaxed">{item.description}</p>
+                  <div className="flex flex-col h-full">
+                    <div className="text-button font-medium text-xl mb-3">{item.day}</div>
+                    <div className="font-medium text-white mb-2">{item.title}</div>
+                    <div className={containerStyles.text}>{item.description}</div>
                   </div>
                 </motion.div>
               ))}
-            </div>
-          </div>
-
-          {/* Bonus Section */}
-          <div>
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-center mb-8"
-            >
-              <div className="inline-block bg-green-500/20 backdrop-blur-sm px-6 py-2 rounded-full mb-4 border border-green-500/30">
-                <p className="text-sm md:text-base font-medium text-green-400">
-                  Bonus offerts (+2.000€ de valeur)
-                </p>
-              </div>
-              <p className="text-gray-300">Des templates et ressources pour aller plus vite</p>
             </motion.div>
 
-            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <motion.div
+              className={`${cardStyles.base} ${cardStyles.warning} mt-8 p-8 text-center`}
+            >
+              <p className={containerStyles.emphasis}>
+                C'est mécanique. C'est prévisible. C'est ce qui fait la différence entre un amateur et un pro.
+              </p>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* 10. Dans 30 jours */}
+      <section className={`${sectionStyles.base} ${sectionStyles.light} relative`}>
+        <div className="absolute inset-0 bg-gradient-to-b from-primary via-primary/95 to-primary"></div>
+        <div className={containerStyles.base}>
+          <motion.div 
+            className="space-y-8 relative"
+          >
+            <motion.h2
+              className="text-3xl md:text-4xl font-bold text-white text-center mb-12"
+            >
+              DANS 30 JOURS, TA RÉALITÉ PEUT RESSEMBLER À ÇA :
+            </motion.h2>
+
+            <motion.p
+              className="text-2xl font-bold text-button text-center mb-12"
+            >
+              Imagine un instant.
+            </motion.p>
+
+            <motion.div
+              className={`${cardStyles.base} ${cardStyles.accent} p-8`}
+            >
+              <ul className="space-y-8">
+                <li className="flex items-start gap-4">
+                  <span className="text-button font-bold text-2xl">→</span>
+                  <p className={containerStyles.text}>Tu ouvres ton ordinateur le matin et tu as déjà <span className="text-white font-bold">3 leads chauds</span> qui attendent dans ton CRM.</p>
+                </li>
+                <li className="flex items-start gap-4">
+                  <span className="text-button font-bold text-2xl">→</span>
+                  <p className={containerStyles.text}>Ton tunnel close des prospects pendant que tu es à la salle de sport.</p>
+                </li>
+                <li className="flex items-start gap-4">
+                  <span className="text-button font-bold text-2xl">→</span>
+                  <p className={containerStyles.text}>Tu sais exactement quoi faire chaque jour pour faire grandir ton business.</p>
+                </li>
+                <li className="flex items-start gap-4">
+                  <span className="text-button font-bold text-2xl">→</span>
+                  <p className={containerStyles.text}>Tu choisis les clients avec qui tu veux bosser, pas l'inverse.</p>
+                </li>
+                <li className="flex items-start gap-4">
+                  <span className="text-button font-bold text-2xl">→</span>
+                  <p className={containerStyles.text}>Tu gagnes plus en travaillant moins, parce que ton système fait le boulot à ta place.</p>
+                </li>
+              </ul>
+            </motion.div>
+
+            <motion.p
+              className="text-2xl font-bold text-white text-center"
+            >
+              Tout ça commence avec 7 jours d'exécution. Le reste, c'est une question de répétition.
+            </motion.p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* 11. Questions fréquentes */}
+      <section className={`${sectionStyles.base} ${sectionStyles.dark} relative`}>
+        <div className="absolute inset-0 bg-gradient-to-b from-gray-900 via-gray-900/95 to-gray-900"></div>
+        <div className={containerStyles.base}>
+          <motion.div 
+            className="space-y-8 relative"
+          >
+            <motion.h2
+              className="text-3xl md:text-4xl font-bold text-white text-center mb-12"
+            >
+              TU TE POSES SÛREMENT CES QUESTIONS :
+            </motion.h2>
+
+            <motion.div
+              className="space-y-6"
+            >
               {[
                 {
-                  emoji: "🧰",
-                  title: "Templates premium",
-                  description: "50+ templates Notion & GHL prêts à l'emploi. Tunnel, CRM, offre, contenu, automatisation.",
-                  gradient: "from-green-500/20 via-transparent to-transparent",
-                  highlight: true
+                  question: "Je suis pas sûr d'avoir le temps...",
+                  answer: "T'as 1h par jour ? C'est suffisant. Si t'as pas 1h par jour pour ton business, t'as pas un business, t'as un hobby."
                 },
                 {
-                  emoji: "💬",
-                  title: "Discord privé",
-                  description: "Accès à la communauté des membres STARTER. Entraide, feedbacks et motivation.",
-                  gradient: "from-pink-500/20 via-transparent to-transparent"
+                  question: "Je débute, c'est trop avancé pour moi ?",
+                  answer: "Non. C'est justement fait pour te lancer proprement dès le début, sans prendre les mauvaises habitudes."
                 },
                 {
-                  emoji: "♻️",
-                  title: "Mises à jour à vie",
-                  description: "Accès permanent aux nouvelles versions des templates et des ressources.",
-                  gradient: "from-indigo-500/20 via-transparent to-transparent"
+                  question: "Je peux pas tout faire moi-même ?",
+                  answer: "Si. Mais tu vas perdre 6 mois à réinventer la roue, tester des trucs qui marchent pas, et probablement abandonner en cours de route."
+                },
+                {
+                  question: "99€, c'est pas trop cher ?",
+                  answer: "Ton inaction te coûte 10 fois plus chaque mois. Chaque client que tu ne signes pas parce que ton système est inexistant, c'est 2K, 5K, 10K qui s'envolent."
+                },
+                {
+                  question: "J'ai pas GHL / Notion...",
+                  answer: "T'as les templates. C'est plug-and-play. Les outils sont secondaires, c'est la méthode qui compte."
                 }
               ].map((item, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className={`group relative bg-gray-800/30 backdrop-blur-sm rounded-2xl p-8 border transition-all duration-500 ${
-                    item.highlight 
-                      ? "border-green-500/50 shadow-lg shadow-green-500/20" 
-                      : "border-gray-700/30 hover:border-green-500/30"
-                  }`}
+                  className={`${cardStyles.base} ${cardStyles.accent} hover:border-button/50 transition-all duration-300 hover:transform hover:scale-[1.02]`}
                 >
-                  {/* Background gradient */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl`} />
-                  
-                  {/* Content */}
-                  <div className="relative z-10">
-                    <div className="text-5xl mb-6">{item.emoji}</div>
-                    <h3 className="text-xl font-bold mb-3 text-green-400">{item.title}</h3>
-                    <p className="text-gray-300 leading-relaxed">{item.description}</p>
+                  <div className="space-y-4">
+                    <p className="text-xl font-bold text-white">{item.question}</p>
+                    <div className="flex items-start gap-4">
+                      <span className="text-button font-bold text-2xl">→</span>
+                      <p className={containerStyles.text}>{item.answer}</p>
+                    </div>
                   </div>
                 </motion.div>
               ))}
-            </div>
-          </div>
-
-          {/* Valeur totale */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mt-16 text-center"
-          >
-            <div className="inline-flex items-center gap-3 bg-gray-800/50 backdrop-blur-sm px-8 py-4 rounded-full border border-green-500/30 shadow-lg">
-              <div className="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center">
-                <span className="text-2xl">💎</span>
-              </div>
-              <p className="text-lg text-gray-300">
-                <span className="text-3xl font-bold text-green-400">+2.000€</span>
-                <span className="ml-2">de bonus offerts avec ton accès</span>
-              </p>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* Ce que ces systèmes ont permis de générer */}
-      <section className="py-20 bg-gray-900 relative overflow-hidden">
-        {/* Background Effects */}
-        <div className="absolute inset-0 bg-gradient-to-br from-button/10 via-transparent to-primary/10 mix-blend-overlay" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-button/10 rounded-full blur-[120px] opacity-30" />
-        
-        <div className="container-custom relative">
+      {/* 12. Avant / Après */}
+      <section className={`${sectionStyles.base} ${sectionStyles.light} relative`}>
+        <div className="absolute inset-0 bg-gradient-to-b from-primary via-primary/95 to-primary"></div>
+        <div className={containerStyles.base}>
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
+            className="space-y-8 relative"
           >
-            <div className="inline-block bg-button/20 backdrop-blur-sm px-6 py-2 rounded-full mb-6 border border-button/30">
-              <p className="text-sm md:text-base font-medium text-gray-300">
-                Des résultats concrets et vérifiables
-              </p>
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-300">
-              💰 Ce que ces systèmes ont permis de générer
-            </h2>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {[
-              {
-                title: "46 414,25€ en une transaction",
-                description: "Un exemple de transaction B2B générée avec ce système",
-                image: "/f9c46e64-1604-4daf-8264-6e96a8fade03.png",
-                gradient: "from-blue-500/20 via-transparent to-transparent"
-              },
-              {
-                title: "Des transactions à 4-5 chiffres",
-                description: "Chaque transaction c'est minimum des milliers d'euros",
-                image: "/52ca1aef-3987-40bd-ba8f-f17c23089204.png",
-                gradient: "from-green-500/20 via-transparent to-transparent"
-              },
-              {
-                title: "Clients premium sur le long terme",
-                description: "Permet de signer des clients à +50.000€/an sur plusieurs années",
-                image: "/Screen Freebe (1) (4).png",
-                gradient: "from-purple-500/20 via-transparent to-transparent"
-              },
-              {
-                title: "Système éprouvé et reproductible",
-                description: "J'ai appliqué ce système exact pour generer +200.000€ entre juillet 2021 et Août 2023, sans travailler +4h/jour",
-                image: "/Baptiste Piocelle (1) (2).png",
-                gradient: "from-yellow-500/20 via-transparent to-transparent"
-              }
-            ].map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.2 }}
-                className="group relative bg-gray-800/30 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/30 hover:border-button/30 transition-all duration-500 overflow-hidden"
-              >
-                {/* Background gradient */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-                
-                {/* Content */}
-                <div className="relative z-10">
-                  <div className="relative aspect-video rounded-xl overflow-hidden mb-8 border border-gray-700/50 group-hover:border-button/30 transition-colors duration-500 shadow-2xl">
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      fill
-                      className="object-cover transform group-hover:scale-105 transition-transform duration-700"
-                    />
-                  </div>
-                  <h3 className="text-2xl font-bold mb-3 text-button">{item.title}</h3>
-                  <p className="text-gray-300 text-lg leading-relaxed">{item.description}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Preuve sociale supplémentaire */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mt-16 text-center"
-          >
-            <div className="inline-flex items-center gap-2 bg-gray-800/50 backdrop-blur-sm px-8 py-4 rounded-full border border-gray-700/30 shadow-lg">
-              <div className="w-12 h-12 rounded-full bg-button/20 flex items-center justify-center">
-                <svg className="w-6 h-6 text-button" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <p className="text-lg text-gray-300">
-                <span className="text-3xl font-bold text-button">+2M€</span>
-                <span className="ml-2">générés en B2B par des freelances sur les 3 dernières années</span>
-              </p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Ce que tu gagnes avec résultats concrets */}
-      <section className="py-20 bg-primary relative overflow-hidden">
-        {/* Background Effects */}
-        <div className="absolute inset-0 bg-gradient-to-br from-button/10 via-transparent to-primary/10 mix-blend-overlay" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-button/10 rounded-full blur-[120px] opacity-30" />
-        
-        <div className="container-custom relative">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <div className="inline-block bg-button/20 backdrop-blur-sm px-6 py-2 rounded-full mb-6 border border-button/30">
-              <p className="text-sm md:text-base font-medium text-gray-300">
-                Des résultats concrets en 7 jours
-              </p>
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-300">
-              🚀 Ce que tu gagnes
-            </h2>
-            <p className="text-gray-300 max-w-2xl mx-auto text-lg">
-              En 7 jours, tu peux transformer ton business B2B
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {[
-              {
-                emoji: "💼",
-                title: "Une offre qui convertit",
-                description: "Tu crées une offre claire qui attire tes clients idéaux et génère des transactions à 4-5 chiffres",
-                gradient: "from-blue-500/20 via-transparent to-transparent"
-              },
-              {
-                emoji: "🔄",
-                title: "Un tunnel qui vend",
-                description: "Tu mets en place un système de vente automatisé qui génère des leads et des rendez-vous sans effort",
-                gradient: "from-purple-500/20 via-transparent to-transparent"
-              },
-              {
-                emoji: "🎯",
-                title: "Une acquisition qui scale",
-                description: "Tu lances une stratégie d'acquisition B2B qui te permet de trouver des clients premium à volonté",
-                gradient: "from-yellow-500/20 via-transparent to-transparent"
-              },
-              {
-                emoji: "💰",
-                title: "Des revenus récurrents",
-                description: "Tu signes des clients à +50.000€/an sur plusieurs années, avec un système reproductible",
-                gradient: "from-green-500/20 via-transparent to-transparent"
-              }
-            ].map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="group relative bg-gray-800/30 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/30 hover:border-button/30 transition-all duration-500 hover:scale-[1.02]"
-              >
-                {/* Background gradient */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl`} />
-                
-                {/* Content */}
-                <div className="relative z-10">
-                  <div className="text-5xl mb-6">{item.emoji}</div>
-                  <h3 className="text-2xl font-bold mb-3 text-button">{item.title}</h3>
-                  <p className="text-gray-300 text-lg leading-relaxed">{item.description}</p>
-                </div>
-
-                {/* Hover indicator */}
-                <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <div className="text-button">
-                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Résultats concrets */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mt-16 grid md:grid-cols-3 gap-8 max-w-4xl mx-auto"
-          >
-            {[
-              {
-                value: "7 jours",
-                label: "Temps moyen pour lancer",
-                description: "Un système de vente complet",
-                icon: "⏱️"
-              },
-              {
-                value: "10x",
-                label: "ROI moyen",
-                description: "Retour sur investissement",
-                icon: "📈"
-              },
-              {
-                value: "95%",
-                label: "Satisfaction",
-                description: "Clients satisfaits",
-                icon: "⭐️"
-              }
-            ].map((stat, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="group relative bg-gray-800/30 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-700/30 hover:border-button/30 transition-all duration-500"
-              >
-                <div className="text-4xl mb-4">{stat.icon}</div>
-                <p className="text-4xl font-bold text-button mb-2">{stat.value}</p>
-                <p className="text-lg font-bold text-white mb-1">{stat.label}</p>
-                <p className="text-gray-400">{stat.description}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          {/* CTA */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mt-16 text-center"
-          >
-            <Button 
-              href="https://buy.stripe.com/5kAcNB6Y16zZ7wQeV7" 
-              size="lg"
-              className="group relative overflow-hidden"
+            <motion.h2
+              className="text-3xl md:text-4xl font-bold text-white text-center mb-12"
             >
-              <span className="relative z-10">👉 Je lance mon système maintenant - 99€</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-button/0 via-button/30 to-button/0 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
-            </Button>
-            <div className="mt-4 flex items-center justify-center gap-2 text-sm text-gray-400">
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <span>14 jours de garantie satisfait ou remboursé</span>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+              AVANT / APRÈS (TRANSFORMATION CLAIRE)
+            </motion.h2>
 
-      {/* Témoignages avec photos */}
-      <Testimonials />
-
-      {/* Promesses & Garanties avec preuve */}
-      <section className="py-20 bg-gray-900 relative overflow-hidden">
-        {/* Background Effects */}
-        <div className="absolute inset-0 bg-gradient-to-br from-button/10 via-transparent to-primary/10 mix-blend-overlay" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-button/10 rounded-full blur-[120px] opacity-30" />
-        
-        <div className="container-custom relative">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <div className="inline-block bg-button/20 backdrop-blur-sm px-6 py-2 rounded-full mb-6 border border-button/30">
-              <p className="text-sm md:text-base font-medium text-gray-300">
-                Nous prenons tous les risques pour toi
-              </p>
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-300">
-              🔐 Promesses & Garanties
-            </h2>
-            <p className="text-gray-300 max-w-2xl mx-auto text-lg">
-              Nous sommes tellement sûrs de notre système que nous prenons tous les risques
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {[
-              {
-                icon: "💎",
-                title: "Accès à vie",
-                description: "99€ une fois, accès à vie. Toutes les mises à jour incluses gratuitement.",
-                highlight: true
-              },
-              {
-                icon: "✅",
-                title: "Résultats garantis",
-                description: "Si tu suis les modules, tu lances ton système en 7 jours. Point.",
-                highlight: false
-              },
-              {
-                icon: "🔄",
-                title: "Remboursement",
-                description: "Si tu n'arrives à rien implémenter après avoir suivi les modules, on te rembourse.",
-                highlight: false
-              }
-            ].map((item, index) => (
+            <motion.div
+              className="grid md:grid-cols-2 gap-8"
+            >
+              {/* Avant */}
               <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className={`group relative bg-gray-800/30 backdrop-blur-sm rounded-2xl p-8 border transition-all duration-500 ${
-                  item.highlight 
-                    ? "border-button/50 shadow-lg shadow-button/20" 
-                    : "border-gray-700/30 hover:border-button/30"
-                }`}
+                className={`${cardStyles.base} ${cardStyles.warning} hover:border-red-500/50 transition-all duration-300 hover:transform hover:scale-[1.02]`}
               >
-                <div className="relative z-10">
-                  <div className="text-5xl mb-6">{item.icon}</div>
-                  <h3 className="text-2xl font-bold mb-3 text-button">{item.title}</h3>
-                  <p className="text-gray-300 text-lg leading-relaxed">{item.description}</p>
+                <div className="space-y-6">
+                  <h3 className="text-2xl font-bold text-red-500 mb-6">AVANT STARTER</h3>
+                  <ul className="space-y-6">
+                    <li className="flex items-start gap-4">
+                      <span className="text-red-500 font-bold text-2xl">→</span>
+                      <p className={containerStyles.text}>Acquisition au feeling, à l'instinct</p>
+                    </li>
+                    <li className="flex items-start gap-4">
+                      <span className="text-red-500 font-bold text-2xl">→</span>
+                      <p className={containerStyles.text}>Aucun tunnel, juste des conversations qui mènent nulle part</p>
+                    </li>
+                    <li className="flex items-start gap-4">
+                      <span className="text-red-500 font-bold text-2xl">→</span>
+                      <p className={containerStyles.text}>Pas de message clair, tu bégaies quand on te demande ce que tu fais</p>
+                    </li>
+                    <li className="flex items-start gap-4">
+                      <span className="text-red-500 font-bold text-2xl">→</span>
+                      <p className={containerStyles.text}>Tu vis d'espoir et de posts LinkedIn</p>
+                    </li>
+                  </ul>
                 </div>
               </motion.div>
-            ))}
-          </div>
 
-          {/* Preuve de garantie */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mt-16 text-center"
-          >
-            <div className="inline-flex items-center gap-4 bg-gray-800/50 backdrop-blur-sm px-8 py-4 rounded-full border border-gray-700/30 shadow-lg">
-              <div className="w-12 h-12 rounded-full bg-button/20 flex items-center justify-center">
-                <svg className="w-6 h-6 text-button" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <p className="text-lg text-gray-300">
-                <span className="text-3xl font-bold text-button">0.5%</span>
-                <span className="ml-2">de taux de remboursement seulement</span>
-              </p>
-            </div>
-          </motion.div>
+              {/* Après */}
+              <motion.div
+                className={`${cardStyles.base} ${cardStyles.accent} hover:border-button/50 transition-all duration-300 hover:transform hover:scale-[1.02]`}
+              >
+                <div className="space-y-6">
+                  <h3 className="text-2xl font-bold text-button mb-6">APRÈS STARTER</h3>
+                  <ul className="space-y-6">
+                    <li className="flex items-start gap-4">
+                      <span className="text-button font-bold text-2xl">→</span>
+                      <p className={containerStyles.text}>Machine d'acquisition installée et prévisible</p>
+                    </li>
+                    <li className="flex items-start gap-4">
+                      <span className="text-button font-bold text-2xl">→</span>
+                      <p className={containerStyles.text}>Tunnel qui close pendant ton sommeil</p>
+                    </li>
+                    <li className="flex items-start gap-4">
+                      <span className="text-button font-bold text-2xl">→</span>
+                      <p className={containerStyles.text}>Séquence efficace qui fait comprendre ta valeur en 30 secondes</p>
+                    </li>
+                    <li className="flex items-start gap-4">
+                      <span className="text-button font-bold text-2xl">→</span>
+                      <p className={containerStyles.text}>Tu vis d'un système structuré qui génère des résultats</p>
+                    </li>
+                  </ul>
+                </div>
+              </motion.div>
+            </motion.div>
 
-          {/* CTA */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mt-16 text-center"
-          >
-            <Button 
-              href="https://buy.stripe.com/5kAcNB6Y16zZ7wQeV7" 
-              size="lg"
-              className="group relative overflow-hidden"
+            <motion.div
+              className={`${cardStyles.base} ${cardStyles.accent} mt-8 p-8 text-center`}
             >
-              <span className="relative z-10">👉 Je commence maintenant - 99€</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-button/0 via-button/30 to-button/0 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
-            </Button>
-            <div className="mt-4 flex items-center justify-center gap-2 text-sm text-gray-400">
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <span>14 jours de garantie satisfait ou remboursé</span>
-            </div>
+              <p className={containerStyles.emphasis}>
+                La différence est brutale. Et elle ne prend que 7 jours à installer.
+              </p>
+            </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* Investissement & CTA avec urgence */}
-      <section className="py-20 bg-primary relative overflow-hidden">
-        {/* Background Effects */}
-        <div className="absolute inset-0 bg-gradient-to-br from-button/10 via-transparent to-primary/10 mix-blend-overlay" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-button/10 rounded-full blur-[120px] opacity-30" />
-        
-        <div className="container-custom relative">
+      {/* 13. Pourquoi 99€ */}
+      <section className={`${sectionStyles.base} ${sectionStyles.dark} relative`}>
+        <div className="absolute inset-0 bg-gradient-to-b from-gray-900 via-gray-900/95 to-gray-900"></div>
+        <div className={containerStyles.base}>
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="max-w-3xl mx-auto text-center"
+            className="space-y-8 relative"
           >
-            <div className="inline-block bg-button/20 backdrop-blur-sm px-6 py-2 rounded-full mb-6 border border-button/30">
-              <p className="text-sm md:text-base font-medium text-gray-300">
-                Un investissement qui change tout
-              </p>
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-300">
-              💸 Investissement
-            </h2>
-            
-            {/* Prix et valeur */}
-            <div className="mb-8">
-              <div className="inline-flex items-center gap-4 bg-gray-800/30 backdrop-blur-sm px-8 py-4 rounded-full border border-gray-700/30">
-                <div className="text-4xl font-bold text-button">99€</div>
-                <div className="text-left">
-                  <p className="text-gray-300">Paiement unique</p>
-                  <p className="text-sm text-gray-400">Accès à vie</p>
-                </div>
-              </div>
-            </div>
+            <motion.h2
+              className="text-3xl md:text-4xl font-bold text-white text-center mb-12"
+            >
+              POURQUOI 99€ ? (POSITIONNEMENT + SCARCITY)
+            </motion.h2>
 
-            {/* Valeur totale */}
-            <div className="mb-8">
-              <div className="inline-flex items-center gap-4 bg-gray-800/30 backdrop-blur-sm px-8 py-4 rounded-full border border-gray-700/30">
-                <div className="text-4xl font-bold text-green-400">+2.000€</div>
-                <div className="text-left">
-                  <p className="text-gray-300">Valeur totale</p>
-                  <p className="text-sm text-gray-400">Templates, ressources, mises à jour</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Garanties */}
-            <div className="grid md:grid-cols-3 gap-4 mb-8">
-              {[
-                {
-                  icon: "✅",
-                  title: "14 jours",
-                  description: "Garantie satisfait ou remboursé"
-                },
-                {
-                  icon: "💎",
-                  title: "Accès à vie",
-                  description: "Toutes les mises à jour incluses"
-                },
-                {
-                  icon: "🔄",
-                  title: "0.5%",
-                  description: "Taux de remboursement"
-                }
-              ].map((item, index) => (
-                <div key={index} className="bg-gray-800/30 backdrop-blur-sm rounded-xl p-4 border border-gray-700/30">
-                  <div className="text-2xl mb-2">{item.icon}</div>
-                  <p className="font-bold text-button">{item.title}</p>
-                  <p className="text-sm text-gray-400">{item.description}</p>
-                </div>
-              ))}
-            </div>
-
-            {/* Compteur d'urgence */}
-            <div className="mb-8">
-              <div className="inline-flex items-center gap-2 bg-gray-800/30 backdrop-blur-sm px-6 py-3 rounded-full border border-gray-700/30">
-                <svg className="w-5 h-5 text-button" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <p className="text-sm text-gray-300">
-                  Prochaine mise à jour dans <span className="text-button font-bold">{formatTime(timeLeft)}</span>
+            <motion.div
+              className="space-y-8"
+            >
+              <div className={`${cardStyles.base} ${cardStyles.accent} p-8`}>
+                <p className={containerStyles.text}>
+                  Je pourrais vendre ce système 500€, easy. D'ailleurs, je l'ai déjà fait.
+                </p>
+                <p className={containerStyles.text}>
+                  Mais j'en avais marre de voir des mecs ramer alors qu'ils pourraient lancer un système en 7 jours. C'est pas une formation où je te raconte ma vie. C'est une installation concrète.
+                </p>
+                <p className={containerStyles.text}>
+                  Et elle te coûte moins cher qu'un resto avec ta copine.
+                </p>
+                <p className={containerStyles.highlight}>
+                  Pourquoi si peu ? Parce que je veux enlever toutes tes excuses. Je veux que tu n'aies plus aucune raison de ne pas agir.
                 </p>
               </div>
-            </div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
 
-            {/* CTA Principal */}
-            <div className="mb-8">
+      {/* 14. Coût de l'inaction */}
+      <section className={`${sectionStyles.base} ${sectionStyles.light} relative`}>
+        <div className="absolute inset-0 bg-gradient-to-b from-primary via-primary/95 to-primary"></div>
+        <div className={containerStyles.base}>
+          <motion.div 
+            className="space-y-8 relative"
+          >
+            <motion.h2
+              className="text-3xl md:text-4xl font-bold text-white text-center mb-12"
+            >
+              TU VEUX ENCORE RÉFLÉCHIR ? VOILÀ CE QUE ÇA VA TE COÛTER.
+            </motion.h2>
+
+            <motion.div
+              className={`${cardStyles.base} ${cardStyles.warning} p-8`}
+            >
+              <div className="space-y-6">
+                <p className={containerStyles.text}>
+                  Continue de poster sur LinkedIn. Continue d'espérer que quelqu'un pense à toi. Continue de te dire que "ça va venir".
+                </p>
+                <p className={containerStyles.text}>
+                  Pendant ce temps, d'autres mecs lancent leur machine. Ils signent. Ils scalent. Ils prennent les clients que tu aurais pu avoir.
+                </p>
+                <p className={containerStyles.text}>
+                  Chaque jour que tu passes à "réfléchir", c'est un jour où tu ne génères pas de leads. C'est un jour sans nouveaux clients. C'est un jour sans revenus supplémentaires.
+                </p>
+                <p className="text-2xl font-bold text-white text-center mt-8">
+                  Le coût de l'inaction est toujours plus élevé que le coût de l'action.
+                </p>
+              </div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* 15. Pas de garantie */}
+      <section className={`${sectionStyles.base} ${sectionStyles.dark} relative`}>
+        <div className="absolute inset-0 bg-gradient-to-b from-gray-900 via-gray-900/95 to-gray-900"></div>
+        <div className={containerStyles.base}>
+          <motion.div 
+            className="space-y-8 relative"
+          >
+            <motion.h2
+              className="text-3xl md:text-4xl font-bold text-white text-center mb-12"
+            >
+              IL N'Y A PAS DE GARANTIE "SATISFAIT OU REMBOURSÉ".
+            </motion.h2>
+
+            <motion.div
+              className={`${cardStyles.base} ${cardStyles.accent} p-8`}
+            >
+              <div className="space-y-6">
+                <p className={containerStyles.text}>
+                  Parce que je ne vends pas une promesse magique.
+                </p>
+                <p className={containerStyles.text}>
+                  Je vends un système.
+                </p>
+                <p className={containerStyles.text}>
+                  Et ce système, si tu le suis, il fonctionne.
+                </p>
+                <div className="space-y-4 mt-8">
+                  <p className={containerStyles.highlight}>
+                    Tu veux une garantie ? Prends-toi en main.
+                  </p>
+                  <p className={containerStyles.highlight}>
+                    Tu veux des résultats ? Applique le plan.
+                  </p>
+                </div>
+                <p className="text-2xl font-bold text-white text-center mt-8">
+                  Le vrai risque, c'est de ne rien faire.
+                </p>
+                <p className={containerStyles.text}>
+                  Je ne veux pas de touristes qui achètent, regardent vaguement, et demandent un remboursement. Je veux des guerriers qui exécutent.
+                </p>
+              </div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* 16. CTA final */}
+      <section className={`${sectionStyles.base} ${sectionStyles.light} relative overflow-hidden`}>
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/0 via-button/5 to-primary/0"></div>
+        <div className={containerStyles.base}>
+          <motion.div 
+            className="space-y-8 relative"
+          >
+            <motion.h2
+              className="text-3xl md:text-4xl font-bold text-white text-center mb-12"
+            >
+              GUERRIER OU TOURISTE ?
+            </motion.h2>
+
+            <motion.div
+              className="space-y-6 text-center"
+            >
               <Button 
                 href="https://buy.stripe.com/5kAcNB6Y16zZ7wQeV7" 
                 size="lg"
-                className="group relative overflow-hidden"
+                className="group relative overflow-hidden w-full md:w-auto shadow-lg hover:shadow-button/20 transition-all duration-300"
               >
-                <span className="relative z-10">👉 Je prends STARTER maintenant - 99€</span>
+                <span className="relative z-10 font-medium">JE LANCE MA MACHINE MAINTENANT → ACCÈS IMMÉDIAT AU STARTER</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-button/0 via-button/30 to-button/0 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
               </Button>
-            </div>
 
-            {/* Preuve sociale */}
-            <div className="flex items-center justify-center gap-4">
-              <div className="flex -space-x-4">
-                {getRandomImages(5).map((img, i) => (
-                  <RoundedAvatar
-                    key={i}
-                    src={img}
-                    alt="Entrepreneur formé"
-                  />
-                ))}
-              </div>
-              <p className="text-sm text-gray-400">
-                <span className="text-button font-bold">+2.000</span> entrepreneurs formés
+              <p className="text-gray-400 italic">
+                Ou je retourne scroller en attendant que la vie change toute seule.
               </p>
-            </div>
-
-            {/* Garantie */}
-            <div className="mt-4 flex items-center justify-center gap-2 text-sm text-gray-400">
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <span>14 jours de garantie satisfait ou remboursé</span>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* FAQ avec preuve sociale */}
-      <section className="py-20 bg-gray-900">
-        <div className="container-custom">
+      {/* 17. PS */}
+      <section className={`${sectionStyles.base} ${sectionStyles.dark} relative`}>
+        <div className="absolute inset-0 bg-gradient-to-b from-gray-900 via-gray-900/95 to-gray-900"></div>
+        <div className={containerStyles.base}>
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
+            className="space-y-8 relative"
           >
-            <h2 className="text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-300">
-              ❓ Questions fréquentes
-            </h2>
-            <p className="text-gray-300 max-w-2xl mx-auto">
-              Les questions que se posent les entrepreneurs avant de commencer
-            </p>
-          </motion.div>
-
-          <div className="max-w-3xl mx-auto space-y-6">
-            {[
-              {
-                question: "Est-ce que c'est pour les débutants ?",
-                answer: "Oui, si tu veux vendre en B2B et que tu n'as pas encore structuré ton système. 65% de nos clients sont des débutants."
-              },
-              {
-                question: "Est-ce que je dois avoir GHL ou Notion ?",
-                answer: "Oui, mais tu peux t'en sortir avec Notion seul pour commencer. La plupart commencent comme ça."
-              },
-              {
-                question: "Est-ce que je peux me faire rembourser ?",
-                answer: "Si tu n'arrives à rien implémenter après avoir suivi les modules → oui. Notre taux de remboursement est de 0.5% seulement."
-              },
-              {
-                question: "Et après ?",
-                answer: "Tu pourras rejoindre les offres plus avancées si tu veux déléguer ou scaler. 30% de nos clients passent à l'étape suivante."
-              }
-            ].map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-primary/30 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/30"
-              >
-                <h3 className="text-xl font-bold mb-3 text-button">{item.question}</h3>
-                <p className="text-gray-300">{item.answer}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Mini-offre Finale avec urgence */}
-      <section className="py-20 bg-gradient-to-b from-gray-900 to-primary relative overflow-hidden">
-        {/* Background Effects */}
-        <div className="absolute inset-0 bg-gradient-to-br from-button/10 via-transparent to-primary/10 mix-blend-overlay" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-button/10 rounded-full blur-[120px] opacity-30" />
-        
-        <div className="container-custom text-center">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="max-w-3xl mx-auto"
-          >
-            <div className="inline-block bg-button/20 backdrop-blur-sm px-6 py-2 rounded-full mb-6 border border-button/30">
-              <p className="text-sm md:text-base font-medium text-gray-300">
-                Dernière chance de rejoindre STARTER
-              </p>
-            </div>
-
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-300">
-              7 modules. 50 templates. 1 plan. 99€.
-            </h2>
-
-            <p className="text-xl text-gray-300 mb-8">
-              Tu peux tout lancer dès ce soir.
-            </p>
-
-            {/* Valeur et garanties */}
-            <div className="grid md:grid-cols-3 gap-4 mb-8">
-              {[
-                {
-                  icon: "💎",
-                  title: "99€",
-                  description: "Paiement unique, accès à vie"
-                },
-                {
-                  icon: "✅",
-                  title: "14 jours",
-                  description: "Garantie satisfait ou remboursé"
-                },
-                {
-                  icon: "🔄",
-                  title: "0.5%",
-                  description: "Taux de remboursement"
-                }
-              ].map((item, index) => (
-                <div key={index} className="bg-gray-800/30 backdrop-blur-sm rounded-xl p-4 border border-gray-700/30">
-                  <div className="text-2xl mb-2">{item.icon}</div>
-                  <p className="font-bold text-button">{item.title}</p>
-                  <p className="text-sm text-gray-400">{item.description}</p>
-                </div>
-              ))}
-            </div>
-
-            {/* Compteur d'urgence */}
-            <div className="mb-8">
-              <div className="inline-flex items-center gap-2 bg-gray-800/30 backdrop-blur-sm px-6 py-3 rounded-full border border-gray-700/30">
-                <svg className="w-5 h-5 text-button" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <p className="text-sm text-gray-300">
-                  Prochaine mise à jour dans <span className="text-button font-bold">{formatTime(timeLeft)}</span>
+            <motion.div
+              className={`${cardStyles.base} ${cardStyles.accent} p-8`}
+            >
+              <div className="space-y-6">
+                <p className={containerStyles.text}>
+                  Tu veux être pris au sérieux par tes clients ? Commence par te prendre au sérieux toi-même.
+                </p>
+                <p className={containerStyles.text}>
+                  Ce Starter, c'est ton test. Si tu passes à l'action maintenant, t'as une machine qui tourne en 7 jours. Sinon... tu sais déjà ce qui t'attend.
+                </p>
+                <p className={containerStyles.text}>
+                  Les mêmes résultats. La même frustration. Les mêmes excuses.
+                </p>
+                <p className="text-2xl font-bold text-white text-center mt-8">
+                  La balle est dans ton camp. Qu'est-ce que tu choisis ?
                 </p>
               </div>
-            </div>
 
-            {/* CTA Principal */}
-            <div className="mb-8">
-              <Button 
-                href="https://buy.stripe.com/5kAcNB6Y16zZ7wQeV7" 
-                size="lg"
-                className="group relative overflow-hidden"
-              >
-                <span className="relative z-10">👉 Je prends STARTER maintenant - 99€</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-button/0 via-button/30 to-button/0 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
-              </Button>
-            </div>
-
-            {/* Preuve sociale */}
-            <div className="flex items-center justify-center gap-4 mb-4">
-              <div className="flex -space-x-4">
-                {getRandomImages(5).map((img, i) => (
-                  <RoundedAvatar
-                    key={i}
-                    src={img}
-                    alt="Entrepreneur formé"
-                  />
-                ))}
+              <div className="mt-12 text-center">
+                <Button 
+                  href="https://buy.stripe.com/5kAcNB6Y16zZ7wQeV7" 
+                  size="lg"
+                  className="group relative overflow-hidden shadow-lg hover:shadow-button/20 transition-all duration-300"
+                >
+                  <span className="relative z-10">JE PRENDS LE STARTER MAINTENANT</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-button/0 via-button/30 to-button/0 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+                </Button>
               </div>
-              <p className="text-sm text-gray-400">
-                <span className="text-button font-bold">+2.000</span> entrepreneurs formés
-              </p>
-            </div>
-
-            {/* Valeur totale */}
-            <div className="mb-4">
-              <div className="inline-flex items-center gap-2 bg-gray-800/30 backdrop-blur-sm px-4 py-2 rounded-full border border-gray-700/30">
-                <div className="text-xl font-bold text-green-400">+2.000€</div>
-                <div className="text-left">
-                  <p className="text-sm text-gray-300">Valeur totale</p>
-                  <p className="text-xs text-gray-400">Templates, ressources, mises à jour</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Garantie */}
-            <div className="flex items-center justify-center gap-2 text-sm text-gray-400">
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <span>14 jours de garantie satisfait ou remboursé</span>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
+
+      {lightbox && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80" onClick={() => setLightbox(null)}>
+          <img src={lightbox} alt="Zoom screenshot" className="max-w-full max-h-full rounded-xl shadow-2xl" />
+          <button className="absolute top-4 right-4 text-white text-3xl font-bold" onClick={() => setLightbox(null)}>&times;</button>
+        </div>
+      )}
+
     </>
   );
 } 

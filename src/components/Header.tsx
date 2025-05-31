@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSolutionsOpen, setIsSolutionsOpen] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -42,9 +43,51 @@ export default function Header() {
               Gratuit
             </span>
           </Link>
-          <Link href="/catalogue" className="text-contrast hover:text-title transition-colors text-sm lg:text-base">
-            Catalogue
-          </Link>
+          
+          {/* Solutions Dropdown */}
+          <div 
+            className="relative group"
+          >
+            <button 
+              className="text-contrast hover:text-title transition-colors text-sm lg:text-base flex items-center gap-2"
+              onClick={() => setIsSolutionsOpen(!isSolutionsOpen)}
+            >
+              <span>Solutions</span>
+              <svg 
+                className={`w-4 h-4 transition-transform duration-200 ${isSolutionsOpen ? 'rotate-180' : ''}`} 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            
+            {/* Dropdown Menu */}
+            <div 
+              className={`absolute top-full left-0 mt-2 w-48 rounded-lg bg-[#1A1A1A] border border-[#9B8E7D]/20 shadow-lg transition-all duration-200 ${
+                isSolutionsOpen ? 'opacity-100 translate-y-0 visible' : 'opacity-0 -translate-y-2 invisible'
+              }`}
+            >
+              <div className="py-2">
+                <a 
+                  href="/incubateur" 
+                  className="block px-4 py-2 text-sm text-contrast hover:bg-[#9F99EB]/10 hover:text-[#9F99EB] transition-colors"
+                  onClick={() => setIsSolutionsOpen(false)}
+                >
+                  Incubateur B2B
+                </a>
+                <a 
+                  href="/catalogue/bpcppl" 
+                  className="block px-4 py-2 text-sm text-contrast hover:bg-[#9F99EB]/10 hover:text-[#9F99EB] transition-colors"
+                  onClick={() => setIsSolutionsOpen(false)}
+                >
+                  Pay Per Lead B2B
+                </a>
+              </div>
+            </div>
+          </div>
+
           <Link href="/contact" className="text-contrast hover:text-title transition-colors text-sm lg:text-base">
             Diagnostic B2B Gratuit
           </Link>
@@ -109,13 +152,53 @@ export default function Header() {
               Gratuit
             </span>
           </Link>
-          <Link 
-            href="/catalogue" 
-            className="text-contrast hover:text-title transition-colors py-3 px-4 hover:bg-white/5 rounded-lg"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Catalogue
-          </Link>
+          
+          {/* Mobile Solutions Dropdown */}
+          <div className="relative">
+            <button 
+              className="w-full text-left text-contrast hover:text-title transition-colors py-3 px-4 hover:bg-white/5 rounded-lg flex items-center justify-between"
+              onClick={() => setIsSolutionsOpen(!isSolutionsOpen)}
+            >
+              <span>Solutions</span>
+              <svg 
+                className={`w-4 h-4 transition-transform duration-200 ${isSolutionsOpen ? 'rotate-180' : ''}`} 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            
+            {/* Mobile Dropdown Menu */}
+            <div 
+              className={`overflow-hidden transition-all duration-200 ${
+                isSolutionsOpen ? 'max-h-48 opacity-100 visible' : 'max-h-0 opacity-0 invisible'
+              }`}
+            >
+              <a 
+                href="/incubateur" 
+                className="block py-2 px-8 text-sm text-contrast hover:bg-white/5 hover:text-title transition-colors"
+                onClick={() => {
+                  setIsSolutionsOpen(false);
+                  setIsMenuOpen(false);
+                }}
+              >
+                Incubateur B2B
+              </a>
+              <a 
+                href="/catalogue/bpcppl" 
+                className="block py-2 px-8 text-sm text-contrast hover:bg-white/5 hover:text-title transition-colors"
+                onClick={() => {
+                  setIsSolutionsOpen(false);
+                  setIsMenuOpen(false);
+                }}
+              >
+                Pay Per Lead B2B
+              </a>
+            </div>
+          </div>
+
           <Link 
             href="/contact" 
             className="text-contrast hover:text-title transition-colors py-3 px-4 hover:bg-white/5 rounded-lg"
