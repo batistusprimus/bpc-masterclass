@@ -215,7 +215,7 @@ const faqItems = [
   },
   {
     question: "Quels canaux utilisez-vous pour générer les leads ?",
-    answer: "Mix inbound + outbound : SEO ciblé, contenu LinkedIn/YouTube, email prospecting, LinkedIn outreach et cold-call. Le mix exact dépend de votre vertical."
+    answer: "Mix inbound + outbound : email prospecting, LinkedIn outreach et cold-call. Le mix exact dépend de votre vertical."
   },
   {
     question: "Combien de temps avant les premiers résultats ?",
