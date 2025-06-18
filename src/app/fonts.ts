@@ -18,6 +18,7 @@ export const archivo = Archivo_Black({
 });
 
 export const montserrat = Montserrat({
+  weight: ['400', '700'],
   subsets: ['latin'],
   display: 'swap',
   preload: true,
