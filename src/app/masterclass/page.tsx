@@ -2661,47 +2661,6 @@ function ExploreMode({ setActiveModuleId, setActivePalierId, setViewMode }: Expl
 
   return (
     <div className="w-full max-w-7xl mx-auto px-4 py-8">
-      {/* Introduction Section */}
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="mb-16 bg-gradient-to-br from-surfaceMedium via-surfaceDark to-surfaceDark rounded-3xl p-8 md:p-12 border border-border relative overflow-hidden"
-      >
-        {/* Background Effects */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[100px] opacity-30" />
-        
-        <div className="relative">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-            <div>
-              <motion.h2 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-300"
-              >
-                {masterclassContent.introduction.title}
-              </motion.h2>
-            </div>
-
-            {masterclassContent.introduction.videoUrl && (
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.2 }}
-                className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/5 bg-surfaceLight"
-              >
-                <iframe
-                  src={formatVideoUrl(masterclassContent.introduction.videoUrl)}
-                  className="w-full h-full"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
-              </motion.div>
-            )}
-          </div>
-        </div>
-      </motion.div>
-
       {/* Filtres de catégories */}
       <div className="mb-8">
         <div className="flex flex-wrap gap-2 md:gap-4 justify-center">
@@ -3012,99 +2971,95 @@ export default function MasterclassPage() {
 
   return (
     <div className="bg-background min-h-screen text-textPrimary">
-      {/* Hero Section avec le Chat */}
-      <section className="relative min-h-[80vh] flex items-center justify-center pt-32 pb-20 bg-gradient-to-b from-primary via-primary/90 to-gray-900 overflow-hidden">
+      {/* Hero Section avec Introduction */}
+      <section className="relative min-h-[90vh] flex items-center justify-center pt-32 pb-20 bg-gradient-to-b from-primary via-primary/90 to-gray-900 overflow-hidden">
         {/* Background Effects */}
         <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
         <div className="absolute inset-0 bg-gradient-to-br from-button/20 via-transparent to-primary/20 mix-blend-overlay" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-button/30 rounded-full blur-[120px] opacity-50" />
         
-        {/* Chat Component avec Titres */}
+        {/* Contenu du Hero */}
         <div className="container-custom relative z-10">
-          <div className="max-w-4xl mx-auto text-center mb-12">
-            {/* Sur-titre */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="inline-block px-4 py-1.5 rounded-full bg-button/10 border border-button/20 mb-6"
-            >
-              <span className="text-button text-sm font-medium tracking-wider uppercase">
-                Masterclass B2B Premium
-              </span>
-            </motion.div>
+          <div className="max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              {/* Texte */}
+              <div className="text-center lg:text-left">
+                {/* Sur-titre */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8 }}
+                  className="inline-block px-4 py-1.5 rounded-full bg-button/10 border border-button/20 mb-6"
+                >
+                  <span className="text-button text-sm font-medium tracking-wider uppercase">
+                    Masterclass B2B Premium
+                  </span>
+                </motion.div>
 
-            {/* Titre Principal */}
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-4xl md:text-5xl lg:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-300 leading-tight"
-            >
-              Transforme ton Business B2B en Machine à Cash
-            </motion.h1>
+                {/* Titre Principal */}
+                <motion.h1
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-300 leading-tight"
+                >
+                  Transforme ton Business B2B en Machine à Cash
+                </motion.h1>
 
-            {/* Sous-titre */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed"
-            >
-              Notre IA analyse ta situation et te propose un parcours sur-mesure pour résoudre tes défis spécifiques. Tom, ton coach business, te guide pas à pas vers tes objectifs.
-            </motion.p>
+                {/* Sous-titre modifié */}
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.4 }}
+                  className="text-lg md:text-xl text-gray-300 leading-relaxed mb-6"
+                >
+                  6 ans d'expériences growth B2B, 17M€ générés*, 150 clients B2B et +2.000 solopreneurs formés réunis dans une masterclass gratuite et sans inscription.
+                </motion.p>
+
+                {/* Note de bas de page */}
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.6 }}
+                  className="text-sm text-gray-400 leading-relaxed"
+                >
+                  *C.A global estimé généré par mes entreprises ainsi que par les systèmes mis en place chez les clients partenaires de BPC GROUP et de ses associés entre 2021 et 2025.
+                </motion.p>
+              </div>
+
+              {/* Vidéo d'introduction */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="relative"
+              >
+                <div className="aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/5 bg-surfaceLight">
+                  {masterclassContent.introduction.videoUrl ? (
+                    <iframe
+                      src={formatVideoUrl(masterclassContent.introduction.videoUrl)}
+                      className="w-full h-full"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <p className="text-gray-400">Vidéo en cours de préparation</p>
+                    </div>
+                  )}
+                </div>
+              </motion.div>
+            </div>
           </div>
-
-          {/* Chat Component */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-col items-center gap-6"
-          >
-            <AssistantChat />
-          </motion.div>
         </div>
       </section>
 
-      {/* Section Preuves Sociales */}
-      <section className="relative py-16 bg-gradient-to-b from-gray-900 via-gray-900/95 to-gray-900">
+      {/* Section Preuves Sociales simplifiée */}
+      <section className="relative py-12 bg-gradient-to-b from-gray-900 via-gray-900/95 to-gray-900">
         <div className="container-custom">
           {/* Logos des clients */}
-          <div className="mb-12">
+          <div className="w-full">
             <LogoMarquee className="opacity-50 hover:opacity-100 transition-opacity duration-500" />
-          </div>
-
-          {/* Stats rapides avec avatars */}
-          <div className="max-w-4xl mx-auto">
-            <div className="grid grid-cols-3 gap-8">
-              <div className="relative pb-8">
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-white mb-2">+2000</div>
-                  <div className="text-sm text-gray-400">Entrepreneurs formés</div>
-                </div>
-                {/* Avatars en cercle */}
-                <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 flex -space-x-2">
-                  <RoundedAvatar src="/Yann Grosjean.jpeg" alt="Yann Grosjean" size="sm" className="ring-2 ring-gray-900" />
-                  <RoundedAvatar src="/anais-remaoun.webp" alt="Anaïs R." size="sm" className="ring-2 ring-gray-900" />
-                  <RoundedAvatar src="/Caroline rousset.jpg" alt="Caroline Rousset" size="sm" className="ring-2 ring-gray-900" />
-                  <RoundedAvatar src="/jean_michel_ly_v2.png" alt="Jean Michel Ly" size="sm" className="ring-2 ring-gray-900" />
-                  <div className="w-8 h-8 rounded-full bg-button/20 flex items-center justify-center text-xs font-medium text-button ring-2 ring-gray-900">
-                    +1.9k
-                  </div>
-                </div>
-              </div>
-
-              <div className="text-center">
-                <div className="text-4xl font-bold text-white mb-2">+10M€</div>
-                <div className="text-sm text-gray-400">Générés par nos clients</div>
-              </div>
-
-              <div className="text-center">
-                <div className="text-4xl font-bold text-white mb-2">4.9/5</div>
-                <div className="text-sm text-gray-400">Note moyenne</div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
