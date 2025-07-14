@@ -978,7 +978,7 @@ export default function CataloguePage() {
                         </div>
 
                         <Link 
-                          href="https://app.iclosed.io/e/baptistepiocelle/incubateur-bpc" 
+                          href="https://api.leadconnectorhq.com/widget/bookings/bp-scaling-implementation" 
                           target="_blank"
                           rel="noopener noreferrer"
                           className="group relative flex items-center justify-center w-full px-3 py-2 md:px-6 md:py-4 rounded-lg md:rounded-2xl bg-gradient-to-r from-[#10B981] to-[#10B981]/80 text-white font-medium shadow-lg shadow-[#10B981]/20 hover:shadow-xl hover:shadow-[#10B981]/30 transition-all duration-300 hover:scale-[1.02]"

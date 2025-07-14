@@ -731,7 +731,7 @@ export default function IncubateurPage() {
             </p>
             <div className="text-center mb-6">
               <a 
-                href="https://app.iclosed.io/e/baptistepiocelle/incubateur-bpc" 
+                href="https://api.leadconnectorhq.com/widget/bookings/bp-scaling-implementation" 
                 className="inline-block bg-blue-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-blue-700 transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -798,7 +798,7 @@ export default function IncubateurPage() {
       {/* CTA Flottant */}
       <div className="fixed bottom-6 right-6 z-50">
         <a 
-          href="https://app.iclosed.io/e/baptistepiocelle/incubateur-bpc"
+          href="https://api.leadconnectorhq.com/widget/bookings/bp-scaling-implementation"
           className="inline-block bg-black text-white px-6 py-4 rounded-lg font-bold text-lg hover:bg-gray-800 transition-colors shadow-lg"
           target="_blank"
           rel="noopener noreferrer"

@@ -87,7 +87,7 @@ export default function Home() {
               <div className="relative group">
                 <div className="absolute -inset-1 bg-gradient-to-r from-button to-graph rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
                 <Button 
-                  href="https://app.iclosed.io/e/baptistepiocelle/incubateur-bpc" 
+                  href="https://api.leadconnectorhq.com/widget/bookings/bp-scaling-implementation" 
                   size="lg" 
                   className="relative px-16 py-5 text-xl font-bold bg-gradient-to-r from-button to-graph hover:from-graph hover:to-button transition-all duration-300 transform hover:scale-105 shadow-2xl"
                 >
